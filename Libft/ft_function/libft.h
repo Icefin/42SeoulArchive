@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 16:00:26 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/20 15:59:57 by geshin           ###   ########.fr       */
+/*   Updated: 2023/03/20 18:00:47 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int ft_isprint(int c);
 
 size_t	ft_strlen(const char *s);
 void	*ft_memset(void *b, int c, size_t len);
-void	ft_bzero(void *bu, size_t n);
+void	ft_bzero(void *b, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
