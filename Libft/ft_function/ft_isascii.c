@@ -6,13 +6,13 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:46:51 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/20 17:49:07 by geshin           ###   ########.fr       */
+/*   Updated: 2023/03/22 18:04:11 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_isascii(int c)
+int	ft_isascii(int c)
 {
 	if (0 <= c && c <= 127)
 		return (1);

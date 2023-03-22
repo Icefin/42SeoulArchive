@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 17:38:14 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/22 18:03:43 by geshin           ###   ########.fr       */
+/*   Created: 2023/03/22 16:11:26 by geshin            #+#    #+#             */
+/*   Updated: 2023/03/22 18:06:27 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(int c)
+char	*ft_strchr(const char *s, int c)
 {
-	return (ft_isalpha(c) | ft_isdigit(c));
+	char	*ptr;
+
+	ptr = s;
+	while (*ptr != '\0')
+	{
+		if (*ptr == c)
+			return (ptr);
+		ptr++;
+	}
+	if (c == '\0')
+		return (ptr);
+	return (NULL);
 }
