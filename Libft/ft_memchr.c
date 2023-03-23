@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 16:02:42 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/22 18:06:55 by geshin           ###   ########.fr       */
+/*   Created: 2023/03/22 16:20:22 by geshin            #+#    #+#             */
+/*   Updated: 2023/03/23 19:39:55 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Libft.h"
+#include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	dstlen;
-	size_t	res;
-	size_t	i;
+	unsigned char	*ptr;
+	unsigned char	target;
+	size_t			idx;
 
-	dstlen = ft_strlen(dst);
-	res = dstlen + ft_strlen(src);
-	i = 0;
-	while (src[i] != '\0' && i + 1 < dstsize)
+	ptr = (unsigned char *)s;
+	target = (unsigned char)c;
+	idx = 0;
+	while (idx < n)
 	{
-		dst[dstlen + i] = src[i];
-		i++;
+		if (ptr[idx] == target)
+			return (&ptr[idx]);
+		idx++;
 	}
-	dst[dstlen + i] = '\0';
-	return (res);
+	return (NULL);
 }

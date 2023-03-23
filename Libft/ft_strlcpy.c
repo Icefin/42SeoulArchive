@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 16:06:34 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/22 18:07:55 by geshin           ###   ########.fr       */
+/*   Created: 2023/03/22 14:57:04 by geshin            #+#    #+#             */
+/*   Updated: 2023/03/23 19:41:22 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t	i;
+	size_t	idx;
 
-	i = 0;
-	while (s1[i] != '\0' && s2[i] != '\0' && i < n)
+	if (dstsize == 0)
+		return (ft_strlen(src));
+	idx = 0;
+	while (src[idx] != '\0' && idx + 1 < dstsize)
 	{
-		if (s1[i] != s2[i])
-			return (0);
-		i++;
+		dst[idx] = src[idx];
+		idx++;
 	}
-	//TODO : Check this part again
-	return (s1[i] == s2[i]);
+	dst[idx] = '\0';
+	return (ft_strlen(src));
 }

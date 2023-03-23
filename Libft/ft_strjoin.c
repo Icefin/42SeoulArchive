@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 17:27:53 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/22 18:03:24 by geshin           ###   ########.fr       */
+/*   Created: 2023/03/22 18:21:00 by geshin            #+#    #+#             */
+/*   Updated: 2023/03/23 13:46:02 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	void	*ptr;
+	char	*ptr;
+	size_t	s1len;
+	size_t	s2len;
 
-	ptr = malloc(count * size);
-	ft_memset(ptr, 0, count * size);
+	s1len = ft_strlen(s1);
+	s2len = ft_strlen(s2);
+	ptr = (char *)malloc(s1len + s2len + 1);
+	if (ptr == NULL)
+		return (NULL);
+	ft_strlcpy(ptr, s1, s1len + 1);
+	ft_strlcpy(&ptr[s1len], s2, s2len + 1);
 	return (ptr);
 }

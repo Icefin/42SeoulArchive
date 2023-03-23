@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:38:22 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/22 18:01:29 by geshin           ###   ########.fr       */
+/*   Updated: 2023/03/23 19:39:14 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,25 @@ int	my_isspace(const char c)
 
 int	ft_atoi(const char *s)
 {
-	int	i;
+	int	idx;
 	int	sign;
 	int	res;
 
-	i = 0;
+	idx = 0;
 	sign = 1;
-	res = 1;
-	while ((my_isspace(s[i])))
-		i++;
-	if (s[i] == '+' || s[i] == '-')
+	res = 0;
+	while ((my_isspace(s[idx])))
+		idx++;
+	if (s[idx] == '+' || s[idx] == '-')
 	{
-		if (s[i] == '-')
+		if (s[idx] == '-')
 			sign = -1;
-		i++;
+		idx++;
 	}
-	while (ft_isdigit(s[i]))
+	while (ft_isdigit(s[idx]))
 	{
-		res += res * 10 + (s[i] - '0');
-		i++;
+		res = res * 10 + (s[idx] - '0');
+		idx++;
 	}
 	return (sign * res);
 }

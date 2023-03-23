@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 12:16:16 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/22 18:05:17 by geshin           ###   ########.fr       */
+/*   Created: 2023/03/23 10:46:11 by geshin            #+#    #+#             */
+/*   Updated: 2023/03/23 17:38:40 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned char	*dstp;
-	unsigned char	*srcp;
+	char	c;
 
-	dstp = (unsigned char *)dst;
-	srcp = (unsigned char *)src;
-	if (dstp < srcp)
+	if (n == INT32_MIN)
 	{
-		while (len-- > 0)
-		{
-			*dstp = *srcp;
-			dstp++;
-			srcp++;
-		}
+		ft_putstr_fd("-2147483648", fd);
+		return ;
+	}
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(-n, fd);
+		return ;
+	}
+	if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		c = n % 10 + '0';
+		ft_putchar_fd(c, fd);
 	}
 	else
 	{
-		while (len-- > 0)
-			dstp[len] = srcp[len];
-	}
-	return (dst);
+		c = n + '0';
+		ft_putchar_fd(c, fd);
+	}	
 }

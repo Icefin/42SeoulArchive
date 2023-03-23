@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 16:11:26 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/22 18:06:27 by geshin           ###   ########.fr       */
+/*   Created: 2023/03/23 10:39:27 by geshin            #+#    #+#             */
+/*   Updated: 2023/03/23 13:45:58 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	char	*ptr;
+	unsigned int	idx;
 
-	ptr = s;
-	while (*ptr != '\0')
+	idx = 0;
+	while (s[idx] != '\0')
 	{
-		if (*ptr == c)
-			return (ptr);
-		ptr++;
+		f(idx, &s[idx]);
+		idx++;
 	}
-	if (c == '\0')
-		return (ptr);
-	return (NULL);
 }

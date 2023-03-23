@@ -6,16 +6,18 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:32:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/22 19:49:44 by geshin           ###   ########.fr       */
+/*   Updated: 2023/03/23 18:00:36 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	get_digit(int n)
+int	get_digit(long long n)
 {
-	int res;
+	int	res;
 
+	if (n == INT32_MIN)
+		return (11);
 	if (n == 0)
 		return (1);
 	if (n < 0)
@@ -31,27 +33,29 @@ int	get_digit(int n)
 
 char	*ft_itoa(int n)
 {
-	char	*ptr;
-	int		digit;
-	int		index;
+	char		*ptr;
+	long long	tmp;
+	int			digit;
+	int			index;
 
-	digit = get_digit(n);
+	tmp = (long long)n;
+	digit = get_digit(tmp);
 	ptr = (char *)malloc((digit + 1) * sizeof(char));
 	if (ptr == NULL)
 		return (NULL);
 	ptr[digit] = '\0';
-	if (n == 0)
+	if (tmp == 0)
 		ptr[0] = '0';
-	if (n < 0)
+	if (tmp < 0)
 	{
 		ptr[0] = '-';
-		n = -n;
+		tmp = -tmp;
 	}
 	index = digit - 1;
-	while (n > 0)
+	while (tmp > 0)
 	{
-		ptr[index] = (n % 10) + '0';
-		n /= 10;
+		ptr[index--] = (tmp % 10) + '0';
+		tmp /= 10;
 	}
 	return (ptr);
 }

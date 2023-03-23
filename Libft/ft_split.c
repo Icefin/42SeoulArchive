@@ -6,19 +6,19 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:07:21 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/22 19:31:28 by geshin           ###   ########.fr       */
+/*   Updated: 2023/03/23 19:40:42 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	get_word_cnt(char *s, char c)
+int	get_word_cnt(const char *s, char c)
 {
 	int	left;
 	int	right;
-	int word_cnt;
+	int	word_cnt;
 
-	left = 0;
+	left = -1;
 	right = 0;
 	word_cnt = 0;
 	while (s[right] != '\0')
@@ -36,44 +36,60 @@ int	get_word_cnt(char *s, char c)
 	return (word_cnt);
 }
 
-char	*get_word(char *s, char c)
+char	*get_word(const char *s, char c, int *idx)
 {
 	char	*ptr;
 	int		len;
 
-	while (s[len] != c && s[len] != '\0')
+	len = 0;
+	while (s[*idx + len] != c && s[*idx + len] != '\0')
 		len++;
 	ptr = (char *)malloc((len + 1) * sizeof(char));
 	if (ptr == NULL)
 		return (NULL);
-	ft_strlcpy(ptr, s, len + 1);
+	ft_strlcpy(ptr, &s[*idx], len + 1);
+	*idx = *idx + len - 1;
 	return (ptr);
+}
+
+void	my_destroy(char	**s, size_t size)
+{
+	size_t	idx;
+
+	idx = 0;
+	while (idx < size)
+	{
+		free(s[idx]);
+		idx++;
+	}
+	free(s);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**res;
-	int		slen;
-	int		i;
+	int		idx;
 	int		res_idx;
-	
-	res = (char **)malloc((get_word_cnt(s, c) + 1) * sizeof(char *));
+	size_t	word_cnt;
+
+	word_cnt = get_word_cnt(s, c);
+	res = (char **)malloc((word_cnt + 1) * sizeof(char *));
 	if (res == NULL)
 		return (NULL);
-	slen = ft_strlen(s);
-	i = 0;
-	res_idx = 0;
-	while (i < slen)
+	idx = -1;
+	res_idx = -1;
+	while (s[++idx] != '\0')
 	{
-		if (s[i] != c)
+		if (s[idx] != c)
 		{
-			res[res_idx] = get_word(&s[i], c);
+			res[++res_idx] = get_word(s, c, &idx);
 			if (res[res_idx] == NULL)
+			{
+				my_destroy(res, word_cnt + 1);
 				return (NULL);
-			res_idx++;
+			}
 		}
-		i++;
 	}
-	res[res_idx] = NULL;
+	res[word_cnt] = NULL;
 	return (res);
 }
