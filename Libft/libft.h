@@ -6,14 +6,13 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 16:00:26 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/22 18:10:22 by geshin           ###   ########.fr       */
+/*   Updated: 2023/03/24 15:26:42 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <unistd.h>		
 # include <stdlib.h>
 
 int		ft_isalpha(int c);

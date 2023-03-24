@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:16:16 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/23 20:00:14 by geshin           ###   ########.fr       */
+/*   Updated: 2023/03/24 10:16:04 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,20 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*ptr;
+	size_t	slen;
+	size_t	cpylen;
 
 	if (s == NULL)
 		return (NULL);
-	if (start >= ft_strlen(s))
+	slen = ft_strlen(s);
+	if (start >= slen)
 		return (ft_strdup(""));
-	ptr = (char *)malloc((len + 1) * sizeof(char));
+	cpylen = len;
+	if (cpylen > slen - start)
+		cpylen = slen - start;
+	ptr = (char *)malloc((cpylen + 1) * sizeof(char));
 	if (ptr == NULL)
 		return (NULL);
-	ft_strlcpy(ptr, &s[start], len + 1);
+	ft_strlcpy(ptr, &s[start], cpylen + 1);
 	return (ptr);
 }

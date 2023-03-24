@@ -53,3 +53,4 @@ echo -e "\033[32;1m"relink"\033[m"
 read $a
 make
 echo -e "\033[32;1m"DONE"\033[m"
+make fclean
