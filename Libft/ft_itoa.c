@@ -6,13 +6,13 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:32:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/23 18:00:36 by geshin           ###   ########.fr       */
+/*   Updated: 2023/03/27 14:44:48 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	get_digit(long long n)
+static int	get_digit(long long n)
 {
 	int	res;
 
@@ -36,7 +36,7 @@ char	*ft_itoa(int n)
 	char		*ptr;
 	long long	tmp;
 	int			digit;
-	int			index;
+	int			idx;
 
 	tmp = (long long)n;
 	digit = get_digit(tmp);
@@ -51,10 +51,10 @@ char	*ft_itoa(int n)
 		ptr[0] = '-';
 		tmp = -tmp;
 	}
-	index = digit - 1;
+	idx = digit - 1;
 	while (tmp > 0)
 	{
-		ptr[index--] = (tmp % 10) + '0';
+		ptr[idx--] = (tmp % 10) + '0';
 		tmp /= 10;
 	}
 	return (ptr);

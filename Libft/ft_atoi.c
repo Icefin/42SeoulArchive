@@ -6,13 +6,13 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:38:22 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/23 19:39:14 by geshin           ###   ########.fr       */
+/*   Updated: 2023/03/27 14:43:35 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	my_isspace(const char c)
+static int	my_isspace(const char c)
 {
 	if (c == 9 || c == 10 || c == 11 || c == 12 || c == 13 || c == 32)
 		return (1);
@@ -21,13 +21,13 @@ int	my_isspace(const char c)
 
 int	ft_atoi(const char *s)
 {
+	int	res;
 	int	idx;
 	int	sign;
-	int	res;
 
+	res = 0;
 	idx = 0;
 	sign = 1;
-	res = 0;
 	while ((my_isspace(s[idx])))
 		idx++;
 	if (s[idx] == '+' || s[idx] == '-')

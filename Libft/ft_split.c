@@ -6,21 +6,21 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:07:21 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/23 19:40:42 by geshin           ###   ########.fr       */
+/*   Updated: 2023/03/27 14:47:05 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	get_word_cnt(const char *s, char c)
+static int	get_word_cnt(const char *s, char c)
 {
+	int	word_cnt;
 	int	left;
 	int	right;
-	int	word_cnt;
 
+	word_cnt = 0;
 	left = -1;
 	right = 0;
-	word_cnt = 0;
 	while (s[right] != '\0')
 	{
 		if (s[right] == c)
@@ -36,7 +36,7 @@ int	get_word_cnt(const char *s, char c)
 	return (word_cnt);
 }
 
-char	*get_word(const char *s, char c, int *idx)
+static char	*get_word(const char *s, char c, int *idx)
 {
 	char	*ptr;
 	int		len;
@@ -52,7 +52,7 @@ char	*get_word(const char *s, char c, int *idx)
 	return (ptr);
 }
 
-void	my_destroy(char	**s, size_t size)
+static void	my_destroy(char	**s, size_t size)
 {
 	size_t	idx;
 

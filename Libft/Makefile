@@ -1,9 +1,10 @@
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 AR = ar
 AFLAGS = -rcs
 
+INC = ./libft.h
 SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 	   ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c \
 	   ft_strlcpy.c ft_strlcat.c ft_strncmp.c ft_toupper.c ft_tolower.c \
@@ -16,6 +17,8 @@ OBJS = $(SRCS:.c=.o)
 SRCS_BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 			 ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
+
+BONUS_FLAG=FALSE
 
 ifeq ($(BONUS_FLAG),TRUE)
 	TOT_OBJS = $(OBJS) $(OBJS_BONUS)
@@ -32,7 +35,7 @@ $(NAME) : $(TOT_OBJS)
 	$(AR) $(AFLAGS) $(NAME) $(TOT_OBJS)
 
 .c.o :
-	gcc $(CFLAGS) -c $< -o ${<:.c=.o}
+	gcc $(CFLAGS) -c $< -o ${<:.c=.o} -I $(INC)
 
 clean :
 	rm -rf $(OBJS) $(OBJS_BONUS) 
@@ -40,7 +43,7 @@ clean :
 fclean : clean
 	rm -rf $(NAME)
 
-re : fclean $(NAME)
+re : fclean all
 
 bonus : 
 	make BONUS_FLAG=TRUE

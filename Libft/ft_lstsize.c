@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 10:58:33 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/23 13:44:35 by geshin           ###   ########.fr       */
+/*   Updated: 2023/03/27 14:45:27 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	t_list	*node;
 	int		cnt;
+	t_list	*node;
 
 	if (lst == NULL)
 		return (0);
-	node = lst;
 	cnt = 1;
+	node = lst;
 	while (node->next != NULL)
 	{
 		node = node->next;

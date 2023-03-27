@@ -6,13 +6,13 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:35 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/23 19:29:56 by geshin           ###   ########.fr       */
+/*   Updated: 2023/03/27 14:43:04 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	hash_set(char const *set, char c)
+static int	hash_set(char const *set, char c)
 {
 	int	idx;
 
