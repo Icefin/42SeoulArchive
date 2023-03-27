@@ -2,6 +2,6 @@
 Use as 42Seoul Internal Workspace
 
 Git Convention
-
-[Update] [Work Name] [Date]
+</br>
+[Update] [Work Name] [Date] </br>
 [Fix] [Work Name/File] [// Fixed Contents]
