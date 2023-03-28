@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:01:40 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/27 17:52:12 by geshin           ###   ########.fr       */
+/*   Updated: 2023/03/28 16:19:16 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ typedef struct s_node
 
 char		*get_next_line(int fd);
 
-static t_node	*ft_get_line_lst(fd);
-static int		ft_get_node_cnt(t_node* head);
-static void		ft_lstadd_back(t_node **lst, t_node* new);
-static void		ft_lstclear(t_node **lst);	
+t_node	*ft_get_line_lst(fd);
+int		ft_get_node_cnt(t_node* head);
+void	ft_lstadd_back(t_node **lst, t_node* new);
+void	ft_lstclear(t_node **lst);	
 
 
 #endif
