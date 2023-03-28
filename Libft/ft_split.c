@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:07:21 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/27 14:47:05 by geshin           ###   ########.fr       */
+/*   Updated: 2023/03/28 14:52:01 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,26 +70,25 @@ char	**ft_split(char const *s, char c)
 	char	**res;
 	int		idx;
 	int		res_idx;
-	size_t	word_cnt;
 
-	word_cnt = get_word_cnt(s, c);
-	res = (char **)malloc((word_cnt + 1) * sizeof(char *));
+	res = (char **)malloc((get_word_cnt(s, c) + 1) * sizeof(char *));
 	if (res == NULL)
 		return (NULL);
 	idx = -1;
-	res_idx = -1;
+	res_idx = 0;
 	while (s[++idx] != '\0')
 	{
 		if (s[idx] != c)
 		{
-			res[++res_idx] = get_word(s, c, &idx);
+			res[res_idx] = get_word(s, c, &idx);
 			if (res[res_idx] == NULL)
 			{
-				my_destroy(res, word_cnt + 1);
+				my_destroy(res, res_idx);
 				return (NULL);
 			}
+			res_idx++;
 		}
 	}
-	res[word_cnt] = NULL;
+	res[res_idx] = NULL;
 	return (res);
 }
