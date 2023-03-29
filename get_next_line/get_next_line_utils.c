@@ -6,47 +6,30 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:01:34 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/28 17:37:15 by geshin           ###   ########.fr       */
+/*   Updated: 2023/03/29 18:40:37 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-t_node	*ft_get_line_lst(fd)
+t_list	*ft_lstnew(char *content, int size)
 {
-	t_node	*node;
-	char	*buffer;
-	int		rd_size;
-
-	buffer = (char *)malloc(BUFFER_SIZE * sizeof(char));
-	rd_size = read(fd, buffer, BUFFER_SIZE);
-	while (rd_size > 0)
-	{
-		node = (t_node *)malloc(sizeof(t_node));
-		
-	}
-}
-
-int	ft_get_node_cnt(t_node* head)
-{
-	int		cnt;
 	t_list	*node;
+	char	*text;
 
-	if (head == NULL)
-		return (0);
-	cnt = 1;
-	node = head;
-	while (node->next != NULL)
-	{
-		node = node->next;
-		cnt++;
-	}
-	return (cnt);
+	node = (t_list *)malloc(sizeof(t_list));
+	text = ft_strdup(content, size);
+	if (node == NULL || text == NULL)
+		return (NULL);
+	node->text = text;
+	node->text_len = size;
+	node->next = NULL;
+	return (node);
 }
 
-void	ft_lstadd_back(t_node **lst, t_node *new)
+void	ft_lst_node_add_back(t_list **lst, t_list *new)
 {
-	t_node	*node;
+	t_list	*node;
 
 	node = *lst;
 	if (node == NULL)
@@ -59,15 +42,38 @@ void	ft_lstadd_back(t_node **lst, t_node *new)
 	node->next = new;
 }
 
-void	ft_lstclear(t_node **lst)
+void	ft_lstclear(t_list **lst)
 {
-	t_node	*node;
+	t_list	*node;
 
 	while (*lst != NULL)
 	{
 		node = *lst;
 		(*lst) = (*lst)->next;
-		free(node->content);
+		free(node->text);
 		free(node);
+	}
+}
+
+char	*ft_strdup(const char *src, int srclen)
+{
+	char	*res;
+
+	res = (char *)malloc((srclen) * sizeof(char));
+	if (res == NULL)
+		return (NULL);
+	ft_strmove(res, src, srclen);
+	return (res);
+}
+
+void	ft_strmove(char *dst, const char *src, int srclen)
+{
+	int	idx;
+
+	idx = 0;
+	while (idx < srclen)
+	{
+		dst[idx] = src[idx];
+		idx++;
 	}
 }
