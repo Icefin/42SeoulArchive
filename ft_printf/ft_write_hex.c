@@ -6,50 +6,54 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 14:23:41 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/31 16:51:05 by geshin           ###   ########.fr       */
+/*   Updated: 2023/04/04 12:04:46 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
 #include <unistd.h>
 
-//Consider Upper case, Lower case
-
-static char *ft_itoh(int value)
+static void	ft_write_shex_recursive(const unsigned int n, int depth, int *cnt)
 {
-    //Implment this
+	if (n >= 16)
+	{
+		ft_write_shex_recursive(n / 16, depth + 1, cnt);
+		write(1, &"0123456789abcdef"[n % 16], 1);
+	}
+	else
+	{
+		write(1, &"0123456789abcdef"[n], 1);
+		*cnt += depth;
+	}
 }
 
-static int  ft_strlen(char *s)
+static void	ft_write_lhex_recursive(const unsigned int n, int depth, int *cnt)
 {
-    int len;
-
-    len = 0;
-    while (s[len] != '\0')
-        len++;
-    return (len);
+	if (n >= 16)
+	{
+		ft_write_lhex_recursive(n / 16, depth + 1, cnt);
+		write(1, &"0123456789ABCDEF"[n % 16], 1);
+	}
+	else
+	{
+		write(1, &"0123456789ABCDEF"[n], 1);
+		*cnt += depth;
+	}
 }
 
-int ft_write_shex(va_list args)
+int	ft_write_shex(const unsigned int n)
 {
-    int     value;
-    char    *hex;
-    
-    value = va_arg(args, int);
-    hex = ft_itoh(value);
-    if (hex == 0)
-        return (-1);
-    return (write(1, hex, ft_strlen(hex)));
+	int	cnt;
+
+	cnt = 0;
+	ft_write_shex_recursive(n, 1, &cnt);
+	return (cnt);
 }
 
-int ft_write_bhex(va_list args)
+int	ft_write_lhex(const unsigned int n)
 {
-    int     value;
-    char    *hex;
+	int	cnt;
 
-    value = va_arg(args, int);
-    hex = ft_itoh(value);
-    if (hex == 0)
-        return (-1);
-    return (write(1, hex, ft_strlen(hex)));
+	cnt = 0;
+	ft_write_lhex_recursive(n, 1, &cnt);
+	return (cnt);
 }

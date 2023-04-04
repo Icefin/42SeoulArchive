@@ -6,48 +6,51 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 14:25:23 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/31 16:48:13 by geshin           ###   ########.fr       */
+/*   Updated: 2023/04/04 12:08:27 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
 #include <unistd.h>
 
-static char    *ft_itoa(int value)
+static void	ft_write_udec_recursive(unsigned int n, int depth, int *cnt)
 {
-    //Implement this
+	char	c;
+
+	if (n >= 10)
+	{
+		ft_write_udec_recursive(n / 10, depth + 1, cnt);
+		c = n % 10 + '0';
+		write(1, &c, 1);
+	}
+	else
+	{
+		c = n + '0';
+		write(1, &c, 1);
+		*cnt += depth;
+	}
 }
 
-static int  ft_strlen(char *s)
+int	ft_write_dec(const int n)
 {
-    int len;
+	int	cnt;
 
-    len = 0;
-    while (s[len] != '\0')
-        len++;
-    return (len);
+	cnt = 0;
+	if (n < 0)
+	{
+		write(1, "-", 1);
+		cnt++;
+		ft_write_udec_recursive((unsigned int)(-n), 1, &cnt);
+	}
+	else
+		ft_write_udec_recursive(n, 1, &cnt);
+	return (cnt);
 }
 
-int ft_write_dec(va_list args)
+int	ft_write_udec(const unsigned int n)
 {
-    int     value;
-    char    *str;
+	int	cnt;
 
-    value = va_arg(args, int);
-    str = ft_itoa(value);
-    if (str == 0)
-        return (-1);
-    return (write(1, str, ft_strlen(str)));
-}
-
-int ft_write_udec(va_list args)
-{
-    unsigned int    value;
-    char            *str;
-
-    value = va_arg(args, unsigned int);
-    str = ft_itoa(value);
-    if (str == 0)
-        return (-1);
-    return (write(1, str, ft_strlen(str)));
+	cnt = 0;
+	ft_write_udec_recursive(n, 1, &cnt);
+	return (cnt);
 }

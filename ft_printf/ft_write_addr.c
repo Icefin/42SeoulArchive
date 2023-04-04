@@ -6,40 +6,34 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 14:24:42 by geshin            #+#    #+#             */
-/*   Updated: 2023/03/31 16:53:50 by geshin           ###   ########.fr       */
+/*   Updated: 2023/04/04 12:04:42 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
 #include <unistd.h>
 
-static char *ft_itohaddr(unsigned long hex)
+static void	ft_write_addr_recursive(const unsigned long p, int depth, int *cnt)
 {
-    //Implement this
+	if (p >= 16)
+	{
+		ft_write_addr_recursive(p / 16, depth + 1, cnt);
+		write(1, &"0123456789abcdef"[p % 16], 1);
+	}
+	else
+	{
+		write(1, &"0123456789abcdef"[p], 1);
+		*cnt += depth;
+	}
 }
 
-static int  ft_strlen(char *s)
+int	ft_write_addr(const void *p)
 {
-    int len;
+	int				cnt;
+	unsigned long	addr;
 
-    len = 0;
-    while (s[len] != '\0')
-        len++;
-    return (len);
-}
-
-int ft_write_addr(va_list args)
-{
-    void            *ptr;
-    unsigned long   addr;
-    char            *hex;
-
-    ptr = va_arg(args, void *);
-    if (ptr == 0)
-        return (wrtie(1, "(null)", 6));
-    addr = (unsigned long)addr;
-    hex = ft_itohaddr(addr);
-    if (hex == 0)
-        return (-1);
-    return (write(1, hex, ft_strlen(hex)));
+	addr = (unsigned long)p;
+	write(1, "0x", 2);
+	cnt = 2;
+	ft_write_addr_recursive(addr, 1, &cnt);
+	return (cnt);
 }
