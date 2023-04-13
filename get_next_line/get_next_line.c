@@ -5,106 +5,123 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 16:01:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/04/12 12:54:09 by geshin           ###   ########.fr       */
+/*   Created: 2023/04/12 13:08:46 by geshin            #+#    #+#             */
+/*   Updated: 2023/04/12 16:28:39 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <unistd.h>
 #include "get_next_line.h"
 
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 1000
 #endif
 
-static int	get_endl_idx(const char *buffer, int size)
-{
-	int	idx;
-
-	idx = 0;
-	while (idx < size)
-	{
-		if (buffer[idx] == '\n')
-			return (idx);
-		idx++;
-	}
-	return (-1);
-}
-
-static int	buffer_text_process(t_list **lst, char *buffer, int *bsl, int size)
-{
-	t_list	*node;
-	int		endl_idx;
-
-	endl_idx = get_endl_idx(buffer, size);
-	if (endl_idx == -1)
-	{
-		node = ft_lstnew(buffer, size);
-		ft_lst_node_add_back(lst, node);
-		*bsl = 0;
-		return (1);
-	}
-	node = ft_lstnew(buffer, endl_idx + 1);
-	ft_lst_node_add_back(lst, node);
-	ft_strmove(buffer, &buffer[endl_idx + 1], size - endl_idx);
-	*bsl = size - endl_idx;
-	return (0);
-}
-
-static char	*get_entire_line(t_list **lst)
+static char	*get_line_from_list(t_list **head, t_list **tail)
 {
 	char	*res;
+	t_list	*tmp;
 	int		len;
-	t_list	*node;
-	int		idx;
+	int		is_eol;
 
 	len = 0;
-	node = *lst;
-	while (node != NULL)
+	is_eol = 0;
+	tmp = *head;
+	while (tmp != NULL && !is_eol)
 	{
-		len += node->text_len;
-		node = node->next;
+		len += tmp->text_len;
+		is_eol = tmp->is_eol;
+		tmp = tmp->next;
 	}
 	res = (char *)malloc((len + 1) * sizeof(char));
-	if (res == NULL)
-		return (NULL);
-	node = *lst;
-	idx = 0;
-	while (node != NULL)
+	len = 0;
+	is_eol = 0;
+	while ((*head) != NULL && !is_eol)
 	{
-		ft_strmove(&res[idx], node->text, node->text_len);
-		idx += node->text_len;
-		node = node->next;
+		is_eol = (*head)->is_eol;
+		str_strncat(res, len, (*head));
+		len += (*head)->text_len;
+		lst_pop_front(head, tail);
 	}
-	res[idx] = '\0';
 	return (res);
+}
+
+static int	split_buffer_endl(t_list **head, t_list **tail, char *s, int slen)
+{
+	char	*text;
+	int		left;
+	int		right;
+	t_list	*tmp;
+	int		is_eol;
+
+	left = 0;
+	right = -1;
+	is_eol = 0;
+	while (++right < slen)
+	{
+		if (s[right] == '\n' || right == slen - 1)
+		{
+			if (s[right] == '\n')
+				is_eol = 1;
+			text = str_substr(s, left, right - left + 1);
+			if (s[right] == '\n')
+				tmp = lst_create_node(text, right - left + 1, 1);
+			else
+				tmp = lst_create_node(text, right - left + 1, 0);
+			lst_push_back(head, tail, tmp);
+			left = right + 1;
+		}
+	}
+	return (is_eol);
+}
+
+static void	update_linked_list(t_list **head, t_list **tail, int fd)
+{
+	char	buffer[BUFFER_SIZE];
+	int		rd_size;
+	int		is_eol;
+
+	is_eol = 0;
+	while (!is_eol)
+	{
+		rd_size = read(fd, buffer, BUFFER_SIZE);
+		if (rd_size <= 0)
+			break ;
+		is_eol = split_buffer_endl(head, tail, buffer, rd_size);
+	}
+	if (rd_size < 0)
+	{
+		while (*head != NULL)
+			lst_pop_front(head, tail);
+		*head = NULL;
+		*tail = NULL;
+	}
+}
+
+static int	is_prev_eol(t_list **head)
+{
+	t_list	*tmp;
+
+	tmp = *head;
+	while (tmp != NULL)
+	{
+		if (tmp->is_eol)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE];
-	static int	buffer_text_len;
-	char		*line;
-	t_list		*head;
-	int			rd_size;
-	
-	head = ft_lstnew(buffer, buffer_text_len);
-	rd_size = read(fd, buffer, BUFFER_SIZE);
-	while (rd_size > 0)
-	{
-		rd_size = buffer_text_process(&head, buffer, &buffer_text_len, rd_size);
-		if (rd_size == 0)
-			break ;
-		rd_size = read(fd, buffer, BUFFER_SIZE);
-	}
-	if (rd_size < 0)
-	{
-		ft_lstclear(&head);
-		return (NULL);
-	}
-	line = get_entire_line(&head);
-	ft_lstclear(&head);
-	return (line);
-}
+	static t_list	*head;
+	static t_list	*tail;
 
-//content로 NULL이 들어가는 경우 처리해야댐
-//endl받고 끝내는 것도 해야댐
+	if (is_prev_eol(&head))
+		return (get_line_from_list(&head, &tail));
+	update_linked_list(&head, &tail, fd);
+	if (head == NULL)
+		return (NULL);
+	return (get_line_from_list(&head, &tail));
+}
