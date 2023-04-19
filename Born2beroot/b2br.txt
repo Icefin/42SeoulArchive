@@ -1,0 +1,21 @@
+encryption pwd : encryption_passphrase
+root pwd       : R...
+geshin pwd     : r...
+
+Useful Commands
+lsblk : Print Linux Device Information
+apt-get update : Update Packages
+apt-get install sudo : Install sudo
+visudo : Access to sudoers (secure_path, some policies)
+usermod -aG [GroupName] [UserName] : Put user into GroupName group
+su - : Login to root
+ufw status verbose : Display ufw status
+ufw allow [PortNum] : allow PortNum port
+hostname -I : Check IP
+ssh id@ip -p portNum : Access with ssh
+vi /etc/login.defs : Password Policies
+
+
+Reference...
+https://techdebt.tistory.com/18
+https://tbonelee.tistory.com/m/16
