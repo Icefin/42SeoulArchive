@@ -1,32 +1,44 @@
+**********Passwords**********
 encryption pwd : encryption_passphrase
 root pwd       : R...
 geshin pwd     : r...
 
-Useful Commands
+**********Useful Commands**********
 lsblk : Print Linux Device Information
+
 apt-get update : Update Packages
 apt-get install sudo : Install sudo
+dpkg -l apparmor : Check Apparmor installation
+
 visudo : Access to sudoers (secure_path, some policies)
 usermod -aG [GroupName] [UserName] : Put user into GroupName group
 groupadd [groupName] : Add New group
 groups [UserName] : Display groups of UserName
 loging [UserName] : Login with UserName
 su - : Login to root
+
 ufw status verbose : Display ufw status
 ufw allow [PortNum] : allow PortNum port
 ufw enable : Activate ufw
+ufw default deny : Set Default incoming deny
+
 hostname -I : Check IP
+hostnamectl set-hostname [Name] : Set HostName to Name
+
 vim /etc/ssh/sshd_config : ssh policy
 systemctl status ssh : Display ssh status
+systemctl restart ssh : Apply ssh setting by restarting
 ssh id@ip -p portNum : Access with ssh
 vi /etc/login.defs : Password Policies
 vi /etc/pam.d/common-password : Password Strength PAM Module
+chage -l [UserName] : Check User Pwd Information
+passwd -e [UserName] -> logout [UserName] -> Reset User Pwd
 
 head -n 2 /etc/os-release : Get OS Information
 /usr/sbin/aa-status : Get Apparmor Information
 /usr/sbin/ufw status : Get ufw Information
 crontab -e
 
-Reference...
+**********Reference**********
 https://techdebt.tistory.com/18
 https://tbonelee.tistory.com/m/16
