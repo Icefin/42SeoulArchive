@@ -8,13 +8,24 @@ apt-get update : Update Packages
 apt-get install sudo : Install sudo
 visudo : Access to sudoers (secure_path, some policies)
 usermod -aG [GroupName] [UserName] : Put user into GroupName group
+groupadd [groupName] : Add New group
+groups [UserName] : Display groups of UserName
+loging [UserName] : Login with UserName
 su - : Login to root
 ufw status verbose : Display ufw status
 ufw allow [PortNum] : allow PortNum port
+ufw enable : Activate ufw
 hostname -I : Check IP
+vim /etc/ssh/sshd_config : ssh policy
+systemctl status ssh : Display ssh status
 ssh id@ip -p portNum : Access with ssh
 vi /etc/login.defs : Password Policies
+vi /etc/pam.d/common-password : Password Strength PAM Module
 
+head -n 2 /etc/os-release : Get OS Information
+/usr/sbin/aa-status : Get Apparmor Information
+/usr/sbin/ufw status : Get ufw Information
+crontab -e
 
 Reference...
 https://techdebt.tistory.com/18
