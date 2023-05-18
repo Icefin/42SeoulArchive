@@ -4,6 +4,8 @@ root pwd       : R...
 geshin pwd     : r...
 
 **********Useful Commands**********
+shasum {}.vdi : Check signatures
+
 lsblk : Print Linux Device Information
 
 apt-get update : Update Packages
