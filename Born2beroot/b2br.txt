@@ -39,7 +39,9 @@ passwd -e [UserName] -> logout [UserName] -> Reset User Pwd
 head -n 2 /etc/os-release : Get OS Information
 /usr/sbin/aa-status : Get Apparmor Information
 /usr/sbin/ufw status : Get ufw Information
-crontab -e
+crontab -e : Edit crontab
+ctrl + x -> y to Save crontab
+crontab -l : List crontab
 
 **********Reference**********
 https://techdebt.tistory.com/18
