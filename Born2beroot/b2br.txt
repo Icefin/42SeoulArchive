@@ -14,6 +14,8 @@ dpkg -l apparmor : Check Apparmor installation
 
 visudo : Access to sudoers (secure_path, some policies)
 usermod -aG [GroupName] [UserName] : Put user into GroupName group
+userdel [UserName] [GroupName] : Delete user from group
+userdel -r [UserName] : Delete user
 groupadd [groupName] : Add New group
 groups [UserName] : Display groups of UserName
 loging [UserName] : Login with UserName
@@ -30,10 +32,11 @@ hostnamectl set-hostname [Name] : Set HostName to Name
 vim /etc/ssh/sshd_config : ssh policy
 systemctl status ssh : Display ssh status
 systemctl restart ssh : Apply ssh setting by restarting
-ssh id@ip -p portNum : Access with ssh
+ssh id@127.0.0.1 -p portNum : Access with ssh
 vi /etc/login.defs : Password Policies
 vi /etc/pam.d/common-password : Password Strength PAM Module
 chage -l [UserName] : Check User Pwd Information
+chage -m 2 -M 30 -W 7 [UserNae] : Apply Pwd Policies to existed users
 passwd -e [UserName] -> logout [UserName] -> Reset User Pwd
 
 head -n 2 /etc/os-release : Get OS Information
