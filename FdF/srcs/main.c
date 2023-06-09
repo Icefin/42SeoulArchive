@@ -1,26 +1,20 @@
-#include <mlx.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/09 16:12:40 by geshin            #+#    #+#             */
+/*   Updated: 2023/06/09 16:51:49 by geshin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#define WINDOW_WIDTH 1920
-#define WINDOW_HEIGHT 1080
-
-enum EVENT {
-	ON_KEYDOWN = 2,
-	ON_KEYUP = 3,
-	ON_MOUSEDOWN = 4,
-	ON_MOUSEUP = 5,
-	ON_MOUSEMOVE = 6,
-	ON_EXPOSE = 12,
-	ON_DESTROY = 17
-};
-
-enum KEYCODE {
-	KEY_ESCAPE = 53,
-
-	KEY_W = 13,
-	KEY_A = 0,
-	KEY_S = 1,
-	KEY_D = 2
-};
+#include <stdlib.h>
+#include "mlx.h"
+#include "libft.h"
+#include "controller.h"
+#include "screen.h"
 
 typedef struct s_vars {
 	void *mlx;
@@ -30,6 +24,7 @@ typedef struct s_vars {
 int close(int keycode, t_vars *vars) {
 	if (keycode == KEY_ESCAPE) {
 		mlx_destroy_window(vars->mlx, vars->window);
+		exit(0);
 	}
 	return 0;
 }
