@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/09 15:44:26 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/11 20:04:07 by singeonho        ###   ########.fr       */
+/*   Created: 2023/06/11 15:52:12 by singeonho         #+#    #+#             */
+/*   Updated: 2023/06/11 20:24:28 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include <stdio.h>
 
-char	*get_next_line(int fd);
-int		ft_getnbr(char *s);
-int		ft_strlen(char *s);
-char	**ft_split(char const *s, char c);
+int	error_wrong_args(void) {
+	printf("Invalid Arguments Error!");
+	return (1);
+}
 
-#endif
+int error_file_open(void) {
+	printf("Invalid File Error!");
+	return (1);
+}
+
+int	error_map_info(void) {
+	printf("Invalid Map Error!");
+	return (1);
+}

@@ -17,8 +17,9 @@ LIBFT = libft/libft.a
 
 
 #Sources========================================================================
-SRCS = srcs/main.c
-		srcs/controller.c
+SRCS = srcs/main.c \
+		srcs/error.c \
+		srcs/map.c
 
 
 
@@ -32,7 +33,7 @@ OBJS = $(SRCS:.c=.o)
 #Rules===========================================================================
 all : $(NAME)
 
-$(NAME) : $(OBJS) $(MLX) $(LIBFT)
+$(NAME) : $(MLX) $(LIBFT) $(OBJS)
 	$(CC) $(OBJS) -Lmlx -lmlx -Llibft -lft -framework OpenGL -framework AppKit -o $(NAME)
 
 $(MLX) :
@@ -46,8 +47,8 @@ $(LIBFT) :
 	$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 clean :
-	$(foreach lib, $(MLX_LIB), make clean -C $(lib);)
-	$(foreach lib, $(LIB_LIB), make fclean -C $(lib);)
+	make clean -C mlx
+	make fclean -C libft
 	rm -rf $(OBJS)
 
 fclean : clean

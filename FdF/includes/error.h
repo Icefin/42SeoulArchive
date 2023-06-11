@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/09 15:44:26 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/11 20:04:07 by singeonho        ###   ########.fr       */
+/*   Created: 2023/06/11 15:34:48 by singeonho         #+#    #+#             */
+/*   Updated: 2023/06/11 16:14:50 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef ERROR_H
+# define ERROR_H
 
-char	*get_next_line(int fd);
-int		ft_getnbr(char *s);
-int		ft_strlen(char *s);
-char	**ft_split(char const *s, char c);
+#include <stdio.h>
+
+int	error_wrong_args(void);
+int error_file_open(void);
+int	error_map_info(void);
 
 #endif
