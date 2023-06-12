@@ -3,28 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:00:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/11 20:03:38 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/06/12 17:42:25 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CAMERA_H
 # define CAMERA_H
 
-#include "vertice.h"
-#include "math.h"
+#include "vector.h"
+
+#define CAMERA_INIT_X 100
+#define CAMERA_INIT_Y 100
+#define CAMERA_INIT_Z 100
+
+#define CAMERA_INIT_G_X -0.577
+#define CAMERA_INIT_G_Y -0.577
+#define CAMERA_INIT_G_Z -0.577
 
 typedef struct s_camera
 {
-	t_vertice position;
-	//include camera data
+	t_vec3 position;
+	t_vec3 gaze;
 }	t_camera;
 
-void	init_camera();
-void	translate_camera();
-void	rotate_camera();
-void	update_camera();
+void	translate_camera(t_camera* camera, t_vec3 pos);
+void	rotate_camera(t_camera* camera, t_vec3 ang);
 
 #endif

@@ -3,42 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 15:56:12 by singeonho         #+#    #+#             */
-/*   Updated: 2023/06/11 20:27:14 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/06/12 17:15:03 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "fdf.h"
 
-static void	allocate_map_matrix(t_program* program) {
+void	allocate_map_matrix(t_program* program) {
 	char	*line;
-	char	**row;
-	int	col_len;
-	int	row_len;
-	int	ptr;
+	char	**elements;
+	int		row;
+	int		col;
+	int		ptr;
 
 	line = get_next_line(program->fd);
-	row = ft_split(line, " ");
-	row_len = ft_strlen(row);
+	elements = ft_split(line, ' ');
+	col = ft_ptrlen(elements);
+	row = 0;
 	while (line != NULL) {
-		col_len++;
+		row++;
 		line = get_next_line(program->fd);
 	}
-	program->map.row = row_len;
-	program->map.col = col_len;
-	program->map.matrix = (int**)malloc(col_len * sizeof(int*));
+	program->map.row = row;
+	program->map.col = col;
+	program->map.matrix = (int **)malloc(row * sizeof(int *));
 	ptr = -1;
-	while (ptr < col_len) 
-		program->map.matrix[++ptr] = (int*)malloc(row_len * sizeof(int));
+	while (ptr < row) 
+		program->map.matrix[++ptr] = (int *)malloc(col * sizeof(int));
 }
 
-static void	parse_map_file(t_program* program) {
+void	parse_map_file(t_program* program) {
 	char	*line;
-	char	**row;
+	char	**elements;
 	int	rptr;
 	int	cptr;
 
@@ -46,9 +48,9 @@ static void	parse_map_file(t_program* program) {
 	while (++rptr < program->map.row) {
 		cptr = -1;
 		line = get_next_line(program->fd);
-		row = ft_split(line, " ");
+		elements = ft_split(line, ' ');
 		while (++cptr < program->map.col) {
-			program->map.matrix[rptr][cptr] = ft_getnbr(row[cptr]);
+			program->map.matrix[rptr][cptr] = ft_getnbr(elements[cptr]);
 		}
 	}
 }

@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vertice.h                                          :+:      :+:    :+:   */
+/*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/09 13:57:46 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/09 16:45:52 by geshin           ###   ########.fr       */
+/*   Created: 2023/06/12 14:37:38 by geshin            #+#    #+#             */
+/*   Updated: 2023/06/12 16:56:07 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VERTICE_H
-# define VERTICE_H
+#ifndef VECTOR_H
+# define VECTOR_H
 
-typedef struct s_vertice
+typedef struct s_vec3
 {
-	int	x;
-	int	y;
-	int	z;
-}	t_vertice;
+	double x;
+	double y;
+	double z;
+}	t_vec3;
+
+void	normalize(t_vec3 v);
 
 #endif

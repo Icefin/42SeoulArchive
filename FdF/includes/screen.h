@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:50:56 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/11 16:14:50 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/06/12 17:37:19 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,18 @@
 
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
+#define VERT_OFFSET 30
 
-void	init_screen();
-void	update_screen();
+#include "fdf.h"
+
+typedef struct s_image {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_image;
+
+void	update_screen(t_program* program);
 
 #endif

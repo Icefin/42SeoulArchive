@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 15:52:12 by singeonho         #+#    #+#             */
-/*   Updated: 2023/06/11 20:24:28 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/06/12 16:34:57 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
 int	error_wrong_args(void) {
-	printf("Invalid Arguments Error!");
+	printf("Invalid Arguments Error!\n");
+	printf("Usage : ./fdf <filename> [ case_size z_size ]");
 	return (1);
 }
 

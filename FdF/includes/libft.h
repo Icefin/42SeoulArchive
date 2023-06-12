@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:44:26 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/11 20:04:07 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/06/12 13:58:45 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 char	*get_next_line(int fd);
 int		ft_getnbr(char *s);
 int		ft_strlen(char *s);
+int		ft_ptrlen(char **p);
 char	**ft_split(char const *s, char c);
 
 #endif

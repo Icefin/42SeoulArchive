@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:01:02 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/11 20:10:43 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/06/12 14:23:34 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,5 @@ typedef struct s_map
 	int	row;
 	int	col;
 }	t_map;
-
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:52:42 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/09 15:45:58 by geshin           ###   ########.fr       */
+/*   Updated: 2023/06/12 14:21:19 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ int	ft_getnbr(char* s)
 	int	ptr;
 
 	res = 0;
-	ptr = -1;
-	while (s[++ptr] != '\0')
+	ptr = 0;
+	while (s[ptr] != '\0' && s[ptr] != '\n') {
 		res = (res * 10) + (s[ptr] - '0');
+		ptr++;
+	}
 	return res;
 }

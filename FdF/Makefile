@@ -19,7 +19,10 @@ LIBFT = libft/libft.a
 #Sources========================================================================
 SRCS = srcs/main.c \
 		srcs/error.c \
-		srcs/map.c
+		srcs/map.c \
+		srcs/camera.c\
+		srcs/screen.c \
+		srcs/fdf.c
 
 
 
