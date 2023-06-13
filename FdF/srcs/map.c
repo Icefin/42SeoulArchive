@@ -6,60 +6,62 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 15:56:12 by singeonho         #+#    #+#             */
-/*   Updated: 2023/06/12 17:15:03 by geshin           ###   ########.fr       */
+/*   Updated: 2023/06/13 12:30:54 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "fdf.h"
+#include "libft.h"
+#include "map.h"
 
-void	allocate_map_matrix(t_program* program) {
+static void	allocate_map_matrix(t_map* map, int fd) {
 	char	*line;
 	char	**elements;
 	int		row;
 	int		col;
 	int		ptr;
 
-	line = get_next_line(program->fd);
+	line = get_next_line(fd);
 	elements = ft_split(line, ' ');
 	col = ft_ptrlen(elements);
 	row = 0;
 	while (line != NULL) {
 		row++;
-		line = get_next_line(program->fd);
+		line = get_next_line(fd);
 	}
-	program->map.row = row;
-	program->map.col = col;
-	program->map.matrix = (int **)malloc(row * sizeof(int *));
+	map->row = row;
+	map->col = col;
+	map->matrix = (int **)malloc(row * sizeof(int *));
 	ptr = -1;
 	while (ptr < row) 
-		program->map.matrix[++ptr] = (int *)malloc(col * sizeof(int));
+		map->matrix[++ptr] = (int *)malloc(col * sizeof(int));
 }
 
-void	parse_map_file(t_program* program) {
+static void	parse_map_file(t_map* map, int fd) {
 	char	*line;
 	char	**elements;
 	int	rptr;
 	int	cptr;
 
 	rptr = -1;
-	while (++rptr < program->map.row) {
+	while (++rptr < map->row) {
 		cptr = -1;
-		line = get_next_line(program->fd);
+		line = get_next_line(fd);
 		elements = ft_split(line, ' ');
-		while (++cptr < program->map.col) {
-			program->map.matrix[rptr][cptr] = ft_getnbr(elements[cptr]);
+		while (++cptr < map->col) {
+			map->matrix[rptr][cptr] = ft_getnbr(elements[cptr]);
 		}
 	}
 }
 
-void	init_map(t_program* program) {
-	program->fd = open(program->file_path, O_RDONLY);
-	allocate_map_matrix(program);
-	close(program->fd);
-	program->fd = open(program->file_path, O_RDONLY);
-	parse_map_file(program);
-	close(program->fd);	
+void	init_map(t_map* map, char* path) {
+	int fd;
+	fd = open(path, O_RDONLY);
+	allocate_map_matrix(map, fd);
+	close(fd);
+	fd = open(path, O_RDONLY);
+	parse_map_file(map, fd);
+	close(fd);	
 }

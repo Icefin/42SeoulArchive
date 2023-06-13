@@ -21,8 +21,10 @@ SRCS = srcs/main.c \
 		srcs/error.c \
 		srcs/map.c \
 		srcs/camera.c\
-		srcs/screen.c \
-		srcs/fdf.c
+		srcs/window.c \
+		srcs/fdf.c \
+		srcs/vector.c \
+		srcs/bresenham.c
 
 
 

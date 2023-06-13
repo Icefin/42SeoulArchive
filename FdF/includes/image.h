@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   image.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/09 14:01:02 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/13 12:11:15 by geshin           ###   ########.fr       */
+/*   Created: 2023/06/13 15:32:17 by geshin            #+#    #+#             */
+/*   Updated: 2023/06/13 15:32:43 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#ifndef IMAGE_H
+# define IMAGE_H
 
-typedef struct s_map
-{
-	int** matrix;
-	int	row;
-	int	col;
-}	t_map;
-
-void	init_map(t_map* map, char* path);
+typedef struct s_image {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_image;
 
 #endif

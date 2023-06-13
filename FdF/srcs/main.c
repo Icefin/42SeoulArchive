@@ -6,10 +6,11 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:12:40 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/12 16:46:42 by geshin           ###   ########.fr       */
+/*   Updated: 2023/06/13 13:21:38 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <mlx.h>
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -28,9 +29,7 @@ int main(int argc, char **argv) {
 		return (1);
 	program.file_path = argv[1];
 	init_program(&program);
-	
-	update_screen(&program);
-	printf("MLX Loop Start!");
+	update_window(&(program.mlx), &(program.window), &(program.camera), &(program.map));
 	mlx_loop(program.mlx);
 	return (0);
 }

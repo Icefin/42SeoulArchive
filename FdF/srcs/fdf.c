@@ -6,12 +6,14 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:59:11 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/12 17:24:42 by geshin           ###   ########.fr       */
+/*   Updated: 2023/06/13 16:12:39 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <mlx.h>
 #include <stdlib.h>
 #include "fdf.h"
+
 #include <stdio.h>
 
 static void test_map_print(t_program* p) {
@@ -34,25 +36,42 @@ void	destroy_program(t_program* program)
 		free(program->map.matrix[ptr]);
 	free(program->map.matrix);
 	mlx_destroy_window(program->mlx, program->window);
+	printf("Program Destroy");
 	exit(0);
 }
 
-int	key_event(int keycode, t_program* program)
+static int	key_event(int keycode, t_program* program)
 {
+	t_vec3	v;
 	if (keycode == KEY_ESCAPE)
 		destroy_program(program);
-	update_screen(program);
+	else if (keycode == KEY_W) {
+		v = make_vec3(0, 1, 0);
+		translate_camera(&(program->camera), v);
+	}
+	else if (keycode == KEY_A) {
+		v = make_vec3(-1, 0, 0);
+		translate_camera(&(program->camera), v);
+	}	
+	else if (keycode == KEY_S) {
+		v = make_vec3(0, -1, 0);
+		translate_camera(&(program->camera), v);
+	}
+	else if (keycode == KEY_D) {
+		v = make_vec3(1, 0, 0);
+		translate_camera(&(program->camera), v);
+	}
+	update_window(&(program->mlx), &(program->window), &(program->camera), &(program->map));
 	return (0);
 }
 
 void	init_program(t_program* program)
 {
-	printf("Init Program!\n");
-	program->mlx = mlx_init();
-	program->window = mlx_new_window(program->mlx, \
-						WINDOW_WIDTH, WINDOW_HEIGHT, "fdf");
+	printf("Init Window!\n");
+	init_window(&(program->mlx), &(program->window));
+	
 	printf("Init Map!\n");
-	init_map(program);
+	init_map(&(program->map), program->file_path);
 	test_map_print(program);
 
 	printf("Init Camera!\n");
