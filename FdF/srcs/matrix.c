@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:29:08 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/17 12:42:42 by geshin           ###   ########.fr       */
+/*   Updated: 2023/06/17 16:21:35 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	copy_mat4(double (*dst)[4][4], const double (*src)[4][4])
 	}
 }
 
-void	multiply_mat4_to_mat4(double (*m1)[4][4], double (*m2)[4][4])
+void	multiply_mat4_to_mat4(double (*m1)[4][4], double (*m2)[4][4], double (*dst)[4][4])
 {
 	double	temp[4][4];
 	int		rptr;
@@ -67,8 +67,7 @@ void	multiply_mat4_to_mat4(double (*m1)[4][4], double (*m2)[4][4])
 				temp[rptr][cptr]--;
 		}
 	}
-	copy_mat4(m1, &temp);
-	copy_mat4(m2, &temp);
+	copy_mat4(dst, &temp);
 }
 
 t_vec4	multiply_mat4_to_vec4(const double (*m)[4][4], t_vec4 v)

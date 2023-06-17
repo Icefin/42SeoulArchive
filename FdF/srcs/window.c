@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:25:04 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/17 14:53:16 by geshin           ###   ########.fr       */
+/*   Updated: 2023/06/17 16:42:20 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ static void	draw_neighbor_line(t_image* image, t_camera* camera, t_vec4 v1, t_ve
 	t_vec2	p1;
 	t_vec2	p2;
 
-	cv1 = multiply_mat4_to_vec4(&(camera->pvmatrix), v1);
-	if (cv1.z <= 0.0 || cv1.z >= 1000.0)
+	cv1 = multiply_mat4_to_vec4(&(camera->vmatrix), v1);
+	if (cv1.z <= 0.0)
 		return;
-	cv2 = multiply_mat4_to_vec4(&(camera->pvmatrix), v2);
+	cv2 = multiply_mat4_to_vec4(&(camera->vmatrix), v2);
 	p1 = make_vec2(cv1.x / cv1.w, cv1.y / cv1.w);
 	p2 = make_vec2(cv2.x / cv2.w, cv2.y / cv2.w);
 	bresenham_line_draw(image, p1, p2);

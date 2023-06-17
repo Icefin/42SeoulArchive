@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/17 15:07:00 by geshin           ###   ########.fr       */
+/*   Updated: 2023/06/17 16:41:08 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,9 @@
 
 #include <stdio.h>
 
-static void	test_camera_state_print(t_camera* camera) {
+void	test_camera_state_print(t_camera* camera) {
 	printf("camera Position :\n");
-	printf("{%f, %f, %f, %f}\n", camera->position.x, camera->position.y, camera->position.z, camera->position.w);
-	printf("Camera Space : \n");
-	for (int r = 0; r < 4; r++) {
-		for (int c = 0; c < 4; c++) {
-			printf("%f ", camera->basis[r][c]);
-		}
-		printf("\n");
-	}
+	printf("{%f, %f, %f}\n", camera->position.x, camera->position.y, camera->position.z);
 	printf("Camera VMatrix : \n");
 	for (int r = 0; r < 4; r++) {
 		for (int c = 0; c < 4; c++) {
@@ -38,9 +31,12 @@ static void	test_camera_state_print(t_camera* camera) {
 
 void	init_camera(t_camera* camera)
 {
-	camera->position = make_vec4(10.0, 10.0, 0.0, 1.0);
-	init_identity_mat4(&(camera->basis));
-	init_identity_mat4(&(camera->pmatrix));
+	camera->position = make_vec3(0.0, 0.0, 50.0);
+	camera->front = make_vec3(0.0, 0.0, -1.0);
+	camera->up = make_vec3(0.0, 1.0, 0.0);
+	camera->right = make_vec3(1.0, 0.0, 0.0);
+	camera->yaw = INIT_YAW;
+	camera->pitch = INIT_PITCH;
 	camera->fov = 14.28;
 	camera->near = 1.0;
 	camera->far = 1000.0;
@@ -50,81 +46,65 @@ void	init_camera(t_camera* camera)
 
 void	translate_camera(t_camera* camera, int keycode)
 {
-	t_vec4	tvec4;
+	t_vec3	tvec3;
 	
-	tvec4 = make_vec4(0.0, 0.0, 0.0, 0.0);
 	if (keycode == KEY_W)
-		tvec4.z = -MOVE_OFFSET;
+		tvec3 = make_vec3(camera->front.x * MOVE_OFFSET, camera->front.y * MOVE_OFFSET, camera->front.z * MOVE_OFFSET);
 	else if (keycode == KEY_S)
-		tvec4.z = MOVE_OFFSET;
+		tvec3 = make_vec3(-camera->front.x * MOVE_OFFSET, -camera->front.y * MOVE_OFFSET, -camera->front.z * MOVE_OFFSET);
 	else if (keycode == KEY_A)
-		tvec4.x = -MOVE_OFFSET;
+		tvec3 = make_vec3(-camera->right.x * MOVE_OFFSET, -camera->right.y * MOVE_OFFSET, -camera->right.z * MOVE_OFFSET);
 	else if (keycode == KEY_D)
-		tvec4.x = MOVE_OFFSET;
-	tvec4 = multiply_mat4_to_vec4(&(camera->basis), tvec4);
-	camera->position.x += tvec4.x;
-	camera->position.y += tvec4.y;
-	camera->position.z += tvec4.z;
+		tvec3 = make_vec3(camera->right.x * MOVE_OFFSET, camera->right.y * MOVE_OFFSET, camera->right.z * MOVE_OFFSET);
+	camera->position.x += tvec3.x;
+	camera->position.y += tvec3.y;
+	camera->position.z += tvec3.z;
 	update_vmatrix(camera);
 }
 
 void	rotate_camera(t_camera* camera, int keycode)
 {
-	double	rmatrix[4][4];
-
-	init_identity_mat4(&rmatrix);
-	if (keycode == KEY_O || keycode == KEY_L)
-	{
-		rmatrix[1][1] = cos(ROT_OFFSET);
-		rmatrix[2][2] = rmatrix[1][1];
-		rmatrix[1][2] = -sin(ROT_OFFSET);
-		rmatrix[2][1] = -rmatrix[1][2];
-	}
-	if (keycode == KEY_L)
-	{
-		rmatrix[1][2] = -rmatrix[1][2];
-		rmatrix[2][1] = -rmatrix[2][1];
-	}	
-	if (keycode == KEY_K || keycode == KEY_COLON)
-	{
-		rmatrix[0][0] = cos(ROT_OFFSET);
-		rmatrix[2][2] = rmatrix[0][0];
-		rmatrix[0][2] = sin(ROT_OFFSET);
-		rmatrix[2][0] = -rmatrix[0][2];
-	}
-	if (keycode == KEY_COLON)
-	{
-		rmatrix[0][2] = -rmatrix[0][2];	
-		rmatrix[2][0] = -rmatrix[2][0];
-	}
-	multiply_mat4_to_mat4(&(rmatrix), &(camera->basis));
+	if (keycode == KEY_O)
+		camera->pitch += ROT_OFFSET;
+	else if (keycode == KEY_L)
+		camera->pitch -= ROT_OFFSET;
+	else if (keycode == KEY_K)
+		camera->yaw += ROT_OFFSET;
+	else if (keycode == KEY_COLON)
+		camera->yaw -= ROT_OFFSET;
+	update_rotation_state(camera);
 	update_vmatrix(camera);
+}
+
+void	update_rotation_state(t_camera* camera)
+{
+	const t_vec3 UP = make_vec3(0.0, 1.0, 0.0);
+	t_vec3	nfront;
+	
+	nfront.x = cos(camera->yaw) * cos(camera->pitch);
+	nfront.y = sin(camera->pitch);
+	nfront.z = sin(camera->yaw) * cos(camera->pitch);
+	camera->front = make_vec3(nfront.x, nfront.y, nfront.z);
+	camera->right = cross_product(camera->front, UP);
+	normalize_vec3(&(camera->right));
+	camera->up = cross_product(camera->right, camera->front);
+	normalize_vec3(&(camera->up));
 }
 
 void	update_vmatrix(t_camera* camera)
 {
-	double	tmatrix[4][4];
 	double	rmatrix[4][4];
+	double	tmatrix[4][4];
 
-	init_identity_mat4(&tmatrix);
-	tmatrix[0][3] = -camera->position.x;
-	tmatrix[1][3] = -camera->position.y;
-	tmatrix[2][3] = -camera->position.z;
+	init_identity_mat4(&(rmatrix));
+	rmatrix[0][0] = camera->right.x, rmatrix[0][1] = camera->right.y, rmatrix[0][2] = camera->right.z;
+	rmatrix[1][0] = camera->up.x, rmatrix[1][1] = camera->up.y, rmatrix[1][2] = camera->up.z;
+	rmatrix[2][0] = camera->front.x, rmatrix[2][1] = camera->front.y, rmatrix[2][2] = camera->front.z;
 	
-	copy_mat4(&rmatrix, &(camera->basis));
-	double temp = rmatrix[0][1];
-	rmatrix[0][1] = rmatrix[1][0];
-	rmatrix[1][0] = temp;
-	temp = rmatrix[0][2];
-	rmatrix[0][2] = rmatrix[2][0];
-	rmatrix[2][0] = temp;
-	temp = rmatrix[2][1];
-	rmatrix[2][1] = rmatrix[1][2];
-	rmatrix[1][2] = temp;
-	multiply_mat4_to_mat4(&(rmatrix), &(tmatrix));
-	copy_mat4(&(camera->vmatrix), (&rmatrix));
-	update_pvmatrix(camera);
-	test_camera_state_print(camera);
+	init_identity_mat4(&(tmatrix));
+	tmatrix[0][3] = -camera->position.x, tmatrix[1][3] = -camera->position.y, tmatrix[2][3] = -camera->position.z;
+	
+	multiply_mat4_to_mat4(&(rmatrix), &(tmatrix), &(camera->vmatrix));
 }
 
 void	update_pmatrix(t_camera* camera)
