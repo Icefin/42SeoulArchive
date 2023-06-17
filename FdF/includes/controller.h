@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:05:29 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/12 15:28:39 by geshin           ###   ########.fr       */
+/*   Updated: 2023/06/14 18:08:32 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,17 @@ enum EVENT {
 };
 
 enum KEYCODE {
-	KEY_ESCAPE = 53,
+	KEY_ESCAPE = 53, 
 
 	KEY_W = 13,
 	KEY_A = 0,
 	KEY_S = 1,
-	KEY_D = 2
+	KEY_D = 2,
+
+	KEY_O = 31,
+	KEY_K = 40,
+	KEY_L = 37,
+	KEY_COLON = 41
 };
 
 #endif

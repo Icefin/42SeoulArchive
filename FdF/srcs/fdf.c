@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:59:11 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/13 16:12:39 by geshin           ###   ########.fr       */
+/*   Updated: 2023/06/17 10:27:10 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,12 @@ void	destroy_program(t_program* program)
 
 static int	key_event(int keycode, t_program* program)
 {
-	t_vec3	v;
 	if (keycode == KEY_ESCAPE)
 		destroy_program(program);
-	else if (keycode == KEY_W) {
-		v = make_vec3(0, 1, 0);
-		translate_camera(&(program->camera), v);
-	}
-	else if (keycode == KEY_A) {
-		v = make_vec3(-1, 0, 0);
-		translate_camera(&(program->camera), v);
-	}	
-	else if (keycode == KEY_S) {
-		v = make_vec3(0, -1, 0);
-		translate_camera(&(program->camera), v);
-	}
-	else if (keycode == KEY_D) {
-		v = make_vec3(1, 0, 0);
-		translate_camera(&(program->camera), v);
-	}
+	else if (keycode == KEY_W || keycode == KEY_S || keycode == KEY_A || keycode == KEY_D)
+		translate_camera(&(program->camera), keycode);
+	else if (keycode == KEY_O || keycode == KEY_K || keycode == KEY_L || keycode == KEY_COLON)
+		rotate_camera(&(program->camera), keycode);
 	update_window(&(program->mlx), &(program->window), &(program->camera), &(program->map));
 	return (0);
 }

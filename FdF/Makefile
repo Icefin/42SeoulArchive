@@ -24,6 +24,7 @@ SRCS = srcs/main.c \
 		srcs/window.c \
 		srcs/fdf.c \
 		srcs/vector.c \
+		srcs/matrix.c \
 		srcs/bresenham.c
 
 

@@ -6,14 +6,14 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:20:08 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/13 15:30:48 by geshin           ###   ########.fr       */
+/*   Updated: 2023/06/14 20:35:35 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "vector.h"
 
-t_vec2	make_vec2(int x, int y)
+t_vec2	make_vec2(double x, double y)
 {
 	t_vec2	res;
 
@@ -22,7 +22,7 @@ t_vec2	make_vec2(int x, int y)
 	return (res);
 }
 
-t_vec3	make_vec3(int x, int y, int z)
+t_vec3	make_vec3(double x, double y, double z)
 {
 	t_vec3	res;
 
@@ -30,6 +30,26 @@ t_vec3	make_vec3(int x, int y, int z)
 	res.y = y;
 	res.z = z;
 	return (res);
+}
+
+t_vec4	make_vec4(double x, double y, double z, double w)
+{
+	t_vec4 res;
+
+	res.x = x;
+	res.y = y;
+	res.z = z;
+	res.w = w;
+	return (res);
+}
+
+void	normalize_vec3(t_vec3* v)
+{
+	double w = sqrt(v->x * v->x + v->y * v->y + v->z * v->z);
+
+	v->x /= w;
+	v->y /= w;
+	v->z /= w;
 }
 
 double	dot_product(const t_vec3 v1, const t_vec3 v2)
@@ -46,13 +66,3 @@ t_vec3	cross_product(const t_vec3 v1, const t_vec3 v2)
 	res.z = (v1.x * v2.y) - (v1.y * v2.x);
 	return (res);
 }
-
-/*
-t_vec2	project_to_plane(t_vec3 normal, t_vec3 origin, t_vec3 point)
-{
-	t_vec2 res;
-
-	
-	return (res);
-}
-*/

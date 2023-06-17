@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/11 15:52:12 by singeonho         #+#    #+#             */
-/*   Updated: 2023/06/14 17:18:28 by geshin           ###   ########.fr       */
+/*   Created: 2023/06/14 18:29:34 by geshin            #+#    #+#             */
+/*   Updated: 2023/06/17 10:10:48 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#ifndef MATRIX_H
+# define MATRIX_H
 
-int	error_wrong_args(void) {
-	printf("Invalid Arguments Error!\n");
-	printf("Usage : ./fdf <filename> [ case_size z_size ]");
-	return (1);
-}
-
-int error_file_open(void) {
-	printf("Invalid File Error!");
-	return (1);
-}
-
-int	error_map_info(void) {
-	printf("Invalid Map Error!");
-	return (1);
-}
+void	init_identity_mat4(double (*matrix)[4][4]);
+void	copy_mat4(double (*dst)[4][4], const double (*src)[4][4]);
+void	multiply_mat4_to_mat4(double (*m1)[4][4], double (*m2)[4][4]);
+t_vec4	multiply_mat4_to_vec4(const double (*m)[4][4], t_vec4 v);
+#endif
