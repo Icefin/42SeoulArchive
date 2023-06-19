@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:00:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/17 16:29:42 by geshin           ###   ########.fr       */
+/*   Updated: 2023/06/18 13:16:21 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ typedef struct s_camera
 	t_vec3	front;		//z-axis
 	t_vec3	up;			//y-axis
 	t_vec3	right;		//x-axis
-	double	yaw;		//y-dir rot
-	double	pitch;		//x-dir rot
+	double	yaw;		//y-axis angle
+	double	pitch;		//x-axis angle
 	//view transformation
 	double	vmatrix[4][4];
 	//projection

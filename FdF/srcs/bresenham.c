@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:04:02 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/17 14:51:08 by geshin           ###   ########.fr       */
+/*   Updated: 2023/06/19 12:31:30 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void ft_mlx_pixel_put(t_image* image, int x, int y, int color)
 static	void	plotLineLow(t_image* image, t_vec2 p1, t_vec2 p2)
 {
 	int	dx = p2.x - p1.x;
-	int dy = p2.y - p2.x;
+	int dy = p2.y - p1.y;
 	int yi = 1;
 	if (dy < 0)
 	{
@@ -53,7 +53,8 @@ static	void	plotLineHigh(t_image* image, t_vec2 p1, t_vec2 p2)
 	int	dx = p2.x - p1.x;
 	int dy = p2.y - p1.y;
 	int xi = 1;
-	if (dx < 0) {
+	if (dx < 0)
+	{
 		xi = -1;
 		dx = -dx;
 	}
