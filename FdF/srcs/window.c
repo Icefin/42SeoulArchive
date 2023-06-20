@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:25:04 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/17 16:42:20 by geshin           ###   ########.fr       */
+/*   Updated: 2023/06/20 18:13:13 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 #include <stdio.h>
 
-void	bresenham_line_draw(t_image* image, t_vec2 p1, t_vec2 p2);
+void	bresenham_line_draw(t_image* image, t_vec3 p1, t_vec3 p2);
 
 void	init_window(void** mlx, void** window)
 {
@@ -32,15 +32,15 @@ static void	draw_neighbor_line(t_image* image, t_camera* camera, t_vec4 v1, t_ve
 {
 	t_vec4	cv1;
 	t_vec4	cv2;
-	t_vec2	p1;
-	t_vec2	p2;
+	t_vec3	p1;
+	t_vec3	p2;
 
 	cv1 = multiply_mat4_to_vec4(&(camera->vmatrix), v1);
 	if (cv1.z <= 0.0)
 		return;
 	cv2 = multiply_mat4_to_vec4(&(camera->vmatrix), v2);
-	p1 = make_vec2(cv1.x / cv1.w, cv1.y / cv1.w);
-	p2 = make_vec2(cv2.x / cv2.w, cv2.y / cv2.w);
+	p1 = make_vec3(cv1.x / cv1.w, cv1.y / cv1.w, cv1.z / cv1.w);
+	p2 = make_vec3(cv2.x / cv2.w, cv2.y / cv2.w, cv2.z / cv2.w);
 	bresenham_line_draw(image, p1, p2);
 }
 

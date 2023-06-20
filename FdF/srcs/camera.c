@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/17 16:41:08 by geshin           ###   ########.fr       */
+/*   Updated: 2023/06/20 18:11:47 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	init_camera(t_camera* camera)
 	camera->near = 1.0;
 	camera->far = 1000.0;
 	update_vmatrix(camera);
-	//update_pmatrix(camera);
+	update_pmatrix(camera);
 }
 
 void	translate_camera(t_camera* camera, int keycode)
