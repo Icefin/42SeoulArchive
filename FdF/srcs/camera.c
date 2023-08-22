@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/20 18:11:47 by geshin           ###   ########.fr       */
+/*   Updated: 2023/08/22 12:17:11 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 #include <stdio.h>
 
+#ifdef DEBUG_MODE
 void	test_camera_state_print(t_camera* camera) {
 	printf("camera Position :\n");
 	printf("{%f, %f, %f}\n", camera->position.x, camera->position.y, camera->position.z);
@@ -28,6 +29,7 @@ void	test_camera_state_print(t_camera* camera) {
 		printf("\n");
 	}
 }
+#endif
 
 void	init_camera(t_camera* camera)
 {
