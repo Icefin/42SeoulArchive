@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:00:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/22 15:22:46 by geshin           ###   ########.fr       */
+/*   Updated: 2023/08/22 17:30:28 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include "vector.h"
 #include "math.h"
 
-#define INIT_YAW 45
-#define INIT_PITCH 45
+#define INIT_YAW 0.78
+#define INIT_PITCH 0.78
 
 #define MOVE_OFFSET 10.0
 #define ROT_OFFSET M_PI / 36

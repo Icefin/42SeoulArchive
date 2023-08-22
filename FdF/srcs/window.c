@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:25:04 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/22 14:08:07 by geshin           ###   ########.fr       */
+/*   Updated: 2023/08/22 17:27:03 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ static void	draw_neighbor_line(t_image* image, t_camera* camera, t_vec4 v1, t_ve
 	t_vec3	p2;
 
 	cv1 = multiply_mat4_to_vec4(&(camera->vMatrix), v1);
-	if (cv1.z <= 0.0)
-		return;
 	cv2 = multiply_mat4_to_vec4(&(camera->vMatrix), v2);
 	p1 = make_vec3(cv1.x / cv1.w, cv1.y / cv1.w, cv1.z / cv1.w);
 	p2 = make_vec3(cv2.x / cv2.w, cv2.y / cv2.w, cv2.z / cv2.w);
@@ -96,6 +94,7 @@ static void draw_xyz_axis(t_image* image, t_camera* camera)
 
 void	update_window(void** mlx, void** window, t_camera* camera, t_map* map)
 {
+	static int frame = 0;
 	t_image	image;
 	
 	image.img = mlx_new_image(*mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -107,5 +106,5 @@ void	update_window(void** mlx, void** window, t_camera* camera, t_map* map)
 #endif
 	mlx_put_image_to_window(*mlx, *window, image.img, 0, 0);
 	mlx_destroy_image(*mlx, image.img);
-	printf("Window Updated!\n");
+	printf("Window Updated! frame : %d\n", frame++);
 }

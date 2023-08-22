@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/22 15:40:33 by geshin           ###   ########.fr       */
+/*   Updated: 2023/08/22 17:35:00 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	test_camera_state_print(t_camera* camera) {
 
 void	init_camera(t_camera* camera)
 {
-	camera->position = make_vec3(100.0, 100.0, 100.0);
+	camera->position = make_vec3(0.0, 100.0, 0.0);
 	camera->worldUp = make_vec3(0.0, 1.0, 0.0);
 
 	camera->yaw = INIT_YAW;
@@ -67,22 +67,40 @@ void	translate_camera(t_camera* camera, int keycode)
 	camera->position.y += tvec3.y;
 	camera->position.z += tvec3.z;
 	update_vmatrix(camera);
-	//update_pvmatrix(camera);
+	update_pvmatrix(camera);
 }
 
+#include "stdio.h"
 void	rotate_camera(t_camera* camera, int keycode)
 {
 	if (keycode == KEY_O)
+	{
 		camera->pitch += ROT_OFFSET;
+		if (camera->pitch > M_PI / 2)
+			camera->pitch = M_PI / 2 - 0.001f;
+	}	
 	else if (keycode == KEY_L)
+	{
 		camera->pitch -= ROT_OFFSET;
+		if (camera->pitch < -M_PI / 2)
+			camera->pitch = -M_PI / 2 + 0.001f;
+	}	
 	else if (keycode == KEY_K)
+	{
 		camera->yaw += ROT_OFFSET;
+		if (camera->yaw > M_PI)
+			camera->yaw = M_PI - 0.001f;
+	}	
 	else if (keycode == KEY_COLON)
-		camera->yaw -= ROT_OFFSET;
+	{
+		camera->yaw -= ROT_OFFSET;	
+		if (camera->yaw < -M_PI)
+			camera->yaw = -M_PI + 0.001f;
+	}
+	printf("Camera Value Pitch : %f, Yaw : %f\n", camera->pitch, camera->yaw);
 	update_rotation_state(camera);
 	update_vmatrix(camera);
-	//update_pvmatrix(camera);
+	update_pvmatrix(camera);
 }
 
 void	zoom_camera(t_camera* camera, int keycode)
