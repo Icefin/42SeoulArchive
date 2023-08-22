@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:00:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/22 12:38:51 by geshin           ###   ########.fr       */
+/*   Updated: 2023/08/22 15:22:46 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,19 @@
 #include "vector.h"
 #include "math.h"
 
-#define INIT_YAW -90
-#define INIT_PITCH 0
+#define INIT_YAW 45
+#define INIT_PITCH 45
 
 #define MOVE_OFFSET 10.0
 #define ROT_OFFSET M_PI / 36
+#define ZOOM_OFFSET 0.1
 
 typedef struct s_camera
 {
 	t_vec3 position;
-	t_vec3 front;
-	t_vec3 up;
+	t_vec3 direction;
 	t_vec3 right;
+	t_vec3 up;
 	t_vec3 worldUp;
 	
 	float yaw;
