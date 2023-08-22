@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:04:02 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/20 18:04:15 by geshin           ###   ########.fr       */
+/*   Updated: 2023/08/22 13:59:32 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void ft_mlx_pixel_put(t_image* image, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-static	void	plotLineLow(t_image* image, t_vec3 p1, t_vec3 p2)
+static	void	plotLineLow(t_image* image, t_vec3 p1, t_vec3 p2, t_vec3 color)
 {
 	int	dx = p2.x - p1.x;
 	int dy = p2.y - p1.y;
@@ -41,7 +41,7 @@ static	void	plotLineLow(t_image* image, t_vec3 p1, t_vec3 p2)
 	int D = (2 * dy) - dx;
 	int y = p1.y;
 	for (int x = p1.x; x <= p2.x; x++) {
-		ft_mlx_pixel_put(image, x, y, ft_create_trgb(0, 0, 255, x / 8));
+		ft_mlx_pixel_put(image, x, y, ft_create_trgb(0, color.x * 255, color.y * 255, color.z * 255));
 		if (D > 0) {
 			y = y + yi;
 			D = D + (2 * (dy - dx));
@@ -52,7 +52,7 @@ static	void	plotLineLow(t_image* image, t_vec3 p1, t_vec3 p2)
 	}
 }
 
-static	void	plotLineHigh(t_image* image, t_vec3 p1, t_vec3 p2)
+static	void	plotLineHigh(t_image* image, t_vec3 p1, t_vec3 p2, t_vec3 color)
 {
 	int	dx = p2.x - p1.x;
 	int dy = p2.y - p1.y;
@@ -65,7 +65,7 @@ static	void	plotLineHigh(t_image* image, t_vec3 p1, t_vec3 p2)
 	int D = (2 * dx) - dy;
 	int x = p1.x;
 	for (int y = p1.y; y <= p2.y; y++) {
-		ft_mlx_pixel_put(image, x, y, ft_create_trgb(0, 0, 255, y / 5));
+		ft_mlx_pixel_put(image, x, y, ft_create_trgb(0, color.x * 255, color.y * 255, color.z * 255));
 		if (D > 0) {
 			x = x + xi;
 			D = D + (2 * (dx - dy));
@@ -76,18 +76,18 @@ static	void	plotLineHigh(t_image* image, t_vec3 p1, t_vec3 p2)
 	}
 }
 
-void	bresenham_line_draw(t_image* image, t_vec3 p1, t_vec3 p2)
+void	bresenham_line_draw(t_image* image, t_vec3 p1, t_vec3 p2, t_vec3 color)
 {
 	if (fabs(p2.y - p1.y) < fabs(p2.x - p1.x)) {
 		if (p1.x > p2.x)
-			plotLineLow(image, p2, p1);
+			plotLineLow(image, p2, p1, color);
 		else
-			plotLineLow(image, p1, p2);
+			plotLineLow(image, p1, p2, color);
 	}
 	else {
 		if (p1.y > p2.y)
-			plotLineHigh(image, p2, p1);
+			plotLineHigh(image, p2, p1, color);
 		else
-			plotLineHigh(image, p1, p2);
+			plotLineHigh(image, p1, p2, color);
 	}
 }

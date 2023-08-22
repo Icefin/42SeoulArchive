@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:00:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/18 13:16:21 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/08/22 12:38:51 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,28 @@
 #define INIT_PITCH 0
 
 #define MOVE_OFFSET 10.0
-#define ROT_OFFSET M_PI / 24
+#define ROT_OFFSET M_PI / 36
 
 typedef struct s_camera
 {
-	t_vec3	position;
-	t_vec3	front;		//z-axis
-	t_vec3	up;			//y-axis
-	t_vec3	right;		//x-axis
-	double	yaw;		//y-axis angle
-	double	pitch;		//x-axis angle
-	//view transformation
-	double	vmatrix[4][4];
-	//projection
-	double	pmatrix[4][4];
-	//view -> projection
-	double	pvmatrix[4][4];
-	double 	fov;
-	double 	near;
-	double 	far;
-}	t_camera;
+	t_vec3 position;
+	t_vec3 front;
+	t_vec3 up;
+	t_vec3 right;
+	t_vec3 worldUp;
+	
+	float yaw;
+	float pitch;
+
+	float zoom;
+
+	double vMatrix[4][4];
+	double pMatrix[4][4];
+	double pvMatrix[4][4];
+	double fov;
+	double near;
+	double far;
+} t_camera;
 
 void	init_camera(t_camera* camera);
 void	translate_camera(t_camera* camera, int keycode);

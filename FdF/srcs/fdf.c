@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:59:11 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/17 10:27:10 by geshin           ###   ########.fr       */
+/*   Updated: 2023/08/22 12:54:13 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 #include <stdio.h>
 
+#ifdef DEBUG_MODE
 static void test_map_print(t_program* p) {
 	for (int r = 0; r < p->map.row; r++) {
 		for (int c = 0; c < p->map.col; c++) {
@@ -26,6 +27,7 @@ static void test_map_print(t_program* p) {
 	printf("Row Len : %d\n", p->map.row);
 	printf("Col Len : %d\n", p->map.col);
 }
+#endif
 
 void	destroy_program(t_program* program)
 {
@@ -59,8 +61,11 @@ void	init_program(t_program* program)
 	
 	printf("Init Map!\n");
 	init_map(&(program->map), program->file_path);
+	
+#ifdef DEBUG_MODE
 	test_map_print(program);
-
+#endif
+	
 	printf("Init Camera!\n");
 	init_camera(&(program->camera));
 
