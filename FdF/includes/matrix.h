@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:29:34 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/17 16:22:03 by geshin           ###   ########.fr       */
+/*   Updated: 2023/08/25 00:09:28 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATRIX_H
 # define MATRIX_H
+
+typedef struct s_mat4
+{
+	union
+	{
+		double columns[4][4];
+		double elements[16];
+	};
+} t_mat4;
 
 void	init_identity_mat4(double (*matrix)[4][4]);
 void	copy_mat4(double (*dst)[4][4], const double (*src)[4][4]);
