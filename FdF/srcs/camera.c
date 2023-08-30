@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/30 22:49:58 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/08/31 02:37:59 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	test_camera_state_print(t_camera* camera) {
 
 void	init_camera(t_camera* camera)
 {
-	camera->position = make_vec3(100.0, 100.0, 100.0);
+	camera->position = make_vec3(0.0, 0.0, 0.0);
 	camera->worldup = make_vec3(0.0, 1.0, 0.0);
 
 	camera->yaw = INIT_YAW;
@@ -87,7 +87,6 @@ void	translate_camera(t_camera* camera, int keycode)
 	update_pvmatrix(camera);
 }
 
-#include "stdio.h"
 void	rotate_camera(t_camera* camera, int keycode)
 {
 	if (keycode == KEY_O)
@@ -165,9 +164,11 @@ void	update_vmatrix(t_camera* camera)
 	rmatrix[2][2] = -camera->direction.z;
 	
 	init_identity_mat4(&(tmatrix));
-	tmatrix[0][3] = -camera->position.x, tmatrix[1][3] = -camera->position.y, tmatrix[2][3] = -camera->position.z;
+	tmatrix[0][3] = -camera->position.x;
+	tmatrix[1][3] = -camera->position.y;
+	tmatrix[2][3] = -camera->position.z;
 	
-	multiply_mat4_to_mat4(&(rmatrix), &(tmatrix), &(camera->vmatrix));
+	multiply_mat4_to_mat4(&(tmatrix), &(rmatrix), &(camera->vmatrix));
 }
 
 void	update_pmatrix(t_camera* camera)
