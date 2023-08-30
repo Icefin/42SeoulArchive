@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:59:11 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/22 12:54:13 by geshin           ###   ########.fr       */
+/*   Updated: 2023/08/30 23:21:17 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static int	key_event(int keycode, t_program* program)
 		translate_camera(&(program->camera), keycode);
 	else if (keycode == KEY_O || keycode == KEY_K || keycode == KEY_L || keycode == KEY_COLON)
 		rotate_camera(&(program->camera), keycode);
+	else if (keycode == KEY_P)
+		switch_camera_mode(&(program->camera));
 	update_window(&(program->mlx), &(program->window), &(program->camera), &(program->map));
 	return (0);
 }
@@ -59,7 +61,7 @@ void	init_program(t_program* program)
 	printf("Init Window!\n");
 	init_window(&(program->mlx), &(program->window));
 	
-	printf("Init Map!\n");
+	printf("Init Mesh!\n");
 	init_map(&(program->map), program->file_path);
 	
 #ifdef DEBUG_MODE

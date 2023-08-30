@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:00:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/25 00:15:44 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/08/30 22:41:16 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 #include "vector.h"
 #include "math.h"
 
-#define INIT_YAW 0.78
-#define INIT_PITCH 0.78
+#define INIT_YAW -(M_PI_2 + M_PI_4)
+#define INIT_PITCH -0.615472907
 
-#define MOVE_OFFSET 10.0
+#define MOVE_OFFSET 30.0
 #define ROT_OFFSET M_PI / 36
 #define ZOOM_OFFSET 0.1
 
@@ -29,22 +29,25 @@ typedef struct s_camera
 	t_vec3 direction;
 	t_vec3 right;
 	t_vec3 up;
-	t_vec3 worldUp;
+	t_vec3 worldup;
 	
-	float yaw;
-	float pitch;
+	double yaw;
+	double pitch;
 
 	float zoom;
 
-	double vMatrix[4][4];
-	double pMatrix[4][4];
-	double pvMatrix[4][4];
+	double vmatrix[4][4];
+	double pmatrix[4][4];
+	double pvmatrix[4][4];
 	double fov;
 	double near;
 	double far;
+
+	int isPerspectiveMode;
 } t_camera;
 
 void	init_camera(t_camera* camera);
+void	switch_camera_mode(t_camera* camera);
 void	translate_camera(t_camera* camera, int keycode);
 void	rotate_camera(t_camera* camera, int keycode);
 void	update_rotation_state(t_camera* camera);

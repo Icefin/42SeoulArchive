@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   mesh.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/09 14:01:02 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/30 22:54:23 by singeonho        ###   ########.fr       */
+/*   Created: 2023/08/30 22:54:21 by singeonho         #+#    #+#             */
+/*   Updated: 2023/08/30 23:20:44 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#ifndef MESH_H
+# define MESH_H
 
-typedef struct s_map
+#include "vector.h"
+
+typedef struct s_mesh
 {
-	int** matrix;
-	int	row;
-	int	col;
-}	t_map;
-
-void	init_map(t_map* map, char* path);
+	t_vec4* vertices;
+	int		numvertices;
+}	t_mesh;
 
 #endif

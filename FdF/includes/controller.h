@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controller.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:05:29 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/22 15:09:20 by geshin           ###   ########.fr       */
+/*   Updated: 2023/08/28 13:03:04 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ enum KEYCODE {
 	KEY_COLON = 41,
 
 	KEY_Q = 12,
-	KEY_E = 14
+	KEY_E = 14,
+
+	KEY_P = 35
 };
 
 #endif
