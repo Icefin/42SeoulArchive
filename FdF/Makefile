@@ -20,7 +20,7 @@ LIBFT = libft/libft.a
 SRCS = srcs/main.c \
 		srcs/error.c \
 		srcs/map.c \
-		srcs/mesh.c \
+		srcs/object.c \
 		srcs/camera.c\
 		srcs/window.c \
 		srcs/fdf.c \

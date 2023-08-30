@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:59:11 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/30 23:21:17 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/08/30 23:31:20 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,12 @@ void	init_program(t_program* program)
 	printf("Init Window!\n");
 	init_window(&(program->mlx), &(program->window));
 	
-	printf("Init Mesh!\n");
-	init_map(&(program->map), program->file_path);
-	
+	//printf("Init Map!\n");
+	//init_map(&(program->map), program->file_path);
+
+	printf("Load Object!\n");
+	load_object(&(program->object), program->file_path);
+		
 #ifdef DEBUG_MODE
 	test_map_print(program);
 #endif

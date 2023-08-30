@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mesh.h                                             :+:      :+:    :+:   */
+/*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 22:54:21 by singeonho         #+#    #+#             */
-/*   Updated: 2023/08/30 23:20:44 by singeonho        ###   ########.fr       */
+/*   Created: 2023/08/30 23:27:24 by singeonho         #+#    #+#             */
+/*   Updated: 2023/08/30 23:30:49 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 
 #include "vector.h"
 
-typedef struct s_mesh
+typedef struct s_object
 {
 	t_vec4* vertices;
 	int		numvertices;
-}	t_mesh;
+}	t_object;
+
+void	load_object(t_object* object, char* path);
 
 #endif
