@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:25:04 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/28 13:03:05 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/08/30 23:51:46 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,25 @@ static void	draw_polygon_mesh(t_image* image, t_camera* camera, t_map* map)
 	int		cptr;
 	t_vec4	curr;
 	t_vec4	next;
-	t_vec3 	pColor;
+	t_vec3 	pcolor;
 
-	pColor = make_vec3(1.0f, 1.0f, 1.0f);
+	pcolor = make_vec3(1.0f, 1.0f, 1.0f);
 	rptr = -1;
 	while (++rptr < map->row)
 	{
 		cptr = -1;
 		while (++cptr < map->col)
 		{
-			curr = make_vec4(cptr * VERT_OFFSET, map->matrix[rptr][cptr] * VERT_OFFSET, rptr * VERT_OFFSET, 1.0);
+			curr = make_vec4(cptr * VERT_OFFSET, map->matrix[rptr][cptr] * 10, rptr * VERT_OFFSET, 1.0);
 			if (rptr + 1 < map->row)
 			{
-				next = make_vec4(cptr * VERT_OFFSET, map->matrix[rptr + 1][cptr] * VERT_OFFSET, (rptr + 1) * VERT_OFFSET, 1.0);
-				draw_neighbor_line(image, camera, curr, next, pColor);
+				next = make_vec4(cptr * VERT_OFFSET, map->matrix[rptr + 1][cptr] * 10, (rptr + 1) * VERT_OFFSET, 1.0);
+				draw_neighbor_line(image, camera, curr, next, pcolor);
 			}
 			if (cptr + 1 < map->col)
 			{
-				next = make_vec4((cptr + 1) * VERT_OFFSET, map->matrix[rptr][cptr + 1] * VERT_OFFSET, rptr * VERT_OFFSET, 1.0);
-				draw_neighbor_line(image, camera, curr, next, pColor);
+				next = make_vec4((cptr + 1) * VERT_OFFSET, map->matrix[rptr][cptr + 1] * 10, rptr * VERT_OFFSET, 1.0);
+				draw_neighbor_line(image, camera, curr, next, pcolor);
 			}
 		}
 	}
@@ -86,17 +86,17 @@ static void	draw_polygon_mesh(t_image* image, t_camera* camera, t_map* map)
 static void draw_xyz_axis(t_image* image, t_camera* camera)
 {
 	t_vec4 origin = make_vec4(0.0f, 0.0f, 0.0f, 1.0f);
-	t_vec4 xAxis = make_vec4(10000.0f, 0.0f, 0.0f, 1.0f);
-	t_vec4 yAxis = make_vec4(0.0f, 10000.0f, 0.0f, 1.0f);
-	t_vec4 zAxis = make_vec4(0.0f, 0.0f, 10000.0f, 1.0f);
+	t_vec4 xaxis = make_vec4(10000.0f, 0.0f, 0.0f, 1.0f);
+	t_vec4 yaxis = make_vec4(0.0f, 10000.0f, 0.0f, 1.0f);
+	t_vec4 zaxis = make_vec4(0.0f, 0.0f, 10000.0f, 1.0f);
 
-	t_vec3 xColor = make_vec3(1.0f, 0.0f, 0.0f);
-	t_vec3 yColor = make_vec3(0.0f, 1.0f, 0.0f);
-	t_vec3 zColor = make_vec3(0.0f, 0.0f, 1.0f);
+	t_vec3 xcolor = make_vec3(1.0f, 0.0f, 0.0f);
+	t_vec3 ycolor = make_vec3(0.0f, 1.0f, 0.0f);
+	t_vec3 zcolor = make_vec3(0.0f, 0.0f, 1.0f);
 	
-	draw_neighbor_line(image, camera, origin, xAxis, xColor);
-	draw_neighbor_line(image, camera, origin, yAxis, yColor);
-	draw_neighbor_line(image, camera, origin, zAxis, zColor);
+	draw_neighbor_line(image, camera, origin, xaxis, xcolor);
+	draw_neighbor_line(image, camera, origin, yaxis, ycolor);
+	draw_neighbor_line(image, camera, origin, zaxis, zcolor);
 }
 #endif
 
