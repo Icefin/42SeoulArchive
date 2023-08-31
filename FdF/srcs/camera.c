@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/31 18:12:29 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/08/31 18:17:42 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	test_camera_state_print(t_camera* camera) {
 
 void	init_camera(t_camera* camera)
 {
-	camera->position = make_vec3(0.0, 0.0, 0.0);
+	camera->position = make_vec3(100.0, 100.0, 100.0);
 	camera->worldup = make_vec3(0.0, 1.0, 0.0);
 
 	camera->yaw = INIT_YAW;
