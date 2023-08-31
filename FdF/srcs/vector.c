@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:20:08 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/14 20:35:35 by geshin           ###   ########.fr       */
+/*   Updated: 2023/08/31 22:13:24 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_vec4	make_vec4(double x, double y, double z, double w)
 
 void	normalize_vec3(t_vec3* v)
 {
-	double w = sqrt(v->x * v->x + v->y * v->y + v->z * v->z);
+	double w = sqrt((v->x * v->x) + (v->y * v->y) + (v->z * v->z));
 
 	v->x /= w;
 	v->y /= w;

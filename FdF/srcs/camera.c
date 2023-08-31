@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/31 21:31:37 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/08/31 22:16:42 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	test_camera_state_print(t_camera* camera) {
 
 void	init_camera(t_camera* camera)
 {
-	camera->position = make_vec3(100.0, 100.0, 100.0);
+	camera->position = make_vec3(0.0, 0.0, 0.0);
 	camera->worldup = make_vec3(0.0, 1.0, 0.0);
 
 	camera->yaw = INIT_YAW;
@@ -61,28 +61,28 @@ void	switch_camera_mode(t_camera* camera)
 
 void	translate_camera(t_camera* camera, int keycode)
 {
-	t_vec3	tvec3;
-	
+	t_vec3	offset;
+
 	if (keycode == KEY_W)
-		tvec3 = make_vec3(camera->direction.x * MOVE_OFFSET,
+		offset = make_vec3(camera->direction.x * MOVE_OFFSET,
 		 camera->direction.y * MOVE_OFFSET,
 		 camera->direction.z * MOVE_OFFSET);
 	else if (keycode == KEY_S)
-		tvec3 = make_vec3(-camera->direction.x * MOVE_OFFSET,
+		offset = make_vec3(-camera->direction.x * MOVE_OFFSET,
 		 -camera->direction.y * MOVE_OFFSET,
 		 -camera->direction.z * MOVE_OFFSET);
 	else if (keycode == KEY_A)
-		tvec3 = make_vec3(-camera->right.x * MOVE_OFFSET,
+		offset = make_vec3(-camera->right.x * MOVE_OFFSET,
 		 -camera->right.y * MOVE_OFFSET,
 		 -camera->right.z * MOVE_OFFSET);
 	else if (keycode == KEY_D)
-		tvec3 = make_vec3(camera->right.x * MOVE_OFFSET,
+		offset = make_vec3(camera->right.x * MOVE_OFFSET,
 		 camera->right.y * MOVE_OFFSET,
 		 camera->right.z * MOVE_OFFSET);
 
-	camera->position.x += tvec3.x;
-	camera->position.y += tvec3.y;
-	camera->position.z += tvec3.z;
+	camera->position.x += offset.x;
+	camera->position.y += offset.y;
+	camera->position.z += offset.z;
 
 	update_vmatrix(camera);
 	update_pvmatrix(camera);
@@ -133,9 +133,9 @@ void	zoom_camera(t_camera* camera, int keycode)
 
 void	update_rotation_state(t_camera* camera)
 {
-	camera->direction.x = cos(camera->yaw) * cos(camera->pitch);
+	camera->direction.x = cos(camera->pitch) * cos(camera->yaw);
 	camera->direction.y = sin(camera->pitch);
-	camera->direction.z = sin(camera->yaw) * cos(camera->pitch);
+	camera->direction.z = cos(camera->pitch) * sin(camera->yaw);
 	normalize_vec3(&(camera->direction));
 	camera->right = cross_product(camera->direction, camera->worldup);
 	normalize_vec3(&(camera->right));
