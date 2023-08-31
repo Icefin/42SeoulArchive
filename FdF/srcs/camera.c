@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/31 02:37:59 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/08/31 18:12:29 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,18 +168,17 @@ void	update_vmatrix(t_camera* camera)
 	tmatrix[1][3] = -camera->position.y;
 	tmatrix[2][3] = -camera->position.z;
 	
-	multiply_mat4_to_mat4(&(tmatrix), &(rmatrix), &(camera->vmatrix));
+	multiply_mat4_to_mat4(&(rmatrix), &(tmatrix), &(camera->vmatrix));
 }
 
 void	update_pmatrix(t_camera* camera)
 {
-	init_identity_mat4(&(camera->pmatrix));
+	init_zero_mat4(&(camera->pmatrix));
 	camera->pmatrix[0][0] = atan(camera->fov / 2.0);
 	camera->pmatrix[1][1] = atan(camera->fov / 2.0);
 	camera->pmatrix[2][2] = -(camera->far + camera->near) / (camera->far - camera->near);
 	camera->pmatrix[2][3] = -(2.0 * camera->far * camera->near) / (camera->far - camera->near);
 	camera->pmatrix[3][2] = -1.0;
-	camera->pmatrix[3][3] = 0.0;
 }
 
 void	update_pvmatrix(t_camera* camera)

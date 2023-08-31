@@ -3,15 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:29:08 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/17 16:21:35 by geshin           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:10:16 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 #include "matrix.h"
+
+void	init_zero_mat4(double (*m)[4][4])
+{
+	int	rptr;
+	int	cptr;
+
+	rptr = -1;
+	while (++rptr < 4)
+	{
+		cptr = -1;
+		while (++cptr < 4)
+			(*m)[rptr][cptr] = 0;
+	}
+}
 
 void	init_identity_mat4(double (*m)[4][4])
 {
@@ -53,7 +67,7 @@ void	multiply_mat4_to_mat4(double (*m1)[4][4], double (*m2)[4][4], double (*dst)
 	int		cptr;
 	int		ptr;
 	
-	init_identity_mat4(&temp);
+	init_zero_mat4(&temp);
 	rptr = -1;
 	while (++rptr < 4)
 	{
@@ -63,8 +77,6 @@ void	multiply_mat4_to_mat4(double (*m1)[4][4], double (*m2)[4][4], double (*dst)
 			ptr = -1;
 			while (++ptr < 4)
 				temp[rptr][cptr] += (*m1)[rptr][ptr] * (*m2)[ptr][cptr];
-			if (rptr == cptr)
-				temp[rptr][cptr]--;
 		}
 	}
 	copy_mat4(dst, &temp);

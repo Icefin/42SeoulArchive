@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:29:34 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/25 00:09:28 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/08/31 18:10:43 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_mat4
 	};
 } t_mat4;
 
+void	init_zero_mat4(double (*matrix)[4][4]);
 void	init_identity_mat4(double (*matrix)[4][4]);
 void	copy_mat4(double (*dst)[4][4], const double (*src)[4][4]);
 void	multiply_mat4_to_mat4(double (*m1)[4][4], double (*m2)[4][4], double (*dst)[4][4]);
