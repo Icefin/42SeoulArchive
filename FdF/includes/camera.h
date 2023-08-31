@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:00:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/31 02:12:12 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/08/31 20:37:43 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ typedef struct s_camera
 	double vmatrix[4][4];
 	double pmatrix[4][4];
 	double pvmatrix[4][4];
-	double fov;
+
+	double aspect;
+	double fovx;
+	double fovy;
 	double near;
 	double far;
 

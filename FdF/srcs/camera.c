@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/31 18:17:42 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/08/31 21:31:37 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	init_camera(t_camera* camera)
 	
 	camera->zoom = 1.0f;
 
-	camera->fov = 14.28;
+	camera->fovx = 1.74;
+	camera->fovy = 1.74;
 	camera->near = 1.0;
 	camera->far = 1000.0;
 	
@@ -100,7 +101,7 @@ void	rotate_camera(t_camera* camera, int keycode)
 		camera->pitch -= ROT_OFFSET;
 		if (camera->pitch < -M_PI_2)
 			camera->pitch = -M_PI_2 + 0.001;
-	}	
+	}
 	else if (keycode == KEY_K)
 	{
 		camera->yaw += ROT_OFFSET;
@@ -122,9 +123,9 @@ void	rotate_camera(t_camera* camera, int keycode)
 void	zoom_camera(t_camera* camera, int keycode)
 {
 	if (keycode == KEY_Q)
-		camera->fov -= ZOOM_OFFSET;
+		camera->fovy -= ZOOM_OFFSET;
 	else if (keycode == KEY_E)
-		camera->fov += ZOOM_OFFSET;
+		camera->fovy += ZOOM_OFFSET;
 	
 	update_pmatrix(camera);
 	update_pvmatrix(camera);
@@ -132,16 +133,13 @@ void	zoom_camera(t_camera* camera, int keycode)
 
 void	update_rotation_state(t_camera* camera)
 {
-	t_vec3	ndirection;
-
-	ndirection.x = cos(camera->yaw) * cos(camera->pitch);
-	ndirection.y = sin(camera->pitch);
-	ndirection.z = sin(camera->yaw) * cos(camera->pitch);
-	camera->direction = ndirection;
+	camera->direction.x = cos(camera->yaw) * cos(camera->pitch);
+	camera->direction.y = sin(camera->pitch);
+	camera->direction.z = sin(camera->yaw) * cos(camera->pitch);
 	normalize_vec3(&(camera->direction));
-	camera->right = cross_product(ndirection, camera->worldup);
+	camera->right = cross_product(camera->direction, camera->worldup);
 	normalize_vec3(&(camera->right));
-	camera->up = cross_product(camera->right, ndirection);
+	camera->up = cross_product(camera->right, camera->direction);
 	normalize_vec3(&(camera->up));
 }
 
@@ -159,23 +157,25 @@ void	update_vmatrix(t_camera* camera)
 	rmatrix[1][1] = camera->up.y;
 	rmatrix[1][2] = camera->up.z;
 	
-	rmatrix[2][0] = -camera->direction.x;
-	rmatrix[2][1] = -camera->direction.y;
-	rmatrix[2][2] = -camera->direction.z;
+	rmatrix[2][0] = -(camera->direction.x);
+	rmatrix[2][1] = -(camera->direction.y);
+	rmatrix[2][2] = -(camera->direction.z);
 	
 	init_identity_mat4(&(tmatrix));
-	tmatrix[0][3] = -camera->position.x;
-	tmatrix[1][3] = -camera->position.y;
-	tmatrix[2][3] = -camera->position.z;
+	tmatrix[0][3] = -(camera->position.x);
+	tmatrix[1][3] = -(camera->position.y);
+	tmatrix[2][3] = -(camera->position.z);
 	
 	multiply_mat4_to_mat4(&(rmatrix), &(tmatrix), &(camera->vmatrix));
 }
 
 void	update_pmatrix(t_camera* camera)
 {
+	const double aspect = 1920 / 1080;
+
 	init_zero_mat4(&(camera->pmatrix));
-	camera->pmatrix[0][0] = atan(camera->fov / 2.0);
-	camera->pmatrix[1][1] = atan(camera->fov / 2.0);
+	camera->pmatrix[0][0] = 1.0 / (tan(camera->fovy / 2.0) * aspect);
+	camera->pmatrix[1][1] = 1.0 / tan(camera->fovx / 2.0);
 	camera->pmatrix[2][2] = -(camera->far + camera->near) / (camera->far - camera->near);
 	camera->pmatrix[2][3] = -(2.0 * camera->far * camera->near) / (camera->far - camera->near);
 	camera->pmatrix[3][2] = -1.0;

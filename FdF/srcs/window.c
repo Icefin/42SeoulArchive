@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:25:04 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/31 01:50:26 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/08/31 20:51:23 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 #include "image.h"
 
 #include <stdio.h>
-
-#define DEBUG_MODE
 
 void	bresenham_line_draw(t_image* image, t_vec3 p1, t_vec3 p2, t_vec3 color);
 
@@ -82,7 +80,6 @@ static void	draw_polygon_mesh(t_image* image, t_camera* camera, t_map* map)
 	}
 }
 
-#ifdef DEBUG_MODE
 static void draw_xyz_axis(t_image* image, t_camera* camera)
 {
 	t_vec4 origin = make_vec4(0.0f, 0.0f, 0.0f, 1.0f);
@@ -98,7 +95,6 @@ static void draw_xyz_axis(t_image* image, t_camera* camera)
 	draw_neighbor_line(image, camera, origin, yaxis, ycolor);
 	draw_neighbor_line(image, camera, origin, zaxis, zcolor);
 }
-#endif
 
 void	update_window(void** mlx, void** window, t_camera* camera, t_map* map)
 {
@@ -109,9 +105,8 @@ void	update_window(void** mlx, void** window, t_camera* camera, t_map* map)
 	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, &image.line_length,
 									&image.endian);
 	draw_polygon_mesh(&image, camera, map);
-#ifdef DEBUG_MODE
 	draw_xyz_axis(&image, camera);
-#endif
+	
 	mlx_put_image_to_window(*mlx, *window, image.img, 0, 0);
 	mlx_destroy_image(*mlx, image.img);
 	printf("Window Updated! frame : %d\n", frame++);
