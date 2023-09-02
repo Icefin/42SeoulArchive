@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:00:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/31 20:37:43 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/02 14:10:53 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@
 #define MOVE_OFFSET 30.0
 #define ROT_OFFSET M_PI / 36
 #define ZOOM_OFFSET 0.1
+
+typedef enum e_projection_type
+{
+	orthogonal = 0,
+	perspective
+} projection_type;
 
 typedef struct s_camera
 {
@@ -46,7 +52,7 @@ typedef struct s_camera
 	double near;
 	double far;
 
-	int isPerspectiveMode;
+	projection_type projection_type;
 } t_camera;
 
 void	init_camera(t_camera* camera);

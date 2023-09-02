@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/31 22:16:42 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/02 14:19:06 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	init_camera(t_camera* camera)
 	camera->near = 1.0;
 	camera->far = 1000.0;
 	
-	camera->isPerspectiveMode = 0;
+	camera->projection_type = orthogonal;
 
 	update_vmatrix(camera);
 	update_pmatrix(camera);
@@ -56,7 +56,13 @@ void	init_camera(t_camera* camera)
 
 void	switch_camera_mode(t_camera* camera)
 {
-	camera->isPerspectiveMode = (camera->isPerspectiveMode == 0) ? 1 : 0;
+	if (camera->projection_type == orthogonal)
+		camera->projection_type = perspective;
+	else if (camera->projection_type == perspective)
+		camera->projection_type = orthogonal;
+
+	update_pmatrix(camera);
+	update_pvmatrix(camera);
 }
 
 void	translate_camera(t_camera* camera, int keycode)
@@ -114,7 +120,7 @@ void	rotate_camera(t_camera* camera, int keycode)
 		if (camera->yaw < -2 * M_PI)
 			camera->yaw += 2 * M_PI;
 	}
-	printf("Camera Value || Pitch : %f, Yaw : %f\n", camera->pitch, camera->yaw);
+	//printf("Camera Value || Pitch : %f, Yaw : %f\n", camera->pitch, camera->yaw);
 	update_rotation_state(camera);
 	update_vmatrix(camera);
 	update_pvmatrix(camera);
@@ -171,14 +177,19 @@ void	update_vmatrix(t_camera* camera)
 
 void	update_pmatrix(t_camera* camera)
 {
-	const double aspect = 1920 / 1080;
-
-	init_zero_mat4(&(camera->pmatrix));
-	camera->pmatrix[0][0] = 1.0 / (tan(camera->fovy / 2.0) * aspect);
-	camera->pmatrix[1][1] = 1.0 / tan(camera->fovx / 2.0);
-	camera->pmatrix[2][2] = -(camera->far + camera->near) / (camera->far - camera->near);
-	camera->pmatrix[2][3] = -(2.0 * camera->far * camera->near) / (camera->far - camera->near);
-	camera->pmatrix[3][2] = -1.0;
+	if (camera->projection_type == orthogonal)
+		init_identity_mat4(&(camera->pmatrix));
+	else if (camera->projection_type == perspective)
+	{
+		double aspect = 1920 / 1080;
+		
+		init_zero_mat4(&(camera->pmatrix));
+		camera->pmatrix[0][0] = 1.0 / (tan(camera->fovy / 2.0) * aspect);
+		camera->pmatrix[1][1] = 1.0 / tan(camera->fovx / 2.0);
+		camera->pmatrix[2][2] = -(camera->far + camera->near) / (camera->far - camera->near);
+		camera->pmatrix[2][3] = -(2.0 * camera->far * camera->near) / (camera->far - camera->near);
+		camera->pmatrix[3][2] = -1.0;	
+	}
 }
 
 void	update_pvmatrix(t_camera* camera)
