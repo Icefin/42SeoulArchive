@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:00:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/02 14:10:53 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/02 14:21:19 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 typedef enum e_projection_type
 {
-	orthogonal = 0,
+	orthographic = 0,
 	perspective
 } projection_type;
 

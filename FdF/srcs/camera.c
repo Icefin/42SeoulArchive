@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/02 14:19:06 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/02 14:21:39 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	init_camera(t_camera* camera)
 	camera->near = 1.0;
 	camera->far = 1000.0;
 	
-	camera->projection_type = orthogonal;
+	camera->projection_type = orthographic;
 
 	update_vmatrix(camera);
 	update_pmatrix(camera);
@@ -56,10 +56,10 @@ void	init_camera(t_camera* camera)
 
 void	switch_camera_mode(t_camera* camera)
 {
-	if (camera->projection_type == orthogonal)
+	if (camera->projection_type == orthographic)
 		camera->projection_type = perspective;
 	else if (camera->projection_type == perspective)
-		camera->projection_type = orthogonal;
+		camera->projection_type = orthographic;
 
 	update_pmatrix(camera);
 	update_pvmatrix(camera);
@@ -177,7 +177,7 @@ void	update_vmatrix(t_camera* camera)
 
 void	update_pmatrix(t_camera* camera)
 {
-	if (camera->projection_type == orthogonal)
+	if (camera->projection_type == orthographic)
 		init_identity_mat4(&(camera->pmatrix));
 	else if (camera->projection_type == perspective)
 	{
