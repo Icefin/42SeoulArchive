@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:00:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/02 14:41:08 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/02 14:47:58 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ typedef struct s_camera
 	double far;
 	double left;
 	double right;
-	double top;
 	double bottom;
+	double top;
 
 	double aspect;
 	double fovx;

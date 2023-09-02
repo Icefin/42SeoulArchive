@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:25:04 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/02 14:13:27 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/02 14:48:11 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static void	draw_neighbor_line(t_image* image, t_camera* camera, t_vec4 v1, t_ve
 
 	cv1 = multiply_mat4_to_vec4(&(camera->pvmatrix), v1);
 	cv2 = multiply_mat4_to_vec4(&(camera->pvmatrix), v2);
-	
+	viewport_transform();
+	viewport_transform();
 	p1 = make_vec3(cv1.x / cv1.w, cv1.y / cv1.w, cv1.z / cv1.w);
 	p2 = make_vec3(cv2.x / cv2.w, cv2.y / cv2.w, cv2.z / cv2.w);
 	bresenham_line_draw(image, p1, p2, color);

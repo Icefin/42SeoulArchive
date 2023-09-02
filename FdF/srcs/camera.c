@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/02 14:41:35 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/02 14:43:25 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void	init_camera(t_camera* camera)
 	update_rotation_state(camera);
 
 	camera->near = 0.0;
-	camera->far = 0.0;
-	camera->left = 0.0;
-	camera->right = 0.0;
-	camera->top = 0.0;
-	camera->bottom = 0.0;
+	camera->far = 1000.0;
+	camera->left = -500.0;
+	camera->right = 500.0;
+	camera->bottom = -500.0;
+	camera->top = 500.0;
 
 	camera->aspect = 1920 / 1080;
 	camera->fovx = 1.74;
