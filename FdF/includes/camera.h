@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:00:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/02 14:21:19 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/02 14:41:08 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,27 @@ typedef struct s_camera
 {
 	t_vec3 position;
 	t_vec3 direction;
-	t_vec3 right;
-	t_vec3 up;
+	t_vec3 basis_u;
+	t_vec3 basis_v;
 	t_vec3 worldup;
 	
 	double yaw;
 	double pitch;
 
-	float zoom;
-
-	double vmatrix[4][4];
-	double pmatrix[4][4];
-	double pvmatrix[4][4];
+	double near;
+	double far;
+	double left;
+	double right;
+	double top;
+	double bottom;
 
 	double aspect;
 	double fovx;
 	double fovy;
-	double near;
-	double far;
+
+	double vmatrix[4][4];
+	double pmatrix[4][4];
+	double pvmatrix[4][4];
 
 	projection_type projection_type;
 } t_camera;

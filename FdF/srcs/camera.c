@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/02 14:21:39 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/02 14:41:35 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,17 @@ void	init_camera(t_camera* camera)
 	camera->yaw = INIT_YAW;
 	camera->pitch = INIT_PITCH;
 	update_rotation_state(camera);
-	
-	camera->zoom = 1.0f;
 
+	camera->near = 0.0;
+	camera->far = 0.0;
+	camera->left = 0.0;
+	camera->right = 0.0;
+	camera->top = 0.0;
+	camera->bottom = 0.0;
+
+	camera->aspect = 1920 / 1080;
 	camera->fovx = 1.74;
 	camera->fovy = 1.74;
-	camera->near = 1.0;
-	camera->far = 1000.0;
 	
 	camera->projection_type = orthographic;
 
@@ -78,13 +82,13 @@ void	translate_camera(t_camera* camera, int keycode)
 		 -camera->direction.y * MOVE_OFFSET,
 		 -camera->direction.z * MOVE_OFFSET);
 	else if (keycode == KEY_A)
-		offset = make_vec3(-camera->right.x * MOVE_OFFSET,
-		 -camera->right.y * MOVE_OFFSET,
-		 -camera->right.z * MOVE_OFFSET);
+		offset = make_vec3(-camera->basis_u.x * MOVE_OFFSET,
+		 -camera->basis_u.y * MOVE_OFFSET,
+		 -camera->basis_u.z * MOVE_OFFSET);
 	else if (keycode == KEY_D)
-		offset = make_vec3(camera->right.x * MOVE_OFFSET,
-		 camera->right.y * MOVE_OFFSET,
-		 camera->right.z * MOVE_OFFSET);
+		offset = make_vec3(camera->basis_u.x * MOVE_OFFSET,
+		 camera->basis_u.y * MOVE_OFFSET,
+		 camera->basis_u.z * MOVE_OFFSET);
 
 	camera->position.x += offset.x;
 	camera->position.y += offset.y;
@@ -143,10 +147,10 @@ void	update_rotation_state(t_camera* camera)
 	camera->direction.y = sin(camera->pitch);
 	camera->direction.z = cos(camera->pitch) * sin(camera->yaw);
 	normalize_vec3(&(camera->direction));
-	camera->right = cross_product(camera->direction, camera->worldup);
-	normalize_vec3(&(camera->right));
-	camera->up = cross_product(camera->right, camera->direction);
-	normalize_vec3(&(camera->up));
+	camera->basis_u = cross_product(camera->direction, camera->worldup);
+	normalize_vec3(&(camera->basis_u));
+	camera->basis_v = cross_product(camera->basis_u, camera->direction);
+	normalize_vec3(&(camera->basis_v));
 }
 
 void	update_vmatrix(t_camera* camera)
@@ -155,13 +159,13 @@ void	update_vmatrix(t_camera* camera)
 	double	tmatrix[4][4];
 
 	init_identity_mat4(&(rmatrix));
-	rmatrix[0][0] = camera->right.x;
-	rmatrix[0][1] = camera->right.y;
-	rmatrix[0][2] = camera->right.z;
+	rmatrix[0][0] = camera->basis_u.x;
+	rmatrix[0][1] = camera->basis_u.y;
+	rmatrix[0][2] = camera->basis_u.z;
 	
-	rmatrix[1][0] = camera->up.x;
-	rmatrix[1][1] = camera->up.y;
-	rmatrix[1][2] = camera->up.z;
+	rmatrix[1][0] = camera->basis_v.x;
+	rmatrix[1][1] = camera->basis_v.y;
+	rmatrix[1][2] = camera->basis_v.z;
 	
 	rmatrix[2][0] = -(camera->direction.x);
 	rmatrix[2][1] = -(camera->direction.y);
@@ -177,14 +181,20 @@ void	update_vmatrix(t_camera* camera)
 
 void	update_pmatrix(t_camera* camera)
 {
+	init_zero_mat4(&(camera->pmatrix));
 	if (camera->projection_type == orthographic)
-		init_identity_mat4(&(camera->pmatrix));
+	{
+		camera->pmatrix[0][0] = 2.0 / (camera->right - camera->left);
+		camera->pmatrix[0][3] = -(camera->right + camera->left) / (camera->right - camera->left);
+		camera->pmatrix[1][1] = 2.0 / (camera->top - camera->bottom);
+		camera->pmatrix[1][3] = -(camera->top + camera->bottom) / (camera->top - camera->bottom);
+		camera->pmatrix[2][2] = -2.0 / (camera->far - camera->near);
+		camera->pmatrix[2][3] = -(camera->far + camera->near) / (camera->far - camera->near);
+		camera->pmatrix[3][3] = 1.0;
+	}
 	else if (camera->projection_type == perspective)
 	{
-		double aspect = 1920 / 1080;
-		
-		init_zero_mat4(&(camera->pmatrix));
-		camera->pmatrix[0][0] = 1.0 / (tan(camera->fovy / 2.0) * aspect);
+		camera->pmatrix[0][0] = 1.0 / (tan(camera->fovy / 2.0) * camera->aspect);
 		camera->pmatrix[1][1] = 1.0 / tan(camera->fovx / 2.0);
 		camera->pmatrix[2][2] = -(camera->far + camera->near) / (camera->far - camera->near);
 		camera->pmatrix[2][3] = -(2.0 * camera->far * camera->near) / (camera->far - camera->near);
