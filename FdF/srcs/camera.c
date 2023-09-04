@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/03 22:56:00 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/05 00:54:29 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,6 @@
 #include "controller.h"
 #include "math.h"
 #include "matrix.h"
-
-#include <stdio.h>
-
-#ifdef DEBUG_MODE
-void	test_camera_state_print(t_camera* camera) {
-	printf("camera Position :\n");
-	printf("{%f, %f, %f}\n", camera->position.x, camera->position.y, camera->position.z);
-	printf("Camera VMatrix : \n");
-	for (int r = 0; r < 4; r++) {
-		for (int c = 0; c < 4; c++) {
-			printf("%f ", camera->vmatrix[r][c]);
-		}
-		printf("\n");
-	}
-}
-#endif
 
 static void	update_camera_coordinate(t_camera* camera)
 {
@@ -45,14 +29,14 @@ static void	update_camera_coordinate(t_camera* camera)
 
 void	init_camera(t_camera* camera)
 {
-	camera->position = make_vec3(0.0, 0.0, 0.0);
+	camera->position = make_vec3(100.0, 100.0, 100.0);
 	camera->worldup = make_vec3(0.0, 1.0, 0.0);
 
 	camera->yaw = INIT_YAW;
 	camera->pitch = INIT_PITCH;
 	update_camera_coordinate(camera);
 
-	camera->near = 0.0;
+	camera->near = 1.0;
 	camera->far = 1000.0;
 	camera->left = -500.0;
 	camera->right = 500.0;
@@ -60,8 +44,8 @@ void	init_camera(t_camera* camera)
 	camera->top = 500.0;
 
 	camera->aspect = 1920 / 1080;
-	camera->fovx = 1.74;
-	camera->fovy = 1.74;
+	camera->fovx = 1.57;
+	camera->fovy = 1.0297;
 	
 	camera->projection_type = orthographic;
 }
@@ -132,7 +116,7 @@ void	rotate_camera(t_camera* camera, int keycode)
 void	zoom_camera(t_camera* camera, int keycode)
 {
 	if (keycode == KEY_Q)
-		camera->fovy -= ZOOM_OFFSET;
+		camera->near -= ZOOM_OFFSET;
 	else if (keycode == KEY_E)
-		camera->fovy += ZOOM_OFFSET;
+		camera->near += ZOOM_OFFSET;
 }

@@ -6,14 +6,15 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:05:29 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/28 13:03:04 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/05 00:53:29 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTROLLER_H
 # define CONTROLLER_H
 
-enum EVENT {
+enum EVENT 
+{
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
 	ON_MOUSEDOWN = 4,
@@ -23,7 +24,8 @@ enum EVENT {
 	ON_DESTROY = 17
 };
 
-enum KEYCODE {
+enum KEYCODE 
+{
 	KEY_ESCAPE = 53, 
 
 	KEY_W = 13,

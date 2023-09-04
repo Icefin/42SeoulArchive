@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:04:06 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/04 13:51:18 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/05 00:27:19 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	update_view_matrix(t_vshader* vshader, t_camera* camera)
 	tmatrix[2][3] = -(camera->position.z);
 	
 	multiply_mat4_to_mat4(&(rmatrix), &(tmatrix), &(vmatrix));
-	copy_mat4(&(vshader->vmatrix), &vmatrix);
+	copy_mat4(&(vshader->vmatrix), &(vmatrix));
 }
 
 void	update_projection_matrix(t_vshader* vshader, t_camera* camera)
@@ -83,7 +83,7 @@ void	update_projection_matrix(t_vshader* vshader, t_camera* camera)
 		pmatrix[2][3] = -(2.0 * camera->far * camera->near) / (camera->far - camera->near);
 		pmatrix[3][2] = -1.0;	
 	}
-	copy_mat4(&(vshader->pmatrix), &pmatrix);
+	copy_mat4(&(vshader->pmatrix), &(pmatrix));
 }
 
 void	update_viewport_matrix(t_vshader* vshader, const double (*m)[4][4])

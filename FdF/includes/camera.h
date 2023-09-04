@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:00:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/03 22:10:30 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/05 00:53:52 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef enum e_projection_type
 {
 	orthographic = 0,
 	perspective
-}	projection_type;
+}	t_projection_type;
 
 typedef struct s_camera
 {
@@ -51,7 +51,7 @@ typedef struct s_camera
 	double fovx;
 	double fovy;
 	
-	projection_type projection_type;
+	t_projection_type projection_type;
 }	t_camera;
 
 void	init_camera(t_camera* camera);
