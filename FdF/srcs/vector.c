@@ -6,21 +6,12 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:20:08 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/31 22:13:24 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/04 13:34:39 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "vector.h"
-
-t_vec2	make_vec2(double x, double y)
-{
-	t_vec2	res;
-
-	res.x = x;
-	res.y = y;
-	return (res);
-}
 
 t_vec3	make_vec3(double x, double y, double z)
 {

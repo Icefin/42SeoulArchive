@@ -18,9 +18,9 @@ LIBFT = libft/libft.a
 
 #Sources========================================================================
 SRCS = srcs/main.c \
-		srcs/error.c \
 		srcs/map.c \
 		srcs/camera.c\
+		srcs/vshader.c \
 		srcs/window.c \
 		srcs/fdf.c \
 		srcs/vector.c \

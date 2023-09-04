@@ -3,21 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:37:38 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/14 20:34:58 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/04 13:48:41 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_H
 # define VECTOR_H
-
-typedef struct s_vec2
-{
-	double x;
-	double y;
-}	t_vec2;
 
 typedef struct s_vec3
 {
@@ -34,7 +28,6 @@ typedef struct s_vec4
 	double w;
 }	t_vec4;
 
-t_vec2	make_vec2(double x, double y);
 t_vec3	make_vec3(double x, double y, double z);
 t_vec4	make_vec4(double x, double y, double z, double w);
 void	normalize_vec3(t_vec3* v);

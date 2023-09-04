@@ -6,19 +6,20 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:25:04 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/02 14:48:11 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/04 13:51:44 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
+
+#include <stdio.h>
+
 #include "window.h"
-#include "camera.h"
+#include "vshader.h"
 #include "map.h"
 #include "vector.h"
 #include "matrix.h"
 #include "image.h"
-
-#include <stdio.h>
 
 void	bresenham_line_draw(t_image* image, t_vec3 p1, t_vec3 p2, t_vec3 color);
 
@@ -28,23 +29,17 @@ void	init_window(void** mlx, void** window)
 	*window = mlx_new_window(*mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "fdf");
 }
 
-static void	draw_neighbor_line(t_image* image, t_camera* camera, t_vec4 v1, t_vec4 v2, t_vec3 color)
+static void	draw_neighbor_line(t_image* image, t_vshader* vshader, t_vec4 v1, t_vec4 v2, t_vec3 color)
 {
-	t_vec4	cv1;
-	t_vec4	cv2;
 	t_vec3	p1;
 	t_vec3	p2;
 
-	cv1 = multiply_mat4_to_vec4(&(camera->pvmatrix), v1);
-	cv2 = multiply_mat4_to_vec4(&(camera->pvmatrix), v2);
-	viewport_transform();
-	viewport_transform();
-	p1 = make_vec3(cv1.x / cv1.w, cv1.y / cv1.w, cv1.z / cv1.w);
-	p2 = make_vec3(cv2.x / cv2.w, cv2.y / cv2.w, cv2.z / cv2.w);
+	vertex_transform(vshader, v1, &p1);
+	vertex_transform(vshader, v2, &p2);
 	bresenham_line_draw(image, p1, p2, color);
 }
 
-static void	draw_polygon_mesh(t_image* image, t_camera* camera, t_map* map)
+static void	draw_polygon_mesh(t_image* image, t_vshader* vshader, t_map* map)
 {
 	int		rptr;
 	int		cptr;
@@ -63,18 +58,18 @@ static void	draw_polygon_mesh(t_image* image, t_camera* camera, t_map* map)
 			if (rptr + 1 < map->row)
 			{
 				next = make_vec4(cptr * VERT_OFFSET, map->matrix[rptr + 1][cptr] * 10, (rptr + 1) * VERT_OFFSET, 1.0);
-				draw_neighbor_line(image, camera, curr, next, pcolor);
+				draw_neighbor_line(image, vshader, curr, next, pcolor);
 			}
 			if (cptr + 1 < map->col)
 			{
 				next = make_vec4((cptr + 1) * VERT_OFFSET, map->matrix[rptr][cptr + 1] * 10, rptr * VERT_OFFSET, 1.0);
-				draw_neighbor_line(image, camera, curr, next, pcolor);
+				draw_neighbor_line(image, vshader, curr, next, pcolor);
 			}
 		}
 	}
 }
 
-static void draw_xyz_axis(t_image* image, t_camera* camera)
+static void draw_xyz_axis(t_image* image, t_vshader* vshader)
 {
 	t_vec4 origin = make_vec4(0.0f, 0.0f, 0.0f, 1.0f);
 	t_vec4 xaxis = make_vec4(10000.0f, 0.0f, 0.0f, 1.0f);
@@ -85,12 +80,12 @@ static void draw_xyz_axis(t_image* image, t_camera* camera)
 	t_vec3 ycolor = make_vec3(0.0f, 1.0f, 0.0f);
 	t_vec3 zcolor = make_vec3(0.0f, 0.0f, 1.0f);
 	
-	draw_neighbor_line(image, camera, origin, xaxis, xcolor);
-	draw_neighbor_line(image, camera, origin, yaxis, ycolor);
-	draw_neighbor_line(image, camera, origin, zaxis, zcolor);
+	draw_neighbor_line(image, vshader, origin, xaxis, xcolor);
+	draw_neighbor_line(image, vshader, origin, yaxis, ycolor);
+	draw_neighbor_line(image, vshader, origin, zaxis, zcolor);
 }
 
-void	update_window(void** mlx, void** window, t_camera* camera, t_map* map)
+void	update_window(void** mlx, void** window, t_vshader* vshader, t_map* map)
 {
 	static int frame = 0;
 	t_image	image;
@@ -98,8 +93,8 @@ void	update_window(void** mlx, void** window, t_camera* camera, t_map* map)
 	image.img = mlx_new_image(*mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, &image.line_length,
 									&image.endian);
-	draw_polygon_mesh(&image, camera, map);
-	draw_xyz_axis(&image, camera);
+	draw_polygon_mesh(&image, vshader, map);
+	draw_xyz_axis(&image, vshader);
 	
 	mlx_put_image_to_window(*mlx, *window, image.img, 0, 0);
 	mlx_destroy_image(*mlx, image.img);

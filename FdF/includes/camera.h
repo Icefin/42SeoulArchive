@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:00:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/02 14:47:58 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/03 22:10:30 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef enum e_projection_type
 {
 	orthographic = 0,
 	perspective
-} projection_type;
+}	projection_type;
 
 typedef struct s_camera
 {
@@ -50,21 +50,14 @@ typedef struct s_camera
 	double aspect;
 	double fovx;
 	double fovy;
-
-	double vmatrix[4][4];
-	double pmatrix[4][4];
-	double pvmatrix[4][4];
-
+	
 	projection_type projection_type;
-} t_camera;
+}	t_camera;
 
 void	init_camera(t_camera* camera);
 void	switch_camera_mode(t_camera* camera);
 void	translate_camera(t_camera* camera, int keycode);
 void	rotate_camera(t_camera* camera, int keycode);
-void	update_rotation_state(t_camera* camera);
-void	update_vmatrix(t_camera* camera);
-void	update_pmatrix(t_camera* camera);
-void	update_pvmatrix(t_camera* camera);
+void	zoom_camera(t_camera* camera, int keycode);
 
 #endif
