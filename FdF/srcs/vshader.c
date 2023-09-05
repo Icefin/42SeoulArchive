@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vshader.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:04:06 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/05 00:27:19 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/05 12:51:52 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vshader.h"
-
-//void	update_model_matrix(t_vshader* vshader, const double (*m)[4][4])
-//{
-	//__noop;
-//}
 
 void	init_vertex_shader(t_vshader* vshader, t_camera* camera)
 {
@@ -26,17 +21,23 @@ void	init_vertex_shader(t_vshader* vshader, t_camera* camera)
 	vpmatrix[0][3] = 1920 / 2;
 	vpmatrix[1][1] = 1080 / 2;
 	vpmatrix[1][3] = 1080 / 2;
+	vpmatrix[2][2] = 0.5;
+	vpmatrix[2][3] = 0.5;
 
 	update_view_matrix(vshader, camera);
 	update_projection_matrix(vshader, camera);
 	update_viewport_matrix(vshader, &vpmatrix);
 }
 
+//void	update_model_matrix(t_vshader* vshader, const double (*m)[4][4])
+//{
+	//__noop;
+//}
+
 void	update_view_matrix(t_vshader* vshader, t_camera* camera)
 {
 	double	rmatrix[4][4];
 	double	tmatrix[4][4];
-	double	vmatrix[4][4];
 	
 	init_identity_mat4(&(rmatrix));
 	rmatrix[0][0] = camera->basis_u.x;
@@ -56,8 +57,7 @@ void	update_view_matrix(t_vshader* vshader, t_camera* camera)
 	tmatrix[1][3] = -(camera->position.y);
 	tmatrix[2][3] = -(camera->position.z);
 	
-	multiply_mat4_to_mat4(&(rmatrix), &(tmatrix), &(vmatrix));
-	copy_mat4(&(vshader->vmatrix), &(vmatrix));
+	multiply_mat4_to_mat4(&(rmatrix), &(tmatrix), &(vshader->vmatrix));
 }
 
 void	update_projection_matrix(t_vshader* vshader, t_camera* camera)
@@ -65,23 +65,23 @@ void	update_projection_matrix(t_vshader* vshader, t_camera* camera)
 	double pmatrix[4][4];
 	
 	init_zero_mat4(&(pmatrix));
-	if (camera->projection_type == orthographic)
+	if (camera->camera_mode == orthographic)
 	{
 		pmatrix[0][0] = 2.0 / (camera->right - camera->left);
 		pmatrix[0][3] = -(camera->right + camera->left) / (camera->right - camera->left);
 		pmatrix[1][1] = 2.0 / (camera->top - camera->bottom);
 		pmatrix[1][3] = -(camera->top + camera->bottom) / (camera->top - camera->bottom);
-		pmatrix[2][2] = -2.0 / (camera->far - camera->near);
-		pmatrix[2][3] = -(camera->far + camera->near) / (camera->far - camera->near);
+		pmatrix[2][2] = 2.0 / (camera->far - camera->near);
+		pmatrix[2][3] = (camera->far + camera->near) / (camera->far - camera->near);
 		pmatrix[3][3] = 1.0;
 	}
-	else if (camera->projection_type == perspective)
+	else if (camera->camera_mode == perspective)
 	{
 		pmatrix[0][0] = 1.0 / (tan(camera->fovy / 2.0) * camera->aspect);
 		pmatrix[1][1] = 1.0 / tan(camera->fovx / 2.0);
 		pmatrix[2][2] = -(camera->far + camera->near) / (camera->far - camera->near);
 		pmatrix[2][3] = -(2.0 * camera->far * camera->near) / (camera->far - camera->near);
-		pmatrix[3][2] = -1.0;	
+		pmatrix[3][2] = -1.0;
 	}
 	copy_mat4(&(vshader->pmatrix), &(pmatrix));
 }

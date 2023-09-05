@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/05 00:54:29 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/05 12:20:04 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,16 @@ void	init_camera(t_camera* camera)
 	camera->aspect = 1920 / 1080;
 	camera->fovx = 1.57;
 	camera->fovy = 1.0297;
-	
-	camera->projection_type = orthographic;
+	 
+	camera->camera_mode = orthographic;
 }
 
 void	switch_camera_mode(t_camera* camera)
 {
-	if (camera->projection_type == orthographic)
-		camera->projection_type = perspective;
-	else if (camera->projection_type == perspective)
-		camera->projection_type = orthographic;
+	if (camera->camera_mode == orthographic)
+		camera->camera_mode = perspective;
+	else if (camera->camera_mode == perspective)
+		camera->camera_mode = orthographic;
 }
 
 void	translate_camera(t_camera* camera, int keycode)

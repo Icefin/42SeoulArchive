@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:12:40 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/04 13:44:36 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/05 13:02:25 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
 		return (1);
 	program.file_path = argv[1];
 	init_program(&program);
-	update_window(&(program.mlx), &(program.window), &(program.vshader), &(program.map));
+	update_window(&(program.mlx), &(program.window), &(program.vshader), &(program.object));
 	mlx_loop(program.mlx);
 	return (0);
 }

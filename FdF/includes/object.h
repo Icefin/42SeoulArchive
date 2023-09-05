@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/09 14:01:02 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/30 22:54:23 by singeonho        ###   ########.fr       */
+/*   Created: 2023/09/05 12:55:25 by geshin            #+#    #+#             */
+/*   Updated: 2023/09/05 12:56:43 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#ifndef OBJECT_H
+# define OBJECT_H
 
-typedef struct s_map
+typedef struct s_object
 {
-	int** matrix;
-	int	row;
-	int	col;
-}	t_map;
+	int** 	mesh;
+	int 	row;
+	int 	col;
+}	t_object;
 
-void	init_map(t_map* map, char* path);
+void	init_object(t_object* obj, char* path);
 
 #endif

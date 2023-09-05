@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:29:34 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/31 18:10:43 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/05 11:31:29 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct s_mat4
 		double columns[4][4];
 		double elements[16];
 	};
-} t_mat4;
+}	t_mat4;
 
 void	init_zero_mat4(double (*matrix)[4][4]);
 void	init_identity_mat4(double (*matrix)[4][4]);

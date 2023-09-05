@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:29:08 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/31 18:10:16 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/05 11:55:26 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_zero_mat4(double (*m)[4][4])
 	{
 		cptr = -1;
 		while (++cptr < 4)
-			(*m)[rptr][cptr] = 0;
+			(*m)[rptr][cptr] = 0.0;
 	}
 }
 
@@ -39,9 +39,9 @@ void	init_identity_mat4(double (*m)[4][4])
 		while (++cptr < 4)
 		{
 			if (rptr == cptr)
-				(*m)[rptr][cptr] = 1;
+				(*m)[rptr][cptr] = 1.0;
 			else
-				(*m)[rptr][cptr] = 0;
+				(*m)[rptr][cptr] = 0.0;
 		}
 	}
 }

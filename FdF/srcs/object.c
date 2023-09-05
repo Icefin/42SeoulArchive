@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/11 15:56:12 by singeonho         #+#    #+#             */
-/*   Updated: 2023/06/13 12:30:54 by geshin           ###   ########.fr       */
+/*   Created: 2023/09/05 12:55:13 by geshin            #+#    #+#             */
+/*   Updated: 2023/09/05 12:58:28 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "libft.h"
-#include "map.h"
+#include "object.h"
 
-static void	allocate_map_matrix(t_map* map, int fd) {
+static void	allocate_map_matrix(t_object* obj, int fd) 
+{
 	char	*line;
 	char	**elements;
 	int		row;
@@ -31,37 +32,39 @@ static void	allocate_map_matrix(t_map* map, int fd) {
 		row++;
 		line = get_next_line(fd);
 	}
-	map->row = row;
-	map->col = col;
-	map->matrix = (int **)malloc(row * sizeof(int *));
+	obj->row = row;
+	obj->col = col;
+	obj->mesh = (int **)malloc(row * sizeof(int *));
 	ptr = -1;
 	while (ptr < row) 
-		map->matrix[++ptr] = (int *)malloc(col * sizeof(int));
+		obj->mesh[++ptr] = (int *)malloc(col * sizeof(int));
 }
 
-static void	parse_map_file(t_map* map, int fd) {
+static void	parse_map_file(t_object* obj, int fd) 
+{
 	char	*line;
 	char	**elements;
 	int	rptr;
 	int	cptr;
 
 	rptr = -1;
-	while (++rptr < map->row) {
+	while (++rptr < obj->row) {
 		cptr = -1;
 		line = get_next_line(fd);
 		elements = ft_split(line, ' ');
-		while (++cptr < map->col) {
-			map->matrix[rptr][cptr] = ft_getnbr(elements[cptr]);
+		while (++cptr < obj->col) {
+			obj->mesh[rptr][cptr] = ft_getnbr(elements[cptr]);
 		}
 	}
 }
 
-void	init_map(t_map* map, char* path) {
+void	init_object(t_object* obj, char* path) 
+{
 	int fd;
 	fd = open(path, O_RDONLY);
-	allocate_map_matrix(map, fd);
+	allocate_map_matrix(obj, fd);
 	close(fd);
 	fd = open(path, O_RDONLY);
-	parse_map_file(map, fd);
+	parse_map_file(obj, fd);
 	close(fd);	
 }
