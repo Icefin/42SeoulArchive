@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:00:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/05 12:16:49 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/05 13:22:27 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 #define INIT_PITCH -0.615472907
 
 #define MOVE_OFFSET 30.0
-#define ROT_OFFSET M_PI / 36
-#define ZOOM_OFFSET 0.1
+#define M_PI_3 (M_PI / 3)
+#define M_PI_6 (M_PI / 6)
+#define M_PI_36 (M_PI / 36)
+#define M_PI_72 (M_PI / 72)
 
 typedef enum e_projection_type
 {
@@ -48,8 +50,7 @@ typedef struct s_camera
 	double top;
 
 	double aspect;
-	double fovx;
-	double fovy;
+	double fov;
 	
 	t_projection_type camera_mode;
 }	t_camera;

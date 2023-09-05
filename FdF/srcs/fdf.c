@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:44:05 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/05 13:02:52 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/05 13:17:11 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ static int	key_event(int keycode, t_program* program)
 	{
 		rotate_camera(&(program->camera), keycode);
 		update_view_matrix(&(program->vshader), &(program->camera));
+	}
+	else if (keycode == KEY_Q || keycode == KEY_E)
+	{
+		zoom_camera(&(program->camera), keycode);
+		update_projection_matrix(&(program->vshader), &(program->camera));
 	}
 	else if (keycode == KEY_P)
 	{

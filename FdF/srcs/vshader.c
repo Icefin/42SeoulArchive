@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:04:06 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/05 12:51:52 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/05 18:17:04 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,32 +38,32 @@ void	update_view_matrix(t_vshader* vshader, t_camera* camera)
 {
 	double	rmatrix[4][4];
 	double	tmatrix[4][4];
-	
+
 	init_identity_mat4(&(rmatrix));
 	rmatrix[0][0] = camera->basis_u.x;
 	rmatrix[0][1] = camera->basis_u.y;
 	rmatrix[0][2] = camera->basis_u.z;
-	
+
 	rmatrix[1][0] = camera->basis_v.x;
 	rmatrix[1][1] = camera->basis_v.y;
 	rmatrix[1][2] = camera->basis_v.z;
-	
+
 	rmatrix[2][0] = -(camera->direction.x);
 	rmatrix[2][1] = -(camera->direction.y);
 	rmatrix[2][2] = -(camera->direction.z);
-	
+
 	init_identity_mat4(&(tmatrix));
 	tmatrix[0][3] = -(camera->position.x);
 	tmatrix[1][3] = -(camera->position.y);
 	tmatrix[2][3] = -(camera->position.z);
-	
+
 	multiply_mat4_to_mat4(&(rmatrix), &(tmatrix), &(vshader->vmatrix));
 }
 
 void	update_projection_matrix(t_vshader* vshader, t_camera* camera)
 {
 	double pmatrix[4][4];
-	
+
 	init_zero_mat4(&(pmatrix));
 	if (camera->camera_mode == orthographic)
 	{
@@ -77,8 +77,8 @@ void	update_projection_matrix(t_vshader* vshader, t_camera* camera)
 	}
 	else if (camera->camera_mode == perspective)
 	{
-		pmatrix[0][0] = 1.0 / (tan(camera->fovy / 2.0) * camera->aspect);
-		pmatrix[1][1] = 1.0 / tan(camera->fovx / 2.0);
+		pmatrix[0][0] = 1.0 / (tan(camera->fov / 2.0) * camera->aspect);
+		pmatrix[1][1] = 1.0 / tan(camera->fov / 2.0);
 		pmatrix[2][2] = -(camera->far + camera->near) / (camera->far - camera->near);
 		pmatrix[2][3] = -(2.0 * camera->far * camera->near) / (camera->far - camera->near);
 		pmatrix[3][2] = -1.0;

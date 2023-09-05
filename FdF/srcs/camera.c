@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/05 12:20:04 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/05 13:23:20 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	init_camera(t_camera* camera)
 	camera->top = 500.0;
 
 	camera->aspect = 1920 / 1080;
-	camera->fovx = 1.57;
-	camera->fovy = 1.0297;
+	camera->fov = M_PI_2;
 	 
 	camera->camera_mode = orthographic;
 }
@@ -88,25 +87,25 @@ void	rotate_camera(t_camera* camera, int keycode)
 {
 	if (keycode == KEY_O)
 	{
-		camera->pitch += ROT_OFFSET;
+		camera->pitch += M_PI_36;
 		if (camera->pitch > M_PI_2)
 			camera->pitch = M_PI_2 - 0.001;
 	}	
 	else if (keycode == KEY_L)
 	{
-		camera->pitch -= ROT_OFFSET;
+		camera->pitch -= M_PI_36;
 		if (camera->pitch < -M_PI_2)
 			camera->pitch = -M_PI_2 + 0.001;
 	}
 	else if (keycode == KEY_K)
 	{
-		camera->yaw += ROT_OFFSET;
+		camera->yaw += M_PI_36;
 		if (camera->yaw > 2 * M_PI)
 			camera->yaw -= 2 * M_PI;
 	}	
 	else if (keycode == KEY_COLON)
 	{
-		camera->yaw -= ROT_OFFSET;	
+		camera->yaw -= M_PI_36;	
 		if (camera->yaw < -2 * M_PI)
 			camera->yaw += 2 * M_PI;
 	}
@@ -116,7 +115,15 @@ void	rotate_camera(t_camera* camera, int keycode)
 void	zoom_camera(t_camera* camera, int keycode)
 {
 	if (keycode == KEY_Q)
-		camera->near -= ZOOM_OFFSET;
+	{
+		camera->fov -= M_PI_72;
+		if (camera->fov < M_PI_6)
+			camera->fov = M_PI_6;
+	}
 	else if (keycode == KEY_E)
-		camera->near += ZOOM_OFFSET;
+	{
+		camera->fov += M_PI_72;
+		if (camera->fov > M_PI_3)
+			camera->fov =  M_PI_3;
+	}	
 }
