@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/05 13:23:20 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/06 17:12:19 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 static void	update_camera_coordinate(t_camera* camera)
 {
-	camera->direction.x = cos(camera->pitch) * cos(camera->yaw);
+	camera->direction.x = cos(camera->pitch) * sin(camera->yaw);
 	camera->direction.y = sin(camera->pitch);
-	camera->direction.z = cos(camera->pitch) * sin(camera->yaw);
+	camera->direction.z = cos(camera->pitch) * (-cos(camera->yaw));
 	normalize_vec3(&(camera->direction));
 	camera->basis_u = cross_product(camera->direction, camera->worldup);
 	normalize_vec3(&(camera->basis_u));

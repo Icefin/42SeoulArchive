@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:25:04 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/05 13:00:00 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/06 17:33:01 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,15 @@ static void	draw_polygon_mesh(t_image* image, t_vshader* vshader, t_object* obj)
 		cptr = -1;
 		while (++cptr < obj->col)
 		{
-			curr = make_vec4(cptr * VERT_OFFSET, obj->mesh[rptr][cptr] * 10, rptr * VERT_OFFSET, 1.0);
+			curr = make_vec4(cptr * VERT_OFFSET, obj->mesh[rptr][cptr] * VERT_OFFSET, rptr * VERT_OFFSET, 1.0);
 			if (rptr + 1 < obj->row)
 			{
-				next = make_vec4(cptr * VERT_OFFSET, obj->mesh[rptr + 1][cptr] * 10, (rptr + 1) * VERT_OFFSET, 1.0);
+				next = make_vec4(cptr * VERT_OFFSET, obj->mesh[rptr + 1][cptr] * VERT_OFFSET, (rptr + 1) * VERT_OFFSET, 1.0);
 				draw_neighbor_line(image, vshader, curr, next, pcolor);
 			}
 			if (cptr + 1 < obj->col)
 			{
-				next = make_vec4((cptr + 1) * VERT_OFFSET, obj->mesh[rptr][cptr + 1] * 10, rptr * VERT_OFFSET, 1.0);
+				next = make_vec4((cptr + 1) * VERT_OFFSET, obj->mesh[rptr][cptr + 1] * VERT_OFFSET, rptr * VERT_OFFSET, 1.0);
 				draw_neighbor_line(image, vshader, curr, next, pcolor);
 			}
 		}
