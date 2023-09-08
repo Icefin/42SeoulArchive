@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/06 17:12:19 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/09 01:53:10 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,18 @@
 
 static void	update_camera_coordinate(t_camera* camera)
 {
-	camera->direction.x = cos(camera->pitch) * sin(camera->yaw);
-	camera->direction.y = sin(camera->pitch);
-	camera->direction.z = cos(camera->pitch) * (-cos(camera->yaw));
-	normalize_vec3(&(camera->direction));
-	camera->basis_u = cross_product(camera->direction, camera->worldup);
+	t_vec3 front;
+
+	front.x = cos(camera->pitch) * cos(camera->yaw);
+	front.y = sin(camera->pitch);
+	front.z = cos(camera->pitch) * sin(camera->yaw);
+	camera->basis_n.x = -front.x;
+	camera->basis_n.y = -front.y;
+	camera->basis_n.z = -front.z;
+	normalize_vec3(&(camera->basis_n));
+	camera->basis_u = cross_product(camera->worldup, camera->basis_n);
 	normalize_vec3(&(camera->basis_u));
-	camera->basis_v = cross_product(camera->basis_u, camera->direction);
+	camera->basis_v = cross_product(camera->basis_n, camera->basis_u);
 	normalize_vec3(&(camera->basis_v));
 }
 
@@ -36,7 +41,7 @@ void	init_camera(t_camera* camera)
 	camera->pitch = INIT_PITCH;
 	update_camera_coordinate(camera);
 
-	camera->near = 1.0;
+	camera->near = 0.1;
 	camera->far = 1000.0;
 	camera->left = -500.0;
 	camera->right = 500.0;
@@ -62,13 +67,13 @@ void	translate_camera(t_camera* camera, int keycode)
 	t_vec3	offset;
 
 	if (keycode == KEY_W)
-		offset = make_vec3(camera->direction.x * MOVE_OFFSET,
-		 camera->direction.y * MOVE_OFFSET,
-		 camera->direction.z * MOVE_OFFSET);
+		offset = make_vec3(-camera->basis_n.x * MOVE_OFFSET,
+		 -camera->basis_n.y * MOVE_OFFSET,
+		 -camera->basis_n.z * MOVE_OFFSET);
 	else if (keycode == KEY_S)
-		offset = make_vec3(-camera->direction.x * MOVE_OFFSET,
-		 -camera->direction.y * MOVE_OFFSET,
-		 -camera->direction.z * MOVE_OFFSET);
+		offset = make_vec3(camera->basis_n.x * MOVE_OFFSET,
+		 camera->basis_n.y * MOVE_OFFSET,
+		 camera->basis_n.z * MOVE_OFFSET);
 	else if (keycode == KEY_A)
 		offset = make_vec3(-camera->basis_u.x * MOVE_OFFSET,
 		 -camera->basis_u.y * MOVE_OFFSET,

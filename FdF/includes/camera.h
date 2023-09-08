@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:00:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/06 17:00:11 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/09 01:39:27 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ typedef enum e_projection_type
 typedef struct s_camera
 {
 	t_vec3 position;
-	t_vec3 direction;
 	t_vec3 basis_u;
 	t_vec3 basis_v;
+	t_vec3 basis_n;
 	t_vec3 worldup;
 	
 	double yaw;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vshader.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:04:06 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/05 18:17:04 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/09 02:13:12 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_vertex_shader(t_vshader* vshader, t_camera* camera)
 	init_identity_mat4(&(vpmatrix));
 	vpmatrix[0][0] = 1920 / 2;
 	vpmatrix[0][3] = 1920 / 2;
-	vpmatrix[1][1] = 1080 / 2;
+	vpmatrix[1][1] = -1080 / 2;
 	vpmatrix[1][3] = 1080 / 2;
 	vpmatrix[2][2] = 0.5;
 	vpmatrix[2][3] = 0.5;
@@ -48,9 +48,9 @@ void	update_view_matrix(t_vshader* vshader, t_camera* camera)
 	rmatrix[1][1] = camera->basis_v.y;
 	rmatrix[1][2] = camera->basis_v.z;
 
-	rmatrix[2][0] = -(camera->direction.x);
-	rmatrix[2][1] = -(camera->direction.y);
-	rmatrix[2][2] = -(camera->direction.z);
+	rmatrix[2][0] = camera->basis_n.x;
+	rmatrix[2][1] = camera->basis_n.y;
+	rmatrix[2][2] = camera->basis_n.z;
 
 	init_identity_mat4(&(tmatrix));
 	tmatrix[0][3] = -(camera->position.x);

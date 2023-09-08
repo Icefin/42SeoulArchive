@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:25:04 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/06 17:33:01 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/09 02:14:23 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static void	draw_neighbor_line(t_image* image, t_vshader* vshader, t_vec4 v1, t_
 
 	vertex_transform(vshader, v1, &p1);
 	vertex_transform(vshader, v2, &p2);
+	if (p1.x < 0 || p1.x > 1920 || p1.y < 0 || p1.y > 1080 || p1.z < 0 || p1.z > 1)
+		return;
 	bresenham_line_draw(image, p1, p2, color);
 }
 
@@ -54,15 +56,15 @@ static void	draw_polygon_mesh(t_image* image, t_vshader* vshader, t_object* obj)
 		cptr = -1;
 		while (++cptr < obj->col)
 		{
-			curr = make_vec4(cptr * VERT_OFFSET, obj->mesh[rptr][cptr] * VERT_OFFSET, rptr * VERT_OFFSET, 1.0);
+			curr = make_vec4(cptr * VERT_OFFSET, obj->mesh[rptr][cptr] * 5, rptr * VERT_OFFSET, 1.0);
 			if (rptr + 1 < obj->row)
 			{
-				next = make_vec4(cptr * VERT_OFFSET, obj->mesh[rptr + 1][cptr] * VERT_OFFSET, (rptr + 1) * VERT_OFFSET, 1.0);
+				next = make_vec4(cptr * VERT_OFFSET, obj->mesh[rptr + 1][cptr] * 5, (rptr + 1) * VERT_OFFSET, 1.0);
 				draw_neighbor_line(image, vshader, curr, next, pcolor);
 			}
 			if (cptr + 1 < obj->col)
 			{
-				next = make_vec4((cptr + 1) * VERT_OFFSET, obj->mesh[rptr][cptr + 1] * VERT_OFFSET, rptr * VERT_OFFSET, 1.0);
+				next = make_vec4((cptr + 1) * VERT_OFFSET, obj->mesh[rptr][cptr + 1] * 5, rptr * VERT_OFFSET, 1.0);
 				draw_neighbor_line(image, vshader, curr, next, pcolor);
 			}
 		}
@@ -72,9 +74,9 @@ static void	draw_polygon_mesh(t_image* image, t_vshader* vshader, t_object* obj)
 static void draw_xyz_axis(t_image* image, t_vshader* vshader)
 {
 	t_vec4 origin = make_vec4(0.0, 0.0, 0.0, 1.0);
-	t_vec4 xaxis = make_vec4(1000.0, 0.0, 0.0, 1.0);
-	t_vec4 yaxis = make_vec4(0.0, 1000.0, 0.0, 1.0);
-	t_vec4 zaxis = make_vec4(0.0, 0.0, 1000.0, 1.0);
+	t_vec4 xaxis = make_vec4(100.0, 0.0, 0.0, 1.0);
+	t_vec4 yaxis = make_vec4(0.0, 100.0, 0.0, 1.0);
+	t_vec4 zaxis = make_vec4(0.0, 0.0, 100.0, 1.0);
 
 	t_vec3 xcolor = make_vec3(1.0, 0.0, 0.0);
 	t_vec3 ycolor = make_vec3(0.0, 1.0, 0.0);
