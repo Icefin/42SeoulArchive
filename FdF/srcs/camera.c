@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/09 01:53:10 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/09 02:17:29 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	update_camera_coordinate(t_camera* camera)
 
 void	init_camera(t_camera* camera)
 {
-	camera->position = make_vec3(100.0, 100.0, 100.0);
+	camera->position = make_vec3(50.0, 50.0, 50.0);
 	camera->worldup = make_vec3(0.0, 1.0, 0.0);
 
 	camera->yaw = INIT_YAW;

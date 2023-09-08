@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:00:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/09 01:39:27 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/09 03:51:59 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "vector.h"
 #include "math.h"
 
-#define INIT_YAW M_PI_4
+#define INIT_YAW M_PI_4 + M_PI
 #define INIT_PITCH -0.615472907
 
 #define MOVE_OFFSET 30.0
