@@ -1,6 +1,9 @@
 # 42SeoulArchive
 Use as 42Seoul Internal Workspace
 
+All projects follow coding convention called norminette.  
+https://github.com/taeng42/norminette/blob/master/pdf/ko.norm.pdf
+
 ---
 
 Git Convention
