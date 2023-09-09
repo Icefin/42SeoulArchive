@@ -1,24 +1,17 @@
 #Flags========================================================================
 CC = cc
-AR = ar
 
 CFLAGS = -Wall -Wextra -Werror
-AFLAGS = -rcs
 
-NAME = minitalk
-CLIENT = client
-SERVER = server
-INC = includes/
+PROGRAM = server client
 
 #Libraries=====================================================================
-LIB_LIB = libft
-
 LIBFT = libft/libft.a
 
 
 #Sources========================================================================
-SRCS = client.c \
-		server.c
+SRCS = srcs/client.c \
+		srcs/server.c
 
 
 
@@ -30,22 +23,25 @@ OBJS = $(SRCS:.c=.o)
 
 
 #Rules===========================================================================
-all : $(NAME)
+all : $(PROGRAM)
 
-$(NAME) : $(LIBFT) $(OBJS)
-	$(CC) $(OBJS) -Llibft -lft -o $(NAME)
+server : $(LIBFT) server.o
+	$(CC) -o server -Llibft -lft server.o
+
+client : $(LIBFT) client.o
+	$(CC) -o client -Llibft -lft client.o
 
 $(LIBFT) :
 	make -C libft
 
 %.o : %.c
-	$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
 	make fclean -C libft
 	rm -rf $(OBJS)
 
 fclean : clean
-	rm -rf $(NAME)
+	rm -rf $(PROGRAM)
 
 re : fclean all

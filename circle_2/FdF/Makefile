@@ -9,12 +9,10 @@ NAME = fdf
 INC = includes/
 
 #Libraries=====================================================================
-MLX_LIB = mlx
-LIB_LIB = libft
-
 MLX = libmlx.dylib
 LIBFT = libft/libft.a
 
+LIB = $(MLX) $(LIBFT)
 
 #Sources========================================================================
 SRCS = srcs/main.c \
@@ -39,7 +37,7 @@ OBJS = $(SRCS:.c=.o)
 #Rules===========================================================================
 all : $(NAME)
 
-$(NAME) : $(MLX) $(LIBFT) $(OBJS)
+$(NAME) : $(LIB) $(OBJS)
 	$(CC) $(OBJS) -Lmlx -lmlx -Llibft -lft -framework OpenGL -framework AppKit -o $(NAME)
 
 $(MLX) :
