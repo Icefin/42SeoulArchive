@@ -6,14 +6,11 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:25:04 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/09 02:14:23 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/09 16:18:48 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
-
-#include <stdio.h>
-
 #include "window.h"
 #include "vshader.h"
 #include "object.h"
@@ -36,7 +33,7 @@ static void	draw_neighbor_line(t_image* image, t_vshader* vshader, t_vec4 v1, t_
 
 	vertex_transform(vshader, v1, &p1);
 	vertex_transform(vshader, v2, &p2);
-	if (p1.x < 0 || p1.x > 1920 || p1.y < 0 || p1.y > 1080 || p1.z < 0 || p1.z > 1)
+	if (p1.x < 0 || p1.x > 1024 || p1.y < 0 || p1.y > 768 || p1.z < 0 || p1.z > 1)
 		return;
 	bresenham_line_draw(image, p1, p2, color);
 }
@@ -71,17 +68,16 @@ static void	draw_polygon_mesh(t_image* image, t_vshader* vshader, t_object* obj)
 	}
 }
 
+/*DEBUG GIZMO - XYZ AXIS*/
 static void draw_xyz_axis(t_image* image, t_vshader* vshader)
 {
 	t_vec4 origin = make_vec4(0.0, 0.0, 0.0, 1.0);
 	t_vec4 xaxis = make_vec4(100.0, 0.0, 0.0, 1.0);
 	t_vec4 yaxis = make_vec4(0.0, 100.0, 0.0, 1.0);
 	t_vec4 zaxis = make_vec4(0.0, 0.0, 100.0, 1.0);
-
 	t_vec3 xcolor = make_vec3(1.0, 0.0, 0.0);
 	t_vec3 ycolor = make_vec3(0.0, 1.0, 0.0);
 	t_vec3 zcolor = make_vec3(0.0, 0.0, 1.0);
-	
 	draw_neighbor_line(image, vshader, origin, xaxis, xcolor);
 	draw_neighbor_line(image, vshader, origin, yaxis, ycolor);
 	draw_neighbor_line(image, vshader, origin, zaxis, zcolor);
@@ -89,7 +85,6 @@ static void draw_xyz_axis(t_image* image, t_vshader* vshader)
 
 void	update_window(void** mlx, void** window, t_vshader* vshader, t_object* obj)
 {
-	static int frame = 0;
 	t_image	image;
 	
 	image.img = mlx_new_image(*mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -97,8 +92,6 @@ void	update_window(void** mlx, void** window, t_vshader* vshader, t_object* obj)
 									&image.endian);
 	draw_polygon_mesh(&image, vshader, obj);
 	draw_xyz_axis(&image, vshader);
-	
 	mlx_put_image_to_window(*mlx, *window, image.img, 0, 0);
 	mlx_destroy_image(*mlx, image.img);
-	printf("Window Updated! frame : %d\n", frame++);
 }

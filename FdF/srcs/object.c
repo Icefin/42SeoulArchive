@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/05 12:58:28 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/09 16:15:05 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static void	allocate_map_matrix(t_object* obj, int fd)
 	elements = ft_split(line, ' ');
 	col = ft_ptrlen(elements);
 	row = 0;
-	while (line != NULL) {
+	while (line != NULL) 
+	{
 		row++;
 		line = get_next_line(fd);
 	}
@@ -44,23 +45,24 @@ static void	parse_map_file(t_object* obj, int fd)
 {
 	char	*line;
 	char	**elements;
-	int	rptr;
-	int	cptr;
+	int		rptr;
+	int		cptr;
 
 	rptr = -1;
-	while (++rptr < obj->row) {
+	while (++rptr < obj->row) 
+	{
 		cptr = -1;
 		line = get_next_line(fd);
 		elements = ft_split(line, ' ');
-		while (++cptr < obj->col) {
+		while (++cptr < obj->col)
 			obj->mesh[rptr][cptr] = ft_getnbr(elements[cptr]);
-		}
 	}
 }
 
 void	init_object(t_object* obj, char* path) 
 {
 	int fd;
+
 	fd = open(path, O_RDONLY);
 	allocate_map_matrix(obj, fd);
 	close(fd);

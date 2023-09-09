@@ -6,15 +6,12 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:44:05 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/09 02:24:05 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/09 16:11:01 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include <stdlib.h>
-
-#include <stdio.h>
-
 #include "fdf.h"
 
 void	destroy_program(t_program* program)
@@ -26,7 +23,6 @@ void	destroy_program(t_program* program)
 		free(program->object.mesh[ptr]);
 	free(program->object.mesh);
 	mlx_destroy_window(program->mlx, program->window);
-	printf("Program Destroy");
 	exit(0);
 }
 
@@ -60,18 +56,9 @@ static int	key_event(int keycode, t_program* program)
 
 void	init_program(t_program* program)
 {
-	printf("Init Window!\n");
 	init_window(&(program->mlx), &(program->window));
-
-	printf("Init Camera!\n");
 	init_camera(&(program->camera));
-
-	printf("Init Vertex Shader!\n");
 	init_vertex_shader(&(program->vshader), &(program->camera));
-
-	printf("Init Single Object!\n");
 	init_object(&(program->object), program->file_path);
-
-	printf("Init Hooks!\n");
 	mlx_hook(program->window, ON_KEYDOWN, 0, key_event, program);
 }

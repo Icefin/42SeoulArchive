@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:31:25 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/09 02:17:29 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/09 15:37:34 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	update_camera_coordinate(t_camera* camera)
 
 void	init_camera(t_camera* camera)
 {
-	camera->position = make_vec3(50.0, 50.0, 50.0);
+	camera->position = make_vec3(100.0, 100.0, 100.0);
 	camera->worldup = make_vec3(0.0, 1.0, 0.0);
 
 	camera->yaw = INIT_YAW;
@@ -48,7 +48,7 @@ void	init_camera(t_camera* camera)
 	camera->bottom = -500.0;
 	camera->top = 500.0;
 
-	camera->aspect = 1920 / 1080;
+	camera->aspect = 1024 / 768;
 	camera->fov = M_PI_2;
 	 
 	camera->camera_mode = orthographic;
@@ -104,15 +104,16 @@ void	rotate_camera(t_camera* camera, int keycode)
 	}
 	else if (keycode == KEY_K)
 	{
-		camera->yaw += M_PI_36;
-		if (camera->yaw > 2 * M_PI)
-			camera->yaw -= 2 * M_PI;
-	}	
-	else if (keycode == KEY_COLON)
-	{
 		camera->yaw -= M_PI_36;	
 		if (camera->yaw < -2 * M_PI)
 			camera->yaw += 2 * M_PI;
+	}	
+	else if (keycode == KEY_COLON)
+	{
+		
+		camera->yaw += M_PI_36;
+		if (camera->yaw > 2 * M_PI)
+			camera->yaw -= 2 * M_PI;
 	}
 	update_camera_coordinate(camera);
 }

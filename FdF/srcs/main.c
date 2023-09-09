@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:12:40 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/05 13:02:25 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/09 16:11:05 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-
 #include "fdf.h"
 
-static int check_valid_argument(int argc, char **argv) {
-	if ((argc != 2 && argc != 4) || argv == NULL)
+static int check_valid_argument(int argc, char **argv) 
+{
+	if ((argc != 2) || argv == NULL)
 		return (1);
 	return (0);
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv) 
+{
 	t_program	program;
 
 	if (check_valid_argument(argc, argv) != 0)
