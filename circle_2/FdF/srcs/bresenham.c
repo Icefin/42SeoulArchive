@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:04:02 by geshin            #+#    #+#             */
-/*   Updated: 2023/08/22 13:59:32 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/10 14:46:01 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,80 +14,88 @@
 #include "image.h"
 #include "window.h"
 
-static	int	ft_create_trgb(int t, int r, int g, int b) {
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-static void ft_mlx_pixel_put(t_image* image, int x, int y, int color)
+static	void	ft_mlx_pixel_put(t_image *img, int x, int y, int color)
 {
 	char	*dst;
 
 	if (x < 0 || y < 0 || x >= WINDOW_WIDTH || y >= WINDOW_HEIGHT)
-		return;
-	dst = image->addr + (y * image->line_length + x * (image->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+		return ;
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
-static	void	plotLineLow(t_image* image, t_vec3 p1, t_vec3 p2, t_vec3 color)
+static	void	plot_line_low(t_image *img, t_vec3 p1, t_vec3 p2)
 {
-	int	dx = p2.x - p1.x;
-	int dy = p2.y - p1.y;
-	int yi = 1;
-	if (dy < 0)
-	{
+	int		dx;
+	int		dy;
+	int		yi;
+	int		d;
+	t_vec3	pixel;
+
+	dx = p2.x - p1.x;
+	yi = 1;
+	if (p2.y - p1.y < 0)
 		yi = -1;
-		dy = -dy;
-	}
-	int D = (2 * dy) - dx;
-	int y = p1.y;
-	for (int x = p1.x; x <= p2.x; x++) {
-		ft_mlx_pixel_put(image, x, y, ft_create_trgb(0, color.x * 255, color.y * 255, color.z * 255));
-		if (D > 0) {
-			y = y + yi;
-			D = D + (2 * (dy - dx));
-		}
-		else {
-			D = D + 2 * dy;
-		}
-	}
-}
-
-static	void	plotLineHigh(t_image* image, t_vec3 p1, t_vec3 p2, t_vec3 color)
-{
-	int	dx = p2.x - p1.x;
-	int dy = p2.y - p1.y;
-	int xi = 1;
-	if (dx < 0)
+	dy = fabs(p2.y - p1.y);
+	d = (2 * dy) - dx;
+	pixel = make_vec3(p1.x, p1.y, 0.0);
+	while (pixel.x <= p2.x)
 	{
-		xi = -1;
-		dx = -dx;
-	}
-	int D = (2 * dx) - dy;
-	int x = p1.x;
-	for (int y = p1.y; y <= p2.y; y++) {
-		ft_mlx_pixel_put(image, x, y, ft_create_trgb(0, color.x * 255, color.y * 255, color.z * 255));
-		if (D > 0) {
-			x = x + xi;
-			D = D + (2 * (dx - dy));
+		ft_mlx_pixel_put(img, pixel.x, pixel.y, 0x00FFFFFF);
+		if (d > 0)
+		{
+			pixel.y += yi;
+			d += 2 * (dy - dx);
 		}
-		else {
-			D = D + 2 * dx;
-		}
+		else
+			d += 2 * dy;
+		pixel.x++;
 	}
 }
 
-void	bresenham_line_draw(t_image* image, t_vec3 p1, t_vec3 p2, t_vec3 color)
+static	void	plot_line_high(t_image *img, t_vec3 p1, t_vec3 p2)
 {
-	if (fabs(p2.y - p1.y) < fabs(p2.x - p1.x)) {
-		if (p1.x > p2.x)
-			plotLineLow(image, p2, p1, color);
+	int		dx;
+	int		dy;
+	int		xi;
+	int		d;
+	t_vec3	pixel;
+
+	dy = p2.y - p1.y;
+	xi = 1;
+	if (p2.x - p1.x < 0)
+		xi = -1;
+	dx = fabs(p2.x - p1.x);
+	d = (2 * dx) - dy;
+	pixel = make_vec3(p1.x, p1.y, 0.0);
+	while (pixel.y <= p2.y)
+	{
+		ft_mlx_pixel_put(img, pixel.x, pixel.y, 0x00FFFFFF);
+		if (d > 0)
+		{
+			pixel.x += xi;
+			d += 2 * (dx - dy);
+		}
 		else
-			plotLineLow(image, p1, p2, color);
+			d += 2 * dx;
+		pixel.y++;
 	}
-	else {
-		if (p1.y > p2.y)
-			plotLineHigh(image, p2, p1, color);
+}
+
+void	bresenham_line_draw(t_image *img, t_vec3 p1, t_vec3 p2)
+{
+	if (fabs(p2.y - p1.y) < fabs(p2.x - p1.x))
+	{
+		if (p1.x > p2.x)
+			plot_line_low(img, p2, p1);
 		else
-			plotLineHigh(image, p1, p2, color);
+			plot_line_low(img, p1, p2);
+	}
+	else
+	{
+		if (p1.y > p2.y)
+			plot_line_high(img, p2, p1);
+		else
+			plot_line_high(img, p1, p2);
 	}
 }

@@ -6,26 +6,26 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 19:11:43 by singeonho         #+#    #+#             */
-/*   Updated: 2023/06/12 14:16:52 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/10 14:09:24 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char* s)
+int	ft_strlen(char *s)
 {
-	int res;
+	int	res;
 
 	res = 0;
 	while (s[res] != '\0')
 		res++;
-	return res;
+	return (res);
 }
 
-int	ft_ptrlen(char** p)
+int	ft_ptrlen(char **p)
 {
-	int res;
+	int	res;
 
 	res = 0;
 	while (p[res] != 0)
 		res++;
-	return res;
+	return (res);
 }

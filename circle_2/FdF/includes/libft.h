@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:44:26 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/12 13:58:45 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/10 12:51:19 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LIBFT_H
 
 char	*get_next_line(int fd);
-int		ft_getnbr(char *s);
+int		ft_atoi(const char *s);
 int		ft_strlen(char *s);
 int		ft_ptrlen(char **p);
 char	**ft_split(char const *s, char c);

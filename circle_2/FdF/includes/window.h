@@ -3,24 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   window.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:23:22 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/09 15:32:26 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/10 15:03:57 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WINDOW_H
 # define WINDOW_H
 
-#include "object.h"
-#include "vshader.h"
+# include "object.h"
+# include "vshader.h"
 
-#define WINDOW_WIDTH 1024
-#define WINDOW_HEIGHT 768
-#define VERT_OFFSET 10
+# define WINDOW_WIDTH 1024
+# define WINDOW_HEIGHT 768
 
-void	init_window(void** mlx, void** window);
-void	update_window(void** mlx, void** window, t_vshader* vshader, t_object* obj);
+void	init_window(void **mlx, void **window);
+void	update_window(void **mlx, void **window, t_vshader *vs, t_object *obj);
 
 #endif

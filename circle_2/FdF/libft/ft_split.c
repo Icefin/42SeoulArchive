@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:07:21 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/09 15:09:22 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/10 13:00:10 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static char	*get_word(const char *s, char c, int *idx)
 	res = (char *)malloc((len + 1) * sizeof(char));
 	if (res == 0)
 		return (0);
-	//ft_strlcpy(res, &s[*idx], len + 1);
 	ptr = -1;
 	while (++ptr < len)
 		res[ptr] = s[*idx + ptr];

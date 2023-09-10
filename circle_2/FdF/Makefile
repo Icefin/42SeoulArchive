@@ -1,9 +1,7 @@
 #Flags========================================================================
 CC = cc
-AR = ar
 
 CFLAGS = -Wall -Wextra -Werror
-AFLAGS = -rcs
 
 NAME = fdf
 INC = includes/
@@ -17,8 +15,10 @@ LIB = $(MLX) $(LIBFT)
 #Sources========================================================================
 SRCS = srcs/main.c \
 		srcs/object.c \
-		srcs/camera.c\
-		srcs/vshader.c \
+		srcs/camera_1.c\
+		srcs/camera_2.c \
+		srcs/vshader_1.c \
+		srcs/vshader_2.c \
 		srcs/window.c \
 		srcs/fdf.c \
 		srcs/vector.c \

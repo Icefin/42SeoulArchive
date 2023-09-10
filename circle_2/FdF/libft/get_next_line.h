@@ -6,14 +6,14 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:08:38 by geshin            #+#    #+#             */
-/*   Updated: 2023/06/09 16:11:40 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/10 14:10:05 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-#include <stdlib.h>
+# include <stdlib.h>
 
 typedef struct s_list
 {

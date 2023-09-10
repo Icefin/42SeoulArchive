@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:20:08 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/09 01:18:48 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/10 13:51:51 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_vec3	make_vec3(double x, double y, double z)
 
 t_vec4	make_vec4(double x, double y, double z, double w)
 {
-	t_vec4 res;
+	t_vec4	res;
 
 	res.x = x;
 	res.y = y;
@@ -34,10 +34,11 @@ t_vec4	make_vec4(double x, double y, double z, double w)
 	return (res);
 }
 
-void	normalize_vec3(t_vec3* v)
+void	normalize_vec3(t_vec3 *v)
 {
-	double w = sqrt((v->x * v->x) + (v->y * v->y) + (v->z * v->z));
+	double	w;
 
+	w = sqrt((v->x * v->x) + (v->y * v->y) + (v->z * v->z));
 	v->x /= w;
 	v->y /= w;
 	v->z /= w;
