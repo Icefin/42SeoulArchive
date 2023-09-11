@@ -6,6 +6,8 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = fdf
 INC = includes/
 
+BONUS_FLAG = FALSE;
+
 #Libraries=====================================================================
 MLX = libmlx.dylib
 LIBFT = libft/libft.a
@@ -29,8 +31,11 @@ SRCS = srcs/main.c \
 
 
 #Objects=========================================================================
-OBJS = $(SRCS:.c=.o)
-
+ifeq ($(BONUS_FLAG),TRUE)
+	OBJS = $(SRCS:.c=.o)
+else
+	OBJS = $(SRCS:.c=.o)
+endif
 
 
 
@@ -59,3 +64,8 @@ fclean : clean
 	rm -rf $(NAME) $(MLX)
 
 re : fclean all
+
+bonus :
+	make BONUS_FLAG=TRUE
+
+.PHONY : all clean fclean re bonus

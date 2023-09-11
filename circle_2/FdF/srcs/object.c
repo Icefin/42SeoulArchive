@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/10 13:50:42 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/11 16:29:55 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,24 @@ static void	allocate_map_matrix(t_object *obj, int fd)
 	line = get_next_line(fd);
 	elements = ft_split(line, ' ');
 	col = ft_ptrlen(elements);
+	ptr = -1;
+	while (++ptr < col)
+		free(elements[ptr]);
+	free(elements);
 	row = 0;
 	while (line != NULL)
 	{
+		free(line);
 		row++;
 		line = get_next_line(fd);
 	}
+	free(line);
 	obj->row = row;
 	obj->col = col;
 	obj->mesh = (int **)malloc(row * sizeof(int *));
 	ptr = -1;
-	while (ptr < row)
-		obj->mesh[++ptr] = (int *)malloc(col * sizeof(int));
+	while (++ptr < row)
+		obj->mesh[ptr] = (int *)malloc(col * sizeof(int));
 }
 
 static void	parse_map_file(t_object *obj, int fd)
@@ -54,8 +60,14 @@ static void	parse_map_file(t_object *obj, int fd)
 		cptr = -1;
 		line = get_next_line(fd);
 		elements = ft_split(line, ' ');
+		free(line);
 		while (++cptr < obj->col)
+		{
 			obj->mesh[rptr][cptr] = ft_atoi(elements[cptr]);
+			free(elements[cptr]);
+		}
+		free(elements[cptr]);
+		free(elements);
 	}
 }
 
@@ -64,6 +76,8 @@ void	init_object(t_object *obj, char *path)
 	int	fd;
 
 	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		exit(1);
 	allocate_map_matrix(obj, fd);
 	close(fd);
 	fd = open(path, O_RDONLY);

@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:04:06 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/10 15:17:48 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/11 13:19:38 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ void	update_projection_matrix(t_vshader *vshader, t_camera *camera)
 	init_zero_mat4(&(pm));
 	if (camera->camera_mode == ORTHOGRAPHIC)
 	{
-		pm[0][0] = 2.0 / (camera->right - camera->left);
+		pm[0][0] = 40.0 / (camera->right - camera->left);
 		pm[0][3] = -(camera->right + camera->left)
 			/ (camera->right - camera->left);
-		pm[1][1] = 2.0 / (camera->top - camera->bottom);
+		pm[1][1] = 40.0 / (camera->top - camera->bottom);
 		pm[1][3] = -(camera->top + camera->bottom)
 			/ (camera->top - camera->bottom);
-		pm[2][2] = 2.0 / (camera->far - camera->near);
+		pm[2][2] = 40.0 / (camera->far - camera->near);
 		pm[2][3] = (camera->far + camera->near) / (camera->far - camera->near);
 		pm[3][3] = 1.0;
 	}

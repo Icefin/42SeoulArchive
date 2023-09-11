@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:12:40 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/10 13:48:50 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/11 16:30:48 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "fdf.h"
+
+void	leaks()
+{
+	system("leaks fdf");
+}
 
 static int	check_valid_argument(int argc, char **argv)
 {
@@ -27,6 +32,7 @@ int	main(int argc, char **argv)
 {
 	t_program	program;
 
+	atexit(leaks);
 	if (check_valid_argument(argc, argv) != 0)
 		return (1);
 	program.file_path = argv[1];
