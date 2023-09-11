@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/11 17:12:10 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/11 17:51:26 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,28 @@
 #include "libft.h"
 #include "object.h"
 
+static void free_array(char **ptr, int size)
+{
+	int	i;
+
+	i = -1;
+	while (++i <= size)
+		free(ptr[i]);
+	free(ptr);
+}
+
 static void	allocate_map_matrix(t_object *obj, int fd)
 {
 	char	*line;
 	char	**elements;
 	int		row;
 	int		col;
-	int		ptr;
+	int		i;
 
 	line = get_next_line(fd);
 	elements = ft_split(line, ' ');
 	col = ft_ptrlen(elements);
-	ptr = -1;
-	while (++ptr < col)
-		free(elements[ptr]);
-	free(elements);
+	free_array(elements, col);
 	row = 0;
 	while (line != NULL)
 	{
@@ -42,9 +49,9 @@ static void	allocate_map_matrix(t_object *obj, int fd)
 	obj->row = row;
 	obj->col = col;
 	obj->mesh = (int **)malloc(row * sizeof(int *));
-	ptr = -1;
-	while (++ptr < row)
-		obj->mesh[ptr] = (int *)malloc(col * sizeof(int));
+	i = -1;
+	while (++i < row)
+		obj->mesh[i] = (int *)malloc(col * sizeof(int));
 }
 
 static void	parse_map_file(t_object *obj, int fd)
@@ -62,12 +69,8 @@ static void	parse_map_file(t_object *obj, int fd)
 		free(line);
 		c = -1;
 		while (++c < obj->col)
-		{
 			obj->mesh[r][c] = ft_atoi(elements[c]);
-			free(elements[c]);
-		}
-		free(elements[c]);
-		free(elements);
+		free_array(elements, obj->col);
 	}
 }
 

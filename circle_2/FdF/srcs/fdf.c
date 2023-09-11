@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:44:05 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/11 17:13:44 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/11 17:43:14 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,16 @@ void	destroy_program(t_program *program)
 	exit(0);
 }
 
+static int	close_window(t_program *program)
+{
+	destroy_program(program);
+	return (0);
+}
+
 static int	key_event(int key, t_program *program)
 {
 	if (key == KEY_ESCAPE)
-		destroy_program(program);
+		close_window(program);
 	else if (key == KEY_W || key == KEY_S || key == KEY_A || key == KEY_D)
 	{
 		translate_camera(&(program->camera), key);
@@ -62,4 +68,5 @@ void	init_program(t_program *program)
 	init_vertex_shader(&(program->vshader), &(program->camera));
 	init_object(&(program->object), program->file_path);
 	mlx_hook(program->window, ON_KEYDOWN, 0, key_event, program);
+	mlx_hook(program->window, ON_DESTROY, 0, close_window, program);
 }
