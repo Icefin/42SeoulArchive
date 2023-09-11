@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:44:05 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/10 15:03:15 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/11 17:13:44 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 void	destroy_program(t_program *program)
 {
-	int	ptr;
+	int	i;
 
-	ptr = -1;
-	while (++ptr < program->object.row)
-		free(program->object.mesh[ptr]);
+	i = -1;
+	while (++i < program->object.row)
+		free(program->object.mesh[i]);
 	free(program->object.mesh);
 	mlx_destroy_window(program->mlx, program->window);
 	exit(0);

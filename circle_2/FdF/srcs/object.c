@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/11 16:29:55 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/11 17:12:10 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,22 @@ static void	parse_map_file(t_object *obj, int fd)
 {
 	char	*line;
 	char	**elements;
-	int		rptr;
-	int		cptr;
+	int		r;
+	int		c;
 
-	rptr = -1;
-	while (++rptr < obj->row)
+	r = -1;
+	while (++r < obj->row)
 	{
-		cptr = -1;
 		line = get_next_line(fd);
 		elements = ft_split(line, ' ');
 		free(line);
-		while (++cptr < obj->col)
+		c = -1;
+		while (++c < obj->col)
 		{
-			obj->mesh[rptr][cptr] = ft_atoi(elements[cptr]);
-			free(elements[cptr]);
+			obj->mesh[r][c] = ft_atoi(elements[c]);
+			free(elements[c]);
 		}
-		free(elements[cptr]);
+		free(elements[c]);
 		free(elements);
 	}
 }

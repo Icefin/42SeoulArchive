@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:29:08 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/10 14:27:30 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/11 17:13:26 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,68 +15,68 @@
 
 void	init_zero_mat4(t_mat4 *m)
 {
-	int	rptr;
-	int	cptr;
+	int	r;
+	int	c;
 
-	rptr = -1;
-	while (++rptr < 4)
+	r = -1;
+	while (++r < 4)
 	{
-		cptr = -1;
-		while (++cptr < 4)
-			(*m)[rptr][cptr] = 0.0;
+		c = -1;
+		while (++c < 4)
+			(*m)[r][c] = 0.0;
 	}
 }
 
 void	init_identity_mat4(t_mat4 *m)
 {
-	int	rptr;
-	int	cptr;
+	int	r;
+	int	c;
 
-	rptr = -1;
-	while (++rptr < 4)
+	r = -1;
+	while (++r < 4)
 	{
-		cptr = -1;
-		while (++cptr < 4)
+		c = -1;
+		while (++c < 4)
 		{
-			if (rptr == cptr)
-				(*m)[rptr][cptr] = 1.0;
+			if (r == c)
+				(*m)[r][c] = 1.0;
 			else
-				(*m)[rptr][cptr] = 0.0;
+				(*m)[r][c] = 0.0;
 		}
 	}
 }
 
 void	copy_mat4(t_mat4 *dst, t_mat4 *src)
 {
-	int	rptr;
-	int	cptr;
+	int	r;
+	int	c;
 
-	rptr = -1;
-	while (++rptr < 4)
+	r = -1;
+	while (++r < 4)
 	{
-		cptr = -1;
-		while (++cptr < 4)
-			(*dst)[rptr][cptr] = (*src)[rptr][cptr];
+		c = -1;
+		while (++c < 4)
+			(*dst)[r][c] = (*src)[r][c];
 	}
 }
 
 void	multiply_mat4_to_mat4(t_mat4 *m1, t_mat4 *m2, t_mat4 *dst)
 {
 	t_mat4	temp;
-	int		rptr;
-	int		cptr;
-	int		ptr;
+	int		r;
+	int		c;
+	int		i;
 
 	init_zero_mat4(&temp);
-	rptr = -1;
-	while (++rptr < 4)
+	r = -1;
+	while (++r < 4)
 	{
-		cptr = -1;
-		while (++cptr < 4)
+		c = -1;
+		while (++c < 4)
 		{
-			ptr = -1;
-			while (++ptr < 4)
-				temp[rptr][cptr] += (*m1)[rptr][ptr] * (*m2)[ptr][cptr];
+			i = -1;
+			while (++i < 4)
+				temp[r][c] += (*m1)[r][i] * (*m2)[i][c];
 		}
 	}
 	copy_mat4(dst, &temp);
