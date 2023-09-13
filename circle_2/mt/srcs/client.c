@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 18:04:40 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/13 17:53:54 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/13 18:03:36 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void send(int pid, char *msg)
 	i = -1;
 	while (msg[++i] != '\0')
 		process_character_bits(pid, msg[i]);
+	
 }
 
 static int is_valid_arguments(int argc, char **argv)
