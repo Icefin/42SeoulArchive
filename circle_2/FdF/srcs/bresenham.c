@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:04:02 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/10 14:46:01 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/13 15:03:46 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static	void	plot_line_low(t_image *img, t_vec3 p1, t_vec3 p2)
 	int		dx;
 	int		dy;
 	int		yi;
-	int		d;
+	int		determinant;
 	t_vec3	pixel;
 
 	dx = p2.x - p1.x;
@@ -37,18 +37,18 @@ static	void	plot_line_low(t_image *img, t_vec3 p1, t_vec3 p2)
 	if (p2.y - p1.y < 0)
 		yi = -1;
 	dy = fabs(p2.y - p1.y);
-	d = (2 * dy) - dx;
+	determinant = (2 * dy) - dx;
 	pixel = make_vec3(p1.x, p1.y, 0.0);
 	while (pixel.x <= p2.x)
 	{
 		ft_mlx_pixel_put(img, pixel.x, pixel.y, 0x00FFFFFF);
-		if (d > 0)
+		if (determinant > 0)
 		{
 			pixel.y += yi;
-			d += 2 * (dy - dx);
+			determinant += 2 * (dy - dx);
 		}
 		else
-			d += 2 * dy;
+			determinant += 2 * dy;
 		pixel.x++;
 	}
 }
@@ -58,7 +58,7 @@ static	void	plot_line_high(t_image *img, t_vec3 p1, t_vec3 p2)
 	int		dx;
 	int		dy;
 	int		xi;
-	int		d;
+	int		determinant;
 	t_vec3	pixel;
 
 	dy = p2.y - p1.y;
@@ -66,18 +66,18 @@ static	void	plot_line_high(t_image *img, t_vec3 p1, t_vec3 p2)
 	if (p2.x - p1.x < 0)
 		xi = -1;
 	dx = fabs(p2.x - p1.x);
-	d = (2 * dx) - dy;
+	determinant = (2 * dx) - dy;
 	pixel = make_vec3(p1.x, p1.y, 0.0);
 	while (pixel.y <= p2.y)
 	{
 		ft_mlx_pixel_put(img, pixel.x, pixel.y, 0x00FFFFFF);
-		if (d > 0)
+		if (determinant > 0)
 		{
 			pixel.x += xi;
-			d += 2 * (dx - dy);
+			determinant += 2 * (dx - dy);
 		}
 		else
-			d += 2 * dx;
+			determinant += 2 * dx;
 		pixel.y++;
 	}
 }
