@@ -10,8 +10,8 @@ LIBFT = libft/libft.a
 
 
 #Sources========================================================================
-SRCS = srcs/client.c \
-		srcs/server.c
+SRCS = srcs/server.c \
+		srcs/client.c
 
 
 
@@ -25,17 +25,17 @@ OBJS = $(SRCS:.c=.o)
 #Rules===========================================================================
 all : $(PROGRAM)
 
-server : $(LIBFT) server.o
+server : server.o $(LIBFT)
 	$(CC) -o server -Llibft -lft server.o
 
-client : $(LIBFT) client.o
+client : client.o $(LIBFT)
 	$(CC) -o client -Llibft -lft client.o
 
 $(LIBFT) :
 	make -C libft
 
-%.o : %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+.c.o :
+	$(CC) -c $(CFLAGS) $?
 
 clean :
 	make fclean -C libft
@@ -45,3 +45,5 @@ fclean : clean
 	rm -rf $(PROGRAM)
 
 re : fclean all
+
+.PHONY : all clean fclean re

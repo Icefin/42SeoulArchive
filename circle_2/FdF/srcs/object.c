@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/11 17:51:26 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/14 13:02:15 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "libft.h"
 #include "object.h"
 
-static void free_array(char **ptr, int size)
+static void	free_array(char **ptr, int size)
 {
 	int	i;
 

@@ -3,91 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 18:38:32 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/09 18:53:22 by singeonho        ###   ########.fr       */
+/*   Created: 2023/09/11 18:04:38 by geshin            #+#    #+#             */
+/*   Updated: 2023/09/14 15:59:33 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
 #include <unistd.h>
+#include <signal.h>
 
-void	*reset(void *b, size_t len)
+#include <stdio.h>
+
+#define TRUE	1
+#define FALSE	0
+
+static void flush_buffer(unsigned char *buffer, int size)
 {
-	unsigned char	*temp;
-	unsigned long	i;
+	int	i;
 
-	temp = (unsigned char*)b;
 	i = -1;
-	while (++i < len)
-		temp[i] &= 0;
-	return (temp);
+	while (++i < size)
+		buffer[i] &= 0x00;
 }
 
-void	handler(int signo, siginfo_t *info, void *context)
+static void	receive(int signo, siginfo_t *info, void *context)
 {
-	static unsigned char	buf[100];
-	static int				idx;
-	static int				count;
+	static unsigned char	buffer[100];
+	static int				i;
+	static int				bit_pos;
 
 	(void)info;
 	(void)context;
-	if (--count == -1)
+	if (--bit_pos == -1)
 	{
-		count = 7;
-		idx++;
+		bit_pos = 7;
+		i++;
 	}
-	buf[idx] &= ~128;
+	buffer[i] = 0xFF;
 	if (signo == SIGUSR1)
-		buf[idx] |= (1 << count);
+		buffer[i] |= (1 << bit_pos); 
 	else if (signo == SIGUSR2)
-		buf[idx] &= ~(1 << count);
-	if (buf[idx] == 127 || idx == 99)
+		buffer[i] &= ~(1 << bit_pos);
+	else
+		printf("Undefined Signal Accepted\n");
+		
+	if (buffer[i] == 0 || i == 99)
 	{
-		write(1, buf, idx + 1);
-		if (buf[idx] == 127)
+		write(1, buffer, sizeof(unsigned char) * (i + 1));
+		if (buffer[i] == 0)
 			write(1, "\n", 1);
-		reset(buf, 100);
-		idx = 0;
+		flush_buffer(buffer, 100);
+		i = 0;
 	}
 }
 
-int		display_pid()
+int main()
 {
-	char *pid;
+	struct sigaction	receiver;
+	int					pid;
 
-	if (!(pid = ft_itoa(getpid())))
-		return (0);
-	write(1, "My PID is ", 10);
-	write(1, pid, ft_strlen(pid));
-	write(1, "\n", 1);
-	free(pid);
-	return (1);
-}
+	receiver.__sigaction_u.__sa_sigaction = receive;
+	receiver.sa_flags = SA_SIGINFO;
 
-int		main(void)
-{
-	struct sigaction	act1;
-
-	act1.sa_sigaction = handler;
-	act1.sa_flags = SA_SIGINFO;
-	if (!(display_pid()))
+	pid = getpid();
+	printf("Server's PID :  %d\n", pid);
+	if (sigaction(SIGUSR1, &receiver, NULL) == -1)
 	{
-		write(1, "PID malloc error", 16);
-		exit(1);
+		write(1, "Unable to use SIGUSR1", 21);
+		return (1);
 	}
-	if (sigaction(SIGUSR1, &act1, NULL) != 0)
+	if (sigaction(SIGUSR2, &receiver, NULL) == -1)
 	{
-		write(1, "Sigaction Error", 15);
-		exit(1);
+		write(1, "Unable to use SIGUSR2", 21);
+		return (1);
 	}
-	if (sigaction(SIGUSR2, &act1, NULL) != 0)
-	{
-		write(1, "Sigaction Error", 15);
-		exit(1);
-	}
-	while (1)
-		;
+	while (TRUE) ;
 	return (0);
 }

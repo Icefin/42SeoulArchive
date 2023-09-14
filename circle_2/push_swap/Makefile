@@ -3,16 +3,14 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-PROGRAM = server client
+NAME = push_swap
 
 #Libraries=====================================================================
 LIBFT = libft/libft.a
 
 
 #Sources========================================================================
-SRCS = srcs/server.c \
-		srcs/client.c
-
+SRCS = 
 
 
 
@@ -23,13 +21,7 @@ OBJS = $(SRCS:.c=.o)
 
 
 #Rules===========================================================================
-all : $(PROGRAM)
-
-server : server.o $(LIBFT)
-	$(CC) -o server -Llibft -lft server.o
-
-client : client.o $(LIBFT)
-	$(CC) -o client -Llibft -lft client.o
+all : $(NAME)
 
 $(LIBFT) :
 	make -C libft
