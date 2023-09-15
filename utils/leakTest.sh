@@ -1,7 +1,9 @@
 # Leak test every second
 
+PROGRAM=
+
 while :
 do
-	leaks (program)
-	sleep(1)
+	leaks $PROGRAM
+	sleep 1
 done
