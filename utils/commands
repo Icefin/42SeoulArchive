@@ -1,0 +1,4 @@
+nm (program) | grep U    //Show used function in program
+
+ps						 //Get pid list
+leaks (program)			 //Check memory leak on running time
