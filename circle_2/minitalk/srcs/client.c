@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 18:04:40 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/14 15:56:36 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/16 10:03:23 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 #include <stdio.h>
 
-#define TRUE	1
 #define FALSE	0
+#define TRUE	1
 
 static void send_signal(int pid, int signo)
 {
@@ -37,10 +37,11 @@ static void process_character_bits(int pid, char utf8)
 	bit_pos = 8;
 	while (--bit_pos >= 0)
 	{
-		if ((utf8 | (1 << bit_pos)) == TRUE)
+		if ((utf8 & (1 << bit_pos)) == FALSE)
 			send_signal(pid, SIGUSR1);
 		else
 			send_signal(pid, SIGUSR2);
+		
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 18:04:38 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/14 15:59:33 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/16 10:08:46 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,46 +15,41 @@
 
 #include <stdio.h>
 
-#define TRUE	1
 #define FALSE	0
+#define TRUE	1
 
-static void flush_buffer(unsigned char *buffer, int size)
+static void	flush_buffer(unsigned char *buffer, int size)
 {
-	int	i;
-
-	i = -1;
-	while (++i < size)
-		buffer[i] &= 0x00;
+	for (int i = 0; i < 100; ++i)
+		buffer[i] = 0x7F;
 }
 
 static void	receive(int signo, siginfo_t *info, void *context)
 {
 	static unsigned char	buffer[100];
 	static int				i;
-	static int				bit_pos;
+	static int				bit_pos ;
 
 	(void)info;
 	(void)context;
-	if (--bit_pos == -1)
+	if (--bit_pos < 0)
 	{
 		bit_pos = 7;
 		i++;
+		buffer[i] = 0x7F;
 	}
-	buffer[i] = 0xFF;
 	if (signo == SIGUSR1)
-		buffer[i] |= (1 << bit_pos); 
-	else if (signo == SIGUSR2)
 		buffer[i] &= ~(1 << bit_pos);
-	else
-		printf("Undefined Signal Accepted\n");
-		
+	else if (signo == SIGUSR2)
+		buffer[i] |= (1 << bit_pos); 
 	if (buffer[i] == 0 || i == 99)
 	{
-		write(1, buffer, sizeof(unsigned char) * (i + 1));
+		write(1, buffer, i + 1);
 		if (buffer[i] == 0)
 			write(1, "\n", 1);
+		i = -1;
+		bit_pos = 8;
 		flush_buffer(buffer, 100);
-		i = 0;
 	}
 }
 
