@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 18:04:38 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/16 10:08:46 by singeonho        ###   ########.fr       */
+/*   Created: 2023/06/20 18:38:32 by geshin            #+#    #+#             */
+/*   Updated: 2023/09/16 10:47:00 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static void	receive(int signo, siginfo_t *info, void *context)
 		write(1, buffer, i + 1);
 		if (buffer[i] == 0)
 			write(1, "\n", 1);
-		i = -1;
-		bit_pos = 8;
+		i = 0;
+		bit_pos = 0;
 		flush_buffer(buffer, 100);
 	}
 }
