@@ -3,7 +3,7 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-PROGRAM = server client
+NAME = server client
 
 #Libraries=====================================================================
 LIBFT = libft/libft.a
@@ -23,7 +23,7 @@ OBJS = $(SRCS:.c=.o)
 
 
 #Rules===========================================================================
-all : $(PROGRAM)
+all : $(NAME)
 
 server : server.o $(LIBFT)
 	$(CC) -o server -Llibft -lft server.o
@@ -42,7 +42,7 @@ clean :
 	rm -rf $(OBJS)
 
 fclean : clean
-	rm -rf $(PROGRAM)
+	rm -rf $(NAME)
 
 re : fclean all
 
