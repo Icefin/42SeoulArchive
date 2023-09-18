@@ -6,14 +6,13 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 18:38:32 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/18 18:01:30 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/18 20:42:12 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <signal.h>
-
-#include <stdio.h>
+#include "ft_printf.h"
 
 #define FALSE			0
 #define TRUE			1
@@ -85,7 +84,7 @@ int main()
 	receiver.sa_flags = SA_SIGINFO;
 
 	pid = getpid();
-	printf("Server's PID :  %d\n", pid);
+	ft_printf("Server's PID :  %d\n", pid);
 	if (sigaction(SIGUSR1, &receiver, NULL) == -1)
 	{
 		write(1, "Unable to use SIGUSR2\n", 22);

@@ -9,6 +9,8 @@ NAME = $(SERVER) $(CLIENT)
 
 #Libraries=====================================================================
 LIBFT = libft/libft.a
+PRINTF = ft_printf/libftprintf.a
+
 
 
 #Sources========================================================================
@@ -28,24 +30,29 @@ OBJCLNT = srcs/client.o
 #Rules===========================================================================
 all : $(NAME)
 
-$(SERVER) : $(OBJSERV) $(LIBFT)
-	$(CC) -o server -Llibft -lft $(OBJSERV)
+$(SERVER) : $(OBJSERV) $(PRINTF)
+	$(CC) -o server -Lft_printf -lftprintf $(OBJSERV)
+
+$(OBJSERV) : $(SRCSERV)
+	$(CC) -c $(CFLAGS) -Ift_printf $(SRCSERV)
+	mv server.o ./srcs/server.o
 
 $(CLIENT) : $(OBJCLNT) $(LIBFT)
 	$(CC) -o client -Llibft -lft $(OBJCLNT)
 
+$(OBJCLNT) : $(SRCCLNT)
+	$(CC) -c $(CFLAGS) -Ilibft $(SRCCLNT)
+	mv client.o ./srcs/client.o
+
 $(LIBFT) :
 	make -C libft
 
-$(OBJSERV) : $(SRCSERV)
-	$(CC) -c $(CFLAGS) $(SRCSERV)
-	mv server.o ./srcs/server.o
+$(PRINTF) :
+	make -C ft_printf
 
-$(OBJCLNT) : $(SRCCLNT)
-	$(CC) -c $(CFLAGS) $(SRCCLNT)
-	mv client.o ./srcs/client.o
 clean :
 	make fclean -C libft
+	make fclean -C ft_printf
 	rm -rf $(OBJSERV) $(OBJCLNT)
 
 fclean : clean

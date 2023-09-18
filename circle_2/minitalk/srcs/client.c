@@ -6,13 +6,14 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 18:04:40 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/18 18:01:36 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/18 20:43:42 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "libft.h"
 
 #define FALSE	0
 #define TRUE	1
@@ -70,7 +71,7 @@ int main(int argc, char **argv)
 
 	if (is_valid_arguments(argc, argv) == FALSE)
 		return (1);
-	server_pid = atoi(argv[1]);
+	server_pid = ft_atoi(argv[1]);
 	send(server_pid, argv[2]);
 	return (0);
 }
