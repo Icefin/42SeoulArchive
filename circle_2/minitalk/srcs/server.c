@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 18:38:32 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/18 13:50:46 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/18 14:04:35 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,15 @@
 
 #define FALSE			0
 #define TRUE			1
-#define MAX_BUFFER_SIZE 100
+#define MAX_BUFFER_SIZE 1000
 
-/*
-static void	flush_buffer(unsigned char *buffer, int size)
+static void receive_character_per_bit(int signo, char *buffer, int bit, int i)
 {
-	for (int i = 0; i < 100; ++i)
-		buffer[i] = 0x7F;
+	if (signo == SIGUSR1)
+		buffer[i] &= ~(1 << bit);
+	else if (signo == SIGUSR2)
+		buffer[i] |= (1 << bit);
 }
-*/
-
-/*
-static void receive_character_per_bit(int signo)
-{
-	int		bit;
-	char	character;
-
-	bit = 8;
-	while (--bit >= 0)
-	{
-		if (signo == FALSE)
-		{
-
-		}
-		else
-
-	}
-}
-*/
 
 static void	receive(int signo, siginfo_t *info, void *context)
 {
@@ -65,17 +46,11 @@ static void	receive(int signo, siginfo_t *info, void *context)
 		}
 		buffer[i] = 0x7F;
 	}
-
-	if (signo == SIGUSR1)
-		buffer[i] &= ~(1 << bit);
-	else if (signo == SIGUSR2)
-		buffer[i] |= (1 << bit);
-
-	if (buffer[i] == '\0' || i == MAX_BUFFER_SIZE)
+	receive_character_per_bit(signo, buffer, bit, i);
+	if (buffer[i] == '\0')
 	{
 		write(1, &buffer[1], i);
-		if (buffer[i] == '\0')
-			write(1, "\n", 1);
+		write(1, "\n", 1);
 		bit = 0;
 		i = 0;
 	}

@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 18:04:40 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/18 13:28:31 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/18 14:04:08 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ static void send_signal(int pid, int signo)
 	else if (signo == SIGUSR2)
 		kill(pid, SIGUSR2);
 	else
+	{
 		write(1, "Invalid Signo Input\n", 20);
+		exit(1);
+	}
+		
 	usleep(100);
 }
 
@@ -39,7 +43,6 @@ static void send_character_per_bit(int pid, char utf8)
 			send_signal(pid, SIGUSR1);
 		else
 			send_signal(pid, SIGUSR2);
-		
 	}
 }
 
