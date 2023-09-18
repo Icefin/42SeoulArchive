@@ -6,15 +6,13 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 18:04:40 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/16 10:45:54 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/18 13:28:31 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-#include <stdio.h>
 
 #define FALSE	0
 #define TRUE	1
@@ -26,18 +24,18 @@ static void send_signal(int pid, int signo)
 	else if (signo == SIGUSR2)
 		kill(pid, SIGUSR2);
 	else
-		printf("Invalid Signo Input");
+		write(1, "Invalid Signo Input\n", 20);
 	usleep(100);
 }
 
-static void process_character_bits(int pid, char utf8)
+static void send_character_per_bit(int pid, char utf8)
 {
-	int bit_pos;
+	int bit;
 
-	bit_pos = 8;
-	while (--bit_pos >= 0)
+	bit = 8;
+	while (--bit >= 0)
 	{
-		if ((utf8 & (1 << bit_pos)) == FALSE)
+		if ((utf8 & (1 << bit)) == FALSE)
 			send_signal(pid, SIGUSR1);
 		else
 			send_signal(pid, SIGUSR2);
@@ -49,11 +47,11 @@ static void send(int pid, char *msg)
 {
 	int	i;
 
-	printf("Send Signal!\n");
+	write(1, "Send Signal!\n", 13);
 	i = -1;
 	while (msg[++i] != '\0')
-		process_character_bits(pid, msg[i]);
-	process_character_bits(pid, '\0');
+		send_character_per_bit(pid, msg[i]);
+	send_character_per_bit(pid, '\0');
 }
 
 static int is_valid_arguments(int argc, char **argv)
