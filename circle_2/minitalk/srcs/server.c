@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 18:38:32 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/18 14:04:35 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/18 18:01:30 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,26 @@ static void	receive(int signo, siginfo_t *info, void *context)
 		i = 0;
 	}
 }
+
+/*
+static void receive(int signo, siginfo_t *info, void *context)
+{
+	static int	bit = 7;
+	static char	i;
+
+	(void)info;
+	(void)context;
+	if (signo == SIGUSR2)
+		i |= (1 << bit);
+	bit--;
+	if (bit == -1)
+	{
+		write(1, &i, 1);
+		bit = 7;
+		i = 0;
+	}
+}
+*/
 
 int main()
 {

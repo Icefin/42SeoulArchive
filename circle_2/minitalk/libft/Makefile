@@ -29,7 +29,6 @@ endif
 NAME = libft.a
 
 all : $(NAME)
-	sleep 1
 
 $(NAME) : $(TOT_OBJS)
 	$(AR) $(AFLAGS) $(NAME) $(TOT_OBJS)

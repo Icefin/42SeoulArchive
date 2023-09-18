@@ -3,21 +3,24 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-NAME = server client
+SERVER = server
+CLIENT = client
+NAME = $(SERVER) $(CLIENT)
 
 #Libraries=====================================================================
 LIBFT = libft/libft.a
 
 
 #Sources========================================================================
-SRCS = srcs/server.c \
-		srcs/client.c
+SRCSERV = srcs/server.c
+SRCCLNT = srcs/client.c
 
 
 
 
 #Objects=========================================================================
-OBJS = $(SRCS:.c=.o)
+OBJSERV = srcs/server.o
+OBJCLNT = srcs/client.o
 
 
 
@@ -25,21 +28,25 @@ OBJS = $(SRCS:.c=.o)
 #Rules===========================================================================
 all : $(NAME)
 
-server : server.o $(LIBFT)
-	$(CC) -o server -Llibft -lft server.o
+$(SERVER) : $(OBJSERV) $(LIBFT)
+	$(CC) -o server -Llibft -lft $(OBJSERV)
 
-client : client.o $(LIBFT)
-	$(CC) -o client -Llibft -lft client.o
+$(CLIENT) : $(OBJCLNT) $(LIBFT)
+	$(CC) -o client -Llibft -lft $(OBJCLNT)
 
 $(LIBFT) :
 	make -C libft
 
-.c.o :
-	$(CC) -c $(CFLAGS) $?
+$(OBJSERV) : $(SRCSERV)
+	$(CC) -c $(CFLAGS) $(SRCSERV)
+	mv server.o ./srcs/server.o
 
+$(OBJCLNT) : $(SRCCLNT)
+	$(CC) -c $(CFLAGS) $(SRCCLNT)
+	mv client.o ./srcs/client.o
 clean :
 	make fclean -C libft
-	rm -rf $(OBJS)
+	rm -rf $(OBJSERV) $(OBJCLNT)
 
 fclean : clean
 	rm -rf $(NAME)
