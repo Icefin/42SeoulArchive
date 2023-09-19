@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 18:04:40 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/19 11:48:21 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/19 13:11:55 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,10 @@ static void	send(int pid, char *msg)
 {
 	int	i;
 
-	write(1, "Send Signal!\n", 13);
 	i = -1;
 	while (msg[++i] != '\0')
 		send_character_per_bit(pid, msg[i]);
-	send_character_per_bit(pid, '\n');
+	//send_character_per_bit(pid, '\n');
 }
 
 static int	is_valid_arguments(int argc, char **argv)

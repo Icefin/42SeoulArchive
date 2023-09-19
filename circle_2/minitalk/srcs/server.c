@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 18:38:32 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/19 11:22:16 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/19 12:35:58 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,17 @@ static void	receive_character_per_bit(int signo, char *c, int bit)
 
 static void	receive(int signo, siginfo_t *info, void *context)
 {
-	static int	bit;
+	static int	bit = 7;
 	static char	c;
 
 	(void)info;
 	(void)context;
-	if (--bit < 0)
-		bit = 7;
 	receive_character_per_bit(signo, &c, bit);
-	if (bit == 0)
+	if (--bit < 0)
 	{
 		write(1, &c, 1);
 		c = 0;
+		bit = 7;
 	}
 }
 
