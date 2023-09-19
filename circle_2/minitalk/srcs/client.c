@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 18:04:40 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/18 20:43:42 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/19 11:48:21 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #define FALSE	0
 #define TRUE	1
 
-static void send_signal(int pid, int signo)
+static void	send_signal(int pid, int signo)
 {
 	if (signo == SIGUSR1)
 		kill(pid, SIGUSR1);
@@ -29,25 +29,24 @@ static void send_signal(int pid, int signo)
 		write(1, "Invalid Signo Input\n", 20);
 		exit(1);
 	}
-		
 	usleep(100);
 }
 
-static void send_character_per_bit(int pid, char utf8)
+static void	send_character_per_bit(int pid, char utf8)
 {
-	int bit;
+	int	bit;
 
 	bit = 8;
 	while (--bit >= 0)
 	{
-		if ((utf8 & (1 << bit)) == FALSE)
+		if ((utf8 & (1 << bit)) == 0)
 			send_signal(pid, SIGUSR1);
 		else
 			send_signal(pid, SIGUSR2);
 	}
 }
 
-static void send(int pid, char *msg)
+static void	send(int pid, char *msg)
 {
 	int	i;
 
@@ -55,17 +54,17 @@ static void send(int pid, char *msg)
 	i = -1;
 	while (msg[++i] != '\0')
 		send_character_per_bit(pid, msg[i]);
-	send_character_per_bit(pid, '\0');
+	send_character_per_bit(pid, '\n');
 }
 
-static int is_valid_arguments(int argc, char **argv)
+static int	is_valid_arguments(int argc, char **argv)
 {
 	if (argc != 3 || argv[2] == 0)
-		return FALSE;
-	return TRUE;
+		return (FALSE);
+	return (TRUE);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int	server_pid;
 
