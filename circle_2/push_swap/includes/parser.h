@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 21:08:14 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/19 14:42:56 by geshin           ###   ########.fr       */
+/*   Created: 2023/09/19 14:24:11 by geshin            #+#    #+#             */
+/*   Updated: 2023/09/19 14:25:29 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+//Parse argv[2] to stack
+//First element of argv must be located at the top of stack
 
-#include "rstack.h"
-#include "parser.h"
+//Error case :
+//1) Not integer
+//2) Overflow
+//3) Duplicated value
 
-typedef struct s_program
+#ifndef PARSER_H
+# define PARSER_H
+
+typedef struct s_parser
 {
-	t_rstack stack_a;
-	t_rstack stack_b;
+	char *argument;
+} t_parser;
 
-	t_parser parser;
-	
-}	t_program;
 
-int	program_parse(t_program *program);
-int	program_sort(t_program *program);
-int	program_display(t_program *program);
 
 #endif

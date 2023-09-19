@@ -3,10 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:13:52 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/18 21:18:43 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/19 14:39:45 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
+
+#define FALSE	0
+#define TRUE	1
+
+int	main(int argc, char **argv)
+{
+
+	if (argc < 3)
+		return (1);
+
+	
+}
 

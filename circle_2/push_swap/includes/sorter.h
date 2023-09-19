@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   sorter.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 21:08:14 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/19 14:42:56 by geshin           ###   ########.fr       */
+/*   Created: 2023/09/19 14:31:54 by geshin            #+#    #+#             */
+/*   Updated: 2023/09/19 14:32:17 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef SORTER_H
+# define SORTER_H
 
-#include "rstack.h"
-#include "parser.h"
-
-typedef struct s_program
+typedef struct s_sorter
 {
-	t_rstack stack_a;
-	t_rstack stack_b;
-
-	t_parser parser;
 	
-}	t_program;
+} t_sorter;
 
-int	program_parse(t_program *program);
-int	program_sort(t_program *program);
-int	program_display(t_program *program);
 
 #endif
