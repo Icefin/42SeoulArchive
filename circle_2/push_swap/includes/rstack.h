@@ -6,12 +6,16 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:12:15 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/19 17:13:35 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/19 18:48:00 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RSTACK_H
 # define RSTACK_H
+
+#include <stdlib.h>
+
+#include <stdio.h>
 
 typedef struct s_node
 {
@@ -19,6 +23,9 @@ typedef struct s_node
 	t_node	*next;
 	t_node	*prev;	
 }	t_node;
+
+t_node	*init_node(int value, t_node *next, t_node *prev);
+void	destroy_node(t_node *node);
 
 typedef struct s_rstack
 {
@@ -30,14 +37,13 @@ typedef struct s_rstack
 void	init_rstack(t_rstack *rstack);
 void	destroy_rstack(t_rstack *rstack);
 
-void	rstack_push_top(t_rstack *rstack, int value);
+void	rstack_push_top(t_rstack *rstack, t_node *node);
 void	rstack_pop_top(t_rstack *rstack);
-void	rstack_push_bottom(t_rstack *rstack, int value);
+void	rstack_push_bottom(t_rstack *rstack, t_node *node);
 void	rstack_pop_bottom(t_rstack *rstack);
 
-
 void	cmd_swap_top(t_rstack *rstack);
-void	cmd_pop_and_push(t_rstack *pop, t_rstack *push);
+void	cmd_pop_and_push(t_rstack *from, t_rstack *to);
 void	cmd_rotate(t_rstack *rstack);
 void	cmd_reverse_rotate(t_rstack *rstack);
 

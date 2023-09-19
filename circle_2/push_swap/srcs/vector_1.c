@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:43:50 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/19 18:06:44 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/19 18:39:31 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	vector_malloc(t_vector *v, int n)
 	v->capacity = n;
 }
 
-void	vector_destroy(t_vector *v)
+void	destroy_vector(t_vector *v)
 {
 	free(v->values);
 }
@@ -39,7 +39,7 @@ static void	vector_realloc(t_vector *v)
 		val = vector_index_value(v, i);
 		vector_push_back(&temp, val);
 	}
-	vector_destroy(v);
+	destroy_vector(v);
 	vector_malloc(v, 2 * prev_size);
 	i = -1;
 	while (++i < prev_size)
