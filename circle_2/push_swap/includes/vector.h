@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/19 14:24:11 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/19 17:34:36 by geshin           ###   ########.fr       */
+/*   Created: 2023/09/19 17:40:26 by geshin            #+#    #+#             */
+/*   Updated: 2023/09/19 17:59:49 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//Parse argv[2] to stack
-//First element of argv must be located at the top of stack
-
-//Error case :
-//1) Not integer
-//2) Overflow
-//3) Duplicated value
-
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef VECTOR_H
+# define VECTOR_H
 
 #include <stdlib.h>
 
-typedef struct s_parser
+#include <stdio.h>
+
+#define FALSE		0
+#define TRUE		1
+typedef struct s_vector
 {
-	char *argument;
-} t_parser;
+	int		*values;
+	int		size;
+	int		capacity;
+}	t_vector;
 
+void	vector_malloc(t_vector *v, int n);
+void	vector_destroy(t_vector *v);
 
+void	vector_push_back(t_vector *v, int val);
+void	vector_pop_back(t_vector *v);
+
+int		vector_index_value(t_vector *v, int idx);
+int		vector_get_back(t_vector *v);
+int		vector_is_empty(t_vector *v);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:08:14 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/19 14:42:56 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/19 17:38:15 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_program
 	
 }	t_program;
 
-int	program_parse(t_program *program);
+int	program_parse(t_program *program, int argc, char **argv);
 int	program_sort(t_program *program);
 int	program_display(t_program *program);
 
