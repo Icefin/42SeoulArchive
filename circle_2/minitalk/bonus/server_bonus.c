@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:30:57 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/20 12:31:21 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/20 12:55:53 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,15 @@ static void	receive(int signo, siginfo_t *info, void *context)
 {
 	static int	bit = 7;
 	static char	c;
+	pid_t		client_pid;
 
 	(void)info;
-	(void)context;
+	client_pid = info->si_pid;
 	receive_character_per_bit(signo, &c, bit);
 	if (--bit < 0)
 	{
+		if (c == '\0')
+			kill(client_pid, SIGUSR1);
 		write(1, &c, 1);
 		c = 0;
 		bit = 7;
@@ -44,12 +47,13 @@ static void	receive(int signo, siginfo_t *info, void *context)
 int	main(void)
 {
 	struct sigaction	receiver;
-	int					pid;
+	pid_t				server_pid;
 
 	receiver.__sigaction_u.__sa_sigaction = receive;
 	receiver.sa_flags = SA_SIGINFO;
-	pid = getpid();
-	ft_printf("Server's PID :  %d\n", pid);
+	sigemptyset(&receiver.sa_mask);
+	server_pid = getpid();
+	ft_printf("Server's PID :  %d\n", server_pid);
 	if (sigaction(SIGUSR1, &receiver, NULL) == -1)
 	{
 		write(1, "Unable to use SIGUSR2\n", 22);
@@ -61,6 +65,6 @@ int	main(void)
 		return (1);
 	}
 	while (TRUE)
-		;
+		pause();
 	return (0);
 }

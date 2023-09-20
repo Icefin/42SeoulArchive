@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:30:59 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/20 12:31:22 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/20 12:55:51 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ static void	send(int pid, char *msg)
 	send_character_per_bit(pid, '\0');
 }
 
+static void	confirm(int signo)
+{
+	if (signo == SIGUSR1)
+		ft_printf("Server Feedback\n");
+	exit(0);
+}
+
 static int	is_valid_arguments(int argc, char **argv)
 {
 	if (argc != 3 || argv[2] == 0)
@@ -57,6 +64,7 @@ int	main(int argc, char **argv)
 
 	if (is_valid_arguments(argc, argv) == FALSE)
 		return (1);
+	signal(SIGUSR1, confirm);
 	server_pid = ft_atoi(argv[1]);
 	send(server_pid, argv[2]);
 	return (0);
