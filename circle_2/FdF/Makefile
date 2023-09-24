@@ -29,7 +29,6 @@ SRCS = srcs/main.c \
 
 
 
-
 #Objects=========================================================================
 ifeq ($(BONUS_FLAG),TRUE)
 	OBJS = $(SRCS:.c=.o)
