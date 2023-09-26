@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:30:57 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/20 14:52:52 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/26 19:22:24 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <signal.h>
-
-#include <stdio.h>
+#include "ft_printf.h"
 
 #define FALSE	0
 #define TRUE	1
@@ -28,17 +27,15 @@ static void	receive_character_per_bit(int signo, char *c, int bit)
 
 static void	receive(int signo, siginfo_t *info, void *context)
 {
-	static int	bit = 7;
-	static char	c;
-	pid_t		client_pid;
+	static int		bit = 7;
+	static char		c;
 
 	(void)context;
-	client_pid = info->si_pid;
 	receive_character_per_bit(signo, &c, bit);
 	if (--bit < 0)
 	{
 		if (c == '\0')
-			kill(client_pid, SIGUSR1);
+			kill(info->si_pid, SIGUSR1);
 		write(1, &c, 1);
 		c = 0;
 		bit = 7;
@@ -54,7 +51,7 @@ int	main(void)
 	receiver.sa_flags = SA_SIGINFO;
 	sigemptyset(&receiver.sa_mask);
 	server_pid = getpid();
-	printf("Server's PID :  %d\n", server_pid);
+	ft_printf("Server's PID :  %d\n", server_pid);
 	if (sigaction(SIGUSR1, &receiver, NULL) == -1)
 	{
 		write(1, "Unable to use SIGUSR2\n", 22);
