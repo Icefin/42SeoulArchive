@@ -1,5 +1,3 @@
-while :
-do
 echo "Now Testing..."
 
 echo "**********************************"
@@ -54,4 +52,3 @@ time ./client $1 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghij
 echo "Passed alphabet!"
 echo "**********************************"
 echo "Test Completed! (43000++ chars)"
-done

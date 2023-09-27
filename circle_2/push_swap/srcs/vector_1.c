@@ -6,13 +6,13 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:43:50 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/19 18:39:31 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/27 14:30:17 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 
-void	vector_malloc(t_vector *v, int n)
+void	malloc_vector(t_vector *v, int n)
 {
 	v->values = (int *)malloc(n * sizeof(int));
 	v->size = 0;
@@ -24,7 +24,7 @@ void	destroy_vector(t_vector *v)
 	free(v->values);
 }
 
-static void	vector_realloc(t_vector *v)
+static void	realloc_vector(t_vector *v)
 {
 	t_vector	temp;
 	int			prev_size;
@@ -32,7 +32,7 @@ static void	vector_realloc(t_vector *v)
 	int			val;
 
 	prev_size = v->size;
-	vector_malloc(&temp, prev_size);
+	malloc_vector(&temp, prev_size);
 	i = -1;
 	while (++i < prev_size)
 	{
@@ -45,14 +45,14 @@ static void	vector_realloc(t_vector *v)
 	while (++i < prev_size)
 	{
 		val = vector_index_value(&temp, i);
-		vector_push_back(v, val);
+		v->values[i] = val;
 	}
 }
 
 void	vector_push_back(t_vector *v, int val)
 {
 	if (v->size == v->capacity)
-		vector_realloc(v);
+		realloc_vector(v);
 	v->values[v->size] = val;
 	v->size++;
 }
