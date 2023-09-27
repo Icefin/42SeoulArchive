@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:30:57 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/27 00:51:45 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/27 17:53:32 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(void)
 	ft_printf("Server's PID :  %d\n", server_pid);
 	if (sigaction(SIGUSR1, &receiver, NULL) == -1)
 	{
-		write(1, "Unable to use SIGUSR2\n", 22);
+		write(1, "Unable to use SIGUSR1\n", 22);
 		return (1);
 	}
 	if (sigaction(SIGUSR2, &receiver, NULL) == -1)
