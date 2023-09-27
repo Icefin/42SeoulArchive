@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:23:31 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/19 18:48:04 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/27 15:05:32 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	cmd_swap_top(t_rstack *rstack)
 
 	if (rstack->size <= 1)
 		return ;
-	
 }
 
 void	cmd_pop_and_push(t_rstack *from, t_rstack *to)

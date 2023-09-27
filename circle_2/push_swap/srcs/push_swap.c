@@ -3,44 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:13:52 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/26 13:51:05 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/27 15:23:27 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "rstack.h"
+#include "vector.h"
+
+#include "parser.h"
+#include "sorter.h"
+#include "optimizer.h"
+#include "displayer.h"
 
 #include <stdio.h>
 
 #define FALSE	0
 #define TRUE	1
 
+static int	is_sorted(t_rstack *stack)
+{
+	int		prev;
+	t_node	*curr;
+
+	prev = stack->top->value;
+	curr = stack->top->prev;	
+	while (curr != NULL)
+	{
+		if (prev > curr->value)
+			return (FALSE);
+		prev = curr->value;
+		curr = curr->prev;
+	}
+	return (TRUE);
+}
+
 int	main(int argc, char **argv)
 {
-	t_program	program;
+	t_rstack	stack;
+	t_vector	commands;
 
-	if (argc < 3)
+	parse_arguments(argc, argv, &stack);
+	if (is_sorted(&stack) == TRUE)
+		return;
+	sort_elements(&stack, &commands);
+	if (is_sorted(&stack) == FALSE)
 	{
-		printf("Not Enough Argument\n");
-		return (1);
+		printf("Stack is not sorted! Check sorting step again\n");
+		return;
 	}
-	
-	if (program_parse(&program, argc, argv) == FALSE)
-	{
-		printf("Prasing Error\n");
-		return (1);
-	}
-	if (program_sort(&program) == FALSE)
-	{
-		printf("Sorting Error\n");
-		return (1);
-	}
-	if (program_display(&program) == FALSE)
-	{
-		printf("Display Error\n");
-		return (1);
-	}
+	optimize_commands(&commands);
+	display_commands(&commands);
 	return (0);
 }
