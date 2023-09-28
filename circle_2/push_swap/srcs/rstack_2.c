@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rstack_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:17:41 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/19 18:49:12 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/27 18:02:38 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	rstack_pop_top(t_rstack *rstack)
 
 	if (rstack->size == 0)
 	{
-		printf("RPT : Stack is empty\n");
+		printf("Error::RPT : Stack is empty\n");
 		exit(0);
 	}
 	temp = rstack->top;
@@ -54,7 +54,7 @@ void	rstack_pop_bottom(t_rstack *rstack)
 
 	if (rstack->size == 0)
 	{
-		printf("RPB : Stack is empty\n");
+		printf("Error::RPB : Stack is empty\n");
 		exit(0);
 	}
 	temp = rstack->bottom;

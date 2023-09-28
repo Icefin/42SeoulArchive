@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/19 14:24:11 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/27 17:55:49 by singeonho        ###   ########.fr       */
+/*   Created: 2023/09/27 18:05:16 by singeonho         #+#    #+#             */
+/*   Updated: 2023/09/27 18:39:46 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//Parse argv[2] to stack
-//First element of argv must be located at the top of stack
+#ifndef UTILS_H
+# define UTILS_H
 
-//Error case :
-//1) Not integer
-//2) Overflow
-//3) Duplicated value
+#include <stdio.h>
+#include <stdlib.h>
 
-#ifndef PARSER_H
-# define PARSER_H
+#define FALSE	0
+#define TRUE	1
 
-#include "rstack.h"
-
-void	parse_arguments(int argc, char **argv, t_rstack *stack);
+//ft_printf
+//ft_atoi
+int	ft_strlen(char *str);
+char **ft_split(char *str);
 
 #endif

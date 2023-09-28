@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:43:50 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/27 14:30:17 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/27 18:02:48 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	vector_pop_back(t_vector *v)
 {
 	if (vector_is_empty(v) == TRUE)
 	{
-		printf("VPB : Vector is empty\n");
+		printf("Error::VPB : Vector is empty\n");
 		exit(0);
 	}
 	v->size--;
