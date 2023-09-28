@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   displayer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:02:34 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/27 15:04:47 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/28 14:38:14 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//Instructions must be separated by a '\n' and nothing else
 
 #ifndef DISPLAYER_H
 # define DISPLAYER_H

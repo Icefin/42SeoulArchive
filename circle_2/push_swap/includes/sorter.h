@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   sorter.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:31:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/19 14:32:17 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/28 14:56:01 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SORTER_H
 # define SORTER_H
 
-typedef struct s_sorter
-{
-	
-} t_sorter;
+#include "rstack.h"
+#include "vector.h"
 
+void	sort_stack(t_rstack *stack, t_vector *out);
 
 #endif

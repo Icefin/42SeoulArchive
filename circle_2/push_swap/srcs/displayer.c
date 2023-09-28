@@ -3,11 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   displayer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:04:59 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/27 15:05:12 by geshin           ###   ########.fr       */
+/*   Updated: 2023/09/28 14:56:55 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "displayer.h"
+
+void	display_commands(t_vector *commands)
+{
+	
+}

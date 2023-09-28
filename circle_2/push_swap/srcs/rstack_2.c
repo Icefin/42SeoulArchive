@@ -6,21 +6,15 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:17:41 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/27 18:02:38 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/28 14:39:27 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rstack.h"
 
-void	rstack_push_top(t_rstack *rstack, t_node *node)
+void	rstack_push_top(t_rstack *rstack, int val)
 {
-	if (rstack->size == 0)
-	{
-		rstack->bottom = node;
-		rstack->top = node;
-	}
-	else
-		;
+	
 }
 
 void	rstack_pop_top(t_rstack *rstack)
@@ -37,15 +31,9 @@ void	rstack_pop_top(t_rstack *rstack)
 	rstack->top->next = NULL;
 }
 
-void	rstack_push_bottom(t_rstack *rstack, t_node *node)
+void	rstack_push_bottom(t_rstack *rstack, int val)
 {
-	if (rstack->size == 0)
-	{
-		rstack->bottom = node;
-		rstack->top = node;
-	}
-	else
-		;
+
 }
 
 void	rstack_pop_bottom(t_rstack *rstack)
