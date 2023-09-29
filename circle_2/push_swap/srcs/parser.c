@@ -6,12 +6,13 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:01:05 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/28 14:54:23 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/29 16:57:39 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "parser.h"
+#include "vector.h"
 
 static int	process_argument(char* arg, t_rstack *stack)
 {
@@ -22,18 +23,22 @@ static int	process_argument(char* arg, t_rstack *stack)
 	split = ft_split(arg, ' ');
 	i = -1;
 	while (split[++i] != NULL) {
-		num = ft_atoi_plus_int_max(split[i]);
+		num = ft_stoi_plus_imax(split[i]);
 		if (num == -1) {
-			//memory free
-			//exit
+			destroy_2d_array(split);
+			return (FALSE);
 		}
 		rstack_push_bottom(stack, num - 2147483648);
 	}
+	destroy_2d_array(split);
+	return (TRUE);
 }
 
-static int	is_duplicate_element(t_rstack* stack)
+static int	is_duplicated_element(t_rstack* stack)
 {
-	
+	//Two Pointer   -> n^2
+	//or Sorting... -> n + nlogn + n
+	return (FALSE);
 }
 
 void	parse_arguments(int argc, char **argv, t_rstack *stack)
@@ -45,13 +50,15 @@ void	parse_arguments(int argc, char **argv, t_rstack *stack)
 	{
 		if (process_argument(argv[i], stack) == FALSE)
 		{
-			//memory free
-			//exit
+			destroy_stack(stack);
+			printf("Error : Invalid Input\n");
+			exit(1);
 		}
 	}
-	if (is_duplicate_element(stack) == TRUE)
+	if (is_duplicated_element(stack) == TRUE)
 	{
-		//memory free
-		//exit
+		destroy_rstack(stack);
+		printf("Error : Duplicated Element\n");
+		exit(1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:28:12 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/28 14:47:48 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/09/29 17:10:23 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ enum e_commands
 	RR = 7,
 	RRA = 8,
 	RRB = 9,
-	RRR = 10
+	RRR = 10,
+	END = -1
 };
 
 #endif
