@@ -5,6 +5,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = push_swap
 
+INCLUDE = includes/
 BONUS_FLAG = FALSE
 
 #Libraries=====================================================================
@@ -12,7 +13,19 @@ LIBFT = libft/libft.a
 PRINTF = ft_printf/libftprintf.a
 
 #Sources========================================================================
-SRCS = 
+SRCS = ./srcs/push_swap.c \
+		./srcs/displayer.c \
+		./srcs/optimizer.c \
+		./srcs/parser.c \
+		./srcs/rstack_1.c \
+		./srcs/rstack_2.c \
+		./srcs/rstack_3.c \
+		./srcs/sorter.c \
+		./srcs/utils_1.c \
+		./srcs/utils_2.c \
+		./srcs/vector_1.c \
+		./srcs/vector_2.c
+
 
 SRCS_BONUS = 
 
@@ -44,8 +57,8 @@ $(LIBFT) :
 $(PRINTF) :
 	make -C ft_printf
 
-.c.o :
-	$(CC) -c $(CFLAGS) $?
+%.o : %.c
+	$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
 
 clean :
 	make fclean -C libft

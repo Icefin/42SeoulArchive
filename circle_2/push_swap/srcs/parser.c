@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:01:05 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/29 16:57:39 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/02 16:01:18 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static int	is_duplicated_element(t_rstack* stack)
 {
 	//Two Pointer   -> n^2
 	//or Sorting... -> n + nlogn + n
+	for (int i = 0; i < stack->size; ++i)
+		printf("%d\n", stack->bottom->value);
 	return (FALSE);
 }
 
@@ -50,7 +52,7 @@ void	parse_arguments(int argc, char **argv, t_rstack *stack)
 	{
 		if (process_argument(argv[i], stack) == FALSE)
 		{
-			destroy_stack(stack);
+			destroy_rstack(stack);
 			printf("Error : Invalid Input\n");
 			exit(1);
 		}

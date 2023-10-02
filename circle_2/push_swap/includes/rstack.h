@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:12:15 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/28 14:40:22 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/02 15:54:29 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 
 typedef struct s_node
 {
-	int		value;
-	t_node	*next;
-	t_node	*prev;	
+	int				value;
+	struct s_node	*next;
+	struct s_node	*prev;	
 }	t_node;
 
 t_node	*init_node(int value, t_node *next, t_node *prev);

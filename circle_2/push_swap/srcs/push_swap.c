@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:13:52 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/29 17:17:58 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/02 15:53:34 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 	if (argc == 0)
 	{
 		printf("Error : This program requires at least one argument\n");
-		return;
+		return (1);
 	}
 	init_rstack(&stack);
 	parse_arguments(argc, argv, &stack);
@@ -56,7 +56,7 @@ int	main(int argc, char **argv)
 	{
 		destroy_rstack(&stack);
 		printf("Stack is already sorted\n");
-		return;
+		return (1);
 	}
 	while (TRUE) ;
 	sort_stack(&stack, &commands);
@@ -65,7 +65,7 @@ int	main(int argc, char **argv)
 		destroy_rstack(&stack);
 		destroy_vector(&commands);
 		printf("Error : Stack is not sorted! Check sorting step again\n");
-		return;
+		return (1);
 	}
 	//while (TRUE) ;
 	optimize_commands(&commands);
