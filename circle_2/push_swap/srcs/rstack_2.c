@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rstack_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:17:41 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/02 16:01:54 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/11 14:31:00 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,60 @@
 
 void	rstack_push_top(t_rstack *rstack, int val)
 {
-	
+	t_node	*node;
+
+	if (rstack->size == 0)
+	{
+		node = create_node(val, NULL, NULL);
+		rstack->top = node;
+		rstack->bottom = node;
+		rstack->size = 1;
+		return ;
+	}
+	node = create_node(val, NULL, rstack->top);
+	rstack->top->next = node;
+	rstack->top = node;
+	rstack->size += 1;
 }
 
 void	rstack_pop_top(t_rstack *rstack)
 {
-	t_node	*temp;
-
 	if (rstack->size == 0)
 	{
 		printf("Error::RPT : Stack is empty\n");
+		destroy_rstack(rstack);
 		exit(0);
 	}
-	temp = rstack->top;
-	rstack->top = rstack->top->prev;
-	rstack->top->next = NULL;
+	destroy_node(rstack->top);
+	rstack->size -= 1;
 }
 
 void	rstack_push_bottom(t_rstack *rstack, int val)
 {
+	t_node	*node;
 
+	if (rstack->size == 0)
+	{
+		node = create_node(val, NULL, NULL);
+		rstack->top = node;
+		rstack->bottom = node;
+		rstack->size = 1;
+		return ;
+	}
+	node = create_node(val, rstack->bottom, NULL);
+	rstack->bottom->prev = node;
+	rstack->bottom = node;
+	rstack->size += 1;
 }
 
 void	rstack_pop_bottom(t_rstack *rstack)
 {
-	t_node	*temp;
-
 	if (rstack->size == 0)
 	{
 		printf("Error::RPB : Stack is empty\n");
+		destroy_rstack(rstack);
 		exit(0);
 	}
-	temp = rstack->bottom;
-	rstack->bottom = rstack->bottom->next;
-	rstack->bottom->prev = NULL;
+	destroy_node(rstack->bottom);
+	rstack->size -= 1;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rstack.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:12:15 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/02 15:54:29 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/11 14:49:36 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_node
 	struct s_node	*prev;	
 }	t_node;
 
-t_node	*init_node(int value, t_node *next, t_node *prev);
+t_node	*create_node(int value, t_node *next, t_node *prev);
 void	destroy_node(t_node *node);
 
 typedef struct s_rstack

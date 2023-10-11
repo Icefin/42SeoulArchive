@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:23:31 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/27 15:05:32 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/11 15:03:35 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,77 @@
 
 void	cmd_swap_top(t_rstack *rstack)
 {
-	t_node	*temp;
+	t_node	*first;
+	t_node	*second;
 
 	if (rstack->size <= 1)
 		return ;
+	else if (rstack->size == 2)
+	{
+		first = rstack->top;
+		second = rstack->bottom;
+		
+		first->next = second;
+		first->prev = NULL;
+		second->next = NULL;
+		second->prev = first;
+		
+		rstack->top = second;
+		rstack->bottom = first;
+	}
+	else
+	{
+		first = rstack->top;
+		second = rstack->top->prev;
+
+		first->next = second;
+		first->prev = second->prev;
+		second->next = NULL;
+		second->prev = first;
+		
+		rstack->top = second;
+	}
 }
 
 void	cmd_pop_and_push(t_rstack *from, t_rstack *to)
 {
-	t_node	*temp;
+	int	val;
 	
 	if (from->size == 0)
 		return ;
-	temp = from->top;
+	val = from->top->value;
 	rstack_pop_top(from);
-	rstack_push_top(to, temp);
+	rstack_push_top(to, val);
 }
 
 void	cmd_rotate(t_rstack *rstack)
 {
+	t_node	*first;
+	t_node	*second;
+
 	if (rstack->size <= 1)
 		return ;
+	else if (rstack->size == 2)
+		cmd_swap_top(rstack);
+	else
+	{
+		
+	}
+	//top to bottom
 }
 
 void	cmd_reverse_rotate(t_rstack *rstack)
 {
+	t_node	*first;
+	t_node	*second;
+
 	if (rstack->size <= 1)
 		return ;
+	else if (rstack->size == 2)
+		cmd_swap_top(rstack);
+	else
+	{
+		
+	}
+	//bottom to top
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:01:05 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/02 16:01:18 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/11 15:41:08 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,21 @@ static int	process_argument(char* arg, t_rstack *stack)
 
 static int	is_duplicated_element(t_rstack* stack)
 {
-	//Two Pointer   -> n^2
-	//or Sorting... -> n + nlogn + n
-	for (int i = 0; i < stack->size; ++i)
-		printf("%d\n", stack->bottom->value);
+	t_node	*first;
+	t_node	*second;
+
+	first = stack->bottom;
+	while (first != NULL)
+	{
+		second = first->next;
+		while (second != NULL)
+		{
+			if (first->value == second->value)
+				return (TRUE);
+			second = second->next;	
+		}
+		first = first->next;
+	}
 	return (FALSE);
 }
 

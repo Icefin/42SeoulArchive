@@ -6,13 +6,13 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:17:43 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/19 18:26:59 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/11 14:18:39 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rstack.h"
 
-t_node	*init_node(int value, t_node *next, t_node *prev)
+t_node	*create_node(int value, t_node *next, t_node *prev)
 {
 	t_node	*res;
 

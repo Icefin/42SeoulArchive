@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:28:57 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/29 16:45:54 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/11 15:15:28 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,22 @@ static int	get_word_cnt(const char *s, char c)
 	return (word_cnt);
 }
 
+static size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	idx;
+
+	if (dstsize == 0)
+		return (ft_strlen(src));
+	idx = 0;
+	while (src[idx] != '\0' && idx + 1 < dstsize)
+	{
+		dst[idx] = src[idx];
+		idx++;
+	}
+	dst[idx] = '\0';
+	return (ft_strlen(src));
+}
+
 static char	*get_word(const char *s, char c, int *idx)
 {
 	char	*ptr;
@@ -52,7 +68,7 @@ static char	*get_word(const char *s, char c, int *idx)
 	return (ptr);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**res;
 	int		idx;

@@ -49,7 +49,7 @@ endif
 all : $(NAME)
 
 $(NAME) : $(TOT_OBJS) $(LIBFT) $(PRINTF)
-	$(CC) -o push_swap -Llibft -lft -Lft_printf -lftprintf $(TOT_OBJS)
+	$(CC) -o push_swap -Lft_printf -lftprintf $(TOT_OBJS)
 
 $(LIBFT) :
 	make -C libft
@@ -58,7 +58,7 @@ $(PRINTF) :
 	make -C ft_printf
 
 %.o : %.c
-	$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
+	$(CC) -I$(INCLUDE) -c $< -o $@
 
 clean :
 	make fclean -C libft

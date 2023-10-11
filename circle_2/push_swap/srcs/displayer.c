@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   displayer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:04:59 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/29 17:15:50 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/11 14:51:18 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "displayer.h"
 
-char	*cmd_list[11] =
+static char	*cmd_list[11] =
 {
 	"sa",
 	"sb",
@@ -34,7 +34,7 @@ void	display_commands(t_vector *commands)
 	i = 0;
 	while (commands->values[i] != END)
 	{
-		printf("%s", cmd_list[commands->values[i]]);
+		printf("%s\n", cmd_list[commands->values[i]]);
 		i++;
 	}
 }

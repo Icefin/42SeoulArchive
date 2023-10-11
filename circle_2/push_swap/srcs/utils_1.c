@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:23:22 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/29 16:48:45 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/11 15:41:40 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,10 @@ long long	ft_stoi_plus_imax(char *s)
 		if (s[i] > '9' || s[i] < '0')
 			return (-1);
 		res = res * 10 + (s[i] - '0');
+		if ((sign * res) > 2147483647)
+			return (-1);
+		if ((sign * res) < -2147483648)
+			return (-1);
 		i++;
 	}
 	return ((sign * res) + 2147483648);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:43:50 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/27 18:02:48 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/11 15:16:09 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	realloc_vector(t_vector *v)
 		vector_push_back(&temp, val);
 	}
 	destroy_vector(v);
-	vector_malloc(v, 2 * prev_size);
+	malloc_vector(v, 2 * prev_size);
 	i = -1;
 	while (++i < prev_size)
 	{
@@ -62,6 +62,7 @@ void	vector_pop_back(t_vector *v)
 	if (vector_is_empty(v) == TRUE)
 	{
 		printf("Error::VPB : Vector is empty\n");
+		destroy_vector(v);
 		exit(0);
 	}
 	v->size--;
