@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   commands.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:28:12 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/11 14:51:44 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/11 17:52:00 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //command lists
 /*
-sa (swap a) 		   - Swap the first 2 elements at the top of the stack a. Do nothing if there is only one or no elements.
+sa (swap a)			   - Swap the first 2 elements at the top of the stack a. Do nothing if there is only one or no elements.
 sb (swap b) 		   - Swap the first 2 elements at the top of the stack b. Do nothing if there is only one or no elements.
 ss 					   - sa and sb at the same time.
 pa (push a) 		   - Take the first element at the top of b and put it at the top of a. Do nothing if b is empty.
@@ -43,6 +43,21 @@ enum e_commands
 	RRR = 10,
 
 	END = -1
+};
+
+static char	*cmd_list[11] =
+{
+	"sa",
+	"sb",
+	"ss",
+	"pa",
+	"pb",
+	"ra",
+	"rb",
+	"rr",
+	"rra",
+	"rrb",
+	"rrr"
 };
 
 #endif

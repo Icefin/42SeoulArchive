@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:01:05 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/11 15:41:08 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/11 17:28:59 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static int	process_argument(char* arg, t_rstack *stack)
 	long long	num;
 
 	split = ft_split(arg, ' ');
+	if (split == NULL)
+		return (FALSE);
 	i = -1;
 	while (split[++i] != NULL) {
 		num = ft_stoi_plus_imax(split[i]);

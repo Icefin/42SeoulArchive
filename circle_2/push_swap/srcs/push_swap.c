@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:13:52 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/11 15:42:19 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/11 18:04:40 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#define DEBUG
+#define DEBUG
 
 #include "rstack.h"
 #include "vector.h"
@@ -43,6 +43,8 @@ static int	is_sorted(t_rstack *stack)
 }
 
 int	main(int argc, char **argv)
+
+
 {
 	t_rstack	stack;
 	t_vector	commands;
@@ -54,7 +56,7 @@ int	main(int argc, char **argv)
 	}
 	init_rstack(&stack);
 	parse_arguments(argc, argv, &stack);
-
+	
 #ifdef DEBUG
 	t_node *ptr = stack.top;
 	while (ptr != NULL) {
@@ -63,12 +65,13 @@ int	main(int argc, char **argv)
 	}
 #endif
 
-	if (is_sorted(&stack) == TRUE)
+	if (stack.size < 1 || is_sorted(&stack) == TRUE)
 	{
 		destroy_rstack(&stack);
 		printf("Stack is already sorted\n");
 		return (1);
 	}
+	malloc_vector(&commands, stack.size * 10);
 	sort_stack(&stack, &commands);
 	if (is_sorted(&stack) == FALSE)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   optimizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:05:05 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/11 14:52:34 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/11 18:27:17 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,10 @@
 
 void	optimize_commands(t_vector* commands)
 {
-	(void *)commands;
+	t_vector	*temp;
+	
+	malloc_vector(temp, commands->size);
+	//optimize
+	
+	vector_push_back(commands, END);
 }

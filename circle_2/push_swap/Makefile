@@ -9,7 +9,7 @@ INCLUDE = includes/
 BONUS_FLAG = FALSE
 
 #Libraries=====================================================================
-LIBFT = libft/libft.a
+#LIBFT = libft/libft.a
 PRINTF = ft_printf/libftprintf.a
 
 #Sources========================================================================
@@ -51,8 +51,8 @@ all : $(NAME)
 $(NAME) : $(TOT_OBJS) $(LIBFT) $(PRINTF)
 	$(CC) -o push_swap -Lft_printf -lftprintf $(TOT_OBJS)
 
-$(LIBFT) :
-	make -C libft
+#$(LIBFT) :
+#	make -C libft
 
 $(PRINTF) :
 	make -C ft_printf
@@ -61,7 +61,7 @@ $(PRINTF) :
 	$(CC) -I$(INCLUDE) -c $< -o $@
 
 clean :
-	make fclean -C libft
+#	make fclean -C libft
 	make fclean -C ft_printf
 	rm -rf $(OBJS)
 

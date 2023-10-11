@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:43:50 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/11 15:16:09 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/11 17:02:04 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	malloc_vector(t_vector *v, int n)
 
 void	destroy_vector(t_vector *v)
 {
-	free(v->values);
+	if (v->values != NULL)
+		free(v->values);
 }
 
 static void	realloc_vector(t_vector *v)
