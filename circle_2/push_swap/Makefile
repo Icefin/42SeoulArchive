@@ -20,7 +20,8 @@ SRCS = ./srcs/push_swap.c \
 		./srcs/rstack_1.c \
 		./srcs/rstack_2.c \
 		./srcs/rstack_3.c \
-		./srcs/sorter.c \
+		./srcs/sorter_1.c \
+		./srcs/sorter_2.c \
 		./srcs/utils_1.c \
 		./srcs/utils_2.c \
 		./srcs/vector_1.c \
