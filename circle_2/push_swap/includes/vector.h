@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:40:26 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/27 14:27:13 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/12 15:08:29 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	destroy_vector(t_vector *v);
 void	vector_push_back(t_vector *v, int val);
 void	vector_pop_back(t_vector *v);
 
-int		vector_index_value(t_vector *v, int idx);
+int		vector_get_index_value(t_vector *v, int idx);
 int		vector_get_back(t_vector *v);
 int		vector_is_empty(t_vector *v);
 

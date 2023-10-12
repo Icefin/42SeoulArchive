@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:43:50 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/11 17:02:04 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/12 15:08:08 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	realloc_vector(t_vector *v)
 	i = -1;
 	while (++i < prev_size)
 	{
-		val = vector_index_value(v, i);
+		val = vector_get_index_value(v, i);
 		vector_push_back(&temp, val);
 	}
 	destroy_vector(v);
@@ -45,7 +45,7 @@ static void	realloc_vector(t_vector *v)
 	i = -1;
 	while (++i < prev_size)
 	{
-		val = vector_index_value(&temp, i);
+		val = vector_get_index_value(&temp, i);
 		v->values[i] = val;
 	}
 }

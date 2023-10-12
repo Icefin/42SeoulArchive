@@ -6,11 +6,11 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:13:52 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/12 13:56:59 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/12 15:28:40 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define DEBUG
+//#define DEBUG
 
 #include "rstack.h"
 #include "vector.h"
@@ -43,8 +43,6 @@ static int	is_sorted(t_rstack *stack)
 }
 
 int	main(int argc, char **argv)
-
-
 {
 	t_rstack	stack;
 	t_vector	commands;
@@ -58,14 +56,16 @@ int	main(int argc, char **argv)
 	parse_arguments(argc, argv, &stack);
 	
 #ifdef DEBUG
+	printf("\n==========Before Sorting==========\n");
 	t_node *ptr = stack.top;
 	while (ptr != NULL) {
 		printf("%d\n", ptr->value);
 		ptr = ptr->prev;
 	}
+	printf("==================================\n\n");
 #endif
 
-	if (stack.size < 1 || is_sorted(&stack) == TRUE)
+	if (stack.size <= 1 || is_sorted(&stack) == TRUE)
 	{
 		destroy_rstack(&stack);
 		printf("Stack is already sorted\n");
@@ -73,6 +73,17 @@ int	main(int argc, char **argv)
 	}
 	malloc_vector(&commands, stack.size * 10);
 	sort_stack(&stack, &commands);
+
+#ifdef DEBUG
+	printf("\n===========After Sorting==========\n");
+	ptr = stack.top;
+	while (ptr != NULL) {
+		printf("%d\n", ptr->value);
+		ptr = ptr->prev;
+	}
+	printf("==================================\n");
+#endif
+
 	if (is_sorted(&stack) == FALSE)
 	{
 		destroy_rstack(&stack);
@@ -80,7 +91,23 @@ int	main(int argc, char **argv)
 		printf("Error : Stack is not sorted! Check sorting step again\n");
 		return (1);
 	}
+
+#ifdef DEBUG
+	printf("\n==========Before Optimize==========\n");
+	for (int i = 0; i < commands.size; ++i)
+		printf("%d\n", vector_get_index_value(&commands, i));
+	printf("=====================================\n");
+#endif
+
 	optimize_commands(&commands);
+
+#ifdef DEBUG
+	printf("\n==========After Optimize===========\n");
+	for (int i = 0; i < commands.size; ++i)
+		printf("%d\n", vector_get_index_value(&commands, i));
+	printf("=====================================\n");
+#endif
+
 	display_commands(&commands);
 	destroy_rstack(&stack);
 	destroy_vector(&commands);

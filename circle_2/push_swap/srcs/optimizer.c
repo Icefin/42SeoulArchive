@@ -6,18 +6,22 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:05:05 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/11 18:27:17 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/12 15:28:08 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "optimizer.h"
 
+#include <stdio.h>
+
 void	optimize_commands(t_vector* commands)
 {
-	t_vector	*temp;
+	t_vector	temp;
 	
-	malloc_vector(temp, commands->size);
+	malloc_vector(&temp, commands->size);
+
 	//optimize
 	
 	vector_push_back(commands, END);
+	destroy_vector(&temp);
 }

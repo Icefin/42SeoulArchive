@@ -6,11 +6,13 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:23:31 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/11 17:50:55 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/12 15:16:37 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rstack.h"
+
+#include <stdio.h>
 
 //RECHECK HERE
 void	cmd_swap_top(t_rstack *rstack)
