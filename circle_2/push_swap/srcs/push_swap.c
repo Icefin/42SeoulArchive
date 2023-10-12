@@ -6,11 +6,11 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:13:52 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/12 15:28:40 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/12 16:36:01 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#define DEBUG
+#define DEBUG
 
 #include "rstack.h"
 #include "vector.h"
@@ -42,11 +42,20 @@ static int	is_sorted(t_rstack *stack)
 	return (TRUE);
 }
 
+//TODO : RM
+void	leaks()
+{
+	system("leaks push_swap");
+}
+
 int	main(int argc, char **argv)
 {
 	t_rstack	stack;
 	t_vector	commands;
 
+	//TODO : RM
+	atexit(leaks);
+	
 	if (argc == 1)
 	{
 		printf("Error : This program requires at least one argument\n");
@@ -69,7 +78,7 @@ int	main(int argc, char **argv)
 	{
 		destroy_rstack(&stack);
 		printf("Stack is already sorted\n");
-		return (1);
+		return (0);
 	}
 	malloc_vector(&commands, stack.size * 10);
 	sort_stack(&stack, &commands);
@@ -81,7 +90,7 @@ int	main(int argc, char **argv)
 		printf("%d\n", ptr->value);
 		ptr = ptr->prev;
 	}
-	printf("==================================\n");
+	printf("==================================\n\n");
 #endif
 
 	if (is_sorted(&stack) == FALSE)
@@ -96,7 +105,7 @@ int	main(int argc, char **argv)
 	printf("\n==========Before Optimize==========\n");
 	for (int i = 0; i < commands.size; ++i)
 		printf("%d\n", vector_get_index_value(&commands, i));
-	printf("=====================================\n");
+	printf("====================================\n\n");
 #endif
 
 	optimize_commands(&commands);
@@ -105,10 +114,12 @@ int	main(int argc, char **argv)
 	printf("\n==========After Optimize===========\n");
 	for (int i = 0; i < commands.size; ++i)
 		printf("%d\n", vector_get_index_value(&commands, i));
-	printf("=====================================\n");
+	printf("====================================\n\n");
 #endif
 
+	printf("\n==========Final Result==========\n");
 	display_commands(&commands);
+	printf("=================================\n");
 	destroy_rstack(&stack);
 	destroy_vector(&commands);
 	return (0);

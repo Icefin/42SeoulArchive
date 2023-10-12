@@ -17,9 +17,10 @@ SRCS = ./srcs/push_swap.c \
 		./srcs/displayer.c \
 		./srcs/optimizer.c \
 		./srcs/parser.c \
+		./srcs/commands_1.c \
+		./srcs/commands_2.c \
 		./srcs/rstack_1.c \
 		./srcs/rstack_2.c \
-		./srcs/rstack_3.c \
 		./srcs/sorter_1.c \
 		./srcs/sorter_2.c \
 		./srcs/sorter_3.c \

@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rstack_3.c                                         :+:      :+:    :+:   */
+/*   commands_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/19 18:23:31 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/12 15:16:37 by singeonho        ###   ########.fr       */
+/*   Created: 2023/10/12 16:17:50 by singeonho         #+#    #+#             */
+/*   Updated: 2023/10/12 16:21:11 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rstack.h"
-
-#include <stdio.h>
+#include "commands.h"
 
 //RECHECK HERE
-void	cmd_swap_top(t_rstack *rstack)
+//COMMANDS B
+void	cmd_swap_top_b(t_rstack *rstack, t_vector *cmd)
 {
 	t_node	*first;
 	t_node	*second;
 
-	if (rstack->size <= 1)
-		return ;
-	else if (rstack->size == 2)
+	if (rstack->size == 2)
 	{
 		first = rstack->top;
 		second = rstack->bottom;
-		
 		first->next = second;
 		first->prev = NULL;
 		second->next = NULL;
 		second->prev = first;
-		
 		rstack->top = second;
 		rstack->bottom = first;
 	}
@@ -39,17 +34,16 @@ void	cmd_swap_top(t_rstack *rstack)
 	{
 		first = rstack->top;
 		second = rstack->top->prev;
-
 		first->next = second;
 		first->prev = second->prev;
 		second->next = NULL;
 		second->prev = first;
-		
 		rstack->top = second;
 	}
+	vector_push_back(cmd, SB);
 }
 
-void	cmd_pop_and_push(t_rstack *from, t_rstack *to)
+void	cmd_push_to_b(t_rstack *from, t_rstack *to, t_vector *cmd)
 {
 	int	val;
 	
@@ -58,16 +52,17 @@ void	cmd_pop_and_push(t_rstack *from, t_rstack *to)
 	val = from->top->value;
 	rstack_pop_top(from);
 	rstack_push_top(to, val);
+	vector_push_back(cmd, PB);
 }
 
-void	cmd_rotate(t_rstack *rstack)
+void	cmd_rotate_b(t_rstack *rstack, t_vector *cmd)
 {
 	t_node	*top;
 
-	if (rstack->size <= 1)
-		return ;
-	else if (rstack->size == 2)
-		cmd_swap_top(rstack);
+	if (rstack->size == 2)
+	{
+
+	}
 	else
 	{
 		top = rstack->top;
@@ -78,16 +73,17 @@ void	cmd_rotate(t_rstack *rstack)
 		top->next = rstack->bottom;
 		rstack->bottom->prev = top;
 	}
+	vector_push_back(cmd, RB);
 }
 
-void	cmd_reverse_rotate(t_rstack *rstack)
+void	cmd_reverse_rotate_b(t_rstack *rstack, t_vector *cmd)
 {
 	t_node	*bottom;
 
-	if (rstack->size <= 1)
-		return ;
-	else if (rstack->size == 2)
-		cmd_swap_top(rstack);
+	if (rstack->size == 2)
+	{
+		
+	}
 	else
 	{
 		bottom = rstack->bottom;
@@ -98,4 +94,5 @@ void	cmd_reverse_rotate(t_rstack *rstack)
 		bottom->prev = rstack->top;
 		rstack->top->next = bottom;
 	}
+	vector_push_back(cmd, RRB);
 }

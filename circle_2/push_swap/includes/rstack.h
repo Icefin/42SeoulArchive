@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rstack.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:12:15 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/11 14:49:36 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/12 16:09:58 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define RSTACK_H
 
 #include <stdlib.h>
-
-#include <stdio.h>
 
 typedef struct s_node
 {
@@ -41,10 +39,5 @@ void	rstack_push_top(t_rstack *rstack, int val);
 void	rstack_pop_top(t_rstack *rstack);
 void	rstack_push_bottom(t_rstack *rstack, int val);
 void	rstack_pop_bottom(t_rstack *rstack);
-
-void	cmd_swap_top(t_rstack *rstack);
-void	cmd_pop_and_push(t_rstack *from, t_rstack *to);
-void	cmd_rotate(t_rstack *rstack);
-void	cmd_reverse_rotate(t_rstack *rstack);
 
 #endif

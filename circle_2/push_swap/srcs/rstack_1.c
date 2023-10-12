@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rstack_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:17:43 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/11 14:18:39 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/12 16:26:12 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,9 @@ void	destroy_rstack(t_rstack *rstack)
 {
 	t_node	*curr;
 	t_node	*next;
-	int		size;
-	int		i;
 
 	curr = rstack->bottom;
-	size = rstack->size;
-	i = -1;
-	while (++i < size)
+	while (curr != NULL)
 	{
 		next = curr->next;
 		destroy_node(curr);

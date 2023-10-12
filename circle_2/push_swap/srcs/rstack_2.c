@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rstack_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:17:41 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/11 14:31:00 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/12 16:10:15 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rstack.h"
+
+#include <stdio.h>
 
 void	rstack_push_top(t_rstack *rstack, int val)
 {

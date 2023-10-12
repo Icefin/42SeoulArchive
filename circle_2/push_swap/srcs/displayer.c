@@ -6,11 +6,13 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:04:59 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/12 13:12:02 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/12 16:11:00 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "displayer.h"
+
+#include <stdio.h>
 
 void	display_commands(t_vector *commands)
 {

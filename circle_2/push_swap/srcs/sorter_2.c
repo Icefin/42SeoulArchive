@@ -6,11 +6,12 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 01:17:16 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/12 14:44:04 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/12 16:06:08 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sorter.h"
+#include "commands.h"
 
 static void	stay_a_stack()
 {
