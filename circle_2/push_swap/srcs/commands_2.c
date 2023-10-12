@@ -6,39 +6,36 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:17:50 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/12 16:21:11 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/13 01:36:50 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commands.h"
 
 //RECHECK HERE
-//COMMANDS B
-void	cmd_swap_top_b(t_rstack *rstack, t_vector *cmd)
+void	cmd_swap_top_b(t_rstack *stack, t_vector *cmd)
 {
-	t_node	*first;
-	t_node	*second;
+	t_node	*temp;
 
-	if (rstack->size == 2)
+	if (stack->size == 2)
 	{
-		first = rstack->top;
-		second = rstack->bottom;
-		first->next = second;
-		first->prev = NULL;
-		second->next = NULL;
-		second->prev = first;
-		rstack->top = second;
-		rstack->bottom = first;
+		temp = stack->top;
+		stack->top->next = stack->bottom;
+		stack->bottom->prev = stack->top;
+		stack->top->prev = NULL;
+		stack->bottom->next = NULL;
+		stack->top = stack->bottom;
+		stack->bottom = temp;
 	}
 	else
 	{
-		first = rstack->top;
-		second = rstack->top->prev;
-		first->next = second;
-		first->prev = second->prev;
-		second->next = NULL;
-		second->prev = first;
-		rstack->top = second;
+		temp = stack->top->prev;
+		stack->top->prev->prev->next = stack->top;
+		stack->top->prev = stack->top->prev->prev;
+		temp->prev = stack->top;
+		temp->next = NULL;
+		stack->top->next = temp;
+		stack->top = temp;
 	}
 	vector_push_back(cmd, SB);
 }
@@ -55,44 +52,46 @@ void	cmd_push_to_b(t_rstack *from, t_rstack *to, t_vector *cmd)
 	vector_push_back(cmd, PB);
 }
 
-void	cmd_rotate_b(t_rstack *rstack, t_vector *cmd)
+void	cmd_rotate_b(t_rstack *stack, t_vector *cmd)
 {
 	t_node	*top;
 
-	if (rstack->size == 2)
+	if (stack->size == 2)
 	{
 
 	}
 	else
 	{
-		top = rstack->top;
+		top = stack->top;
 
-		rstack->top = top->prev;
-		top->prev->next = NULL;
+		stack->top = top->prev;
+		stack->top->next = NULL;
 		top->prev = NULL;
-		top->next = rstack->bottom;
-		rstack->bottom->prev = top;
+		top->next = stack->bottom;
+		stack->bottom->prev = top;
+		stack->bottom = top;
 	}
 	vector_push_back(cmd, RB);
 }
 
-void	cmd_reverse_rotate_b(t_rstack *rstack, t_vector *cmd)
+void	cmd_reverse_rotate_b(t_rstack *stack, t_vector *cmd)
 {
 	t_node	*bottom;
 
-	if (rstack->size == 2)
+	if (stack->size == 2)
 	{
 		
 	}
 	else
 	{
-		bottom = rstack->bottom;
+		bottom = stack->bottom;
 
-		rstack->bottom = bottom->next;
-		bottom->next->prev = NULL;
+		stack->bottom = bottom->next;
+		stack->bottom->prev = NULL;
 		bottom->next = NULL;
-		bottom->prev = rstack->top;
-		rstack->top->next = bottom;
+		bottom->prev = stack->top;
+		stack->top->next = bottom;
+		stack->top = bottom;
 	}
 	vector_push_back(cmd, RRB);
 }
