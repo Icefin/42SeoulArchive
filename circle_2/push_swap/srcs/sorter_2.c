@@ -6,9 +6,13 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 01:17:16 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/12 01:17:20 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/12 14:03:24 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sorter.h"
 
+void	process_divide(t_rstack *a_stack, t_rstack *b_stack, t_vector *cmd)
+{
+	
+}

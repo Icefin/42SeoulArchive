@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:28:12 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/11 17:52:00 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/12 13:10:59 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,6 @@ enum e_commands
 	RRR = 10,
 
 	END = -1
-};
-
-static char	*cmd_list[11] =
-{
-	"sa",
-	"sb",
-	"ss",
-	"pa",
-	"pb",
-	"ra",
-	"rb",
-	"rr",
-	"rra",
-	"rrb",
-	"rrr"
 };
 
 #endif

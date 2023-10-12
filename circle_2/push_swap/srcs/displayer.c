@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:04:59 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/11 17:52:40 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/12 13:12:02 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	display_commands(t_vector *commands)
 {
+	static char	*cmd_list[11] = { "sa", "sb", "ss", "pa", "pb",
+								 "ra", "rb", "rr", "rra", "rrb", "rrr" };
 	int	i;
 
 	i = 0;
