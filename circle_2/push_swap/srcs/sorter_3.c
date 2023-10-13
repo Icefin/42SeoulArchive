@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:56:47 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/13 15:00:23 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/14 00:45:26 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,6 @@ static void	move_optimal_node(t_rstack *a_stack, t_rstack *b_stack, t_dist_info 
 
 }
 
-static void	rotate_ascending_order(t_rstack *stack, t_vector *cmd)
-{
-	
-}
-
 void	process_merge(t_rstack *a_stack, t_rstack *b_stack, t_vector *cmd)
 {
 	t_dist_info	optimal_info;
@@ -67,5 +62,4 @@ void	process_merge(t_rstack *a_stack, t_rstack *b_stack, t_vector *cmd)
 		}
 		move_optimal_node(a_stack, b_stack, &optimal_info, cmd);
 	}
-	rotate_ascending_order(a_stack, cmd);
 }

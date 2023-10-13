@@ -6,11 +6,11 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:15:50 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/13 14:54:13 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/14 00:51:41 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define DEBUG_SORTER
+//#define DEBUG_SORTER
 
 #include "sorter.h"
 #include "commands.h"
@@ -64,6 +64,12 @@ static void	process_small_size(t_rstack *stack, t_vector *cmd)
 		sort_size_three(stack, cmd);
 }
 
+static void	post_process_sort(t_rstack *stack, t_vector *cmd)
+{
+	//rotate until zero comes top of stack
+	vector_push_back(cmd, END);
+}
+
 void	sort_stack(t_rstack *stack, t_vector *out)
 {
 	t_rstack	b_stack;
@@ -74,10 +80,9 @@ void	sort_stack(t_rstack *stack, t_vector *out)
 		return;
 	}
 	init_rstack(&b_stack);
-	
-	printf("Before divide\n");
 	process_divide(stack, &b_stack, out);
 	sort_size_three(stack, out);
+
 #ifdef DEBUG_SORTER
 	printf("\n==========Stack A After Divide==========\n");
 	printf("TOP TO BOTTOM\n");
@@ -112,8 +117,6 @@ void	sort_stack(t_rstack *stack, t_vector *out)
 	printf("Divide Command Number : %d\n", out->size);
 #endif
 
-	printf("Before Merge\n");
 	process_merge(stack, &b_stack, out);
-	vector_push_back(out, END);
-	printf("Sorting Fin\n");
+	post_process_sort(stack, out);
 }
