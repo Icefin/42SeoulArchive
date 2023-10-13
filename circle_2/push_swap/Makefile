@@ -15,7 +15,6 @@ PRINTF = ft_printf/libftprintf.a
 #Sources========================================================================
 SRCS = ./srcs/push_swap.c \
 		./srcs/displayer.c \
-		./srcs/optimizer.c \
 		./srcs/parser.c \
 		./srcs/commands_1.c \
 		./srcs/commands_2.c \

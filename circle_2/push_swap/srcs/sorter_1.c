@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:15:50 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/13 14:20:06 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/13 14:54:13 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,6 @@ void	sort_stack(t_rstack *stack, t_vector *out)
 
 	printf("Before Merge\n");
 	process_merge(stack, &b_stack, out);
+	vector_push_back(out, END);
 	printf("Sorting Fin\n");
 }

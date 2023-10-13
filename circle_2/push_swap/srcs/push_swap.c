@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:13:52 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/12 16:36:01 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/13 14:53:33 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 #include "parser.h"
 #include "sorter.h"
-#include "optimizer.h"
 #include "displayer.h"
 
 #include <stdio.h>
@@ -107,8 +106,6 @@ int	main(int argc, char **argv)
 		printf("%d\n", vector_get_index_value(&commands, i));
 	printf("====================================\n\n");
 #endif
-
-	optimize_commands(&commands);
 
 #ifdef DEBUG
 	printf("\n==========After Optimize===========\n");
