@@ -6,9 +6,11 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:15:50 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/12 16:38:54 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/13 14:20:06 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#define DEBUG_SORTER
 
 #include "sorter.h"
 #include "commands.h"
@@ -72,6 +74,45 @@ void	sort_stack(t_rstack *stack, t_vector *out)
 		return;
 	}
 	init_rstack(&b_stack);
+	
+	printf("Before divide\n");
 	process_divide(stack, &b_stack, out);
+	sort_size_three(stack, out);
+#ifdef DEBUG_SORTER
+	printf("\n==========Stack A After Divide==========\n");
+	printf("TOP TO BOTTOM\n");
+	t_node *ptr = stack->top;
+	while (ptr != NULL) {
+		printf("%d\n", ptr->value);
+		ptr = ptr->prev;
+	}
+	printf("BOTTOM TO TOP\n");
+	ptr = stack->bottom;
+	while (ptr != NULL) {
+		printf("%d\n", ptr->value);
+		ptr = ptr->next;
+	}
+	printf("==================================\n\n");
+
+	printf("\n==========Stack B After Divide==========\n");
+	printf("TOP TO BOTTM\n");
+	ptr = b_stack.top;
+	while (ptr != NULL) {
+		printf("%d\n", ptr->value);
+		ptr = ptr->prev;
+	}
+	printf("BOTTOM TO TOP\n");
+	ptr = b_stack.bottom;
+	while (ptr != NULL) {
+		printf("%d\n", ptr->value);
+		ptr = ptr->next;
+	}
+	printf("==================================\n\n");
+
+	printf("Divide Command Number : %d\n", out->size);
+#endif
+
+	printf("Before Merge\n");
 	process_merge(stack, &b_stack, out);
+	printf("Sorting Fin\n");
 }

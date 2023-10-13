@@ -6,17 +6,18 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:02:00 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/13 01:36:52 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/13 13:25:57 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commands.h"
 
-//RECHECK HERE
 void	cmd_swap_top_a(t_rstack *stack, t_vector *cmd)
 {
 	t_node	*temp;
 
+	if (stack->size <= 1)
+		return ;
 	if (stack->size == 2)
 	{
 		temp = stack->top;
@@ -56,14 +57,20 @@ void	cmd_rotate_a(t_rstack *stack, t_vector *cmd)
 {
 	t_node	*top;
 
+	if (stack->size <= 1)
+		return ;
+	top = stack->top;
 	if (stack->size == 2)
 	{
-
+		stack->top->next = stack->bottom;
+		stack->top->prev = NULL;
+		stack->bottom->prev = stack->top;
+		stack->bottom->next = NULL;
+		stack->top = stack->bottom;
+		stack->bottom = top;
 	}
 	else
 	{
-		top = stack->top;
-
 		stack->top = top->prev;
 		stack->top->next = NULL;
 		top->prev = NULL;
@@ -78,14 +85,20 @@ void	cmd_reverse_rotate_a(t_rstack *stack, t_vector *cmd)
 {
 	t_node	*bottom;
 
+	if (stack->size <= 1)
+		return ;
+	bottom = stack->bottom;
 	if (stack->size == 2)
 	{
-		
+		stack->top->next = stack->bottom;
+		stack->top->prev = NULL;
+		stack->bottom->prev = stack->top;
+		stack->bottom->next = NULL;
+		stack->bottom = stack->top;
+		stack->top = bottom;
 	}
 	else
 	{
-		bottom = stack->bottom;
-
 		stack->bottom = bottom->next;
 		stack->bottom->prev = NULL;
 		bottom->next = NULL;
