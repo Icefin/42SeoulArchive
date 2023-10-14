@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:56:47 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/15 01:49:54 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/15 02:20:58 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 void move_optimal_node(t_rstack *a_stack, t_rstack *b_stack, t_dist_info *info, t_vector *cmd);
 
-//TODO::RECHECK HERE
 static void	update_current_info(t_rstack *a_stack, t_rstack *b_stack, t_dist_info *info)
 {
 	t_node	*node;
@@ -121,10 +120,10 @@ void	process_merge(t_rstack *a_stack, t_rstack *b_stack, t_vector *cmd)
 	{
 		curr_info.idx = 0;
 		curr_info.node = b_stack->top;
-		optimal_info.ra_cnt = a_stack->size;
-		optimal_info.rb_cnt = b_stack->size;
-		optimal_info.rra_cnt = a_stack->size;
-		optimal_info.rrb_cnt = b_stack->size;
+		optimal_info.ra_cnt = 2 * a_stack->size;
+		optimal_info.rb_cnt = 2 * b_stack->size;
+		optimal_info.rra_cnt = 2 * a_stack->size;
+		optimal_info.rrb_cnt = 2 * b_stack->size;
 		while (curr_info.node != NULL)
 		{
 			update_current_info(a_stack, b_stack, &curr_info);
