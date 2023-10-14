@@ -6,11 +6,11 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:13:52 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/14 15:22:37 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/15 02:09:12 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define DEBUG
+//#define DEBUG
 
 #include "rstack.h"
 #include "vector.h"
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	t_vector	commands;
 
 	//TODO : RM
-	atexit(leaks);
+	//atexit(leaks);
 	
 	if (argc == 1)
 	{
@@ -100,9 +100,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 
-	printf("\n==========Final Result==========\n");
 	display_commands(&commands);
-	printf("=================================\n");
 	destroy_rstack(&stack);
 	destroy_vector(&commands);
 	return (0);

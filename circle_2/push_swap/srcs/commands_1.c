@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:02:00 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/14 15:52:32 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/15 01:53:39 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ void	cmd_rotate_a(t_rstack *stack, t_vector *cmd)
 	t_node	*top;
 
 	if (stack->size <= 1)
+	{
+		vector_push_back(cmd, RA);
 		return ;
+	}
 	top = stack->top;
 	if (stack->size == 2)
 	{
@@ -86,7 +89,10 @@ void	cmd_reverse_rotate_a(t_rstack *stack, t_vector *cmd)
 	t_node	*bottom;
 
 	if (stack->size <= 1)
+	{
+		vector_push_back(cmd, RRA);
 		return ;
+	}
 	bottom = stack->bottom;
 	if (stack->size == 2)
 	{

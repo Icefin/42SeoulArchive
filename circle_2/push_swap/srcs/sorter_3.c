@@ -6,51 +6,56 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:56:47 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/14 17:27:47 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/15 01:49:54 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define DEBUG_SORTER
+//#define DEBUG_SORTER
+//#define DEBUG_STEP
 
 #include "sorter.h"
 #include "commands.h"
 
 void move_optimal_node(t_rstack *a_stack, t_rstack *b_stack, t_dist_info *info, t_vector *cmd);
 
-//TODO RECHECK HERE
-static void	get_distance_info(t_rstack *a_stack, t_rstack *b_stack, t_dist_info *curr)
+//TODO::RECHECK HERE
+static void	update_current_info(t_rstack *a_stack, t_rstack *b_stack, t_dist_info *info)
 {
 	t_node	*node;
 	int		i;
 	int		min_idx;
 	int		min_value;
 
-	curr->rrb_cnt = curr->idx + 1;
-	if (b_stack->size == 1)
-		curr->rrb_cnt = 0;
-	curr->rb_cnt = b_stack->size - curr->idx - 1;
-	i = 0;
-	node = a_stack->top;
-	min_idx = -1;
-	min_value = 1e9;
+	info->rrb_cnt = b_stack->size - info->idx;
+	info->rb_cnt = info->idx;
+	if (a_stack->top->value > info->node->value && a_stack->bottom->value < info->node->value)
+	{
+		info->rra_cnt = 0;
+		info->ra_cnt = 0;
+		return ;
+	}
+	node = a_stack->top->prev;
+	i = 1;
+	min_idx = 0;
+	min_value = a_stack->top->value;
 	while (node != NULL)
 	{
-		if (min_value > node->value)
+		if (node->value < min_value)
 		{
-			min_idx = i;
 			min_value = node->value;
+			min_idx = i;
 		}
-		if (node->value > curr->node->value)
+		if (node->next->value < info->node->value && node->value > info->node->value)
 		{
-			curr->rra_cnt = a_stack->size - i;
-			curr->ra_cnt = i;
+			info->rra_cnt = a_stack->size - i;
+			info->ra_cnt = i;	
 			return ;
 		}
-		i++;
 		node = node->prev;
+		i += 1;
 	}
-	curr->rra_cnt = a_stack->size - min_idx;
-	curr->ra_cnt = min_idx;
+	info->rra_cnt = a_stack->size - min_idx;
+	info->ra_cnt = min_idx;
 }
 
 static int	get_min_distance(t_dist_info *info)
@@ -97,7 +102,14 @@ static void	update_optimal_info(t_dist_info *optimal, t_dist_info *compare)
 	optimal_dist = get_min_distance(optimal);
 	compare_dist = get_min_distance(compare);
 	if (compare_dist <= optimal_dist)
-		*optimal = *compare;
+	{
+		optimal->idx = compare->idx;
+		optimal->node = compare->node;
+		optimal->ra_cnt = compare->ra_cnt;
+		optimal->rb_cnt = compare->rb_cnt;
+		optimal->rra_cnt = compare->rra_cnt;
+		optimal->rrb_cnt = compare->rrb_cnt;
+	}
 }
 
 void	process_merge(t_rstack *a_stack, t_rstack *b_stack, t_vector *cmd)
@@ -108,17 +120,17 @@ void	process_merge(t_rstack *a_stack, t_rstack *b_stack, t_vector *cmd)
 	while (b_stack->size > 0)
 	{
 		curr_info.idx = 0;
-		curr_info.node = b_stack->bottom;
+		curr_info.node = b_stack->top;
 		optimal_info.ra_cnt = a_stack->size;
 		optimal_info.rb_cnt = b_stack->size;
 		optimal_info.rra_cnt = a_stack->size;
 		optimal_info.rrb_cnt = b_stack->size;
 		while (curr_info.node != NULL)
 		{
-			get_distance_info(a_stack, b_stack, &curr_info);
+			update_current_info(a_stack, b_stack, &curr_info);
 			update_optimal_info(&optimal_info, &curr_info);
 			curr_info.idx += 1;
-			curr_info.node = curr_info.node->next;
+			curr_info.node = curr_info.node->prev;
 		}
 
 #ifdef DEBUG_SORTER
@@ -130,6 +142,27 @@ void	process_merge(t_rstack *a_stack, t_rstack *b_stack, t_vector *cmd)
 	printf("Optimal rrb_cnt : %d\n", optimal_info.rrb_cnt);
 #endif
 
+#ifdef DEBUG_STEP
+	printf("\n=====B STEP=====\n");
+	t_node *ptr = b_stack->top;
+	while (ptr != NULL) {
+		printf("%d\n", ptr->value);
+		ptr = ptr->prev;
+	}
+	printf("================\n");
+#endif
+
+
 		move_optimal_node(a_stack, b_stack, &optimal_info, cmd);
+
+#ifdef DEBUG_STEP
+	printf("\n=====A STEP=====\n");
+	ptr = a_stack->top;
+	while (ptr != NULL) {
+		printf("%d\n", ptr->value);
+		ptr = ptr->prev;
+	}
+	printf("================\n");
+#endif
 	}
 }

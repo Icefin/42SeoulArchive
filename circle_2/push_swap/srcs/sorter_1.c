@@ -6,11 +6,11 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:15:50 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/14 16:54:41 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/15 01:35:52 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define DEBUG_SORTER
+//#define DEBUG_SORTER
 
 #include "sorter.h"
 #include "commands.h"
@@ -100,13 +100,12 @@ void	sort_stack(t_rstack *stack, t_vector *out)
 	t_rstack	b_stack;
 
 	if (stack->size <= 3)
-	{
 		process_small_size(stack, out);
-		return;
-	}
-	init_rstack(&b_stack);
-	process_divide(stack, &b_stack, out);
-	sort_size_three(stack, out);
+	else
+	{
+		init_rstack(&b_stack);
+		process_divide(stack, &b_stack, out);
+		sort_size_three(stack, out);
 
 #ifdef DEBUG_SORTER
 	printf("\n==========Stack A After Divide==========\n");
@@ -138,14 +137,8 @@ void	sort_stack(t_rstack *stack, t_vector *out)
 		ptr = ptr->next;
 	}
 	printf("==================================\n\n");
-
-	printf("Divide Command Number : %d\n", out->size);
 #endif
-
-	process_merge(stack, &b_stack, out);
+		process_merge(stack, &b_stack, out);
+	}
 	post_process_sort(stack, out);
-
-#ifdef DEBUG_SORTER
-	printf("Total Command Number : %d\n", out->size);
-#endif
 }

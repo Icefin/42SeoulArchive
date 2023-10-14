@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:22:29 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/14 16:28:34 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/15 01:49:28 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	move_rbra_path(t_rstack *a_stack, t_rstack *b_stack, t_dist_info *in
 			cmd_rotate_all(a_stack, b_stack, cmd);
 			rr_cnt -= 1;
 		}
-		while (info->rb_cnt-- > info->ra_cnt)
+		while (info->rb_cnt > info->ra_cnt)
 		{
 			cmd_rotate_b(b_stack, cmd);
 			info->rb_cnt -= 1;
