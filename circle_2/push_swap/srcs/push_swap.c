@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:13:52 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/13 14:53:33 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/14 15:22:37 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,20 +99,6 @@ int	main(int argc, char **argv)
 		printf("Error : Stack is not sorted! Check sorting step again\n");
 		return (1);
 	}
-
-#ifdef DEBUG
-	printf("\n==========Before Optimize==========\n");
-	for (int i = 0; i < commands.size; ++i)
-		printf("%d\n", vector_get_index_value(&commands, i));
-	printf("====================================\n\n");
-#endif
-
-#ifdef DEBUG
-	printf("\n==========After Optimize===========\n");
-	for (int i = 0; i < commands.size; ++i)
-		printf("%d\n", vector_get_index_value(&commands, i));
-	printf("====================================\n\n");
-#endif
 
 	printf("\n==========Final Result==========\n");
 	display_commands(&commands);

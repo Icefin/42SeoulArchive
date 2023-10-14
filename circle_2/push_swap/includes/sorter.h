@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:31:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/13 14:56:29 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/14 16:02:43 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,26 @@
 #include "rstack.h"
 #include "vector.h"
 
+typedef enum e_path
+{
+	RBRA = 0,
+	RBRRA = 1,
+	RRBRA = 2,
+	RRBRRA = 3
+}	t_path;
+
 typedef struct s_dist_info
 {
 	int		idx;
 	t_node	*node;
 
-	int		a_to_upper;
-	int		a_to_lower;
+	int		ra_cnt;
+	int		rra_cnt;
 
-	int		b_to_upper;
-	int		b_to_lower;
+	int		rb_cnt;
+	int		rrb_cnt;
+
+	t_path	path;
 }	t_dist_info;
 
 void	sort_stack(t_rstack *stack, t_vector *out);
