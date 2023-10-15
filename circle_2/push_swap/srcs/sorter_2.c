@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 01:17:16 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/13 14:21:44 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/15 16:07:12 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	process_divide(t_rstack *a_stack, t_rstack *b_stack, t_vector *cmd)
 	pivot_1 = (a_stack->size / 3) - 1;
 	pivot_2 = 2 * pivot_1;
 	cnt = a_stack->size;
-	while (cnt > 0)
+	while (cnt > 5)
 	{
 		if (a_stack->top->value > pivot_2)
 			stay_a_stack(a_stack, cmd);
