@@ -6,11 +6,9 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:02:34 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/12 16:17:48 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/16 00:03:44 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//Instructions must be separated by a '\n' and nothing else
 
 #ifndef DISPLAYER_H
 # define DISPLAYER_H
