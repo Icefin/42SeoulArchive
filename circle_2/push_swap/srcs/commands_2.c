@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:17:50 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/15 01:54:17 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/15 15:01:22 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,10 @@ void	cmd_reverse_rotate_b(t_rstack *stack, t_vector *cmd)
 	vector_push_back(cmd, RRB);
 }
 
-void	cmd_reverse_rotate_all(t_rstack *a_stack, t_rstack *b_stack, t_vector *cmd)
+void	cmd_reverse_rotate_all(t_rstack *a, t_rstack *b, t_vector *cmd)
 {
-	cmd_reverse_rotate_a(a_stack, cmd);
-	cmd_reverse_rotate_b(b_stack, cmd);
+	cmd_reverse_rotate_a(a, cmd);
+	cmd_reverse_rotate_b(b, cmd);
 	vector_pop_back(cmd);
 	vector_pop_back(cmd);
 	vector_push_back(cmd, RRR);

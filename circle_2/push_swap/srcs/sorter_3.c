@@ -6,12 +6,9 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:56:47 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/15 02:20:58 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/15 14:49:47 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//#define DEBUG_SORTER
-//#define DEBUG_STEP
 
 #include "sorter.h"
 #include "commands.h"
@@ -108,6 +105,7 @@ static void	update_optimal_info(t_dist_info *optimal, t_dist_info *compare)
 		optimal->rb_cnt = compare->rb_cnt;
 		optimal->rra_cnt = compare->rra_cnt;
 		optimal->rrb_cnt = compare->rrb_cnt;
+		optimal->path = compare->path;
 	}
 }
 
@@ -131,37 +129,6 @@ void	process_merge(t_rstack *a_stack, t_rstack *b_stack, t_vector *cmd)
 			curr_info.idx += 1;
 			curr_info.node = curr_info.node->prev;
 		}
-
-#ifdef DEBUG_SORTER
-	printf("\nOptimal Info\n");
-	printf("Optimal Node Value : %d\n", optimal_info.node->value);
-	printf("Optimal ra_cnt : %d\n", optimal_info.ra_cnt);
-	printf("Optimal rb_cnt : %d\n", optimal_info.rb_cnt);
-	printf("Optimal rra_cnt : %d\n", optimal_info.rra_cnt);
-	printf("Optimal rrb_cnt : %d\n", optimal_info.rrb_cnt);
-#endif
-
-#ifdef DEBUG_STEP
-	printf("\n=====B STEP=====\n");
-	t_node *ptr = b_stack->top;
-	while (ptr != NULL) {
-		printf("%d\n", ptr->value);
-		ptr = ptr->prev;
-	}
-	printf("================\n");
-#endif
-
-
 		move_optimal_node(a_stack, b_stack, &optimal_info, cmd);
-
-#ifdef DEBUG_STEP
-	printf("\n=====A STEP=====\n");
-	ptr = a_stack->top;
-	while (ptr != NULL) {
-		printf("%d\n", ptr->value);
-		ptr = ptr->prev;
-	}
-	printf("================\n");
-#endif
 	}
 }

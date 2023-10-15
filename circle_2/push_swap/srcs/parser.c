@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:01:05 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/12 15:10:00 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/15 14:54:16 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "parser.h"
 #include "vector.h"
 
-//get integer from arguments
 static int	process_argument(char* arg, t_rstack *stack)
 {
 	char		**split;
@@ -37,7 +36,6 @@ static int	process_argument(char* arg, t_rstack *stack)
 	return (TRUE);
 }
 
-//check duplicated elements in stack
 static int	is_duplicated_element(t_rstack* stack)
 {
 	t_node	*first;
@@ -58,7 +56,6 @@ static int	is_duplicated_element(t_rstack* stack)
 	return (FALSE);
 }
 
-//indexize all elements 0 ~ stack->size - 1;
 static void	indexize_elements(t_rstack *stack)
 {
 	t_vector	temp;
@@ -101,14 +98,14 @@ void	parse_arguments(int argc, char **argv, t_rstack *stack)
 		if (process_argument(argv[i], stack) == FALSE)
 		{
 			destroy_rstack(stack);
-			printf("Error : Invalid Input\n");
+			printf("Error\n");
 			exit(1);
 		}
 	}
 	if (is_duplicated_element(stack) == TRUE)
 	{
 		destroy_rstack(stack);
-		printf("Error : Duplicated Element\n");
+		printf("Error\n");
 		exit(1);
 	}
 	indexize_elements(stack);
