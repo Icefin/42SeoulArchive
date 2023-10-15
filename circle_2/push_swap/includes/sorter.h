@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:31:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/14 16:02:43 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/15 15:51:29 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,3 @@ void	process_divide(t_rstack *a_stack, t_rstack *b_stack, t_vector *cmd);
 void	process_merge(t_rstack *a_stack, t_rstack *b_stack, t_vector* cmd);
 
 #endif
-
-//The smallest number being at the top.
