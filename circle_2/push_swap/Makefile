@@ -4,12 +4,12 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 NAME = push_swap
+NAME_BONUS = checker
 
 INCLUDE = includes/
 BONUS_FLAG = FALSE
 
 #Libraries=====================================================================
-#LIBFT = libft/libft.a
 PRINTF = ft_printf/libftprintf.a
 
 #Sources========================================================================
@@ -30,32 +30,28 @@ SRCS = ./srcs/push_swap.c \
 		./srcs/vector_2.c
 
 
-SRCS_BONUS = 
-
-TOT_SRCS = 
+SRCS_BONUS = ./bonus/checker_bonus.c
 
 #Objects=========================================================================
 OBJS = $(SRCS:.c=.o)
 
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
-TOT_OBJS = 
-
 #Rules===========================================================================
 
 ifeq ($(BONUS_FLAG),TRUE)
-	TOT_OBJS = $(OBJS) $(OBJS_BONUS)
+	TOT_TARGET = $(NAME) $(NAME_BONUS)
 else
-	TOT_OBJS = $(OBJS)
+	TOT_TARGET = $(NAME)
 endif
 
-all : $(NAME)
+all : $(TOT_TARGET)
 
-$(NAME) : $(TOT_OBJS) $(LIBFT) $(PRINTF)
-	$(CC) -o push_swap -Lft_printf -lftprintf $(TOT_OBJS)
+$(NAME) : $(OBJS) $(PRINTF)
+	$(CC) -o $(NAME) -Lft_printf -lftprintf $(OBJS)
 
-#$(LIBFT) :
-#	make -C libft
+$(NAME_BONUS) : $(OBJS_BONUS) $(PRINTF)
+	$(CC) -o $(NAME_BONUS) -Lft_printf -lftprintf $(OBJS_BONUS)
 
 $(PRINTF) :
 	make -C ft_printf
@@ -64,12 +60,11 @@ $(PRINTF) :
 	$(CC) -I$(INCLUDE) -c $< -o $@
 
 clean :
-#	make fclean -C libft
 	make fclean -C ft_printf
-	rm -rf $(OBJS)
+	rm -rf $(OBJS) $(OBJS_BONUS)
 
 fclean : clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(NAME_BONUS)
 
 re : fclean all
 
