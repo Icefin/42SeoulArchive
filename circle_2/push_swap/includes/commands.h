@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:28:12 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/15 15:03:05 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/21 17:44:14 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,16 @@ enum e_commands
 };
 
 void	cmd_swap_top_a(t_rstack *stack, t_vector *cmd);
+void	cmd_swap_top_b(t_rstack *stack, t_vector *cmd);
+void	cmd_swap_top_all(t_rstack *a, t_rstack *b, t_vector *cmd);
 void	cmd_push_to_a(t_rstack *from, t_rstack *to, t_vector *cmd);
+void	cmd_push_to_b(t_rstack *from, t_rstack *to, t_vector *cmd);
+
 void	cmd_rotate_a(t_rstack *stack, t_vector *cmd);
-void	cmd_reverse_rotate_a(t_rstack *stack, t_vector *cmd);
+void	cmd_rotate_b(t_rstack *stack, t_vector *cmd);
 void	cmd_rotate_all(t_rstack *a, t_rstack *b, t_vector *cmd);
 
-void	cmd_swap_top_b(t_rstack *stack, t_vector *cmd);
-void	cmd_push_to_b(t_rstack *from, t_rstack *to, t_vector *cmd);
-void	cmd_rotate_b(t_rstack *stack, t_vector *cmd);
+void	cmd_reverse_rotate_a(t_rstack *stack, t_vector *cmd);
 void	cmd_reverse_rotate_b(t_rstack *stack, t_vector *cmd);
 void	cmd_reverse_rotate_all(t_rstack *a, t_rstack *b, t_vector *cmd);
 
