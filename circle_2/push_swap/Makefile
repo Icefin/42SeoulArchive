@@ -6,31 +6,43 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap
 NAME_BONUS = checker
 
-INCLUDE = includes/
+INCLUDE = ./mandatory/includes/
+INCLUDE_BONUS = ./bonus/includes/
 BONUS_FLAG = FALSE
 
 #Libraries=====================================================================
-PRINTF = ft_printf/libftprintf.a
+
 
 #Sources========================================================================
-SRCS = ./srcs/push_swap.c \
-		./srcs/displayer.c \
-		./srcs/parser.c \
-		./srcs/commands_1.c \
-		./srcs/commands_2.c \
-		./srcs/rstack_1.c \
-		./srcs/rstack_2.c \
-		./srcs/sorter_1.c \
-		./srcs/sorter_2.c \
-		./srcs/sorter_3.c \
-		./srcs/sorter_4.c \
-		./srcs/utils_1.c \
-		./srcs/utils_2.c \
-		./srcs/vector_1.c \
-		./srcs/vector_2.c
+SRCS = ./mandatory/srcs/push_swap.c \
+		./mandatory/srcs/displayer.c \
+		./mandatory/srcs/parser.c \
+		./mandatory/srcs/commands_1.c \
+		./mandatory/srcs/commands_2.c \
+		./mandatory/srcs/commands_3.c \
+		./mandatory/srcs/rstack_1.c \
+		./mandatory/srcs/rstack_2.c \
+		./mandatory/srcs/sorter_1.c \
+		./mandatory/srcs/sorter_2.c \
+		./mandatory/srcs/sorter_3.c \
+		./mandatory/srcs/sorter_4.c \
+		./mandatory/srcs/utils_1.c \
+		./mandatory/srcs/utils_2.c \
+		./mandatory/srcs/vector_1.c \
+		./mandatory/srcs/vector_2.c
 
 
-SRCS_BONUS = ./bonus/checker_bonus.c
+SRCS_BONUS = ./bonus/srcs/checker_bonus.c \
+			./bonus/srcs/commands_bonus_1.c \
+			./bonus/srcs/commands_bonus_2.c \
+			./bonus/srcs/commands_bonus_3.c \
+			./bonus/srcs/parser_bonus.c \
+			./bonus/srcs/rstack_bonus_1.c \
+			./bonus/srcs/rstack_bonus_2.c \
+			./bonus/srcs/utils_bonus_1.c \
+			./bonus/srcs/utils_bonus_2.c \
+			./bonus/srcs/vector_bonus_1.c \
+			./bonus/srcs/vector_bonus_2.c
 
 #Objects=========================================================================
 OBJS = $(SRCS:.c=.o)
@@ -47,20 +59,16 @@ endif
 
 all : $(TOT_TARGET)
 
-$(NAME) : $(OBJS) $(PRINTF)
-	$(CC) -o $(NAME) -Lft_printf -lftprintf $(OBJS)
+$(NAME) : $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
-$(NAME_BONUS) : $(OBJS_BONUS) $(PRINTF)
-	$(CC) -o $(NAME_BONUS) -Lft_printf -lftprintf $(OBJS_BONUS)
-
-$(PRINTF) :
-	make -C ft_printf
+$(NAME_BONUS) : $(OBJS_BONUS)
+	$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJS_BONUS)
 
 %.o : %.c
-	$(CC) -I$(INCLUDE) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INCLUDE) -I$(INCLUDE_BONUS) -c $< -o $@
 
 clean :
-	make fclean -C ft_printf
 	rm -rf $(OBJS) $(OBJS_BONUS)
 
 fclean : clean
