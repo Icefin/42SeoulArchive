@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:01:05 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/23 13:57:39 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/23 14:54:44 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,14 @@ void	parse_arguments(int argc, char **argv, t_rstack *stack)
 		if (process_argument(argv[i], stack) == FALSE)
 		{
 			destroy_rstack(stack);
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
 			exit(1);
 		}
 	}
 	if (is_duplicated_element(stack) == TRUE)
 	{
 		destroy_rstack(stack);
-		write(1, "Error\n", 6);
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	indexize_elements(stack);

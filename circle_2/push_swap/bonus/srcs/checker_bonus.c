@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 02:39:20 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/23 14:26:15 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/23 14:54:15 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	main(int argc, char **argv)
 			break ;
 		if (process_command(&a_stack, &b_stack, cmd) == FALSE)
 		{
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
 			destroy_rstack(&a_stack);
 			destroy_rstack(&b_stack);
 			return (1);
