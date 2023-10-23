@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 21:13:52 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/22 16:56:40 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/23 14:26:21 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	is_sorted(t_rstack *stack)
 	t_node	*curr;
 
 	prev = stack->top->value;
-	curr = stack->top->prev;	
+	curr = stack->top->prev;
 	while (curr != NULL)
 	{
 		if (prev > curr->value)
@@ -40,12 +40,11 @@ int	main(int argc, char **argv)
 {
 	t_rstack	stack;
 	t_vector	commands;
-	
+
 	if (argc == 1)
 		return (0);
 	init_rstack(&stack);
 	parse_arguments(argc, argv, &stack);
-
 	if (stack.size <= 1 || is_sorted(&stack) == TRUE)
 	{
 		destroy_rstack(&stack);

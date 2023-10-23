@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   sorter_4.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:22:29 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/15 15:55:41 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/23 13:50:43 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sorter.h"
 #include "commands.h"
 
-static void	rbra_path(t_rstack *a, t_rstack *b, t_dist_info *info, t_vector *cmd)
+static void	rbra(t_rstack *a, t_rstack *b, t_dist_info *info, t_vector *cmd)
 {
 	int	rr_cnt;
 
@@ -21,7 +21,7 @@ static void	rbra_path(t_rstack *a, t_rstack *b, t_dist_info *info, t_vector *cmd
 	{
 		rr_cnt = info->rb_cnt;
 		while (rr_cnt-- > 0)
-			cmd_rotate_all(a, b, cmd);	
+			cmd_rotate_all(a, b, cmd);
 		while (info->ra_cnt-- > info->rb_cnt)
 			cmd_rotate_a(a, cmd);
 	}
@@ -35,7 +35,7 @@ static void	rbra_path(t_rstack *a, t_rstack *b, t_dist_info *info, t_vector *cmd
 	}
 }
 
-static void rbrra_path(t_rstack *a, t_rstack *b, t_dist_info *info, t_vector *cmd)
+static void	rbrra(t_rstack *a, t_rstack *b, t_dist_info *info, t_vector *cmd)
 {
 	while (info->rb_cnt-- > 0)
 		cmd_rotate_b(b, cmd);
@@ -43,7 +43,7 @@ static void rbrra_path(t_rstack *a, t_rstack *b, t_dist_info *info, t_vector *cm
 		cmd_reverse_rotate_a(a, cmd);
 }
 
-static void rrbra_path(t_rstack *a, t_rstack *b, t_dist_info *info, t_vector *cmd)
+static void	rrbra(t_rstack *a, t_rstack *b, t_dist_info *info, t_vector *cmd)
 {
 	while (info->rrb_cnt-- > 0)
 		cmd_reverse_rotate_b(b, cmd);
@@ -51,7 +51,7 @@ static void rrbra_path(t_rstack *a, t_rstack *b, t_dist_info *info, t_vector *cm
 		cmd_rotate_a(a, cmd);
 }
 
-static void	rrbrra_path(t_rstack *a, t_rstack *b, t_dist_info *info, t_vector *cmd)
+static void	rrbrra(t_rstack *a, t_rstack *b, t_dist_info *info, t_vector *cmd)
 {
 	int	rrr_cnt;
 
@@ -73,15 +73,15 @@ static void	rrbrra_path(t_rstack *a, t_rstack *b, t_dist_info *info, t_vector *c
 	}
 }
 
-void	move_optimal_node(t_rstack *a, t_rstack *b, t_dist_info *info, t_vector *cmd)
+void	move_node(t_rstack *a, t_rstack *b, t_dist_info *info, t_vector *cmd)
 {
 	if (info->path == RBRA)
-		rbra_path(a, b, info, cmd);
+		rbra(a, b, info, cmd);
 	else if (info->path == RBRRA)
-		rbrra_path(a, b, info, cmd);
+		rbrra(a, b, info, cmd);
 	else if (info->path == RRBRA)
-		rrbra_path(a, b, info, cmd);
+		rrbra(a, b, info, cmd);
 	else if (info->path == RRBRRA)
-		rrbrra_path(a, b, info, cmd);
+		rrbrra(a, b, info, cmd);
 	cmd_push_to_a(b, a, cmd);
 }

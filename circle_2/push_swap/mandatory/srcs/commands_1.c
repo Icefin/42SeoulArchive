@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:02:00 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/22 17:01:18 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/23 13:32:21 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	cmd_swap_top_all(t_rstack *a, t_rstack *b, t_vector *cmd)
 void	cmd_push_to_a(t_rstack *from, t_rstack *to, t_vector *cmd)
 {
 	int	val;
-	
+
 	if (from->size == 0)
 		return ;
 	val = from->top->value;
@@ -94,7 +94,7 @@ void	cmd_push_to_a(t_rstack *from, t_rstack *to, t_vector *cmd)
 void	cmd_push_to_b(t_rstack *from, t_rstack *to, t_vector *cmd)
 {
 	int	val;
-	
+
 	if (from->size == 0)
 		return ;
 	val = from->top->value;

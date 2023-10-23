@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorter_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 01:17:16 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/15 16:07:12 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/23 13:37:55 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ static void	stay_a_stack(t_rstack *stack, t_vector *cmd)
 	cmd_rotate_a(stack, cmd);
 }
 
-static void	to_b_stack_upper(t_rstack *a_stack, t_rstack *b_stack, t_vector *cmd)
+static void	to_b_stack_upper(t_rstack *a, t_rstack *b, t_vector *cmd)
 {
-	cmd_push_to_b(a_stack, b_stack, cmd);
+	cmd_push_to_b(a, b, cmd);
 }
 
-static void	to_b_stack_lower(t_rstack *a_stack, t_rstack *b_stack, t_vector *cmd)
+static void	to_b_stack_lower(t_rstack *a, t_rstack *b, t_vector *cmd)
 {
-	cmd_push_to_b(a_stack, b_stack, cmd);
-	cmd_rotate_b(b_stack, cmd);
+	cmd_push_to_b(a, b, cmd);
+	cmd_rotate_b(b, cmd);
 }
 
 void	process_divide(t_rstack *a_stack, t_rstack *b_stack, t_vector *cmd)

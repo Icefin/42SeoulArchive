@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_bonus_1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 15:22:48 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/22 15:59:00 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/23 13:42:01 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	cmd_swap_top_all_bonus(t_rstack *a, t_rstack *b)
 void	cmd_push_to_a_bonus(t_rstack *from, t_rstack *to)
 {
 	int	val;
-	
+
 	if (from->size == 0)
 		return ;
 	val = from->top->value;
@@ -88,7 +88,7 @@ void	cmd_push_to_a_bonus(t_rstack *from, t_rstack *to)
 void	cmd_push_to_b_bonus(t_rstack *from, t_rstack *to)
 {
 	int	val;
-	
+
 	if (from->size == 0)
 		return ;
 	val = from->top->value;

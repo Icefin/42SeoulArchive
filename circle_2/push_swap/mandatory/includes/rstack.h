@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   rstack.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:12:15 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/12 16:09:58 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/23 13:30:35 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RSTACK_H
 # define RSTACK_H
 
-#include <stdlib.h>
+# include <stdlib.h>
 
 typedef struct s_node
 {

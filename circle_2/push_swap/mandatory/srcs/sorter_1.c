@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorter_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:15:50 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/15 14:50:45 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/23 13:52:17 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	sort_size_two(t_rstack *stack, t_vector *cmd)
 
 static void	sort_size_three(t_rstack *stack, t_vector *cmd)
 {
-	if (stack->top->prev->value > stack->top->value 
+	if (stack->top->prev->value > stack->top->value
 		&& stack->top->value > stack->bottom->value)
 		cmd_reverse_rotate_a(stack, cmd);
 	else if (stack->top->value > stack->bottom->value
@@ -67,11 +67,8 @@ static void	post_process_sort(t_rstack *stack, t_vector *cmd)
 	}
 	if (stack->size - idx > idx)
 	{
-		while (idx > 0)
-		{
+		while (idx-- > 0)
 			cmd_rotate_a(stack, cmd);
-			idx -= 1;
-		}
 	}
 	else
 	{
