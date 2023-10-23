@@ -3,63 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   sorter_3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:56:47 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/15 14:49:47 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/23 14:15:05 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sorter.h"
 #include "commands.h"
 
-void move_optimal_node(t_rstack *a_stack, t_rstack *b_stack, t_dist_info *info, t_vector *cmd);
+void	move_node(t_rstack *a, t_rstack *b, t_dist_info *info, t_vector *cmd);
 
-static void	update_current_info(t_rstack *a_stack, t_rstack *b_stack, t_dist_info *info)
+static int	get_ra_cnt(t_rstack *a, int b_value)
 {
 	t_node	*node;
-	int		i;
+	int		idx;
 	int		min_idx;
 	int		min_value;
 
-	info->rrb_cnt = b_stack->size - info->idx;
-	info->rb_cnt = info->idx;
-	if (a_stack->top->value > info->node->value && a_stack->bottom->value < info->node->value)
-	{
-		info->rra_cnt = 0;
-		info->ra_cnt = 0;
-		return ;
-	}
-	node = a_stack->top->prev;
-	i = 1;
+	node = a->top->prev;
+	idx = 1;
 	min_idx = 0;
-	min_value = a_stack->top->value;
+	min_value = a->top->value;
 	while (node != NULL)
 	{
 		if (node->value < min_value)
 		{
 			min_value = node->value;
-			min_idx = i;
+			min_idx = idx;
 		}
-		if (node->next->value < info->node->value && node->value > info->node->value)
-		{
-			info->rra_cnt = a_stack->size - i;
-			info->ra_cnt = i;	
-			return ;
-		}
+		if (node->next->value < b_value && node->value > b_value)
+			return (idx);
 		node = node->prev;
-		i += 1;
+		idx += 1;
 	}
-	info->rra_cnt = a_stack->size - min_idx;
-	info->ra_cnt = min_idx;
+	return (min_idx);
+}
+
+static void	update_current_info(t_rstack *a, t_rstack *b, t_dist_info *info)
+{
+	info->rrb_cnt = b->size - info->idx;
+	info->rb_cnt = info->idx;
+	if (a->top->value > info->node->value
+		&& a->bottom->value < info->node->value)
+	{
+		info->rra_cnt = 0;
+		info->ra_cnt = 0;
+		return ;
+	}
+	info->ra_cnt = get_ra_cnt(a, info->node->value);
+	info->rra_cnt = a->size - info->ra_cnt;
 }
 
 static int	get_min_distance(t_dist_info *info)
 {
 	int	rbra;
 	int	rrbrra;
-	int	rbrra;
-	int	rrbra;
 	int	min_dist;
 
 	rbra = info->rb_cnt;
@@ -68,25 +68,20 @@ static int	get_min_distance(t_dist_info *info)
 	rrbrra = info->rrb_cnt;
 	if (info->rra_cnt > info->rrb_cnt)
 		rrbrra = info->rra_cnt;
-	rbrra = info->rb_cnt + info->rra_cnt;
-	rrbra = info->rrb_cnt + info->ra_cnt;
 	min_dist = rbra;
-	info->path = RBRA;
-	if (min_dist > rbrra)
-	{
-		min_dist = rbrra;
-		info->path = RBRRA;
-	}
-	if (min_dist > rrbra)
-	{
-		min_dist = rrbra;
-		info->path = RRBRA;
-	}
+	if (min_dist > info->rb_cnt + info->rra_cnt)
+		min_dist = info->rb_cnt + info->rra_cnt;
+	if (min_dist > info->rrb_cnt + info->ra_cnt)
+		min_dist = info->rrb_cnt + info->ra_cnt;
 	if (min_dist > rrbrra)
-	{
 		min_dist = rrbrra;
+	info->path = RBRA;
+	if (min_dist == rrbrra)
 		info->path = RRBRRA;
-	}
+	if (min_dist == info->rb_cnt + info->rra_cnt)
+		info->path = RBRRA;
+	if (min_dist == info->rrb_cnt + info->ra_cnt)
+		info->path = RRBRA;
 	return (min_dist);
 }
 
@@ -129,6 +124,6 @@ void	process_merge(t_rstack *a_stack, t_rstack *b_stack, t_vector *cmd)
 			curr_info.idx += 1;
 			curr_info.node = curr_info.node->prev;
 		}
-		move_optimal_node(a_stack, b_stack, &optimal_info, cmd);
+		move_node(a_stack, b_stack, &optimal_info, cmd);
 	}
 }

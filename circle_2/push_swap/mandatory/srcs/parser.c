@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:01:05 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/22 16:35:58 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/23 14:54:44 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "parser.h"
 #include "vector.h"
 
-static int	process_argument(char* arg, t_rstack *stack)
+static int	process_argument(char *arg, t_rstack *stack)
 {
 	char		**split;
 	int			i;
@@ -25,9 +25,11 @@ static int	process_argument(char* arg, t_rstack *stack)
 	if (split == NULL)
 		return (FALSE);
 	i = -1;
-	while (split[++i] != NULL) {
+	while (split[++i] != NULL)
+	{
 		num = ft_stoi_plus_imax(split[i]);
-		if (num == -1) {
+		if (num == -1)
+		{
 			destroy_2d_array(split);
 			return (FALSE);
 		}
@@ -37,7 +39,7 @@ static int	process_argument(char* arg, t_rstack *stack)
 	return (TRUE);
 }
 
-static int	is_duplicated_element(t_rstack* stack)
+static int	is_duplicated_element(t_rstack *stack)
 {
 	t_node	*first;
 	t_node	*second;
@@ -50,11 +52,25 @@ static int	is_duplicated_element(t_rstack* stack)
 		{
 			if (first->value == second->value)
 				return (TRUE);
-			second = second->next;	
+			second = second->next;
 		}
 		first = first->next;
 	}
 	return (FALSE);
+}
+
+static void	copy_vector_to_stack(t_rstack *stack, t_vector *v)
+{
+	t_node	*node;
+	int		cnt;
+
+	cnt = 0;
+	node = stack->bottom;
+	while (node != NULL)
+	{
+		node->value = vector_get_index_value(v, cnt++);
+		node = node->next;
+	}
 }
 
 static void	indexize_elements(t_rstack *stack)
@@ -79,13 +95,7 @@ static void	indexize_elements(t_rstack *stack)
 		vector_push_back(&temp, cnt);
 		curr = curr->next;
 	}
-	cnt = 0;
-	node = stack->bottom;
-	while (node != NULL)
-	{
-		node->value = vector_get_index_value(&temp, cnt++);
-		node = node->next;
-	}
+	copy_vector_to_stack(stack, &temp);
 	destroy_vector(&temp);
 }
 
@@ -99,14 +109,14 @@ void	parse_arguments(int argc, char **argv, t_rstack *stack)
 		if (process_argument(argv[i], stack) == FALSE)
 		{
 			destroy_rstack(stack);
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
 			exit(1);
 		}
 	}
 	if (is_duplicated_element(stack) == TRUE)
 	{
 		destroy_rstack(stack);
-		write(1, "Error\n", 6);
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	indexize_elements(stack);

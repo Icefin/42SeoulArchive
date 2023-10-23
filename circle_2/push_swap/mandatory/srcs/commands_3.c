@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 17:42:06 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/22 17:00:04 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/23 13:34:46 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ void	cmd_reverse_rotate_a(t_rstack *stack, t_vector *cmd)
 	t_node	*bottom;
 
 	if (stack->size <= 1)
-	{
-		vector_push_back(cmd, RRA);
 		return ;
-	}
 	bottom = stack->bottom;
 	if (stack->size == 2)
 	{
@@ -48,10 +45,7 @@ void	cmd_reverse_rotate_b(t_rstack *stack, t_vector *cmd)
 	t_node	*bottom;
 
 	if (stack->size <= 1)
-	{
-		vector_push_back(cmd, RRB);
 		return ;
-	}
 	bottom = stack->bottom;
 	if (stack->size == 2)
 	{

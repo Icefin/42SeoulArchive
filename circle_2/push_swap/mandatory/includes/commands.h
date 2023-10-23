@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   commands.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:28:12 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/21 17:44:14 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/23 13:30:05 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMANDS_H
 # define COMMANDS_H
 
-#include "rstack.h"
-#include "vector.h"
+# include "rstack.h"
+# include "vector.h"
 
-enum e_commands 
+enum e_commands
 {
 	SA = 0,
 	SB = 1,
@@ -29,7 +29,6 @@ enum e_commands
 	RRA = 8,
 	RRB = 9,
 	RRR = 10,
-
 	END = -1
 };
 

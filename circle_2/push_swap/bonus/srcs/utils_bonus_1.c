@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:23:22 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/22 16:04:40 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/23 13:43:22 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,9 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return ((unsigned char)s1[idx] - (unsigned char)s2[idx]);
 }
 
-
 void	destroy_2d_array(char **arr)
 {
-	int n;
+	int	n;
 	int	i;
 
 	n = ft_arrlen(arr);

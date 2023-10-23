@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 02:39:20 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/22 16:56:33 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/23 14:54:15 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	is_sorted(t_rstack *stack)
 	t_node	*curr;
 
 	prev = stack->top->value;
-	curr = stack->top->prev;	
+	curr = stack->top->prev;
 	while (curr != NULL)
 	{
 		if (prev > curr->value)
@@ -65,9 +65,17 @@ static int	is_sorted(t_rstack *stack)
 	return (TRUE);
 }
 
+static void	display_result(t_rstack *a, t_rstack *b)
+{
+	if (b->size == 0 && is_sorted(a) == TRUE)
+		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
+}
+
 int	main(int argc, char **argv)
 {
-	char		cmd[10];
+	char		cmd[5];
 	t_rstack	a_stack;
 	t_rstack	b_stack;
 
@@ -76,21 +84,19 @@ int	main(int argc, char **argv)
 	init_rstack(&a_stack);
 	init_rstack(&b_stack);
 	parse_arguments(argc, argv, &a_stack);
-	while (TRUE) {
+	while (TRUE)
+	{
 		if (read(0, cmd, 5) == 0)
-			break;
+			break ;
 		if (process_command(&a_stack, &b_stack, cmd) == FALSE)
 		{
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
 			destroy_rstack(&a_stack);
 			destroy_rstack(&b_stack);
 			return (1);
 		}
 	}
-	if (b_stack.size == 0 && is_sorted(&a_stack) == TRUE)
-		write(1, "OK\n", 3);
-	else
-		write(1, "KO\n", 3);
+	display_result(&a_stack, &b_stack);
 	destroy_rstack(&a_stack);
 	destroy_rstack(&b_stack);
 	return (0);
