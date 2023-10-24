@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:23:22 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/23 13:39:49 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/24 19:06:07 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,14 @@ long long	ft_stoi_plus_imax(char *s)
 			sign = -1;
 		i++;
 	}
+	if (s[i] == '\0')
+		return (-1);
 	while (s[i] != '\0')
 	{
 		if (s[i] > '9' || s[i] < '0')
 			return (-1);
 		res = res * 10 + (s[i] - '0');
-		if ((sign * res) > 2147483647)
-			return (-1);
-		if ((sign * res) < -2147483648)
+		if ((sign * res) > 2147483647 || (sign * res) < -2147483648)
 			return (-1);
 		i++;
 	}
