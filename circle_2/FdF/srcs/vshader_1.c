@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vshader_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:04:06 by singeonho         #+#    #+#             */
-/*   Updated: 2023/09/11 13:19:38 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/26 16:51:54 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_vertex_shader(t_vshader *vshader, t_camera *camera)
 	vpmatrix[1][3] = 768 / 2;
 	vpmatrix[2][2] = 0.5;
 	vpmatrix[2][3] = 0.5;
+	
 	update_view_matrix(vshader, camera);
 	update_projection_matrix(vshader, camera);
 	update_viewport_matrix(vshader, &vpmatrix);
@@ -43,10 +44,12 @@ void	update_view_matrix(t_vshader *vshader, t_camera *camera)
 	rmatrix[2][0] = camera->basis_n.x;
 	rmatrix[2][1] = camera->basis_n.y;
 	rmatrix[2][2] = camera->basis_n.z;
+
 	init_identity_mat4(&(tmatrix));
 	tmatrix[0][3] = -(camera->position.x);
 	tmatrix[1][3] = -(camera->position.y);
 	tmatrix[2][3] = -(camera->position.z);
+
 	multiply_mat4_to_mat4(&(rmatrix), &(tmatrix), &(vshader->vmatrix));
 }
 

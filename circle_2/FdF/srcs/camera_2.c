@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 15:06:27 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/10 15:17:25 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/26 16:51:49 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	translate_camera(t_camera *camera, int keycode)
 		offset = make_vec3(camera->basis_u.x,
 				camera->basis_u.y,
 				camera->basis_u.z);
+
 	camera->position.x += offset.x;
 	camera->position.y += offset.y;
 	camera->position.z += offset.z;

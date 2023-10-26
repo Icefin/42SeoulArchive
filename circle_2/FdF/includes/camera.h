@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 14:00:54 by geshin            #+#    #+#             */
-/*   Updated: 2023/09/10 15:16:39 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/26 16:51:52 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,21 @@ typedef enum e_projection_type
 typedef struct s_camera
 {
 	t_vec3				position;
+
 	t_vec3				basis_u;
 	t_vec3				basis_v;
 	t_vec3				basis_n;
 	t_vec3				worldup;
 	double				yaw;
 	double				pitch;
+
 	double				near;
 	double				far;
 	double				left;
 	double				right;
 	double				bottom;
 	double				top;
+	
 	double				aspect;
 	double				fov;
 	t_projection_type	camera_mode;
