@@ -3,30 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 15:43:58 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/26 18:22:59 by geshin           ###   ########.fr       */
+/*   Updated: 2023/10/28 17:29:49 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKEN_TYPE_H
-# define TOKEN_TYPE_H
+#ifndef TOKEN_H
+# define TOKEN_H
 
 typedef enum e_token_type
 {
+    //Terminal Symbols
 	WORD,
     SLESS,
     SGREAT,
     DLESS,
     DGREAT,
-    PIPE
+    PIPE,
+
+    //Non-terminal Symbols
+    CMD_NAME,
+	CMD_WORD,
+	FILENAME,
+	HERE_END,
+
+	IO_FILE,
+	IO_HERE,
+	IO_REDIRECT,
+
+	CMD_PREFIX,
+	CMD_SUFFIX,
+	SIMPLE_COMMAND,
+	PIPE_SEQUENCE
 }	t_token_type;
 
 typedef struct s_token
 {
     t_token_type    type;
-    char            *str;   
+    char            *data;
 }   t_token;
+
+t_token *token_constructor(t_token_type type, char *data);
+void    token_destructor();
 
 #endif

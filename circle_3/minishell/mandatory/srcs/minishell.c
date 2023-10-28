@@ -6,52 +6,66 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:38:00 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/23 18:30:57 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/28 17:40:55 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <readline/readline.h>
+#include "lexer.h"
+#include "parser.h"
 
 #define	FALSE	0
 #define	TRUE	1
+
+int	errno;
 
 static void	init_shell()
 {
 	return ;
 }
 
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **envp)
 {
-	char	*input;
+	char			*command;
+	t_queue_token	qtoken;
+	t_ast_node		root;
 
-	#pragma region SHELL_INIT
+#pragma region SHELL_INIT
 	printf("==========INIT SHELL==========\n");
 	init_shell();
-	#pragma endregion
+#pragma endregion
 
 	while (TRUE)
 	{
-		input = readline("prompt : ");
-		if (input != NULL)
-			printf("Input : %s\n", input);
+#pragma region INPUT_PROCESS
+		command = readline("prompt : ");
+		if (command != NULL)
+			printf("Input : %s\n", command);
 		else
 			continue ;
-		add_history(input);
-		#pragma region PARSING
+		add_history(command);
+#pragma endregion
+		
+#pragma region PARSING
 		printf("\n\n==========PARSE SHELL==========\n");
-
-
-		#pragma endregion
-
-		free(input);
-
-		#pragma region EXECUTION
+		if (lexer_tokenize_command(command, &qtoken) <= FALSE)
+		{
+			;
+		}
+		free(command);
+		if (parser_build_astree(&qtoken, &root) <= FALSE)
+		{
+			;
+		}
+#pragma endregion
+		
+#pragma region EXECUTION
 		printf("\n\n==========EXECUTE SHELL==========\n");
 
 
-		#pragma endregion
+#pragma endregion
 	}
 	return (0);
 }

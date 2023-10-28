@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   astree.h                                           :+:      :+:    :+:   */
+/*   string.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 18:05:12 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/28 15:21:52 by singeonho        ###   ########.fr       */
+/*   Created: 2023/10/28 17:24:05 by singeonho         #+#    #+#             */
+/*   Updated: 2023/10/28 17:28:26 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASTREE_H
-# define ASTREE_H
+#ifndef STRING_H
+# define STRING_H
 
-# include "token.h"
-
-typedef struct s_ast_node
+typedef struct s_string
 {
-	t_token			*token;
-	t_ast_node		*left;
-	t_ast_node		*right;
-}	t_ast_node;
+	char	*str;
+	int		length;
+	int		capacity;
+}	t_string;
 
-t_ast_node	*ast_node_constructor();
-void		ast_node_destructor();
+t_string	*string_constructor(int length);
+void		string_destructor(t_string	*s);
+
+void		string_append(t_string	*s, char c);
+int			string_compare(t_string *s1, t_string *s2);
 
 #endif

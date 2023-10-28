@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   astree.h                                           :+:      :+:    :+:   */
+/*   error_code.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 18:05:12 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/28 15:21:52 by singeonho        ###   ########.fr       */
+/*   Created: 2023/10/28 17:39:55 by singeonho         #+#    #+#             */
+/*   Updated: 2023/10/28 17:40:19 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASTREE_H
-# define ASTREE_H
+#ifndef ERROR_CODE_H
+# define ERROR_CODE_H
 
-# include "token.h"
-
-typedef struct s_ast_node
+typedef enum e_error
 {
-	t_token			*token;
-	t_ast_node		*left;
-	t_ast_node		*right;
-}	t_ast_node;
 
-t_ast_node	*ast_node_constructor();
-void		ast_node_destructor();
+}	t_error;
 
 #endif
