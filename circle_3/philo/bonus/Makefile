@@ -3,7 +3,7 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-NAME = philo
+NAME = philo_bonus
 
 INCLUDE = ./includes/
 
