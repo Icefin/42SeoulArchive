@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:52:02 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/28 16:54:33 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/29 21:23:41 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define LEXER_H
 
 # include "queue_token.h"
+# include "string.h"
+
+typedef struct s_lexer
+{
+	t_string	str;
+}	t_lexer;
 
 /*
 ** Tokenize input command

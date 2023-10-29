@@ -6,14 +6,14 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:52:00 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/28 17:23:27 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/29 21:21:36 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "astree.h"
+# include "stack_ast_node.h"
 # include "queue_token.h"
 
 typedef enum e_action
@@ -23,6 +23,13 @@ typedef enum e_action
 	ACCEPT,
 	ERROR
 }	t_action;
+
+typedef struct s_parser
+{
+	t_stack_ast_node	stack;
+	int					**ptable;
+	int					state;
+}	t_parser;
 
 /*
 ** Build ASTree from vector<token>

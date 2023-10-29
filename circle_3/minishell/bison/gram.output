@@ -1,0 +1,389 @@
+Grammar
+
+    0 $accept: pipe_sequence $end
+
+    1 cmd_name: WORD
+
+    2 cmd_word: WORD
+
+    3 filename: WORD
+
+    4 here_end: WORD
+
+    5 io_file: SLESS filename
+    6        | SGREAT filename
+    7        | DGREAT filename
+
+    8 io_here: DLESS here_end
+
+    9 io_redirect: io_file
+   10            | io_here
+
+   11 cmd_prefix: io_redirect
+   12           | cmd_prefix io_redirect
+
+   13 cmd_suffix: io_redirect
+   14           | cmd_suffix io_redirect
+   15           | WORD
+   16           | cmd_suffix WORD
+
+   17 simple_command: cmd_prefix cmd_word cmd_suffix
+   18               | cmd_prefix cmd_word
+   19               | cmd_prefix
+   20               | cmd_name cmd_suffix
+   21               | cmd_name
+
+   22 pipe_sequence: simple_command
+   23              | pipe_sequence PIPE simple_command
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+WORD (258) 1 2 3 4 15 16
+SLESS (259) 5
+SGREAT (260) 6
+DLESS (261) 8
+DGREAT (262) 7
+PIPE (263) 23
+
+
+Nonterminals, with rules where they appear
+
+$accept (9)
+    on left: 0
+cmd_name (10)
+    on left: 1, on right: 20 21
+cmd_word (11)
+    on left: 2, on right: 17 18
+filename (12)
+    on left: 3, on right: 5 6 7
+here_end (13)
+    on left: 4, on right: 8
+io_file (14)
+    on left: 5 6 7, on right: 9
+io_here (15)
+    on left: 8, on right: 10
+io_redirect (16)
+    on left: 9 10, on right: 11 12 13 14
+cmd_prefix (17)
+    on left: 11 12, on right: 12 17 18 19
+cmd_suffix (18)
+    on left: 13 14 15 16, on right: 14 16 17 20
+simple_command (19)
+    on left: 17 18 19 20 21, on right: 22 23
+pipe_sequence (20)
+    on left: 22 23, on right: 0 23
+
+
+state 0
+
+    0 $accept: . pipe_sequence $end
+
+    WORD    shift, and go to state 1
+    SLESS   shift, and go to state 2
+    SGREAT  shift, and go to state 3
+    DLESS   shift, and go to state 4
+    DGREAT  shift, and go to state 5
+
+    cmd_name        go to state 6
+    io_file         go to state 7
+    io_here         go to state 8
+    io_redirect     go to state 9
+    cmd_prefix      go to state 10
+    simple_command  go to state 11
+    pipe_sequence   go to state 12
+
+
+state 1
+
+    1 cmd_name: WORD .
+
+    $default  reduce using rule 1 (cmd_name)
+
+
+state 2
+
+    5 io_file: SLESS . filename
+
+    WORD  shift, and go to state 13
+
+    filename  go to state 14
+
+
+state 3
+
+    6 io_file: SGREAT . filename
+
+    WORD  shift, and go to state 13
+
+    filename  go to state 15
+
+
+state 4
+
+    8 io_here: DLESS . here_end
+
+    WORD  shift, and go to state 16
+
+    here_end  go to state 17
+
+
+state 5
+
+    7 io_file: DGREAT . filename
+
+    WORD  shift, and go to state 13
+
+    filename  go to state 18
+
+
+state 6
+
+   20 simple_command: cmd_name . cmd_suffix
+   21               | cmd_name .
+
+    WORD    shift, and go to state 19
+    SLESS   shift, and go to state 2
+    SGREAT  shift, and go to state 3
+    DLESS   shift, and go to state 4
+    DGREAT  shift, and go to state 5
+
+    $default  reduce using rule 21 (simple_command)
+
+    io_file      go to state 7
+    io_here      go to state 8
+    io_redirect  go to state 20
+    cmd_suffix   go to state 21
+
+
+state 7
+
+    9 io_redirect: io_file .
+
+    $default  reduce using rule 9 (io_redirect)
+
+
+state 8
+
+   10 io_redirect: io_here .
+
+    $default  reduce using rule 10 (io_redirect)
+
+
+state 9
+
+   11 cmd_prefix: io_redirect .
+
+    $default  reduce using rule 11 (cmd_prefix)
+
+
+state 10
+
+   12 cmd_prefix: cmd_prefix . io_redirect
+   17 simple_command: cmd_prefix . cmd_word cmd_suffix
+   18               | cmd_prefix . cmd_word
+   19               | cmd_prefix .
+
+    WORD    shift, and go to state 22
+    SLESS   shift, and go to state 2
+    SGREAT  shift, and go to state 3
+    DLESS   shift, and go to state 4
+    DGREAT  shift, and go to state 5
+
+    $default  reduce using rule 19 (simple_command)
+
+    cmd_word     go to state 23
+    io_file      go to state 7
+    io_here      go to state 8
+    io_redirect  go to state 24
+
+
+state 11
+
+   22 pipe_sequence: simple_command .
+
+    $default  reduce using rule 22 (pipe_sequence)
+
+
+state 12
+
+    0 $accept: pipe_sequence . $end
+   23 pipe_sequence: pipe_sequence . PIPE simple_command
+
+    $end  shift, and go to state 25
+    PIPE  shift, and go to state 26
+
+
+state 13
+
+    3 filename: WORD .
+
+    $default  reduce using rule 3 (filename)
+
+
+state 14
+
+    5 io_file: SLESS filename .
+
+    $default  reduce using rule 5 (io_file)
+
+
+state 15
+
+    6 io_file: SGREAT filename .
+
+    $default  reduce using rule 6 (io_file)
+
+
+state 16
+
+    4 here_end: WORD .
+
+    $default  reduce using rule 4 (here_end)
+
+
+state 17
+
+    8 io_here: DLESS here_end .
+
+    $default  reduce using rule 8 (io_here)
+
+
+state 18
+
+    7 io_file: DGREAT filename .
+
+    $default  reduce using rule 7 (io_file)
+
+
+state 19
+
+   15 cmd_suffix: WORD .
+
+    $default  reduce using rule 15 (cmd_suffix)
+
+
+state 20
+
+   13 cmd_suffix: io_redirect .
+
+    $default  reduce using rule 13 (cmd_suffix)
+
+
+state 21
+
+   14 cmd_suffix: cmd_suffix . io_redirect
+   16           | cmd_suffix . WORD
+   20 simple_command: cmd_name cmd_suffix .
+
+    WORD    shift, and go to state 27
+    SLESS   shift, and go to state 2
+    SGREAT  shift, and go to state 3
+    DLESS   shift, and go to state 4
+    DGREAT  shift, and go to state 5
+
+    $default  reduce using rule 20 (simple_command)
+
+    io_file      go to state 7
+    io_here      go to state 8
+    io_redirect  go to state 28
+
+
+state 22
+
+    2 cmd_word: WORD .
+
+    $default  reduce using rule 2 (cmd_word)
+
+
+state 23
+
+   17 simple_command: cmd_prefix cmd_word . cmd_suffix
+   18               | cmd_prefix cmd_word .
+
+    WORD    shift, and go to state 19
+    SLESS   shift, and go to state 2
+    SGREAT  shift, and go to state 3
+    DLESS   shift, and go to state 4
+    DGREAT  shift, and go to state 5
+
+    $default  reduce using rule 18 (simple_command)
+
+    io_file      go to state 7
+    io_here      go to state 8
+    io_redirect  go to state 20
+    cmd_suffix   go to state 29
+
+
+state 24
+
+   12 cmd_prefix: cmd_prefix io_redirect .
+
+    $default  reduce using rule 12 (cmd_prefix)
+
+
+state 25
+
+    0 $accept: pipe_sequence $end .
+
+    $default  accept
+
+
+state 26
+
+   23 pipe_sequence: pipe_sequence PIPE . simple_command
+
+    WORD    shift, and go to state 1
+    SLESS   shift, and go to state 2
+    SGREAT  shift, and go to state 3
+    DLESS   shift, and go to state 4
+    DGREAT  shift, and go to state 5
+
+    cmd_name        go to state 6
+    io_file         go to state 7
+    io_here         go to state 8
+    io_redirect     go to state 9
+    cmd_prefix      go to state 10
+    simple_command  go to state 30
+
+
+state 27
+
+   16 cmd_suffix: cmd_suffix WORD .
+
+    $default  reduce using rule 16 (cmd_suffix)
+
+
+state 28
+
+   14 cmd_suffix: cmd_suffix io_redirect .
+
+    $default  reduce using rule 14 (cmd_suffix)
+
+
+state 29
+
+   14 cmd_suffix: cmd_suffix . io_redirect
+   16           | cmd_suffix . WORD
+   17 simple_command: cmd_prefix cmd_word cmd_suffix .
+
+    WORD    shift, and go to state 27
+    SLESS   shift, and go to state 2
+    SGREAT  shift, and go to state 3
+    DLESS   shift, and go to state 4
+    DGREAT  shift, and go to state 5
+
+    $default  reduce using rule 17 (simple_command)
+
+    io_file      go to state 7
+    io_here      go to state 8
+    io_redirect  go to state 28
+
+
+state 30
+
+   23 pipe_sequence: pipe_sequence PIPE simple_command .
+
+    $default  reduce using rule 23 (pipe_sequence)
