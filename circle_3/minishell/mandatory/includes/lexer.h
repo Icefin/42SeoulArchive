@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 15:52:02 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/29 21:23:41 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/10/30 03:41:22 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,6 @@ int	lexer_tokenize_command(char *command, t_queue_token *out);
 #endif
 
 /*
-```
-%token		WORD
-
-%token		SLESS		SGREAT
-		'<'		'>'
-%token		DLESS		DGREAT
-		'<<'		'>>'
-%token		PIPE
-		'|'
-```
-
 1. If the end of input is recognized,
  the current token (if any) shall be delimited.
 
@@ -67,5 +56,4 @@ int	lexer_tokenize_command(char *command, t_queue_token *out);
  the current character shall be appended to that word.
 
 9. The current character is used as the start of a new word.
-
 */
