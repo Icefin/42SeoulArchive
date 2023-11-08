@@ -1,7 +1,7 @@
 #Flags========================================================================
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -fsanitize=address -Wall -Wextra -Werror
 
 NAME = philo_bonus
 
@@ -11,7 +11,12 @@ INCLUDE = ./includes/
 
 
 #Sources========================================================================
-SRCS = 
+SRCS = ./srcs/main_bonus.c \
+		./srcs/chef_bonus_1.c \
+		./srcs/chef_bonus_2.c \
+		./srcs/philo_bonus_1.c \
+		./srcs/philo_bonus_2.c \
+		./srcs/utils_bonus.c
 
 
 #Objects=========================================================================

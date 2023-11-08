@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 16:41:58 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/09 00:56:30 by singeonho        ###   ########.fr       */
+/*   Created: 2023/11/09 00:56:42 by singeonho         #+#    #+#             */
+/*   Updated: 2023/11/09 00:57:20 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/time.h>
-#include "commontype.h"
-#include "utils.h"
+#include "commontype_bonus.h"
+#include "utils_bonus.h"
 
 static t_bool	is_space(const char c)
 {

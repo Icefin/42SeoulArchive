@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_bonus.h                                      :+:      :+:    :+:   */
+/*   chef_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/25 16:04:03 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/09 00:56:18 by singeonho        ###   ########.fr       */
+/*   Created: 2023/11/09 00:49:46 by singeonho         #+#    #+#             */
+/*   Updated: 2023/11/09 00:55:18 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_BONUS_H
-# define UTILS_BONUS_H
+#ifndef CHEF_BONUS_H
+# define CHEF_BONUS_H
 
-int			ft_atoi(char *s);
-long long	get_current_time_ms(void);
+# include "commontype_bonus.h"
+# include "philo_bonus.h"
+
+typedef struct s_chef
+{
+	int		number_of_philo;
+	int		number_of_times_must_eat;
+
+	sem_t	*forks;
+	t_philo	*philos;
+}	t_chef;
+
+void	chef_constructor(t_chef *chef, int argc, char **argv);
+void	chef_destructor(t_chef *chef);
 
 #endif
