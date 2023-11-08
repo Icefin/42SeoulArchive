@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   commontype.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/25 16:03:14 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/30 05:38:49 by geshin           ###   ########.fr       */
+/*   Created: 2023/11/08 15:56:51 by singeonho         #+#    #+#             */
+/*   Updated: 2023/11/08 16:51:01 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//argv[1] : number of philo
-//argv[2] : lifetime of philo
-//argv[3] : eating time
-//argv[4] : sleeping time
-//argv[5] : minimum eating cnt (optional.)
+#ifndef COMMONTYPE_H
+# define COMMONTYPE_H
 
-int	main(int argc, char **argv)
-{
-	
-}
+# define FALSE	0
+# define TRUE	1
+
+typedef int8_t	t_bool;
+
+#endif
