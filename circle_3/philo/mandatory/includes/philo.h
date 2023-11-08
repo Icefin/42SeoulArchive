@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:05:37 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/08 17:38:04 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/08 23:32:13 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,15 @@ typedef struct s_philo
 	int				idx;
 	t_state			state;
 	int				eat_cnt;
-	long long		eat_start;
-	long long		sleep_start;
+	long long		eat_stamp;
+	long long		sleep_stamp;
+	long long		begin_stamp;
+
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
 
 	pthread_t		thread;
-	pthread_mutex_t	*paper;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 }	t_philo;

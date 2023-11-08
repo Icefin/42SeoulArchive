@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:41:58 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/08 17:00:30 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/08 22:55:37 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,14 @@ static t_bool	is_space(const char c)
 	return (FALSE);
 }
 
-int	ft_atoi(const char *s)
+static t_bool	is_digit(const char c)
+{
+	if (c >= '0' && c <= '9')
+		return (TRUE);
+	return (FALSE);
+}
+
+int	ft_atoi(char *s)
 {
 	int	res;
 	int	idx;
@@ -37,7 +44,7 @@ int	ft_atoi(const char *s)
 			sign = -1;
 		idx++;
 	}
-	while (ft_isdigit(s[idx]))
+	while (is_digit(s[idx]))
 	{
 		res = res * 10 + (s[idx] - '0');
 		idx++;

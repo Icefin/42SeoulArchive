@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:23:47 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/08 17:34:03 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/08 23:21:01 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 static void	serve_idx_philo(t_philo *philo)
 {
-	philo->sleep_start = get_current_time_ms();
-	philo->eat_start = get_current_time_ms();
 	pthread_create(&(philo->thread), NULL, philo_start_eating, philo);
 }
 

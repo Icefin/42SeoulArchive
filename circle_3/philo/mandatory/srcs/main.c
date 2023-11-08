@@ -6,10 +6,11 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:59:09 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/08 17:10:48 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/09 00:00:22 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "philo.h"
 #include "chef.h"
 #include "utils.h"
@@ -31,6 +32,7 @@ int main(int argc, char **argv)
 		return (0);
 	}
 	chef_constructor(&chef, argc, argv);
+	printf("Serving start\n");
 	chef_start_serving(&chef);
 	while (TRUE)
 	{
