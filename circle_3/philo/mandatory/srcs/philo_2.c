@@ -6,12 +6,13 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:33:04 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/09 00:00:43 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/09 13:47:41 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
+#include "commontype.h"
 #include "utils.h"
 #include "philo.h"
 
