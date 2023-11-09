@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:23:47 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/08 23:21:01 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/09 16:25:26 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ void	chef_start_serving(t_chef *chef)
 	idx = -1;
 	while (++idx < chef->number_of_philo)
 		serve_idx_philo(&(chef->philos[idx]));
+}
+
+void	chef_stop_serving(t_chef *chef)
+{
+	int	idx;
+
+	idx = -1;
+	while (++idx < chef->number_of_philo)
+		chef->philos[idx].state = DEAD;
 }
 
 t_bool	chef_check_is_philo_ok(t_chef* chef)
