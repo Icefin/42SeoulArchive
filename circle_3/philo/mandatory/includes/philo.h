@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:05:37 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/08 23:32:13 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/10 17:05:50 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ typedef enum e_state
 	EAT,
 	THINK,
 	SLEEP,
-	DEAD
+	DEAD,
+	END
 }	t_state;
 
 typedef struct s_philo
@@ -37,6 +38,7 @@ typedef struct s_philo
 	int				time_to_sleep;
 
 	pthread_t		thread;
+	pthread_mutex_t	*mtx;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 }	t_philo;
