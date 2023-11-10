@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   philo_4.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 19:57:42 by geshin            #+#    #+#             */
-/*   Updated: 2023/11/10 21:22:30 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/11 01:33:19 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "commontype.h"
 #include "philo.h"
 
 t_state	philo_get_state(t_philo *philo)
@@ -51,19 +52,19 @@ void	philo_increase_eat_cnt(t_philo *philo)
 	pthread_mutex_unlock(philo->mtx);
 }
 
-long long	philo_get_eat_stamp(t_philo *philo)
+t_int64	philo_get_teat(t_philo *philo)
 {
-	long long	eat_stamp;
+	t_int64	teat;
 
 	pthread_mutex_lock(philo->mtx);
-	eat_stamp = philo->eat_stamp;
+	teat = philo->teat;
 	pthread_mutex_unlock(philo->mtx);
-	return (eat_stamp);
+	return (teat);
 }
 
-void	philo_set_eat_stamp(t_philo *philo, long long stamp)
+void	philo_set_teat(t_philo *philo, t_int64 stamp)
 {
 	pthread_mutex_lock(philo->mtx);
-	philo->eat_stamp = stamp;
+	philo->teat = stamp;
 	pthread_mutex_unlock(philo->mtx);
 }

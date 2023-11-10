@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:41:58 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/10 21:02:05 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/11 01:41:46 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_atoi(char *s)
 	return (sign * res);
 }
 
-long long	get_current_time_ms(void)
+t_int64	get_time(void)
 {
 	struct timeval	time;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:27:25 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/10 21:18:19 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/11 01:44:17 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,14 @@ void	philo_pick_up_forks(t_philo *philo)
 	}
 }
 
-void	philo_eat(t_philo *philo, long long tstamp)
+void	philo_eat(t_philo *philo, t_int64 tstamp)
 {
-	printf("%lld %d is eating\n", tstamp - philo->begin_stamp, philo->idx);
-	philo_set_eat_stamp(philo, tstamp);
+	printf("%lld %d is eating\n",
+	 tstamp - philo->tbegin, philo->idx);
+	philo_set_teat(philo, tstamp);
 	while (TRUE)
 	{
-		if (get_current_time_ms() - tstamp >= philo->time_to_eat)
+		if (get_time() - tstamp >= philo->etime)
 			break ;
 		if (philo_get_state(philo) == DEAD)
 		{
@@ -58,23 +59,26 @@ void	philo_eat(t_philo *philo, long long tstamp)
 	philo_set_state(philo, SLEEP);
 }
 
-void	philo_think(t_philo *philo, long long tstamp)
+void	philo_think(t_philo *philo, t_int64 tstamp)
 {
-	printf("%lld %d is thinking\n", tstamp - philo->begin_stamp, philo->idx);
+	printf("%lld %d is thinking\n",
+	 tstamp - philo->tbegin, philo->idx);
 	philo_pick_up_forks(philo);
 	if (philo_get_state(philo) == DEAD)
 		return ;
-	printf("%lld %d has taken a fork\n", get_current_time_ms() - philo->begin_stamp, philo->idx);
+	printf("%lld %d has taken a fork\n",
+	 get_time() - philo->tbegin, philo->idx);
 	philo_set_state(philo, EAT);
 }
 
-void	philo_sleep(t_philo *philo, long long tstamp)
+void	philo_sleep(t_philo *philo, t_int64 tstamp)
 {
-	printf("%lld %d is sleeping\n", tstamp - philo->begin_stamp, philo->idx);
-	philo->sleep_stamp = tstamp;
+	printf("%lld %d is sleeping\n",
+	 tstamp - philo->tbegin, philo->idx);
+	philo->tsleep = tstamp;
 	while (TRUE)
 	{
-		if (get_current_time_ms() - tstamp >= philo->time_to_sleep)
+		if (get_time() - tstamp >= philo->stime)
 			break ;
 		if (philo_get_state(philo) == DEAD)
 			return ;

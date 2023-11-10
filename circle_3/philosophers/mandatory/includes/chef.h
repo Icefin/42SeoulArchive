@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chef.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:13:03 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/10 20:59:26 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/11 01:28:51 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 typedef struct s_chef
 {
-	int				number_of_philo;
-	int				number_of_times_must_eat;
-	long long		time_to_die;
+	int				nump;
+	int				nume;
+	t_int64			dtime;
 
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*states;

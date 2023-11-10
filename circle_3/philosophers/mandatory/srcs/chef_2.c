@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chef_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:23:47 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/10 21:17:20 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/11 01:45:14 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 #include "utils.h"
 #include "chef.h"
 
-static void	serve_idx_philo(t_philo *philo, long long tstamp)
+static void	serve_idx_philo(t_philo *philo, t_int64 tstamp)
 {
-	philo->begin_stamp = tstamp;
-	philo->sleep_stamp = tstamp;
-	philo_set_eat_stamp(philo, tstamp);
+	philo->tbegin = tstamp;
+	philo->tsleep = tstamp;
+	philo_set_teat(philo, tstamp);
 	pthread_create(&(philo->thread), NULL, philo_start_eating, philo);
 }
 
-static t_bool	is_philo_starve(t_philo *philo, long long tstamp, long long time_to_die)
+static t_bool	is_starve(t_philo *philo, t_int64 tstamp, t_int64 dtime)
 {
-	if (tstamp - philo_get_eat_stamp(philo) >= time_to_die)
+	if (tstamp - philo_get_teat(philo) >= dtime)
 	{
-		philo->dead_stamp = tstamp;
+		philo->tdead = tstamp;
 		return (TRUE);
 	}
 	return (FALSE);
@@ -34,13 +34,13 @@ static t_bool	is_philo_starve(t_philo *philo, long long tstamp, long long time_t
 
 void	chef_start_serving(t_chef *chef)
 {
-	int			idx;
-	long long	serve_stamp;
+	int		idx;
+	t_int64	tserve;
 
 	idx = -1;
-	serve_stamp = get_current_time_ms();
-	while (++idx < chef->number_of_philo)
-		serve_idx_philo(&(chef->philos[idx]), serve_stamp);
+	tserve = get_time();
+	while (++idx < chef->nump)
+		serve_idx_philo(&(chef->philos[idx]), tserve);
 }
 
 void	chef_stop_serving(t_chef *chef)
@@ -48,7 +48,7 @@ void	chef_stop_serving(t_chef *chef)
 	int	idx;
 
 	idx = -1;
-	while (++idx < chef->number_of_philo)
+	while (++idx < chef->nump)
 	{
 		philo_set_state(&(chef->philos[idx]), DEAD);
 		philo_pick_down_forks(&(chef->philos[idx]));
@@ -62,18 +62,19 @@ t_bool	chef_check_is_philo_ok(t_chef *chef)
 
 	idx = -1;
 	fin = 0;
-	while (++idx < chef->number_of_philo)
+	while (++idx < chef->nump)
 	{
-		if (is_philo_starve(&(chef->philos[idx]), get_current_time_ms(), chef->time_to_die) == TRUE)
+		if (is_starve(&(chef->philos[idx]), get_time(), chef->dtime) == TRUE)
 		{
 			philo_set_state(&(chef->philos[idx]), DEAD);
-			printf("%lld %d is died\n", chef->philos[idx].dead_stamp - chef->philos[idx].begin_stamp, chef->philos[idx].idx);
+			printf("%lld %d is died\n",
+			 chef->philos[idx].tdead - chef->philos[idx].tbegin, idx + 1);
 			return (FALSE);
 		}
-		if (philo_get_eat_cnt(&(chef->philos[idx])) >= chef->number_of_times_must_eat)
+		if (philo_get_eat_cnt(&(chef->philos[idx])) >= chef->nump)
 			fin++;
 	}
-	if ((chef->number_of_times_must_eat != -1) && (fin == chef->number_of_philo))
+	if ((chef->nume != -1) && (fin == chef->nump))
 		return (FALSE);
 	return (TRUE);
 }

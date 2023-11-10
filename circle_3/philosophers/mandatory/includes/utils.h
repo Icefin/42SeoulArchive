@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   commontype.h                                       :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 15:56:51 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/08 22:52:54 by singeonho        ###   ########.fr       */
+/*   Created: 2023/10/25 16:04:00 by singeonho         #+#    #+#             */
+/*   Updated: 2023/11/11 01:42:03 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMONTYPE_H
-# define COMMONTYPE_H
+#ifndef UTILS_H
+# define UTILS_H
 
-# define FALSE	0
-# define TRUE	1
+# include "commontype.h"
 
-typedef char	t_bool;
+int		ft_atoi(char *s);
+t_int64	get_time(void);
 
 #endif

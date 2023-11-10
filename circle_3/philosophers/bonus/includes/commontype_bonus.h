@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   commontype_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/25 16:04:00 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/09 00:55:58 by singeonho        ###   ########.fr       */
+/*   Created: 2023/11/09 00:47:43 by singeonho         #+#    #+#             */
+/*   Updated: 2023/11/11 01:10:33 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef COMMONTYPE_BONUS_H
+# define COMMONTYPE_BONUS_H
 
-int			ft_atoi(char *s);
-long long	get_current_time_ms(void);
+# define FALSE	0
+# define TRUE	1
+
+typedef char		t_bool;
+typedef long long	t_int64;
 
 #endif
