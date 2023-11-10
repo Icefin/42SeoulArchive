@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:59:09 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/09 16:24:34 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/10 21:00:40 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <stdio.h>
 #include "philo.h"
 #include "chef.h"
@@ -22,7 +23,7 @@ static t_bool	is_valid_argument(int argc)
 	return (TRUE);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_chef	chef;
 
@@ -40,6 +41,7 @@ int main(int argc, char **argv)
 			chef_stop_serving(&chef);
 			break ;
 		}
+		usleep(100);
 	}
 	chef_destructor(&chef);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:05:37 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/10 17:05:50 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/10 20:59:58 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ typedef enum e_state
 	EAT,
 	THINK,
 	SLEEP,
-	DEAD,
-	END
+	DEAD
 }	t_state;
 
 typedef struct s_philo
@@ -32,8 +31,8 @@ typedef struct s_philo
 	long long		eat_stamp;
 	long long		sleep_stamp;
 	long long		begin_stamp;
+	long long		dead_stamp;
 
-	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 
@@ -43,9 +42,16 @@ typedef struct s_philo
 	pthread_mutex_t	*right_fork;
 }	t_philo;
 
-void	philo_constructor(t_philo *philo, int idx, pthread_mutex_t *left, pthread_mutex_t *right);
-void	philo_destructor(t_philo *philo);
+void		philo_constructor(t_philo *philo, int idx, pthread_mutex_t *left, pthread_mutex_t *right);
+void		philo_destructor(t_philo *philo);
 
-void	*philo_start_eating(void *input);
+void		*philo_start_eating(void *input);
+
+t_state		philo_get_state(t_philo *philo);
+void		philo_set_state(t_philo *philo, t_state state);
+int			philo_get_eat_cnt(t_philo *philo);
+void		philo_increase_eat_cnt(t_philo *philo);
+long long	philo_get_eat_stamp(t_philo *philo);
+void		philo_set_eat_stamp(t_philo *philo, long long stamp);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:33:04 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/10 17:34:35 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/10 21:01:05 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,8 @@
 #include "philo.h"
 
 extern void	philo_eat(t_philo *philo, long long tstamp);
-extern void philo_think(t_philo *philo, long long tstamp);
+extern void	philo_think(t_philo *philo, long long tstamp);
 extern void	philo_sleep(t_philo *philo, long long tstamp);
-
-t_bool	is_philo_starve(t_philo *philo, long long tstamp)
-{
-	if (tstamp - philo->eat_stamp >= philo->time_to_die)
-		return (TRUE);
-	return (FALSE);
-}
 
 void	*philo_start_eating(void *philo)
 {
@@ -33,33 +26,18 @@ void	*philo_start_eating(void *philo)
 	long long	tstamp;
 
 	p = (t_philo *)philo;
-	p->eat_stamp = p->begin_stamp;
-	p->sleep_stamp = p->begin_stamp;
 	while (TRUE)
 	{
-		pthread_mutex_lock(p->mtx);
-		if (p->state == END)
-		{
-			pthread_mutex_unlock(p->mtx);
-			break ;
-		}
 		tstamp = get_current_time_ms();
-		if (p->state == DEAD || is_philo_starve(p, tstamp) == TRUE)
-		{
-			printf("%lld %d is died\n", tstamp - p->begin_stamp, p->idx);
-			p->state = DEAD;
-			pthread_mutex_unlock(p->mtx);
-			break ;
-		}
-		pthread_mutex_unlock(p->mtx);
-
-		if (p->state == EAT)
+		if (philo_get_state(p) == EAT)
 			philo_eat(p, tstamp);
-		else if (p->state == THINK)
+		else if (philo_get_state(p) == THINK)
 			philo_think(p, tstamp);
-		else if (p->state == SLEEP)
+		else if (philo_get_state(p) == SLEEP)
 			philo_sleep(p, tstamp);
-		usleep(500);
+		if (philo_get_state(p) == DEAD)
+			break ;
+		usleep(100);
 	}
 	return (0);
 }
