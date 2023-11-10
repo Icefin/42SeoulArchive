@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 19:57:42 by geshin            #+#    #+#             */
-/*   Updated: 2023/11/10 21:01:46 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/10 21:22:30 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ t_state	philo_get_state(t_philo *philo)
 void	philo_set_state(t_philo *philo, t_state state)
 {
 	pthread_mutex_lock(philo->mtx);
+	if (philo->state == DEAD)
+	{
+		pthread_mutex_unlock(philo->mtx);
+		return ;
+	}
 	philo->state = state;
 	pthread_mutex_unlock(philo->mtx);
 }

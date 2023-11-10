@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:27:25 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/10 21:01:23 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/10 21:18:19 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,24 @@
 #include "utils.h"
 #include "philo.h"
 
-static void	pick_down_forks(t_philo *philo)
+void	philo_pick_down_forks(t_philo *philo)
 {
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 }
 
-static void	pick_up_forks(t_philo *philo)
+void	philo_pick_up_forks(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left_fork);
 	if (philo_get_state(philo) == DEAD)
 	{
-		pthread_mutex_unlock(philo->left_fork);
+		philo_pick_down_forks(philo);
 		return ;
 	}
 	pthread_mutex_lock(philo->right_fork);
 	if (philo_get_state(philo) == DEAD)
 	{
-		pthread_mutex_unlock(philo->left_fork);
-		pthread_mutex_unlock(philo->right_fork);
+		philo_pick_down_forks(philo);
 		return ;
 	}
 }
@@ -49,12 +48,12 @@ void	philo_eat(t_philo *philo, long long tstamp)
 			break ;
 		if (philo_get_state(philo) == DEAD)
 		{
-			pick_down_forks(philo);
+			philo_pick_down_forks(philo);
 			return ;
 		}
 		usleep(100);
 	}
-	pick_down_forks(philo);
+	philo_pick_down_forks(philo);
 	philo_increase_eat_cnt(philo);
 	philo_set_state(philo, SLEEP);
 }
@@ -62,7 +61,7 @@ void	philo_eat(t_philo *philo, long long tstamp)
 void	philo_think(t_philo *philo, long long tstamp)
 {
 	printf("%lld %d is thinking\n", tstamp - philo->begin_stamp, philo->idx);
-	pick_up_forks(philo);
+	philo_pick_up_forks(philo);
 	if (philo_get_state(philo) == DEAD)
 		return ;
 	printf("%lld %d has taken a fork\n", get_current_time_ms() - philo->begin_stamp, philo->idx);

@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:23:47 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/10 21:00:26 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/10 21:17:20 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ void	chef_stop_serving(t_chef *chef)
 
 	idx = -1;
 	while (++idx < chef->number_of_philo)
+	{
 		philo_set_state(&(chef->philos[idx]), DEAD);
+		philo_pick_down_forks(&(chef->philos[idx]));
+	}
 }
 
 t_bool	chef_check_is_philo_ok(t_chef *chef)
@@ -63,6 +66,7 @@ t_bool	chef_check_is_philo_ok(t_chef *chef)
 	{
 		if (is_philo_starve(&(chef->philos[idx]), get_current_time_ms(), chef->time_to_die) == TRUE)
 		{
+			philo_set_state(&(chef->philos[idx]), DEAD);
 			printf("%lld %d is died\n", chef->philos[idx].dead_stamp - chef->philos[idx].begin_stamp, chef->philos[idx].idx);
 			return (FALSE);
 		}
