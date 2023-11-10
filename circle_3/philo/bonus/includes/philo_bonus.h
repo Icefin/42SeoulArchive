@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:46:31 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/09 00:54:16 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/11 00:51:15 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct s_philo
 	long long		eat_stamp;
 	long long		sleep_stamp;
 	long long		begin_stamp;
+	long long		dead_stamp;
 
-	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 
