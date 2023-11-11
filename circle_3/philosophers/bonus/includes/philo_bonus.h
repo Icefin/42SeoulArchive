@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:46:31 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/11 00:51:15 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/11 13:39:06 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHILO_BONUS_H
 
 # include <semaphore.h>
+# include "commontype_bonus.h"
 
 typedef enum e_state
 {
@@ -25,22 +26,23 @@ typedef enum e_state
 
 typedef struct s_philo
 {
-	int				idx;
-	t_state			state;
-	int				eat_cnt;
-	long long		eat_stamp;
-	long long		sleep_stamp;
-	long long		begin_stamp;
-	long long		dead_stamp;
+	int			idx;
+	t_state		state;
+	int			eat_cnt;
+	t_int64		eat_stamp;
+	t_int64		sleep_stamp;
+	t_int64		begin_stamp;
+	t_int64		dead_stamp;
 
-	int				time_to_eat;
-	int				time_to_sleep;
+	int			time_to_eat;
+	int			time_to_sleep;
 
-	pthread_t		thread;
-	sem_t			*fork;
+	pthread_t	thread;
+	sem_t		*smp;
+	sem_t		*fork;
 }	t_philo;
 
-void	philo_constructor(t_philo *philo);
+void	philo_constructor(t_philo *philo, int idx, int time_to_eat, int time_to_sleep);
 void	philo_destructor(t_philo *philo);
 
 #endif
