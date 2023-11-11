@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:49:46 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/11 13:10:58 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/12 02:22:58 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,9 @@ typedef struct s_chef
 
 void	chef_constructor(t_chef *chef, int argc, char **argv);
 void	chef_destructor(t_chef *chef);
+
+void	chef_start_serving(t_chef *chef);
+t_bool	chef_check_is_philo_ok(t_chef *chef);
+void	chef_stop_serving(t_chef *chef);
 
 #endif

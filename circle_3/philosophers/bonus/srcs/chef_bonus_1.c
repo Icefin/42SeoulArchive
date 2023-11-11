@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:57:42 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/11 13:38:26 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/11 18:21:55 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	chef_constructor(t_chef *chef, int argc, char **argv)
 	while (++idx < chef->number_of_philo)
 	{
 		philo_constructor(&(chef->philos[idx]), idx, time_to_eat, time_to_sleep);
-		chef->philos[idx].fork = chef->forks;
 		chef->philos[idx].smp = chef->states;
+		chef->philos[idx].fork = chef->forks;
 	}
 }
 

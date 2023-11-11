@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:05:37 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/11 01:35:00 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/12 02:21:00 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	philo_destructor(t_philo *philo);
 
 void	philo_pick_up_forks(t_philo *philo);
 void	philo_pick_down_forks(t_philo *philo);
-void	*philo_start_eating(void *input);
+void	*philo_start_eating(void *philo);
 
 t_state	philo_get_state(t_philo *philo);
 void	philo_set_state(t_philo *philo, t_state state);
