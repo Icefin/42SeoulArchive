@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:57:42 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/11 18:21:55 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/12 16:31:36 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ void	chef_destructor(t_chef *chef)
 	free(chef->philos);
 	sem_unlink("forks");
 	sem_unlink("states");
-	sem_close("forks");
-	sem_close("states");
+	sem_close(chef->forks);
+	sem_close(chef->states);
 }

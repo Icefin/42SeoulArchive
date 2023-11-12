@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:57:53 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/11 13:31:25 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/12 16:33:28 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void	philo_constructor(t_philo *philo, int idx, int time_to_eat, int time_to_sle
 
 void	philo_destructor(t_philo *philo)
 {
-	pthread_join(philo->thread, NULL);
+	//pthread_join(philo->thread, NULL);
 }

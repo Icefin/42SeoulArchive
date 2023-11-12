@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:04:03 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/11 13:09:43 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/12 15:58:41 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # include "commontype_bonus.h"
 
 int		ft_atoi(char *s);
-t_int64	get_current_time_ms(void);
+t_int64	get_time(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:56:42 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/11 13:10:06 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/12 15:58:33 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_atoi(char *s)
 	return (sign * res);
 }
 
-t_int64	get_current_time_ms(void)
+t_int64	get_time(void)
 {
 	struct timeval	time;
 
