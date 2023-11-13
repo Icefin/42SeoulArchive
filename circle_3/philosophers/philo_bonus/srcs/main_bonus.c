@@ -6,10 +6,11 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:59:07 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/13 16:30:00 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/13 20:38:01 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
 #include "commontype_bonus.h"

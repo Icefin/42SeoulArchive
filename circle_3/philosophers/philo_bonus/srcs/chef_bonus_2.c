@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:57:47 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/13 20:02:36 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/13 20:40:19 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static pid_t	serve_idx_philo(t_philo *philo, t_int64 tstamp)
 	philo->sleep_stamp = tstamp;
 	philo->eat_stamp = tstamp;
 	pid = fork();
-	
 	if (pid == 0)
 		philo_start_eating(philo);
 	return (pid);

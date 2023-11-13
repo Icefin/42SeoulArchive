@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:46:31 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/13 20:04:03 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/13 20:21:20 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ typedef struct s_philo
 
 	int			time_to_eat;
 	int			time_to_sleep;
-	t_int64		time_to_die;
+	int			time_to_die;
+	int			number_of_times_must_eat;
 
 	pthread_t	thread;
 	sem_t		*smp;
