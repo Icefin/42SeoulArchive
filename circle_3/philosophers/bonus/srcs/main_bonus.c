@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:59:07 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/11 00:50:03 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/13 16:30:00 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,6 @@ int main(int argc, char **argv)
 	}
 	chef_constructor(&chef, argc, argv);
 	chef_start_serving(&chef);
-	while (TRUE)
-	{
-		if (chef_check_is_philo_ok(&chef) == FALSE)
-		{
-			chef_stop_serving(&chef);
-			break ;
-		}
-		usleep(100);
-	}
 	chef_destructor(&chef);
 	return (0);
 }

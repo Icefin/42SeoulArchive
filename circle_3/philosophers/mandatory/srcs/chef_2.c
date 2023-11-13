@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:23:47 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/11 01:45:14 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/13 16:51:39 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	serve_idx_philo(t_philo *philo, t_int64 tstamp)
 	pthread_create(&(philo->thread), NULL, philo_start_eating, philo);
 }
 
-static t_bool	is_starve(t_philo *philo, t_int64 tstamp, t_int64 dtime)
+static t_bool	is_starve(t_philo *philo, t_int64 tstamp, int dtime)
 {
 	if (tstamp - philo_get_teat(philo) >= dtime)
 	{

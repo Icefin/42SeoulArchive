@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:49:46 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/12 02:22:58 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/13 16:50:19 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ typedef struct s_chef
 {
 	int		number_of_philo;
 	int		number_of_times_must_eat;
-	t_int64	time_to_die;
 
 	sem_t	*forks;
-	sem_t	*states;
+	pid_t	*pids;
 	t_philo	*philos;
 }	t_chef;
 

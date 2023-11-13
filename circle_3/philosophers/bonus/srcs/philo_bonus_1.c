@@ -6,10 +6,11 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:57:53 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/12 16:33:28 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/13 16:09:05 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <pthread.h>
 #include "philo_bonus.h"
 
 void	philo_constructor(t_philo *philo, int idx, int time_to_eat, int time_to_sleep)
@@ -25,5 +26,5 @@ void	philo_constructor(t_philo *philo, int idx, int time_to_eat, int time_to_sle
 
 void	philo_destructor(t_philo *philo)
 {
-	//pthread_join(philo->thread, NULL);
+	__null_terminated;
 }
