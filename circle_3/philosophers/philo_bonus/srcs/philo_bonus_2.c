@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:57:59 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/13 20:34:22 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/14 00:56:57 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ extern void	philo_eat(t_philo *philo, t_int64 tstamp);
 extern void	philo_think(t_philo *philo, t_int64 tstamp);
 extern void	philo_sleep(t_philo *philo, t_int64 tstamp);
 
-void	*philo_is_starve(void *philo)
+void	*philo_coroutine_starve(void *philo)
 {
 	t_philo	*p;
 
@@ -51,7 +51,7 @@ void	*philo_start_eating(void *philo)
 	t_int64		tstamp;
 
 	p = (t_philo *)philo;
-	pthread_create(&tid, NULL, philo_is_starve, philo);
+	pthread_create(&tid, NULL, philo_coroutine_starve, philo);
 	//pthread_detach(tid);
 	while (TRUE)
 	{
@@ -62,9 +62,6 @@ void	*philo_start_eating(void *philo)
 			philo_think(p, tstamp);
 		else if (p->state == SLEEP)
 			philo_sleep(p, tstamp);
-
-		if (p->state == DEAD)
-			break ;
 		usleep(100);
 	}
 	exit(1);
