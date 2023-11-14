@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:57:59 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/14 00:56:57 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/14 16:28:02 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	*philo_start_eating(void *philo)
 
 	p = (t_philo *)philo;
 	pthread_create(&tid, NULL, philo_coroutine_starve, philo);
-	//pthread_detach(tid);
+	pthread_detach(tid);
 	while (TRUE)
 	{
 		tstamp = get_time();

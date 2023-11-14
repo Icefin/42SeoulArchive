@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:57:53 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/13 16:09:05 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/14 16:29:01 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void	philo_constructor(t_philo *philo, int idx, int time_to_eat, int time_to_sle
 
 void	philo_destructor(t_philo *philo)
 {
-	__null_terminated;
+
 }
