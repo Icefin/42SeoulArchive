@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   automaton_5.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 15:52:00 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/29 07:05:20 by geshin           ###   ########.fr       */
+/*   Created: 2023/11/22 19:42:48 by geshin            #+#    #+#             */
+/*   Updated: 2023/11/29 01:11:23 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#include "automaton.h"
 
-# include "astree.h"
-# include "vector_token.h"
+void	automaton_goto(t_automaton *atm, int next)
+{
+	stack_int_push(&(atm->st_state), next);
+	atm->is_enter = TRUE;
+}
 
-/*
-** Build ASTree from vector<token>
-*/
-void	parser_build_astree(t_vector_token *v, t_node **out);
-
-#endif
+void	automaton_accept(t_automaton *atm)
+{
+	stack_int_push(&(atm->st_state), STATE_25);
+	atm->is_enter = TRUE;
+}

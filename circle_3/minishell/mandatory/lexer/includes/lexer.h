@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 15:52:00 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/29 07:05:20 by geshin           ###   ########.fr       */
+/*   Created: 2023/10/28 15:52:02 by singeonho         #+#    #+#             */
+/*   Updated: 2023/11/29 00:46:59 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef LEXER_H
+# define LEXER_H
 
-# include "astree.h"
+# include "map_environment.h"
 # include "vector_token.h"
+# include "string.h"
 
 /*
-** Build ASTree from vector<token>
+** Tokenize input command
 */
-void	parser_build_astree(t_vector_token *v, t_node **out);
+void	lexer_tokenize_command(char *cmd, t_map_env *menv, t_vector_token *out);
 
 #endif

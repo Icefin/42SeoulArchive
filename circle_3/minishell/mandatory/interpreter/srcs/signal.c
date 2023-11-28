@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_code.h                                       :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jihwjeon <jihwjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 17:39:55 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/28 17:40:19 by singeonho        ###   ########.fr       */
+/*   Created: 2023/11/29 01:52:47 by jihwjeon          #+#    #+#             */
+/*   Updated: 2023/11/29 02:21:44 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_CODE_H
-# define ERROR_CODE_H
+#include <stdio.h>
+#include <stdlib.h>
 
-typedef enum e_error
+void	ft_signal_heredoc(int signum)
 {
-
-}	t_error;
-
-#endif
+	(void)signum;
+	printf("\n");
+	exit(1);
+}

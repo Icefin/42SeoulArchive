@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   astree.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 18:05:12 by geshin            #+#    #+#             */
-/*   Updated: 2023/10/28 15:21:52 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/29 07:01:22 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,18 @@
 
 # include "token.h"
 
-typedef struct s_ast_node
+typedef struct s_node
 {
-	t_token			*token;
-	t_ast_node		*left;
-	t_ast_node		*right;
-}	t_ast_node;
+	t_token			token;
+	struct s_node	*left;
+	struct s_node	*right;
+}	t_node;
 
-t_ast_node	*ast_node_constructor();
-void		ast_node_destructor();
+void	node_constructor(t_node *out, t_token *token, t_node *l, t_node *r);
+void	node_destructor(t_node *node);
+
+t_node	*astree_copy(t_node *origin);
+
+void	astree_destructor(t_node *root);
 
 #endif

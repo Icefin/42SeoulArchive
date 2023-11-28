@@ -1,14 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   interpreter.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 17:30:51 by singeonho         #+#    #+#             */
-/*   Updated: 2023/10/28 17:31:03 by singeonho        ###   ########.fr       */
+/*   Created: 2023/11/10 20:36:39 by jihwjeon          #+#    #+#             */
+/*   Updated: 2023/11/29 07:08:34 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#ifndef INTERPRETER_H
+# define INTERPRETER_H
 
+# include "astree.h"
+# include "map_environment.h"
+
+int	execute_ast(t_node *root, t_map_env *menv);
+
+#endif

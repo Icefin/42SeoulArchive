@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   commontype.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jihwjeon <jihwjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 15:52:00 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/29 07:05:20 by geshin           ###   ########.fr       */
+/*   Created: 2023/11/01 17:42:29 by geshin            #+#    #+#             */
+/*   Updated: 2023/11/29 01:59:46 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef COMMONTYPE_H
+# define COMMONTYPE_H
 
-# include "astree.h"
-# include "vector_token.h"
+# define TRUE	1
+# define FALSE	0
 
-/*
-** Build ASTree from vector<token>
-*/
-void	parser_build_astree(t_vector_token *v, t_node **out);
+# ifndef NULL
+#  define NULL 0
+# endif
+
+typedef char	t_bool;
 
 #endif
