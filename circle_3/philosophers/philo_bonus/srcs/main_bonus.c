@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:59:07 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/27 22:10:43 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/29 08:01:55 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_bool	is_valid_argument(int argc)
 	return (TRUE);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_chef	chef;
 

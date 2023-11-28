@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commontype_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:47:43 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/11 13:33:28 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/29 08:01:39 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 
 # define FALSE	0
 # define TRUE	1
-
-# ifndef NULL
-#  define NULL	0
-# endif
 
 typedef char		t_bool;
 typedef long long	t_int64;

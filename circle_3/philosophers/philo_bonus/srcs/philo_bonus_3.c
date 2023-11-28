@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus_3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 00:45:59 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/13 20:27:26 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/29 08:01:10 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	philo_pick_up_forks(t_philo *philo)
 void	philo_eat(t_philo *philo, t_int64 tstamp)
 {
 	printf("%lld %d is eating\n",
-	 tstamp - philo->begin_stamp, philo->idx);
+		tstamp - philo->begin_stamp, philo->idx);
 	philo->eat_stamp = tstamp;
 	while (TRUE)
 	{
@@ -46,17 +46,17 @@ void	philo_eat(t_philo *philo, t_int64 tstamp)
 void	philo_think(t_philo *philo, t_int64 tstamp)
 {
 	printf("%lld %d is thinking\n",
-	 tstamp - philo->begin_stamp, philo->idx);
+		tstamp - philo->begin_stamp, philo->idx);
 	philo_pick_up_forks(philo);
 	printf("%lld %d has taken a fork\n",
-	 get_time() - philo->begin_stamp, philo->idx);
+		get_time() - philo->begin_stamp, philo->idx);
 	philo->state = EAT;
 }
 
 void	philo_sleep(t_philo *philo, t_int64 tstamp)
 {
 	printf("%lld %d is sleeping\n",
-	 tstamp - philo->begin_stamp, philo->idx);
+		tstamp - philo->begin_stamp, philo->idx);
 	philo->sleep_stamp = tstamp;
 	while (TRUE)
 	{

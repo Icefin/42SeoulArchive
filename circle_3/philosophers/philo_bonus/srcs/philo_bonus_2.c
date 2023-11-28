@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:57:59 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/14 16:28:02 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/29 08:07:27 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	*philo_start_eating(void *philo)
 
 	p = (t_philo *)philo;
 	pthread_create(&tid, NULL, philo_coroutine_starve, philo);
-	pthread_detach(tid);
 	while (TRUE)
 	{
 		tstamp = get_time();
