@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chef.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:13:03 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/13 16:51:47 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/30 09:28:22 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_chef
 	int				nume;
 	int				dtime;
 
+	pthread_mutex_t	paper;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*states;
 	t_philo			*philos;

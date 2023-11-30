@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:27:25 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/29 07:58:33 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/30 09:32:23 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ void	philo_pick_up_forks(t_philo *philo)
 
 void	philo_eat(t_philo *philo, t_int64 tstamp)
 {
+	pthread_mutex_lock(philo->paper);
 	printf("%lld %d is eating\n",
 		tstamp - philo->tbegin, philo->idx);
+	pthread_mutex_unlock(philo->paper);
 	philo_set_teat(philo, tstamp);
 	while (TRUE)
 	{
@@ -61,20 +63,26 @@ void	philo_eat(t_philo *philo, t_int64 tstamp)
 
 void	philo_think(t_philo *philo, t_int64 tstamp)
 {
+	pthread_mutex_lock(philo->paper);
 	printf("%lld %d is thinking\n",
 		tstamp - philo->tbegin, philo->idx);
+	pthread_mutex_unlock(philo->paper);
 	philo_pick_up_forks(philo);
 	if (philo_get_state(philo) == DEAD)
 		return ;
+	pthread_mutex_lock(philo->paper);
 	printf("%lld %d has taken a fork\n",
 		get_time() - philo->tbegin, philo->idx);
+	pthread_mutex_unlock(philo->paper);
 	philo_set_state(philo, EAT);
 }
 
 void	philo_sleep(t_philo *philo, t_int64 tstamp)
 {
+	pthread_mutex_lock(philo->paper);
 	printf("%lld %d is sleeping\n",
 		tstamp - philo->tbegin, philo->idx);
+	pthread_mutex_unlock(philo->paper);
 	philo->tsleep = tstamp;
 	while (TRUE)
 	{

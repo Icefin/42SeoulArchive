@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:05:37 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/12 02:21:00 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/11/30 09:37:50 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ typedef struct s_philo
 	int				stime;
 
 	pthread_t		thread;
-	pthread_mutex_t	*mtx;
+	pthread_mutex_t	*paper;
+	pthread_mutex_t	*mtx_state;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 }	t_philo;

@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:23:47 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/29 07:58:21 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/30 09:35:16 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	chef_stop_serving(t_chef *chef)
 	while (++idx < chef->nump)
 	{
 		philo_set_state(&(chef->philos[idx]), DEAD);
+		pthread_mutex_unlock(&(chef->paper));
 		philo_pick_down_forks(&(chef->philos[idx]));
 	}
 }
@@ -67,8 +68,10 @@ t_bool	chef_check_is_philo_ok(t_chef *chef)
 		if (is_starve(&(chef->philos[idx]), get_time(), chef->dtime) == TRUE)
 		{
 			philo_set_state(&(chef->philos[idx]), DEAD);
+			pthread_mutex_lock(&(chef->paper));
 			printf("%lld %d is died\n",
 				chef->philos[idx].tdead - chef->philos[idx].tbegin, idx + 1);
+			pthread_mutex_unlock(&(chef->paper));
 			return (FALSE);
 		}
 		if (philo_get_eat_cnt(&(chef->philos[idx])) >= chef->nump)
