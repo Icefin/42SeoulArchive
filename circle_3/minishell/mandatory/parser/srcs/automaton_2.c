@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 19:42:29 by geshin            #+#    #+#             */
-/*   Updated: 2023/11/29 07:06:42 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/30 10:49:26 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,17 @@ static const int	*get_current_command(t_automaton *atm, t_token *token)
 	int		i;
 	int		atm_state;
 	int		node_type;
-	t_node	*top;
 
-	node_type = DEFAULT;
-	if (stack_is_empty(&(atm->st_node)) == FALSE)
-	{
-		stack_node_top(&(atm->st_node), &top);
-		node_type = top->token.type;
-		astree_destructor(top);
-	}
+	node_type = stack_node_top_type(&(atm->st_node));
 	atm_state = stack_int_top((&atm->st_state));
 	i = -1;
 	while (++i < PTABLE_ROW)
 	{
 		if (g_ptable[i][0] == atm_state)
 		{
-			if (atm->is_enter == TRUE
-				&& (g_ptable[i][1] == token->type || g_ptable[i][1] == DEFAULT))
+			if (atm->is_enter == TRUE && g_ptable[i][1] == token->type)
+				return (g_ptable[i]);
+			else if (atm->is_enter == TRUE && g_ptable[i][1] == DEFAULT)
 				return (g_ptable[i]);
 			else if (atm->is_enter == FALSE && g_ptable[i][1] == node_type)
 				return (g_ptable[i]);
@@ -50,8 +44,6 @@ static const int	*get_current_command(t_automaton *atm, t_token *token)
 	return (NULL);
 }
 
-//		printf("command : [CS : %d], [TK : %d], [ACT : %d], [NS : %d],
-// [PC : %d], [TTK : %d]\n", cmd[0], cmd[1], cmd[2], cmd[3], cmd[4], cmd[5]);
 void	automaton_process(t_automaton *atm, t_vector_token *v)
 {
 	int			i;

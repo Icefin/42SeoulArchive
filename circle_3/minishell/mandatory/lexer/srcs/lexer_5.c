@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:37:27 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/29 04:33:09 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/30 11:23:22 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,14 @@ static void	expand_env(t_map_env *menv, t_string *str, int *idx, t_string *out)
 	while (++i < str->length)
 	{
 		if (is_op_tk(str->str[i]) == TRUE)
-		{
-			i--;
 			break ;
-		}
 		string_append_char(&key, str->str[i]);
 		val_idx = map_environment_find_index(menv, &key);
 		if (val_idx != -1)
 			break ;
 	}
+	if (is_op_tk(str->str[i]) == TRUE)
+		i--;
 	*idx = i;
 	if (val_idx == -1)
 	{

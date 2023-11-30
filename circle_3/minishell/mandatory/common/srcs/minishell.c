@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:38:00 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/29 07:01:33 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/30 11:52:21 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,23 @@
 #include "interpreter.h"
 
 int	g_errno;
+
+static void display_shell_title(void)
+{
+	system("clear");
+	printf("\033[0;32m");
+	printf("====================================================================================\n");
+	printf("_______  ______    _______  _______    _______  __   __  _______  ___      ___\n");
+	printf("|       ||    _ |  |       ||       |  |       ||  | |  ||       ||   |    |   |\n");
+	printf("|_     _||   | ||  |    ___||    ___|  |  _____||  |_|  ||    ___||   |    |   |\n");
+	printf("  |   |  |   |_||_ |   |___ |   |___   | |_____ |       ||   |___ |   |    |   |\n");
+	printf("  |   |  |    __  ||    ___||    ___|  |_____  ||       ||    ___||   |___ |   |___ \n");
+	printf("  |   |  |   |  | ||   |___ |   |___    _____| ||   _   ||   |___ |       ||       |\n");
+	printf("  |___|  |___|  |_||_______||_______|  |_______||__| |__||_______||_______||_______|\n");
+	printf("                                                         Author : jihwjeon, geshin  \n");
+	printf("====================================================================================\n\n");
+	printf("\033[0m");
+}
 
 void	ft_sigint_handler(int signum)
 {
@@ -69,6 +86,23 @@ static void	init_shell(t_map_env *menv, char **envp, int argc, char **argv)
 	init_signal();
 }
 
+static int	input_command(char **command)
+{
+	while (TRUE)
+	{
+		*command = readline("\033[1;32m TreeShell seed % \033[0m");
+		if (*command == NULL)
+			return (FALSE);
+		if (*command[0] == '\0')
+		{
+			free(*command);
+			continue ;
+		}
+		add_history(*command);
+		return (TRUE);
+	}
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char			*command;
@@ -77,14 +111,11 @@ int	main(int argc, char **argv, char **envp)
 	t_node			*root;
 
 	init_shell(&menv, envp, argc, argv);
+	display_shell_title();
 	while (TRUE)
 	{
-		command = readline("prompt : ");
-		if (command == NULL)
+		if (input_command(&command) == FALSE)
 			break ;
-		if (command[0] == '\0')
-			continue ;
-		add_history(command);
 		vector_token_constructor(&vtoken, 10);
 		lexer_tokenize_command(command, &menv, &vtoken);
 		free(command);

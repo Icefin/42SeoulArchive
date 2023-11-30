@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 19:19:55 by geshin            #+#    #+#             */
-/*   Updated: 2023/11/29 08:15:35 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/29 07:23:06 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,6 @@
 #include "commontype.h"
 #include "automaton.h"
 #include "parser.h"
-
-//#define PARSER_DEBUG
-
-#ifdef PARSER_DEBUG
-	char brench[3] = {'R', '\\', '/'};
-
-	void post_order(t_node *root, int space, int dir)
-	{
-		if (root == NULL)
-			return ;
-
-		space += 6;
-		post_order(root->right, space, 2);
-		printf("\n");
-		for (int i = 6; i < space; ++i)
-			printf(" ");
-		char *str = get_string_c_str(&(root->token.data));
-		printf("%c%d(%s)\n", brench[dir], root->token.type, str);
-		free(str);
-		post_order(root->left, space, 1);
-	}
-
-	void debug_print_astree(t_node *root) {
-		printf("ASTREE : \n");
-		post_order(root, 0, 0);
-	}
-#endif
 
 void	parser_build_astree(t_vector_token *v, t_node **out)
 {

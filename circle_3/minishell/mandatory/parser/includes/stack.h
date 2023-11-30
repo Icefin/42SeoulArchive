@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 15:30:42 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/29 07:05:43 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/30 10:47:21 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_bool	stack_is_empty(t_stack *st);
 
 void	stack_node_push(t_stack *st, t_node *node);
 void	stack_node_pop(t_stack *st);
+int		stack_node_top_type(t_stack *st);
 void	stack_node_top(t_stack *st, t_node **out);
 
 void	stack_int_push(t_stack *st, int i);

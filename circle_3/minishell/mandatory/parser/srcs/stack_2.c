@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 15:39:28 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/29 07:15:34 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/30 10:52:38 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,16 @@ void	stack_node_pop(t_stack *st)
 	ptr = (st->data + (sizeof(t_node *) * (st->size - 1)));
 	astree_destructor(*ptr);
 	st->size--;
+}
+
+int	stack_node_top_type(t_stack *st)
+{
+	t_node	**ptr;
+
+	if (stack_is_empty(st) == TRUE)
+		return (DEFAULT);
+	ptr = (st->data + (sizeof(t_node *) * (st->size - 1)));
+	return ((*ptr)->token.type);
 }
 
 void	stack_node_top(t_stack *st, t_node **out)
