@@ -1,0 +1,10 @@
+total 160
+drwxr-xr-x  9 singeonho  staff    288 12  1 22:12 .
+drwxr-xr-x  4 singeonho  staff    128 12  1 16:57 ..
+-rw-r--r--  1 singeonho  staff   3655 12  1 16:57 Makefile
+drwxr-xr-x  5 singeonho  staff    160 12  1 22:12 common
+-rw-r--r--  1 singeonho  staff      0 12  1 22:12 file
+drwxr-xr-x  5 singeonho  staff    160 12  1 22:12 interpreter
+drwxr-xr-x  5 singeonho  staff    160 12  1 22:12 lexer
+-rwxr-xr-x  1 singeonho  staff  76760 12  1 22:12 minishell
+drwxr-xr-x  5 singeonho  staff    160 12  1 22:12 parser
