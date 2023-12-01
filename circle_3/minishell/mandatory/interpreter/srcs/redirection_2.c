@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihwjeon <jihwjeon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:02:50 by jihwjeon          #+#    #+#             */
-/*   Updated: 2023/11/29 02:21:02 by jihwjeon         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:51:47 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ char	*make_heredoc_tmp_file(void)
 	return (NULL);
 }
 
+char	*make_and_open_tmp_file(int *fd)
+{
+	char	*tmp_file;
+
+	tmp_file = make_heredoc_tmp_file();
+	*fd = open(tmp_file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (*fd < 0)
+	{
+		free(tmp_file);
+		return (NULL);
+	}
+	return (tmp_file);
+}
+
 static int	read_heredoc(t_map_env *menv, int write_fd, t_string *delimeter)
 {
 	char		*input;
@@ -78,20 +92,6 @@ static int	read_heredoc(t_map_env *menv, int write_fd, t_string *delimeter)
 	}
 }
 
-char	*make_and_open_tmp_file(int *fd)
-{
-	char	*tmp_file;
-
-	tmp_file = make_heredoc_tmp_file();
-	*fd = open(tmp_file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	if (*fd < 0)
-	{
-		free(tmp_file);
-		return (NULL);
-	}
-	return (tmp_file);
-}
-
 int	handle_heredoc(t_map_env *menv, t_string *delimeter)
 {
 	int		fd;
@@ -107,14 +107,14 @@ int	handle_heredoc(t_map_env *menv, t_string *delimeter)
 	if (pid == 0)
 	{
 		signal(SIGINT, ft_signal_heredoc);
-		rl_catch_signals = 1;
+		//rl_catch_signals = 1;
 		read_heredoc(menv, fd, delimeter);
 	}
 	waitpid(pid, &status, 0);
-	init_signal();
 	string_destructor(delimeter);
 	string_constructor(delimeter, tmp_file);
 	free(tmp_file);
+	init_signal();
 	return (status);
 }
 

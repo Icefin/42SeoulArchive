@@ -6,7 +6,7 @@
 /*   By: jihwjeon <jihwjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:32:23 by jihwjeon          #+#    #+#             */
-/*   Updated: 2023/11/29 02:02:17 by jihwjeon         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:50:06 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_map_env
 {
 	t_vector_string	key;
 	t_vector_string	value;
+	int				exit_status;
 }	t_map_env;
 
 void	map_environment_constructor(t_map_env *out, int size);

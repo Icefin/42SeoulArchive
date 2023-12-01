@@ -6,11 +6,10 @@
 /*   By: jihwjeon <jihwjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 18:29:21 by geshin            #+#    #+#             */
-/*   Updated: 2023/11/29 02:18:53 by jihwjeon         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:04:40 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "commontype.h"
 #include "vector_token.h"
 

@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   interpreter_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jihwjeon <jihwjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:50:04 by jihwjeon          #+#    #+#             */
-/*   Updated: 2023/11/29 07:09:46 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/30 14:51:58 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <errno.h>
 #include <stdlib.h>
 #include "astree.h"
 #include "command.h"
@@ -18,7 +17,6 @@
 #include "redirection.h"
 #include "string.h"
 
-extern int	g_errno;
 extern int	handle_heredoc(t_map_env *menv, t_string *delimeter);
 
 int	visit_io_redirect(t_node *node)
@@ -74,5 +72,5 @@ void	interpreter_exit(t_node *node, t_map_env *menv)
 {
 	astree_destructor(node);
 	map_environment_destructor(menv);
-	exit(errno);
+	exit(1);
 }

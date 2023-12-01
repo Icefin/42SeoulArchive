@@ -6,7 +6,7 @@
 /*   By: jihwjeon <jihwjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:28:53 by jihwjeon          #+#    #+#             */
-/*   Updated: 2023/11/29 05:52:08 by jihwjeon         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:33:00 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int	execute_binary(t_command *cmd, t_map_env *menv)
 	pid_t	pid;
 	int		status;
 
+	signal(SIGINT, SIG_IGN);
 	pid = fork();
 	if (pid < 0)
 		return (1);
@@ -118,6 +119,7 @@ int	execute_binary(t_command *cmd, t_map_env *menv)
 			printf("\n");
 		else if (WTERMSIG(status) == SIGQUIT)
 			printf("Quit: %d\n", status);
+		status += 128;
 	}
 	init_signal();
 	return (WEXITSTATUS(status));

@@ -6,7 +6,7 @@
 #    By: jihwjeon <jihwjeon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 13:43:41 by jihwjeon          #+#    #+#              #
-#    Updated: 2023/11/29 03:48:14 by jihwjeon         ###   ########.fr        #
+#    Updated: 2023/11/30 13:55:39 by jihwjeon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS_COMMON			=	\
 						map_environment_1.c \
 						map_environment_2.c \
 						minishell.c \
+						signal.c \
 						string_1.c \
 						string_2.c \
 						token.c \
@@ -42,7 +43,6 @@ SRCS_INTERPRETER			=	\
 								interpreter_2.c \
 								redirection_1.c \
 								redirection_2.c \
-								signal.c \
 
 DIR_LEXER_SRCS		=	./lexer/srcs
 SRCS_LEXER			=	\

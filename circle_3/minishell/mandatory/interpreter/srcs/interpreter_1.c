@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   interpreter_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jihwjeon <jihwjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:43:17 by jihwjeon          #+#    #+#             */
-/*   Updated: 2023/11/29 07:09:34 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/30 14:51:48 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/wait.h>
@@ -20,7 +19,6 @@
 #include "map_environment.h"
 #include "redirection.h"
 
-extern int	g_errno;
 extern int	execute_cmd(t_node *node, t_map_env *menv, int pr, int pw);
 extern void	interpreter_exit(t_node *node, t_map_env *menv);
 extern int	visit_for_heredoc(t_node *node, t_map_env *menv, int *pipe_cnt);
@@ -33,7 +31,7 @@ int	execute_left(t_node *node, t_map_env *menv, int *pipefd)
 	if (pipe(pipefd) == -1)
 	{
 		perror("ms");
-		return (errno);
+		return (1);
 	}
 	pid = fork();
 	if (pid < 0)
@@ -41,7 +39,7 @@ int	execute_left(t_node *node, t_map_env *menv, int *pipefd)
 		close(pipefd[0]);
 		close(pipefd[1]);
 		perror("ms");
-		return (errno);
+		return (1);
 	}
 	else if (pid == 0)
 	{
@@ -60,7 +58,7 @@ int	execute_right(t_node *node, t_map_env *menv, int piperead, int *pipefd)
 	if (pipe(pipefd) == -1)
 	{
 		perror("ms");
-		return (errno);
+		return (1);
 	}
 	pid = fork();
 	if (pid < 0)
@@ -68,7 +66,7 @@ int	execute_right(t_node *node, t_map_env *menv, int piperead, int *pipefd)
 		close(pipefd[0]);
 		close(pipefd[1]);
 		perror("ms");
-		return (errno);
+		return (1);
 	}
 	else if (pid == 0)
 	{
@@ -125,18 +123,15 @@ int	execute_pipeline(t_node *node, t_map_env *menv, int pipe_cnt)
 	return (status);
 }
 
-int	execute_ast(t_node *root, t_map_env *menv)
+void	execute_ast(t_node *root, t_map_env *menv)
 {
-	int	status;
 	int	pipe_cnt;
 
-	status = 0;
-	status = visit_for_heredoc(root, menv, &pipe_cnt);
-	if (status != 0)
-		return (status);
+	menv->exit_status = visit_for_heredoc(root, menv, &pipe_cnt);
+	if (menv->exit_status != 0)
+		return ;
 	if (root->left->token.type == PIPE)
-		status = execute_pipeline(root, menv, pipe_cnt);
+		menv->exit_status = execute_pipeline(root, menv, pipe_cnt);
 	else if (root->left->token.type == SIMPLE_COMMAND)
-		status = execute_cmd(root->left, menv, STDIN_FD, STDOUT_FD);
-	return (status);
+		menv->exit_status = execute_cmd(root->left, menv, STDIN_FD, STDOUT_FD);
 }

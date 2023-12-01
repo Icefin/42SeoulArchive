@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:38:00 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/30 11:52:21 by geshin           ###   ########.fr       */
+/*   Updated: 2023/12/01 16:48:18 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,39 +22,33 @@
 #include "astree.h"
 #include "interpreter.h"
 
-int	g_errno;
+extern void	init_signal(void);
 
-static void display_shell_title(void)
+static void	display_shell_title(void)
 {
 	system("clear");
 	printf("\033[0;32m");
-	printf("====================================================================================\n");
-	printf("_______  ______    _______  _______    _______  __   __  _______  ___      ___\n");
-	printf("|       ||    _ |  |       ||       |  |       ||  | |  ||       ||   |    |   |\n");
-	printf("|_     _||   | ||  |    ___||    ___|  |  _____||  |_|  ||    ___||   |    |   |\n");
-	printf("  |   |  |   |_||_ |   |___ |   |___   | |_____ |       ||   |___ |   |    |   |\n");
-	printf("  |   |  |    __  ||    ___||    ___|  |_____  ||       ||    ___||   |___ |   |___ \n");
-	printf("  |   |  |   |  | ||   |___ |   |___    _____| ||   _   ||   |___ |       ||       |\n");
-	printf("  |___|  |___|  |_||_______||_______|  |_______||__| |__||_______||_______||_______|\n");
-	printf("                                                         Author : jihwjeon, geshin  \n");
-	printf("====================================================================================\n\n");
+	printf("====================================");
+	printf("================================================\n");
+	printf("_______  ______    _______  _______   ");
+	printf(" _______  __   __  _______  ___      ___\n");
+	printf("|       ||    _ |  |       ||       |");
+	printf("  |       ||  | |  ||       ||   |    |   |\n");
+	printf("|_     _||   | ||  |    ___||    ___|");
+	printf("  |  _____||  |_|  ||    ___||   |    |   |\n");
+	printf("  |   |  |   |_||_ |   |___ |   |___ ");
+	printf("  | |_____ |       ||   |___ |   |    |   |\n");
+	printf("  |   |  |    __  ||    ___||    ___|");
+	printf("  |_____  ||       ||    ___||   |___ |   |___ \n");
+	printf("  |   |  |   |  | ||   |___ |   |___ ");
+	printf("   _____| ||   _   ||   |___ |       ||       |\n");
+	printf("  |___|  |___|  |_||_______||_______|");
+	printf("  |_______||__| |__||_______||_______||_______|\n");
+	printf("                                     ");
+	printf("                    Author : jihwjeon, geshin  \n");
+	printf("=====================================");
+	printf("===============================================\n\n");
 	printf("\033[0m");
-}
-
-void	ft_sigint_handler(int signum)
-{
-	(void)signum;
-	printf("\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
-}
-
-void	init_signal(void)
-{
-	rl_catch_signals = 0;
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, ft_sigint_handler);
 }
 
 static void	init_shell(t_map_env *menv, char **envp, int argc, char **argv)
@@ -119,14 +113,11 @@ int	main(int argc, char **argv, char **envp)
 		vector_token_constructor(&vtoken, 10);
 		lexer_tokenize_command(command, &menv, &vtoken);
 		free(command);
-		parser_build_astree(&vtoken, &root);
+		parser_build_astree(&vtoken, &root, &menv);
 		vector_token_destructor(&vtoken);
 		if (root == NULL)
-		{
-			printf("Parse Error : Invalid Syntax\n");
 			continue ;
-		}
-		g_errno = execute_ast(root, &menv);
+		execute_ast(root, &menv);
 		astree_destructor(root);
 	}
 	map_environment_destructor(&menv);

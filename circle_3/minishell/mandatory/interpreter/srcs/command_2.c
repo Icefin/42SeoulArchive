@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   command_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jihwjeon <jihwjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 16:32:04 by jihwjeon          #+#    #+#             */
-/*   Updated: 2023/11/29 07:09:07 by geshin           ###   ########.fr       */
+/*   Updated: 2023/11/30 13:56:50 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <errno.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "astree.h"
@@ -21,7 +20,6 @@
 #include "string.h"
 #include "utils.h"
 
-extern int	g_errno;
 extern int	visit_cmd(t_node *n, t_map_env *menv, t_command *cmd, int *res);
 extern int	execute_binary(t_command *cmd, t_map_env *menv);
 
@@ -40,7 +38,7 @@ void	command_exit(t_command *cmd, t_map_env *menv)
 {
 	command_destructor(cmd);
 	map_environment_destructor(menv);
-	exit(errno);
+	exit(127);
 }
 
 void	ft_free_char_arr(char **arr)
