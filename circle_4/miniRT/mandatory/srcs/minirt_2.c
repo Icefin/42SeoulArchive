@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minirt_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 15:48:45 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/06 00:04:02 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/06 00:07:20 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/06 00:12:26 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "commontype.h"
 #include "minirt.h"
 
-static t_bool	is_valid_arguments(int argc, char **argv)
+void	begin_minirt(t_minirt *minirt)
 {
-	return (TRUE);
-}
-
-int main(int argc, char **argv)
-{
-	t_minirt	minirt;
-
-	if (is_valid_arguments(argc, argv) == FALSE)
-	{
-		printf("Invalid Argument Input\n");
-		return (0);
-	}
-	initialize_minirt(&minirt);
-	begin_minirt(&minirt);
-	destroy_minirt(&minirt);
-	return (0);
+	mlx_loop(minirt->screen.mlx);
 }

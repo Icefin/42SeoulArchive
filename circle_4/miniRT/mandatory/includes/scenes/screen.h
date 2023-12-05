@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   screen.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 15:48:45 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/06 00:04:02 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/05 23:41:43 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/06 00:13:01 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "commontype.h"
-#include "minirt.h"
+#ifndef SCREEN_H
+# define SCREEN_H
 
-static t_bool	is_valid_arguments(int argc, char **argv)
+# include <mlx.h>
+
+# define SCREEN_WIDTH	800
+# define SCREEN_HEIGHT	600
+
+typedef struct s_screen
 {
-	return (TRUE);
-}
+	void	*mlx;
+	void	*window;
+}	t_screen;
 
-int main(int argc, char **argv)
-{
-	t_minirt	minirt;
+void	initialize_screen();
+void	destroy_screen();
 
-	if (is_valid_arguments(argc, argv) == FALSE)
-	{
-		printf("Invalid Argument Input\n");
-		return (0);
-	}
-	initialize_minirt(&minirt);
-	begin_minirt(&minirt);
-	destroy_minirt(&minirt);
-	return (0);
-}
+#endif

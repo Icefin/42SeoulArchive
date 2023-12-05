@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 15:48:45 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/06 00:04:02 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/05 23:59:16 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/06 00:08:47 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "commontype.h"
-#include "minirt.h"
+#ifndef MINIRT_H
+# define MINIRT_H
 
-static t_bool	is_valid_arguments(int argc, char **argv)
+# include "scene.h"
+# include "screen.h"
+
+typedef struct s_minirt
 {
-	return (TRUE);
-}
+	t_scene		scene;
+	t_screen	screen;
+}	t_minirt;
 
-int main(int argc, char **argv)
-{
-	t_minirt	minirt;
+void	initialize_minirt(t_minirt *minirt);
+void	destroy_minirt(t_minirt *minirt);
 
-	if (is_valid_arguments(argc, argv) == FALSE)
-	{
-		printf("Invalid Argument Input\n");
-		return (0);
-	}
-	initialize_minirt(&minirt);
-	begin_minirt(&minirt);
-	destroy_minirt(&minirt);
-	return (0);
-}
+void	begin_minirt(t_minirt *minirt);
+
+#endif
