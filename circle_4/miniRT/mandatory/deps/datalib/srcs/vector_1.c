@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   material.h                                         :+:      :+:    :+:   */
+/*   vector_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 22:52:44 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/07 17:28:21 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/07 16:51:55 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/07 16:54:36 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATERIAL_H
-# define MATERIAL_H
+#include <stdlib.h>
+#include "vector.h"
 
-# include "gmathlib.h"
-
-typedef struct s_material
+void	vector_constructor(t_vector *out, int capacity, int dsize)
 {
-	t_vec3	albedo;
-	float	roughness;
-	float	metalic;
+	out->dsize = dsize;
+	out->capacity = capacity;
+	out->data = malloc(dsize * capacity);
+	out->size = 0;
+}
 
-	t_vec3	emissionColor;
-	float	emissivity;
-}	t_material;
-
-t_material	make_material(t_vec3 albedo, float roughness, float metalic);
-
-#endif
+void	vector_destructor(t_vector *v)
+{
+	
+}

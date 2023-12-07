@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 15:55:45 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/06 23:23:30 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/07 16:55:29 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ typedef struct s_vector
 void	vector_constructor(t_vector *out, int capacity, int dsize);
 void	vector_destructor(t_vector *v);
 
-void	vector_insert_index(t_vector *out, void data, int idx);
+void	*vector_get_idx(const t_vector *v, int idx);
+void	vector_set_idx(const t_vector *v, int idx, const void *data);
+void	vector_push_back(t_vector *v, const void *data);
+void	vector_pop_back(t_vector *v);
 
 #endif

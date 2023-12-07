@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 22:44:26 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/07 15:40:50 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/07 17:11:11 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	camera_on_update(t_camera *camera)
 
 	if (is_moved == TRUE)
 	{
-		//move mouse
+		calc_raydirs();
 	}
 }
 
