@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   mesh.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 15:55:45 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/06 23:23:30 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/07 15:42:56 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/07 15:58:40 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-# define VECTOR_H
+#ifndef MESH_H
+# define MESH_H
 
-typedef struct s_vector
+# include "vector.h"
+
+typedef struct s_mesh
 {
-	void	*data;
-	int		size;
-	int		capacity;
-	int		dsize;
-}	t_vector;
+	t_vector	vertices;
+	t_vector	indices;
 
-void	vector_constructor(t_vector *out, int capacity, int dsize);
-void	vector_destructor(t_vector *v);
-
-void	vector_insert_index(t_vector *out, void data, int idx);
+}	t_mesh;
 
 #endif

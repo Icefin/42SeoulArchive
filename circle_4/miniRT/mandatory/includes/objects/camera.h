@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c_camera.h                                         :+:      :+:    :+:   */
+/*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 15:58:22 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/05 23:11:35 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/06 23:42:15 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/07 16:00:32 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,32 @@
 # define CAMERA_H
 
 # include "gmathlib.h"
+# include "vector.h"
+# include "transform.h"
 
-typedef enum s_projection_type
+static const t_vec3 updir = {0, 1, 0};
+
+typedef struct t_camera
 {
-	ORTHOGRAPHIC,
-	PERSPECTIVE
-}	t_projection_type;
+	t_transform	transform;
 
-typedef struct s_c_camera
-{
-	t_projection_type	type;
+	double		fov; //= 45.0;
+	double		near; //= 0.1;
+	double		far; //= 100.0;
 
-	double				fov;
-	double				near;
-	double				far;
-}	t_c_camera;
+	t_mat4		view;
+	t_mat4		iview;
+	t_vector	raydirs;
+}	t_camera;
 
-void	zoom_camera();
+
+void	camera_on_update(t_camera *camera);
+void	camera_on_resize(t_camera *camera);
 //RT
+/*
+Calculate all the rays on camera
+*/
+void	calc_raydirs();
 /*
 Returns a ray going from camera through a screen point.
 */

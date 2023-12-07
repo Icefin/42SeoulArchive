@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object.h                                           :+:      :+:    :+:   */
+/*   light.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 16:08:23 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/05 23:18:54 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/07 15:42:24 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/07 15:57:19 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OBJECT_H
-# define OBJECT_H
+#ifndef LIGHT_H
+# define LIGHT_H
 
-# include "vector.h"
-# include "c_transform.h"
-# include "c_mesh.h"
+# include "transform.h"
 
-typedef struct s_object
+typedef struct s_dir_light
 {
-	//components...?
-}	t_object;
+	t_transform	transform;
+}	t_dir_light;
+
+typedef struct s_spot_light
+{
+	t_transform	transform;
+}	t_spot_light;
+
+typedef struct s_point_light
+{
+	t_transform	transform;
+}	t_point_light;
 
 #endif

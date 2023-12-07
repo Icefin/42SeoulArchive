@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c_mesh.h                                           :+:      :+:    :+:   */
+/*   image.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 16:04:45 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/05 18:59:45 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/07 16:04:47 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/07 16:05:09 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef C_MESH_H
-# define C_MESH_H
+#ifndef IMAGE_H
+# define IMAGE_H
 
-# include "gmathlib.h"
-# include "vector.h"
-
-typedef enum e_mesh_type
+typedef struct s_image
 {
-	CUBE,
-	SPHERE,
-	CYLINDER,
-	PLANE
-}	t_mesh_type;
-
-typedef struct s_c_mesh
-{
-	t_mesh_type	type;
-
-	t_vector	vertices;
-	t_vector	indices;
-
-}	t_c_mesh;
+	void	*fbuffer;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_image;
 
 #endif

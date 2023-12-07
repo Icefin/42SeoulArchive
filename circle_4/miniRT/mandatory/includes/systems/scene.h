@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   physicssystem.h                                    :+:      :+:    :+:   */
+/*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 18:53:19 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/06 00:14:04 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/05 18:05:07 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/07 15:48:13 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHYSICSSYSTEM_H
-# define PHYSICSSYSTEM_H
+#ifndef SCENE_H
+# define SCENE_H
 
-//__noop;
+# include "camera.h"
+# include "vector.h"
+
+typedef struct s_scene
+{
+	t_camera	*camera;
+
+	t_vector	objects;
+	t_vector	lights;
+}	t_scene;
+
+void	initialize_scene(t_scene *scene);
+void	destroy_scene(t_scene *scene);
 
 #endif

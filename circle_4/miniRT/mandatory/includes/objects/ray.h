@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   material.h                                         :+:      :+:    :+:   */
+/*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 22:52:44 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/05 23:06:50 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/05 18:29:45 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/07 15:58:50 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATERIAL_H
-# define MATERIAL_H
+#ifndef RAY_H
+# define RAY_H
 
+# include "commontype.h"
 # include "gmathlib.h"
 
-typedef struct s_material
+typedef struct s_rayinfo
 {
-	t_vec3	ambient;
-	t_vec3	specular;
-	t_vec3	emissive;
-	t_vec3	shininess;
-}	t_material;
+	float	ray_time;
+	t_vec3	hit_position;
+	t_vec3	hit_normal;
 
-static const t_material	m_metal = 
-{
-	{0.0f, 0.0f, 0.0f},
-	{0.0f, 0.0f, 0.0f},
-	{0.0f, 0.0f, 0.0f},
-	{0.0f, 0.0f, 0.0f}
-};
+	t_int32	object_id;
+}	t_rayinfo;
 
-static const t_material	m_rubber = 
+typedef struct s_ray
 {
-	{0.0f, 0.0f, 0.0f},
-	{0.0f, 0.0f, 0.0f},
-	{0.0f, 0.0f, 0.0f},
-	{0.0f, 0.0f, 0.0f}
-};
+	t_vec3	origin;
+	t_vec3	direction;
+}	t_ray;
 
 #endif
