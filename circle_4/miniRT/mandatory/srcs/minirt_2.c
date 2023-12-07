@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 00:07:20 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/06 00:12:26 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/07 22:09:29 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	begin_minirt(t_minirt *minirt)
 {
-	mlx_loop(minirt->screen.mlx);
+	mlx_loop(minirt->window.mlx);
 }

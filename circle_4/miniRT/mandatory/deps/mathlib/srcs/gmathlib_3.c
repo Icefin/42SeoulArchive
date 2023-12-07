@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   material.h                                         :+:      :+:    :+:   */
+/*   gmathlib_3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 22:52:44 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/07 23:16:03 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/07 22:36:53 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/07 22:59:54 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATERIAL_H
-# define MATERIAL_H
+#include "gmathlib.h"
 
-# include "gmathlib.h"
-
-typedef struct s_material
+double	dot_vec3(const t_vec3 *v1, const t_vec3 *v2)
 {
-	t_vec3	albedo;
-	float	roughness;
-	float	metalic;
+	return (v1->x * v2->x + v1->y * v2->y + v1->z * v2->z);
+}
 
-	//t_vec3	emissionColor;
-	//float	emissivity;
-}	t_material;
 
-t_material	make_material(t_vec3 albedo, float roughness, float metalic);
+t_vec3	cross_vec3(const t_vec3 *v1, const t_vec3 *v2)
+{
+	t_vec3	res;
+	//__noop;
+	return (res);
+}
 
-#endif
+
+
+t_vec3	reflect_vec3(const t_vec3 *v1, const t_vec3 *v2)
+{
+	t_vec3	res;
+	//__noop;
+	return (res);
+}

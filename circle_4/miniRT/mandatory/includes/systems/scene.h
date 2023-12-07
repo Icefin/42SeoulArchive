@@ -6,20 +6,17 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:05:07 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/07 15:48:13 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/07 22:13:39 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCENE_H
 # define SCENE_H
 
-# include "camera.h"
 # include "vector.h"
 
 typedef struct s_scene
 {
-	t_camera	*camera;
-
 	t_vector	objects;
 	t_vector	lights;
 }	t_scene;

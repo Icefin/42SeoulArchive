@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:53:29 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/07 16:34:46 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/07 23:27:14 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RENDERER_H
 
 # include "commontype.h"
+# include "camera.h"
 # include "image.h"
 # include "scene.h"
 # include "window.h"
@@ -29,12 +30,12 @@ typedef struct s_renderer
 	t_uint64	framecnt;
 }	t_renderer;
 
-void	initialize_renderer(t_renderer *renderer);
+void	initialize_renderer(t_renderer *renderer, const t_scene *scene, const t_camera *camera);
 void	destroy_renderer(t_renderer *renderer);
 /*
 render every pixel
 */
-void		render_screen(t_scene *scene, t_window *window);
+void		render_screen(t_renderer * renderer, t_window *window);
 
 t_uint32	per_pixel(t_ray ray);
 t_rayinfo	trace_ray(t_ray	ray);

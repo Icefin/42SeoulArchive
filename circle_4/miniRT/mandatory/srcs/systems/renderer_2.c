@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:35:15 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/07 17:06:22 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/07 23:30:25 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,25 @@ static void	mlx_pixel_put(t_image *image, t_uint32 x, t_uint32 y, t_uint32 color
 	*(t_uint32 *)dst = color;
 }
 
-void	render_screen(t_scene *scene, t_window *window)
+void	render_screen(t_renderer *renderer, t_window *window)
 {
 	t_image	image;
-	t_int32	height;
-	t_int32	width;
 	t_ray	ray;
 
-	mlx_get_screen_size(window->mlx, &width, &height);
-	image.fbuffer = mlx_new_image(window->mlx, width, height);
+	image.fbuffer = mlx_new_image(window->mlx, renderer->m_camera->width, renderer->m_camera->height);
 	image.addr = mlx_get_data_addr(image.fbuffer, &image.bits_per_pixel,
 			&image.line_length, &image.endian);
-	ray.origin = scene->camera->transform.position;
+	ray.origin = renderer->m_camera->transform.position;
 
 #define MT 0
 #if MT
 	//Multithreaded code comes here...
 #else
-	for (t_uint32 y = 0; y < height; ++y)
+	for (t_uint32 y = 0; y < renderer->m_camera->height; ++y)
 	{
-		for (t_uint32 x = 0; x < width; ++x)
+		for (t_uint32 x = 0; x < renderer->m_camera->width; ++x)
 		{
-			ray.direction = *(t_vec3 *)vector_get_idx(&(scene->camera->raydirs), x + y * width);
+			ray.direction = *(t_vec3 *)vector_get_idx(&(renderer->m_camera->raydirs), x + y * renderer->m_camera->width);
 			t_uint32 pixel_color = per_pixel(ray);
 			mlx_pixel_put(&image, x, y, pixel_color);
 		}
@@ -54,13 +51,16 @@ void	render_screen(t_scene *scene, t_window *window)
 
 t_uint32	per_pixel(t_ray ray)
 {
+	//t_uint32	pixel_color;
 	t_rayinfo	rayinfo;
 
 	rayinfo = trace_ray(ray);
 	if (rayinfo.ray_time == -1.0f)
 		return (0x000000ff);
-	
 	//Lighting...
+	//reflection
+	//refraction
+	//absorption
 	return (0xff0000ff);
 }
 

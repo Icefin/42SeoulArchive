@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera_1.c                                         :+:      :+:    :+:   */
+/*   gmathlib_9.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 22:44:26 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/07 17:11:11 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/07 22:37:14 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/07 23:01:07 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "camera.h"
-#include "commontype.h"
+#include "gmathlib.h"
 
-void	camera_on_update(t_camera *camera)
+t_quat	make_quat(double w, double x, double y, double z)
 {
-	t_bool	is_moved;
+	t_quat	res;
 
-	is_moved = FALSE;
-	//check keyboard input
-	//check mouse movement
-
-	if (is_moved == TRUE)
-	{
-		calc_raydirs();
-	}
+	res.w = w;
+	res.x = x;
+	res.y = y;
+	res.z = z;
+	return (res);
 }
 
-void	camera_on_resize(t_camera *camera)
+t_vec3	quat_to_euler(const t_quat *quat)
 {
-	
+	t_vec3	res;
+	//__noop;
+	return (res);
+}
+
+t_quat	euler_to_quat(const t_vec3 *euler)
+{
+	t_quat	res;
+	//__noop;
+	return (res);
 }

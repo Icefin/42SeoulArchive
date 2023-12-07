@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:00:11 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/07 16:06:17 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/07 23:34:33 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,7 @@ typedef struct s_cube
 {
 
 }	t_cube;
+
+t_cube	make_cube();
 
 #endif

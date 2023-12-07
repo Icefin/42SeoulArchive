@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fshader.h                                          :+:      :+:    :+:   */
+/*   importer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 18:08:57 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/05 18:57:48 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/07 23:32:01 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/07 23:32:23 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FSHADER_H
-# define FSHADER_H
+#ifndef IMPORTER_H
+# define IMPORTER_H
 
-# include "gmathlib.h"
-
-typedef struct s_fshader
+typedef struct s_importer
 {
-	//ray tracing comes here
-}	t_fshader;
+
+}	t_importer;
 
 #endif
