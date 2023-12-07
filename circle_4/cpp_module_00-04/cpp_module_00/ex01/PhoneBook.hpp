@@ -6,9 +6,12 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 01:09:33 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/08 01:17:30 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/08 01:39:12 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
 #include <string>
 
@@ -34,3 +37,5 @@ class PhoneBook
 	Contact contacts[8];
 	int		idx;
 };
+
+#endif
