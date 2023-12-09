@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 22:36:42 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/07 22:50:29 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/08 12:40:20 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ t_vec3	make_vec3(double x, double y, double z)
 	return (res);
 }
 
-t_vec3	make_rgb(double r, double g, double b)
+t_rgb	make_rgb(double r, double g, double b)
 {
-	t_vec3	res;
+	t_rgb	res;
 
 	res.r = r;
 	res.g = g;

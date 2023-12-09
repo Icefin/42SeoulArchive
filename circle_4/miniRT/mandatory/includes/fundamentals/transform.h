@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:43:35 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/07 23:18:25 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/08 12:42:34 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_transform
 	t_vec3	rotation;
 	t_vec3	scale;
 
+	t_mat4	modelmat;
 }	t_transform;
 
 void	translate_transform(t_vec3 *position);

@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:51:55 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/07 16:54:36 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/09 21:31:28 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ void	vector_constructor(t_vector *out, int capacity, int dsize)
 
 void	vector_destructor(t_vector *v)
 {
-	
+	free(v->data);
 }

@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:01:06 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/07 23:01:49 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/09 21:11:51 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ typedef struct s_vec2
 
 t_vec2	make_vec2(double x, double y);
 t_vec2	make_uv(double u, double v);
+t_vec2	vec2_plus_vec2(const t_vec2 *v1, const t_vec2 *v2);
+t_vec2	vec2_minus_vec2(const t_vec2 *v1, const t_vec2 *v2);
+t_vec2	vec2_multiply_vec2(const t_vec2 *v1, const t_vec2 *v2);
+t_vec2	vec2_multiply_num(const t_vec2 *v1, double num);
 void	clamp_vec2(t_vec2 *out, double min, double max);
 double	dot_vec2(const t_vec2 *v1, const t_vec2 *v2);
 
@@ -52,8 +56,14 @@ typedef struct s_vec3
 	};
 }	t_vec3;
 
+typedef t_vec3	t_rgb;
+
 t_vec3	make_vec3(double x, double y, double z);
-t_vec3	make_rgb(double r, double g, double b);
+t_rgb	make_rgb(double r, double g, double b);
+t_vec3	vec3_plus_vec3(const t_vec3 *v1, const t_vec3 *v2);
+t_vec3	vec3_minus_vec3(const t_vec3 *v1, const t_vec3 *v2);
+t_vec3	vec3_multiply_vec3(const t_vec3 *v1, const t_vec3 *v2);
+t_vec3	vec3_multiply_num(const t_vec3 *v1, double num);
 void	clamp_vec3(t_vec3 *out, double min, double max);
 void	normalize_vec3(t_vec3 *out);
 double	dot_vec3(const t_vec3 *v1, const t_vec3 *v2);
@@ -84,8 +94,14 @@ typedef struct s_vec4
 	};
 }	t_vec4;
 
+typedef t_vec4	t_rgba;
+
 t_vec4	make_vec4(double x, double y, double z, double w);
-t_vec4	make_rgba(double r, double g, double b, double a);
+t_rgba	make_rgba(double r, double g, double b, double a);
+t_vec4	vec4_plus_vec4(const t_vec4 *v1, const t_vec4 *v2);
+t_vec4	vec4_minus_vec4(const t_vec4 *v1, const t_vec4 *v2);
+t_vec4	vec4_multiply_vec4(const t_vec4 *v1, const t_vec4 *v2);
+t_vec4	vec4_multiply_num(const t_vec4 *v1, double num);
 void	clamp_vec4(t_vec4 *out, double min, double max);
 t_vec4	vec3_to_vec4(const t_vec3 *v, double w);
 t_vec3	vec4_to_vec3(const t_vec4 *v);

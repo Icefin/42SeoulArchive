@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:52:06 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/07 17:14:10 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/09 21:32:08 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,9 @@ void	vector_push_back(t_vector *v, const void *data)
 
 void	vector_pop_back(t_vector *v)
 {
-	
+	if (v->size == 0) {
+		printf("Vector :: Vector is empty");
+		return;
+	}
+	v->size--;
 }

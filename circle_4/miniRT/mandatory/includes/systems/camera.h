@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 23:42:15 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/07 23:17:27 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/09 21:27:57 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ typedef struct t_camera
 	t_mat4		view;
 	t_mat4		iview;
 
+	t_mat4		proj;
+	t_mat4		iproj;
+
 	t_uint32	width;
 	t_uint32	height;
 	t_vector	raydirs;
@@ -41,11 +44,10 @@ void	destroy_camera(t_camera *camera);
 
 void	camera_on_update(t_camera *camera);
 void	camera_on_resize(t_camera *camera, t_uint32 width, t_uint32 height);
-//RT
-/*
-Calculate all the rays on camera
-*/
 void	calc_raydirs(t_camera *camera);
+
+
+
 /*
 Returns a ray going from camera through a screen point.
 */

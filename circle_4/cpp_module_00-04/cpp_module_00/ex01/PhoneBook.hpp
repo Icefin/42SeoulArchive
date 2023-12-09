@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 01:09:33 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/08 01:39:12 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/08 01:45:47 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 
 class PhoneBook
 {
-	public :
+public :
 		PhoneBook();
 		~PhoneBook();
 
 		void	AddContact();
 		void	SearchContact();
 
-	private :
+private :
 	struct Contact
 	{
 		std::string	firstName;
