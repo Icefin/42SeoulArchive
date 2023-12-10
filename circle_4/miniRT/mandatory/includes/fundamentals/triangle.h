@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mesh.h                                             :+:      :+:    :+:   */
+/*   triangle.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 15:42:56 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/10 12:03:33 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/10 11:44:32 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/10 11:45:13 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MESH_H
-# define MESH_H
+#ifndef TRIANGLE_H
+# define TRIANGLE_H
 
-# include "vector.h"
+# include "vertex.h"
 
-typedef enum e_type
+typedef struct s_triangle
 {
-	SPHERE,
-	CUBE,
-	PLANE,
-	CYLINDER
-}	t_type;
+	t_vertex	a;
+	t_vertex	b;
+	t_vertex	c;
+}	t_triangle;
 
-typedef struct s_mesh
-{
-	t_type		type;
-	t_vector	vertices;
-	t_vector	indices;
 
-}	t_mesh;
+
 
 #endif

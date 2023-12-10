@@ -12,7 +12,7 @@
 
 #include "renderer.h"
 
-void	initialize_renderer(t_renderer *renderer, const t_scene *scene, const t_camera * camera)
+void	initialize_renderer(t_renderer *renderer, const t_scene *scene, const t_camera *camera)
 {
 	renderer->m_scene = scene;
 	renderer->m_camera = camera;

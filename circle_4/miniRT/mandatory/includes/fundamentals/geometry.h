@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mesh.h                                             :+:      :+:    :+:   */
+/*   geometry.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 15:42:56 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/10 12:03:33 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/10 12:00:02 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/10 12:01:18 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MESH_H
-# define MESH_H
+#ifndef GEOMETRY_H
+# define GEOMETRY_H
 
-# include "vector.h"
+# include "triangle.h"
+# include "ray.h"
 
-typedef enum e_type
-{
-	SPHERE,
-	CUBE,
-	PLANE,
-	CYLINDER
-}	t_type;
+t_rayinfo	raycast_triangle(const t_ray *ray, const t_triangle *triangle);
 
-typedef struct s_mesh
-{
-	t_type		type;
-	t_vector	vertices;
-	t_vector	indices;
-
-}	t_mesh;
 
 #endif
