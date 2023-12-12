@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 01:08:16 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/08 01:21:52 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/12 18:53:44 by geshin            #+#    #+#             */
+/*   Updated: 2023/12/12 18:53:52 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "Zombie.hpp"
 
-int main() {
-	
+int main(int argc, char** argv) {
+
 }

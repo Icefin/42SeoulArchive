@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 01:09:33 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/12 18:35:54 by geshin           ###   ########.fr       */
+/*   Created: 2023/12/12 18:54:24 by geshin            #+#    #+#             */
+/*   Updated: 2023/12/12 18:56:16 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
 #include <string>
 
-class PhoneBook
+class Zombie
 {
 public :
-				PhoneBook();
-				~PhoneBook();
+	Zombie();
+	~Zombie();
 
-		void	AddContact();
-		void	SearchContact();
-
+	void announce(void);
 private :
-	struct Contact
-	{
-		std::string	firstName;
-		std::string	lastName;
-		std::string nickName;
-		std::string phoneNumber;
-		std::string darkestSecret;
-	};
-
-	Contact contacts[8];
-	int		idx;
+	std::string _name;
 };
 
 #endif
