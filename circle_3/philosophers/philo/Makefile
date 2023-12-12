@@ -18,6 +18,7 @@ SRCS = ./srcs/main.c \
 		./srcs/philo_2.c \
 		./srcs/philo_3.c \
 		./srcs/philo_4.c \
+		./srcs/philo_5.c \
 		./srcs/utils.c
 
 
