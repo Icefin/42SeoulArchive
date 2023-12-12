@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:42:56 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/10 12:03:33 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/12 16:20:12 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ typedef enum e_type
 	SPHERE,
 	CUBE,
 	PLANE,
-	CYLINDER
+	CYLINDER,
+	TRIANGLE
 }	t_type;
 
 typedef struct s_mesh
