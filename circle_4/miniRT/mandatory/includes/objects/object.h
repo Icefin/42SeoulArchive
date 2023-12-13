@@ -6,21 +6,45 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:01:37 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/10 12:04:01 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/13 15:52:21 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECT_H
 # define OBJECT_H
 
-# include "transform.h"
-# include "mesh.h"
+#include "commontype.h"
+#include "gmathlib.h"
+
+typedef enum e_object_type
+{
+	SPHERE = 0,
+	PLANE,
+	CYLINDER,
+}	t_object_type;
 
 typedef struct s_object
 {
-	t_transform	transform;
-	t_mesh		mesh;
+	t_object_type	type;
+
+	t_vec3			position;
+	t_uint32		material_id;
+
+	//Plane
+	t_vec3			normal;
+
+	//Sphere
+	t_uint32		radius;
+
+	//Cylinder
+	t_vec3			axis;
+	t_uint32		radius;
+	t_uint32		length;
+
+	//Cone
+
 }	t_object;
+
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:35:15 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/07 23:30:25 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/13 15:23:26 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_rayinfo	closest_hit(t_ray ray, float ray_time, t_int32 object_id)
 {
 	t_rayinfo	rayinfo;
 
-	rayinfo.ray_time = ray_time;
+	rayinfo.raytime = ray_time;
 	rayinfo.object_id = object_id;
 	//rayinfo.hit_position = position of hit in world;
 	//rayinfo.hit_normal = normal of hit position in world;
@@ -89,6 +89,6 @@ t_rayinfo	miss(t_ray ray)
 {
 	t_rayinfo	rayinfo;
 
-	rayinfo.ray_time = -1.0f;
+	rayinfo.raytime = -1.0f;
 	return (rayinfo);
 }

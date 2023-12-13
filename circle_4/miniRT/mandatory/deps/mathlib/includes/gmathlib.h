@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:01:06 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/12 16:15:06 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/13 14:49:15 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ typedef struct s_vec2
 	};
 }	t_vec2;
 
+typedef t_vec2	t_uv;
+
 t_vec2	make_vec2(double x, double y);
-t_vec2	make_uv(double u, double v);
+t_uv	make_uv(double u, double v);
 t_vec2	vec2_plus_vec2(const t_vec2 *v1, const t_vec2 *v2);
 t_vec2	vec2_minus_vec2(const t_vec2 *v1, const t_vec2 *v2);
 t_vec2	vec2_multiply_vec2(const t_vec2 *v1, const t_vec2 *v2);
