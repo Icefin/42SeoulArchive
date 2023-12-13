@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 01:09:33 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/12 18:35:54 by geshin           ###   ########.fr       */
+/*   Created: 2023/12/12 18:57:56 by geshin            #+#    #+#             */
+/*   Updated: 2023/12/12 19:00:01 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
-
+#include <iostream>
 #include <string>
 
-class PhoneBook
+int main(int argc, char** argv)
 {
-public :
-				PhoneBook();
-				~PhoneBook();
+	std::string str = "HI THIS IS BRAIN";
 
-		void	AddContact();
-		void	SearchContact();
+	std::string* stringPTR = &str;
+	std::string& stringREF = str;
 
-private :
-	struct Contact
-	{
-		std::string	firstName;
-		std::string	lastName;
-		std::string nickName;
-		std::string phoneNumber;
-		std::string darkestSecret;
-	};
+	std::cout << &str << '\n';
+	std::cout << stringPTR << '\n';
+	std::cout << &stringREF << '\n';
 
-	Contact contacts[8];
-	int		idx;
-};
-
-#endif
+	std::cout << str << '\n';
+	std::cout << *stringPTR << '\n';
+	std::cout << stringREF;
+}
