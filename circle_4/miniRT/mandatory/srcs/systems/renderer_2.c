@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:35:15 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/13 15:23:26 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/13 19:03:57 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	render_screen(t_renderer *renderer, t_window *window)
 	image.fbuffer = mlx_new_image(window->mlx, renderer->m_camera->width, renderer->m_camera->height);
 	image.addr = mlx_get_data_addr(image.fbuffer, &image.bits_per_pixel,
 			&image.line_length, &image.endian);
-	ray.origin = renderer->m_camera->transform.position;
+	ray.origin = renderer->m_camera->position;
 
 #define MT 0
 #if MT
@@ -40,7 +40,7 @@ void	render_screen(t_renderer *renderer, t_window *window)
 		for (t_uint32 x = 0; x < renderer->m_camera->width; ++x)
 		{
 			ray.direction = *(t_vec3 *)vector_get_idx(&(renderer->m_camera->raydirs), x + y * renderer->m_camera->width);
-			t_uint32 pixel_color = per_pixel(ray);
+			t_uint32 pixel_color = per_pixel(ray, renderer->m_scene);
 			mlx_pixel_put(&image, x, y, pixel_color);
 		}
 	}
@@ -49,19 +49,19 @@ void	render_screen(t_renderer *renderer, t_window *window)
 	mlx_destroy_image(window->mlx, image.fbuffer);
 }
 
-t_uint32	per_pixel(t_ray ray)
+t_uint32	per_pixel(t_ray ray, t_scene *scene)
 {
-	//t_uint32	pixel_color;
+	t_uint32	pixel_color = 0x000000ff;
 	t_rayinfo	rayinfo;
 
 	rayinfo = trace_ray(ray);
-	if (rayinfo.ray_time == -1.0f)
-		return (0x000000ff);
+	if (rayinfo.raytime == -1.0f)
+		return (pixel_color);
 	//Lighting...
 	//reflection
 	//refraction
 	//absorption
-	return (0xff0000ff);
+	return (pixel_color);
 }
 
 t_rayinfo	trace_ray(t_ray	ray)

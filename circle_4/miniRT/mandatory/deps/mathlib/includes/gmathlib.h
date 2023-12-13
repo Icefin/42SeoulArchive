@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:01:06 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/13 14:49:15 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/13 18:55:02 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_vec3	vec3_minus_vec3(const t_vec3 *v1, const t_vec3 *v2);
 t_vec3	vec3_multiply_vec3(const t_vec3 *v1, const t_vec3 *v2);
 t_vec3	vec3_multiply_num(const t_vec3 *v1, double num);
 void	clamp_vec3(t_vec3 *out, double min, double max);
-void	normalize_vec3(t_vec3 *out);
+t_vec3	normalize_vec3(const t_vec3 *v);
 double	dot_vec3(const t_vec3 *v1, const t_vec3 *v2);
 t_vec3	cross_vec3(const t_vec3 *v1, const t_vec3 *v2);
 t_vec3	reflect_vec3(const t_vec3 *v1, const t_vec3 *v2);		//glm::reflect()
@@ -131,17 +131,5 @@ t_mat4	mul_mat4_to_mat4(const t_mat4 *m1, const t_mat4 *m2);
 t_vec4	mul_mat4_to_vec4(const t_mat4 *m, const t_vec4 *v);
 t_mat4	make_view_mat(t_vec3 pos, t_vec3 target, t_vec3 up);			//glm::lookAt();
 t_mat4	make_proj_mat(float fov, float aspect, float near, float far);	//glm::perspective();
-
-typedef struct s_quat
-{
-	double	w;
-	double	x;
-	double	y;
-	double	z;
-}	t_quat;
-
-t_quat	make_quat(double w, double x, double y, double z);
-t_vec3	quat_to_euler(const t_quat *quat);
-t_quat	euler_to_quat(const t_vec3 *euler);
 
 #endif

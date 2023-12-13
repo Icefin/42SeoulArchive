@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:01:37 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/13 15:52:21 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/13 19:12:08 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ typedef enum e_object_type
 typedef struct s_object
 {
 	t_object_type	type;
+	t_uint32		id;
 
 	t_vec3			position;
-	t_uint32		material_id;
+	t_rgb			rgb;
 
 	//Plane
 	t_vec3			normal;
@@ -40,9 +41,6 @@ typedef struct s_object
 	t_vec3			axis;
 	t_uint32		radius;
 	t_uint32		length;
-
-	//Cone
-
 }	t_object;
 
 

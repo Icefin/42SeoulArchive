@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:53:29 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/08 12:47:54 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/13 18:48:18 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ typedef struct s_renderer
 {
 	t_scene		*m_scene;
 	t_camera	*m_camera;
-
-	t_uint64	framecnt;
 }	t_renderer;
 
 void		initialize_renderer(t_renderer *renderer, const t_scene *scene, const t_camera *camera);
@@ -44,5 +42,5 @@ t_rayinfo	miss(t_ray ray);
 /*
 resize image
 */
-void	on_resize();
+void		renderer_on_resize();
 #endif

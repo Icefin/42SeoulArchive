@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:53:09 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/09 11:58:46 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/13 18:47:35 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,10 @@
 
 typedef struct s_inputmanager
 {
-	t_bool	key_state[255];
-	t_vec3	mouse_prev;
-	t_vec3	mouse_curr;
+	t_vec2	mouse_prev;
+	t_vec2	mouse_curr;
 }	t_inputmanager;
 
 void	initialize_inputmanager();
-void	inputmanager_on_update();
 
 #endif
