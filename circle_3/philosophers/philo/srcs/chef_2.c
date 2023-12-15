@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chef_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:23:47 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/30 09:35:16 by geshin           ###   ########.fr       */
+/*   Updated: 2023/12/15 15:54:50 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,12 @@ t_bool	chef_check_is_philo_ok(t_chef *chef)
 		{
 			philo_set_state(&(chef->philos[idx]), DEAD);
 			pthread_mutex_lock(&(chef->paper));
-			printf("%lld %d is died\n",
+			printf("%lld %d died\n",
 				chef->philos[idx].tdead - chef->philos[idx].tbegin, idx + 1);
 			pthread_mutex_unlock(&(chef->paper));
 			return (FALSE);
 		}
-		if (philo_get_eat_cnt(&(chef->philos[idx])) >= chef->nump)
+		if (philo_get_eat_cnt(&(chef->philos[idx])) >= chef->nume)
 			fin++;
 	}
 	if ((chef->nume != -1) && (fin == chef->nump))

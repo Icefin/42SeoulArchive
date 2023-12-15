@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:46:31 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/13 20:21:20 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/15 15:39:36 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct s_philo
 }	t_philo;
 
 void	philo_constructor(t_philo *philo, int idx, int time_to_eat, int time_to_sleep);
-void	philo_destructor(t_philo *philo);
 
 void	philo_pick_up_forks(t_philo *philo);
 void	philo_pick_down_forks(t_philo *philo);

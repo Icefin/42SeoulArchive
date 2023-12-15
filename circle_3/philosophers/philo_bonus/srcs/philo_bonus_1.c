@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:57:53 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/27 22:10:31 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/15 15:18:40 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,4 @@ void	philo_constructor(t_philo *philo, int idx, int time_to_eat, int time_to_sle
 	philo->eat_cnt = 0;
 	philo->time_to_eat = time_to_eat;
 	philo->time_to_sleep = time_to_sleep;
-}
-
-void	philo_destructor(t_philo *philo)
-{
-
 }

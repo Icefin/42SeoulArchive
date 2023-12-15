@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:57:42 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/27 22:10:47 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/15 16:03:05 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	chef_constructor(t_chef *chef, int argc, char **argv)
 	number_of_times_must_eat = -1;
 	if (argc == 6)
 		number_of_times_must_eat = ft_atoi(argv[5]);
+	sem_unlink("forks");
 	chef->forks = sem_open("forks", O_CREAT, 0644, chef->number_of_philo);
 	chef->pids = (pid_t *)malloc(sizeof(pid_t) * chef->number_of_philo);
 	chef->philos = (t_philo *)malloc(sizeof(t_philo) * chef->number_of_philo);
@@ -47,8 +48,6 @@ void	chef_destructor(t_chef *chef)
 	int	idx;
 
 	idx = -1;
-	while (++idx < chef->number_of_philo)
-		philo_destructor(&(chef->philos[idx]));
 	free(chef->pids);
 	free(chef->philos);
 	sem_unlink("forks");
