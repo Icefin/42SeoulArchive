@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 01:09:33 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/12 18:35:54 by geshin           ###   ########.fr       */
+/*   Updated: 2023/12/15 16:41:05 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,21 @@ public :
 		void	SearchContact();
 
 private :
-	struct Contact
+	class Contact
 	{
+	public :
 		std::string	firstName;
 		std::string	lastName;
 		std::string nickName;
 		std::string phoneNumber;
 		std::string darkestSecret;
+
+		void	PrintContact(int idx);
 	};
 
-	Contact contacts[8];
-	int		idx;
+	Contact m_contacts[8];
+	int		m_front;
+	int		m_end;
 };
 
 #endif
