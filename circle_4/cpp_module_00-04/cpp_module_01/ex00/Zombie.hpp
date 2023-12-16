@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 18:54:24 by geshin            #+#    #+#             */
-/*   Updated: 2023/12/12 18:56:16 by geshin           ###   ########.fr       */
+/*   Updated: 2023/12/16 15:41:30 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ class Zombie
 {
 public :
 	Zombie();
+	Zombie(std::string name);
 	~Zombie();
 
 	void announce(void);
 private :
-	std::string _name;
+	std::string m_Name;
 };
 
 #endif
