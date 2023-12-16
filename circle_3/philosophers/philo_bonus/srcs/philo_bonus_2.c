@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:57:59 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/15 16:02:35 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/16 15:22:50 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,30 @@
 extern void	philo_eat(t_philo *philo, t_int64 tstamp);
 extern void	philo_think(t_philo *philo, t_int64 tstamp);
 extern void	philo_sleep(t_philo *philo, t_int64 tstamp);
+
+static char		*generate_unique_name(t_philo *philo)
+{
+	char	*prefix;
+	char	*num;
+	char	*res;
+
+	prefix = "bin_sem";
+	num = ft_itoa(philo->idx);
+	res = ft_strjoin(prefix, num);
+	return (res);
+}
+
+static sem_t	*generate_binary_semaphore(t_philo *philo)
+{
+	char	*name;
+	sem_t	*bin;
+	
+	name = generate_unique_name(philo);
+	sem_unlink(name);
+	bin = sem_open(name, O_CREAT, 0644, 1);
+	free(name);
+	return (bin);
+}
 
 void	*philo_coroutine_starve(void *philo)
 {
@@ -53,8 +77,7 @@ void	*philo_start_eating(void *philo)
 	t_int64		tstamp;
 
 	p = (t_philo *)philo;
-	sem_unlink("smp");
-	p->smp = sem_open("smp", O_CREAT, 0644, 1);
+	p->smp = generate_binary_semaphore(p);
 	pthread_create(&tid, NULL, philo_coroutine_starve, philo);
 	while (TRUE)
 	{

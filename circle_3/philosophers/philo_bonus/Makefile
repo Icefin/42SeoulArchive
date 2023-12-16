@@ -1,7 +1,7 @@
 #Flags========================================================================
 CC = cc
 
-CFLAGS = -g -fsanitize=thread #-Wall -Wextra -Werror
+CFLAGS = #-fsanitize=address #-Wall -Wextra -Werror
 
 NAME = philo_bonus
 
