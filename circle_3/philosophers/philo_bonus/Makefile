@@ -17,7 +17,8 @@ SRCS = ./srcs/main_bonus.c \
 		./srcs/philo_bonus_1.c \
 		./srcs/philo_bonus_2.c \
 		./srcs/philo_bonus_3.c \
-		./srcs/utils_bonus.c
+		./srcs/utils_bonus_1.c \
+		./srcs/utils_bonus_2.c
 
 
 #Objects=========================================================================
