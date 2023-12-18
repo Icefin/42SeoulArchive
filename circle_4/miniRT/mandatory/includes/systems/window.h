@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 23:41:43 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/07 15:55:55 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/18 15:55:40 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ typedef struct s_window
 
 void	initialize_window(t_window *window);
 void	destroy_window(t_window *window);
+
+void	inputhook(t_window *window);
 
 #endif

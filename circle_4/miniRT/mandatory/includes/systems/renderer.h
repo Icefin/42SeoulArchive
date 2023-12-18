@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:53:29 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/13 18:48:18 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/18 16:00:08 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_renderer
 	t_camera	*m_camera;
 }	t_renderer;
 
-void		initialize_renderer(t_renderer *renderer, const t_scene *scene, const t_camera *camera);
+void		initialize_renderer(t_renderer *renderer, const t_scene *scene);
 void		destroy_renderer(t_renderer *renderer);
 /*
 render every pixel
