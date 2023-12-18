@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chef_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:49:46 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/13 20:20:36 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/18 13:29:02 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@
 
 typedef struct s_chef
 {
-	int		number_of_philo;
+	int		nump;
+	int		dtime;
+	int		etime;
+	int		stime;
 
 	sem_t	*forks;
 	pid_t	*pids;

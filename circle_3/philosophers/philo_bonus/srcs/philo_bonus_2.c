@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:57:59 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/16 15:22:50 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/18 13:35:57 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ extern void	philo_eat(t_philo *philo, t_int64 tstamp);
 extern void	philo_think(t_philo *philo, t_int64 tstamp);
 extern void	philo_sleep(t_philo *philo, t_int64 tstamp);
 
-static char		*generate_unique_name(t_philo *philo)
+static char	*generate_unique_name(t_philo *philo)
 {
 	char	*prefix;
 	char	*num;
@@ -37,7 +37,7 @@ static sem_t	*generate_binary_semaphore(t_philo *philo)
 {
 	char	*name;
 	sem_t	*bin;
-	
+
 	name = generate_unique_name(philo);
 	sem_unlink(name);
 	bin = sem_open(name, O_CREAT, 0644, 1);
@@ -88,8 +88,7 @@ void	*philo_start_eating(void *philo)
 			philo_think(p, tstamp);
 		else if (p->state == SLEEP)
 			philo_sleep(p, tstamp);
-
-		if (p->number_of_times_must_eat != -1 && p->eat_cnt >= p->number_of_times_must_eat)
+		if (p->nume != -1 && p->eat_cnt >= p->nume)
 		{
 			philo_pick_down_forks(philo);
 			sem_close(p->smp);
@@ -97,6 +96,4 @@ void	*philo_start_eating(void *philo)
 		}
 		usleep(100);
 	}
-	sem_close(p->smp);
-	exit(1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chef_bonus_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:57:47 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/15 15:56:39 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/18 13:31:51 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	chef_start_serving(t_chef *chef)
 	int		status;
 
 	idx = -1;
-	while (++idx < chef->number_of_philo)
+	while (++idx < chef->nump)
 	{
 		pid = serve_idx_philo(&(chef->philos[idx]), get_time());
 		chef->pids[idx] = pid;
 	}
 	idx = 0;
-	while (idx < chef->number_of_philo)
+	while (idx < chef->nump)
 	{
 		waitpid(-1, &status, 0);
 		if (status == 0)
@@ -51,7 +51,7 @@ void	chef_start_serving(t_chef *chef)
 		else
 		{
 			idx = -1;
-			while (++idx < chef->number_of_philo)
+			while (++idx < chef->nump)
 				kill(chef->pids[idx], SIGTERM);
 			return ;
 		}

@@ -1,71 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_bonus.c                                      :+:      :+:    :+:   */
+/*   utils_bonus_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:56:42 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/16 15:31:11 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/18 13:38:49 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/time.h>
 #include <stdlib.h>
-#include "commontype_bonus.h"
 #include "utils_bonus.h"
-
-static t_bool	is_space(const char c)
-{
-	if (c == 9 || c == 10 || c == 11 || c == 12 || c == 13 || c == 32)
-		return (TRUE);
-	return (FALSE);
-}
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	len;
-
-	len = 0;
-	while (*str != '\0')
-	{
-		len++;
-		str++;
-	}
-	return (len);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	idx;
-
-	if (dstsize == 0)
-		return (ft_strlen(src));
-	idx = 0;
-	while (src[idx] != '\0' && idx + 1 < dstsize)
-	{
-		dst[idx] = src[idx];
-		idx++;
-	}
-	dst[idx] = '\0';
-	return (ft_strlen(src));
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	char	*ptr;
-	size_t	s1len;
-	size_t	s2len;
-
-	s1len = ft_strlen(s1);
-	s2len = ft_strlen(s2);
-	ptr = (char *)malloc(s1len + s2len + 1);
-	if (ptr == NULL)
-		return (NULL);
-	ft_strlcpy(ptr, s1, s1len + 1);
-	ft_strlcpy(&ptr[s1len], s2, s2len + 1);
-	return (ptr);
-}
 
 static int	get_digit(long long n)
 {
@@ -115,6 +61,13 @@ char	*ft_itoa(int num)
 	return (ptr);
 }
 
+static t_bool	is_space(const char c)
+{
+	if (c == 9 || c == 10 || c == 11 || c == 12 || c == 13 || c == 32)
+		return (TRUE);
+	return (FALSE);
+}
+
 int	ft_atoi(char *s)
 {
 	int	res;
@@ -138,12 +91,4 @@ int	ft_atoi(char *s)
 		idx++;
 	}
 	return (sign * res);
-}
-
-t_int64	get_time(void)
-{
-	struct timeval	time;
-
-	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }

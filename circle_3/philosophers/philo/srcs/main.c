@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:59:09 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/15 14:22:37 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/18 13:26:52 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//https://nafuka11.github.io/philosophers-visualizer/
 
 #include <unistd.h>
 #include <stdio.h>

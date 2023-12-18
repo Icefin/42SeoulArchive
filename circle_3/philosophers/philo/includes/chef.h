@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:13:03 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/30 09:28:22 by geshin           ###   ########.fr       */
+/*   Updated: 2023/12/18 13:23:58 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef struct s_chef
 	int				nump;
 	int				nume;
 	int				dtime;
+	int				etime;
+	int				stime;
 
 	pthread_mutex_t	paper;
 	pthread_mutex_t	*forks;

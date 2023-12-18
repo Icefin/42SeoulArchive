@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 00:46:31 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/15 15:39:36 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/18 13:34:08 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ typedef struct s_philo
 	int			time_to_eat;
 	int			time_to_sleep;
 	int			time_to_die;
-	int			number_of_times_must_eat;
+	int			nume;
 
 	pthread_t	thread;
 	sem_t		*smp;
 	sem_t		*fork;
 }	t_philo;
 
-void	philo_constructor(t_philo *philo, int idx, int time_to_eat, int time_to_sleep);
+void	philo_constructor(t_philo *philo, int idx, int etime, int stime);
 
 void	philo_pick_up_forks(t_philo *philo);
 void	philo_pick_down_forks(t_philo *philo);

@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:05:37 by singeonho         #+#    #+#             */
-/*   Updated: 2023/11/30 09:37:50 by geshin           ###   ########.fr       */
+/*   Updated: 2023/12/18 13:25:35 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ typedef struct s_philo
 	pthread_mutex_t	*right_fork;
 }	t_philo;
 
-void	philo_constructor(t_philo *philo, int idx, int etime, int stime);
+typedef struct s_chef	t_chef;
+
+void	philo_constructor(t_philo *philo, int idx, t_chef *chef);
 void	philo_destructor(t_philo *philo);
 
 void	philo_pick_up_forks(t_philo *philo);
