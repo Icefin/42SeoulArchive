@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 01:09:30 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/15 17:09:38 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/21 16:29:18 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 PhoneBook::PhoneBook()
 {
-	m_front = 0;
-	m_end = 0;
+	contact_size = 0;
+	insert_idx = 0;
 }
 
 PhoneBook::~PhoneBook()
@@ -26,53 +26,106 @@ PhoneBook::~PhoneBook()
 
 void PhoneBook::AddContact()
 {
-	Contact contact;
-	int next = (m_end + 1) % 8;
-
-	if (next == m_front)
-		m_front = (m_front + 1) % 8;
-	
-	std::cout << "Input FirstName: ";
-	std::cin >> contact.firstName;
-	std::cout << "Input LastName: ";
-	std::cin >> contact.lastName;
-	std::cout << "Input NickName: ";
-	std::cin >> contact.nickName;
-	std::cout << "Input PhoneNumber: ";
-	std::cin >> contact.phoneNumber;
-	std::cout << "Input DarkestSecret: ";
-	std::cin >> contact.darkestSecret;
-
-	m_contacts[m_end] = contact;
-	m_end = next;
-	std::cout << "New Contact is Added to PhoneBook\n\n";
+	std::cout << std::endl;
+	std::cout << "[[Input New Contact]]\n";
+	m_contacts[insert_idx].InitContact();
+	insert_idx = (insert_idx + 1) % 8;
+	contact_size = std::min(8, contact_size + 1);
+	std::cout << "New Contact is added to PhoneBook...\n\n";
 }
 
 void PhoneBook::SearchContact()
 {
-	if (m_front < m_end)
-	{
-		for (int idx = m_front; idx < m_end; ++idx)
-			m_contacts[idx].PrintContact(idx);
+	if (contact_size <= 0) {
+		std::cout << "Contact list is empty...\n\n";
+		return;
 	}
-	else if (m_front == m_end)
-		m_contacts[m_front].PrintContact(m_front);
-	else
-	{
-		for (int idx = m_front; idx < 8; ++idx)
-			m_contacts[idx].PrintContact(idx);
-		for (int idx = 0; idx < m_end; ++idx)
-			m_contacts[idx].PrintContact(idx);
+	std::cout << std::endl;
+	PrintContactsOverall();
+	std::cout << std::endl;
+
+	std::string cmd;
+	while (std::cin.rdstate() == false) {
+		std::cout << "If you need more info. input proper index (0 ~ " << contact_size - 1 << "): ";
+		std::getline(std::cin, cmd);
+		int idx = std::stoi(cmd);
+		if (idx >= 0 && idx < contact_size) {
+			m_contacts[idx].PrintDetail();
+			std::cout << std::endl;
+		}
+		else {
+			std::cout << "Finish Searching...\n";
+			break;
+		}
 	}
 	std::cout << std::endl;
 }
 
-void PhoneBook::Contact::PrintContact(int idx)
+void PhoneBook::PrintContactsOverall()
+{
+	std::cout << "[[Print Contact Overall]]\n";
+	for (int idx = 0; idx < contact_size; ++idx) {
+		std::cout << "    Index|" << "         " << idx << std::endl;
+		m_contacts[idx].PrintSummary();
+		std::cout << std::endl;
+	}
+	std::cout << std::endl;
+}
+
+void PhoneBook::Contact::InitContact()
+{
+	std::cout << "Input FirstName: ";
+	std::getline(std::cin, firstName);
+	std::cout << "Input LastName: ";
+	std::getline(std::cin, lastName);
+	std::cout << "Input NickName: ";
+	std::getline(std::cin, nickName);
+	std::cout << "Input PhoneNumber: ";
+	std::getline(std::cin, phoneNumber);
+	std::cout << "Input DarkestSecret: ";
+	std::getline(std::cin, darkestSecret);
+}
+
+void PhoneBook::Contact::PrintSummary()
+{
+	std::cout << "FirstName|";
+	if (firstName.length() <= 10) {
+		std::cout.width(10);
+		std::cout << firstName << std::endl;
+	}
+	else {
+		for (size_t i = 0; i < 9; ++i)
+			std::cout << firstName[i];
+		std::cout << ".\n";
+	}
+	std::cout << " LastName|";
+	if (lastName.length() <= 10) {
+		std::cout.width(10);
+		std::cout << lastName << std::endl;
+	}
+	else {
+		for (size_t i = 0; i < 9; ++i)
+			std::cout << lastName[i];
+		std::cout << ".\n";
+	}
+	std::cout << " NickName|";
+	if (nickName.length() <= 10) {
+		std::cout.width(10);
+		std::cout << nickName << std::endl;
+	}
+	else {
+		for (size_t i = 0; i < 9; ++i)
+			std::cout << nickName[i];
+		std::cout << ".\n";
+	}
+}
+
+void PhoneBook::Contact::PrintDetail()
 {
 	std::cout 
-		<< "Index: " << idx << std::endl
-		<< "FirstName: " << firstName << std::endl
-		<< "LastName: " << lastName << std::endl
-		<< "NickName: " << nickName << std::endl
-		<< std::endl;
+		<< "FirstName     :" << firstName << std::endl
+		<< "LastName      :" << lastName << std::endl
+		<< "NickName      :" << nickName << std::endl
+		<< "PhoneNumber   :" << phoneNumber << std::endl
+		<< "DarkestSecret :" << darkestSecret << std::endl;
 }

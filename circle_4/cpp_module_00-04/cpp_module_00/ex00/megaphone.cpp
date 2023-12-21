@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 01:05:35 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/15 17:09:50 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/21 14:41:05 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int main(int argc, char **argv) {
 	if (argc == 1) {
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
+		std::cout << std::endl;
 		return 0;
 	}
 		
@@ -26,5 +27,6 @@ int main(int argc, char **argv) {
 		}
 		std::cout << argv[i];	
 	}
+	std::cout << std::endl;
 	return 0;
 }

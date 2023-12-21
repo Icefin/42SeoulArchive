@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 01:08:49 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/15 16:34:55 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/21 16:27:33 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,22 @@ int main() {
 	PhoneBook	phoneBook;
 	std::string cmd;
 
-	while (true) {
-		std::cout << "Command Input: ";
-		std::cin >> cmd;
+	while (std::cin.rdstate() == false) {
+		std::cout << "Valid commands: ADD, SEARCH, EXIT\n";
+		std::cout << "Input: ";
+		std::getline(std::cin, cmd);
 
 		if (cmd == "ADD")
 			phoneBook.AddContact();
 		else if (cmd == "SEARCH")
 			phoneBook.SearchContact();
-		else if (cmd == "EXIT")
+		else if (cmd == "EXIT") {
+			std::cout << "[[Exit Program]]\n";
 			break;
+		}
 		else
-			std::cout << "Invalid Command Input\n";
+			std::cout << "Invalid Command Input\n\n";
 	}
+	std::cout << std::endl;
+	return 0;
 }

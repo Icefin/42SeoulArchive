@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 01:09:33 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/15 16:41:05 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/21 16:15:52 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,16 @@ private :
 		std::string phoneNumber;
 		std::string darkestSecret;
 
-		void	PrintContact(int idx);
+		void	InitContact();
+		void	PrintSummary();
+		void	PrintDetail();
 	};
+	
+	void	PrintContactsOverall();
 
 	Contact m_contacts[8];
-	int		m_front;
-	int		m_end;
+	int		contact_size;
+	int		insert_idx;
 };
 
 #endif
