@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 01:09:30 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/21 16:29:18 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/22 12:50:04 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void PhoneBook::SearchContact()
 	while (std::cin.rdstate() == false) {
 		std::cout << "If you need more info. input proper index (0 ~ " << contact_size - 1 << "): ";
 		std::getline(std::cin, cmd);
+		//FIX THIS!!
 		int idx = std::stoi(cmd);
 		if (idx >= 0 && idx < contact_size) {
 			m_contacts[idx].PrintDetail();

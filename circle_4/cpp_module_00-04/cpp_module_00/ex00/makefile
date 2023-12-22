@@ -5,8 +5,6 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = megaphone
 
-#INCLUDE = ./includes/
-
 #Libraries=====================================================================
 
 
@@ -26,7 +24,7 @@ $(NAME) : $(OBJS)
 	$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJS)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
 	rm -rf $(OBJS)

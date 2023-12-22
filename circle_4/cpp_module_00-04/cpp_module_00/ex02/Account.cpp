@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 18:39:02 by geshin            #+#    #+#             */
-/*   Updated: 2023/12/15 17:04:19 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/22 12:45:03 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include <time.h>
 #include "Account.hpp"
 
-int	Account::_nbAccounts;
-int	Account::_totalAmount;
-int	Account::_totalNbDeposits;
-int	Account::_totalNbWithdrawals;
+int	Account::_nbAccounts = 0;
+int	Account::_totalAmount = 0;
+int	Account::_totalNbDeposits = 0;
+int	Account::_totalNbWithdrawals = 0;
 
 int Account::getNbAccounts()
 {
