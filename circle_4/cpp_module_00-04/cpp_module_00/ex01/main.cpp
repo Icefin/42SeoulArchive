@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 01:08:49 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/21 16:27:33 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/23 14:22:08 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ int main() {
 		else
 			std::cout << "Invalid Command Input\n\n";
 	}
-	std::cout << std::endl;
 	return 0;
 }

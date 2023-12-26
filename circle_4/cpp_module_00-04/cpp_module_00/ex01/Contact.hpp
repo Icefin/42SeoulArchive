@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/16 15:36:11 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/26 18:49:12 by geshin           ###   ########.fr       */
+/*   Created: 2023/12/23 14:18:11 by geshin            #+#    #+#             */
+/*   Updated: 2023/12/23 14:24:03 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "Zombie.hpp"
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 
-Zombie::Zombie()
-{
-	//__noop;
-}
+#include <string>
 
-Zombie::Zombie(std::string name)
-	: m_Name(name)
+class Contact
 {
-	//__noop;
-}
+public :
+	void	InitContact();
+	void	PrintSummary();
+	void	PrintDetail();
 
-Zombie::~Zombie()
-{
-	std::cout
-		<< m_Name
-		<< ": has been destroyed\n";
-}
+private :
+	std::string	m_FirstName;
+	std::string	m_LastName;
+	std::string m_NickName;
+	std::string m_PhoneNumber;
+	std::string m_DarkestSecret;
+};
 
-void Zombie::announce()
-{
-	std::cout
-		<< m_Name
-		<< ": BraiiiiiiinnnzzzZ...\n";
-}
+#endif
