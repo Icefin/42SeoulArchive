@@ -1,7 +1,7 @@
 #Flags========================================================================
-CPP = clang++
+CPP = c++
 
-CPPFLAGS = -std=c++98 #-Wall -Wextra -Werror
+CPPFLAGS = -std=c++98 -Wall -Wextra -Werror #-fsanitize=address
 
 NAME = test
 
@@ -13,8 +13,7 @@ INCLUDE = ./
 #Sources========================================================================
 SRCS = main.cpp \
 		Zombie.cpp \
-		newZombie.cpp \
-		randomChump.cpp
+		ZombieHorde.cpp
 
 
 #Objects=========================================================================
