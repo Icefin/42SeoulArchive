@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 19:15:19 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/26 20:22:51 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/27 16:57:22 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ class Weapon;
 class HumanA
 {
 public :
-	HumanA(std::string name, Weapon weapon);
+		HumanA(std::string name, Weapon weapon);
+		~HumanA();
 	void attack();
 
 private :
 	std::string m_Name;
-	Weapon		m_Weapon;
+	Weapon&		m_Weapon;
 };
 
 #endif

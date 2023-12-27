@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 20:11:23 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/26 20:30:43 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/27 10:44:39 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Weapon::~Weapon(void)
 	//__noop;
 }
 
-std::string& Weapon::getType(void) const
+const std::string& Weapon::getType(void) const
 {
 	return m_Type;
 }

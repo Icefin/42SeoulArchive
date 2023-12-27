@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Karen.cpp                                          :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/26 20:32:53 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/26 20:34:26 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/26 20:32:29 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/27 15:56:36 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Karen.hpp"
+#ifndef HARL_HPP
+# define HARL_HPP
 
-void Karen::complain(std::string level)
+#include <string>
+
+class Harl
 {
+public :
+	void complain(std::string level);
 
-}
+private :
+	void debug(void);
+	void info(void);
+	void warning(void);
+	void error(void);
+};
 
-void Karen::debug(void)
-{
-
-}
-
-void Karen::info(void)
-{
-
-}
-
-void Karen::warning(void)
-{
-
-}
-
-void Karen::error(void)
-{
-
-}
+#endif
