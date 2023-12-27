@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 20:11:47 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/27 16:59:49 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/27 18:24:48 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "Weapon.hpp"
 #include <iostream>
 
-HumanA::HumanA(std::string name, Weapon weapon)
+HumanA::HumanA(std::string name, Weapon& weapon)
 	: m_Name(name), m_Weapon(weapon)
 {
 	//__noop;
