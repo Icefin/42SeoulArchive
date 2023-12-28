@@ -3,20 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 15:36:11 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/26 18:49:12 by geshin           ###   ########.fr       */
+/*   Updated: 2023/12/28 17:12:11 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Zombie.hpp"
-
-Zombie::Zombie()
-{
-	//__noop;
-}
 
 Zombie::Zombie(std::string name)
 	: m_Name(name)
