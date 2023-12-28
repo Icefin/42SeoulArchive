@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 19:15:39 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/27 17:00:42 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/28 10:14:36 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ class HumanB
 {
 public :
 		HumanB(std::string name);
+		~HumanB(void);
 
-	void attack();
-	void setWeapon(Weapon weapon);
+	void attack(void);
+	void setWeapon(Weapon& weapon);
 
 private :
 	std::string m_Name;

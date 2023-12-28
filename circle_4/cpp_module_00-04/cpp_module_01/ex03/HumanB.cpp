@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 20:11:40 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/27 18:25:13 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/28 10:14:30 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 
 HumanB::HumanB(std::string name)
 	: m_Name(name)
+{
+	//__noop;
+}
+
+HumanB::~HumanB()
 {
 	//__noop;
 }
@@ -37,7 +42,7 @@ void HumanB::attack()
 		<< std::endl;
 }
 
-void HumanB::setWeapon(Weapon weapon)
+void HumanB::setWeapon(Weapon& weapon)
 {
 	m_Weapon = &weapon;
 }

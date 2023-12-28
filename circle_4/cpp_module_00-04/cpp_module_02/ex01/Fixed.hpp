@@ -1,39 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/26 18:51:32 by geshin            #+#    #+#             */
-/*   Updated: 2023/12/28 10:11:03 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/28 10:23:35 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/28 10:24:16 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "Zombie.hpp"
+#ifndef FIXED_HPP
+# define FIXED_HPP
 
-Zombie::Zombie()
+class Fixed
 {
-	//__noop;
-}
 
-Zombie::Zombie(std::string name)
-	: m_Name(name)
-{
-	//__noop;
-}
+};
 
-Zombie::~Zombie()
-{
-	std::cout
-		<< m_Name
-		<< ": has been destroyed\n";
-}
-
-void Zombie::announce()
-{
-	std::cout
-		<< m_Name
-		<< ": BraiiiiiiinnnzzzZ...\n";
-}
+#endif

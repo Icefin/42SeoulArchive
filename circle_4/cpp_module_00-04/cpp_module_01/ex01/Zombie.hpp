@@ -18,9 +18,9 @@
 class Zombie
 {
 public :
-	Zombie();
+	Zombie(void);
 	Zombie(std::string name);
-	~Zombie();
+	~Zombie(void);
 
 	void announce(void);
 

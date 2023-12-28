@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/26 18:51:32 by geshin            #+#    #+#             */
-/*   Updated: 2023/12/28 10:11:03 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/28 10:26:03 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/28 10:26:29 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Fixed.hpp"
 #include <iostream>
-#include "Zombie.hpp"
 
-Zombie::Zombie()
+int main( void ) 
 {
-	//__noop;
-}
-
-Zombie::Zombie(std::string name)
-	: m_Name(name)
-{
-	//__noop;
-}
-
-Zombie::~Zombie()
-{
-	std::cout
-		<< m_Name
-		<< ": has been destroyed\n";
-}
-
-void Zombie::announce()
-{
-	std::cout
-		<< m_Name
-		<< ": BraiiiiiiinnnzzzZ...\n";
+	Fixed a;
+	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
+	return 0;
 }

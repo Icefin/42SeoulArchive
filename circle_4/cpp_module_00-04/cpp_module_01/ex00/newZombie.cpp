@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 15:36:07 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/16 15:44:33 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/28 10:09:11 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 Zombie* newZombie(std::string name)
 {
-	Zombie* zombie = new Zombie(name);
-	return zombie;
+	return (new Zombie(name));
 }
