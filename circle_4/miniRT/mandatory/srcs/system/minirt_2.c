@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   minirt_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/26 18:51:02 by geshin            #+#    #+#             */
-/*   Updated: 2023/12/29 12:26:11 by geshin           ###   ########.fr       */
+/*   Created: 2023/12/19 13:19:24 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/22 14:09:21 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <iostream>
+#include <mlx.h>
+#include "minirt.h"
 
+void	render(t_minirt *minirt);
 
-Zombie* zombieHorde(int N, std::string name)
+void	minirt_run(t_minirt *minirt)
 {
-	Zombie* horde = new Zombie[N];
-	for (int i = 0; i < N; ++i)
-		horde[i] = Zombie(name);
-	return horde;
+	render(minirt);
+	mlx_loop(minirt->mlx);
 }

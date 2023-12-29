@@ -1,23 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   eventcode.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/26 18:51:02 by geshin            #+#    #+#             */
-/*   Updated: 2023/12/29 12:26:11 by geshin           ###   ########.fr       */
+/*   Created: 2023/12/19 13:31:09 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/29 13:14:12 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <iostream>
+#ifndef EVENTCODE_H
+# define EVENTCODE_H
 
-
-Zombie* zombieHorde(int N, std::string name)
+enum e_event
 {
-	Zombie* horde = new Zombie[N];
-	for (int i = 0; i < N; ++i)
-		horde[i] = Zombie(name);
-	return horde;
-}
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+};
+
+enum e_keycode
+{
+	KEY_ESCAPE = 53,
+
+	KEY_W = 13,
+	KEY_A = 0,
+	KEY_S = 1,
+	KEY_D = 2,
+
+	KEY_1 = 18,
+	KEY_2 = 19
+};
+
+#endif

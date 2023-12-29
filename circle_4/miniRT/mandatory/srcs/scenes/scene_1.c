@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   scene_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/26 18:51:02 by geshin            #+#    #+#             */
-/*   Updated: 2023/12/29 12:26:11 by geshin           ###   ########.fr       */
+/*   Created: 2023/12/19 13:23:02 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/29 13:12:44 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <iostream>
+#include <fcntl.h>
+#include <stdlib.h>
+#include "scene.h"
+#include "rtmath.h"
 
+extern void	init_scene_from_file(t_scene *scene, char *file);
 
-Zombie* zombieHorde(int N, std::string name)
+void	scene_constructor(t_scene *scene, char *file)
 {
-	Zombie* horde = new Zombie[N];
-	for (int i = 0; i < N; ++i)
-		horde[i] = Zombie(name);
-	return horde;
+	vector_constructor(&scene->vobject, 10, sizeof(t_object));
+	init_scene_from_file(scene, file);
+}
+
+void	scene_destructor(t_scene *scene)
+{
+	vector_destructor(&(scene->vobject));
+	camera_destructor(&(scene->camera));
 }

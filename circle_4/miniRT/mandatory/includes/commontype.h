@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   commontype.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/26 18:51:02 by geshin            #+#    #+#             */
-/*   Updated: 2023/12/29 12:26:11 by geshin           ###   ########.fr       */
+/*   Created: 2023/12/19 12:55:41 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/19 12:59:23 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <iostream>
+#ifndef COMMONTYPE_H
+# define COMMONTYPE_H
 
+# define FALSE	0
+# define TRUE 	1
 
-Zombie* zombieHorde(int N, std::string name)
-{
-	Zombie* horde = new Zombie[N];
-	for (int i = 0; i < N; ++i)
-		horde[i] = Zombie(name);
-	return horde;
-}
+typedef char				t_bool;
+typedef unsigned int		t_uint32;
+
+typedef long long			t_int64;
+typedef unsigned long long	t_uint64;
+
+#endif
