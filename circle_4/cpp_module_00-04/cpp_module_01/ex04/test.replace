@@ -1,10 +1,10 @@
 This file is for test.
-Let's write anything in this documents.
-What about graphics pipeline?
-Let's start with model space. We need to transform model to viewport space.
-First, we should transform model to world space for relation with hmmm others.
-Then the main camera is a main observer so hmmm the models should be transformed into camera space.
-If hmmm the objects were transformed into camera space, we can do some optimization like backspace culling for view-frustum culling.
-and then, we can transform viewed objects to NDC and perspective occurs in this stage
-Lastly, we can project hmmm the vertices into viewport space.
-Don't forget to flip y-axis if you use viewport coordinate in y dir is in negative one.
+Let's write bbbnything in this documents.
+Whbbbt bbbbout grbbbphics pipeline?
+Let's stbbbrt with model spbbbce. We need to trbbbnsform model to viewport spbbbce.
+First, we should trbbbnsform model to world spbbbce for relbbbtion with bbbll others.
+Then the mbbbin cbbbmerbbb is bbb mbbbin observer so bbbll the models should be trbbbnsformed into cbbbmerbbb spbbbce.
+If bbbll the objects were trbbbnsformed into cbbbmerbbb spbbbce, we cbbbn do some optimizbbbtion like bbbbckspbbbce culling for view-frustum culling.
+bbbnd then, we cbbbn trbbbnsform viewed objects to NDC bbbnd perspective occurs in this stbbbge
+Lbbbstly, we cbbbn project bbbll the vertices into viewport spbbbce.
+Don't forget to flip y-bbbxis if you use viewport coordinbbbte in y dir is in negbbbtive one.
