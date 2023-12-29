@@ -1,0 +1,10 @@
+This file is for test.
+Let's write anything in this documents.
+What about graphics pipeline?
+Let's start with model space. We need to transform model to viewport space.
+First, we should transform model to world space for relation with all others.
+Then the main camera is a main observer so all the models should be transformed into camera space.
+If all the objects were transformed into camera space, we can do some optimization like backspace culling for view-frustum culling.
+and then, we can transform viewed objects to NDC and perspective occurs in this stage
+Lastly, we can project all the vertices into viewport space.
+Don't forget to flip y-axis if you use viewport coordinate in y dir is in negative one.

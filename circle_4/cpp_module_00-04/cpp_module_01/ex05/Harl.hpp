@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 10:48:49 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/27 16:38:26 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/26 20:32:29 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/28 17:49:13 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
+#ifndef HARL_HPP
+# define HARL_HPP
 
-int main()
+#include <string>
+
+class Harl
 {
-	Harl harl;
+public :
+	void complain(std::string level);
 
-	harl.complain("DEBUG");
-	harl.complain("INFO");
-	harl.complain("WARNING");
-	harl.complain("ERROR");
-	harl.complain("TEST");
-}
+private :
+	void debug(void);
+	void info(void);
+	void warning(void);
+	void error(void);
+};
+
+#endif
