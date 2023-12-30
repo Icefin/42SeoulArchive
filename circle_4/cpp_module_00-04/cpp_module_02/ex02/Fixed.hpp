@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 10:26:31 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/29 17:05:37 by singeonho        ###   ########.fr       */
+/*   Updated: 2023/12/30 22:40:59 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ public :
 	Fixed& operator-(const Fixed& rhs);
 	Fixed& operator*(const Fixed& rhs);
 	Fixed& operator/(const Fixed& rhs);
+
+	//prefix
+	Fixed& operator++();
+	//postfix
+	Fixed operator++(int);
 
 public :
 	static Fixed& min(Fixed& f1, Fixed& f2);
