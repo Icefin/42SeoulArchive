@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:48:24 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/30 23:19:30 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/04 23:26:23 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ public :
 public :
 	Point& operator=(const Point& rhs);
 
-	Point& operator+(const Point& rhs);
-	Point& operator-(const Point& rhs);
-	Point& operator*(const Point& rhs);
-	Point& operator/(const Point& rhs);
+	Point operator+(const Point& rhs) const;
+	Point operator-(const Point& rhs) const;
+
+public :
+	static Fixed dot(const Point& p1, const Point& p2);
+	static Fixed cross(const Point& p1, const Point& p2);
 
 private :
 	Fixed m_X;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:27:39 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/02 12:59:15 by geshin           ###   ########.fr       */
+/*   Updated: 2024/01/04 21:39:36 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,29 @@ Fixed::Fixed(void)
 Fixed::Fixed(const Fixed& rhs)
 {
 	std::cout << "Copy constructor called\n";
-	m_Value = rhs.m_Value;
+	m_Value = rhs.getRawBits();
 }
 
 Fixed::~Fixed(void)
 {
 	std::cout << "Destructor called\n";
-	//__noop;
 }
 
 int Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits member function called\n";
-	return (m_Value >> s_FractionalBits);
+	return m_Value;
 }
 
 void Fixed::setRawBits(const int raw)
 {
 	std::cout << "setRawBits member function called\n";
-	m_Value = (raw << s_FractionalBits);
+	m_Value = raw;
 }
 
 Fixed& Fixed::operator=(const Fixed& rhs)
 {
 	std::cout << "Copy assignment operator called\n";
-	m_Value = rhs.m_Value;
+	m_Value = rhs.getRawBits();
+	return *this;
 }

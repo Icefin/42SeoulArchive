@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 10:26:31 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/30 22:40:59 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/04 21:57:32 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,30 @@ public :
 
 	Fixed& operator=(const Fixed& rhs);
 
-	Fixed& operator>(const Fixed& rhs);
-	Fixed& operator<(const Fixed& rhs);
-	Fixed& operator>=(const Fixed& rhs);
-	Fixed& operator<=(const Fixed& rhs);
-	Fixed& operator==(const Fixed& rhs);
-	Fixed& operator!=(const Fixed& rhs);
+	bool operator>(const Fixed& rhs) const;
+	bool operator<(const Fixed& rhs) const;
+	bool operator>=(const Fixed& rhs) const;
+	bool operator<=(const Fixed& rhs) const;
+	bool operator==(const Fixed& rhs) const;
+	bool operator!=(const Fixed& rhs) const;
 
-	Fixed& operator+(const Fixed& rhs);
-	Fixed& operator-(const Fixed& rhs);
-	Fixed& operator*(const Fixed& rhs);
-	Fixed& operator/(const Fixed& rhs);
+	Fixed operator+(const Fixed& rhs) const;
+	Fixed operator-(const Fixed& rhs) const;
+	Fixed operator*(const Fixed& rhs) const;
+	Fixed operator/(const Fixed& rhs) const;
 
 	//prefix
-	Fixed& operator++();
+	Fixed operator++(void);
+	Fixed operator--(void);
 	//postfix
 	Fixed operator++(int);
+	Fixed operator--(int);
 
 public :
 	static Fixed& min(Fixed& f1, Fixed& f2);
-	static Fixed& min(const Fixed& f1, const Fixed& f2);
+	static const Fixed& min(const Fixed& f1, const Fixed& f2);
 	static Fixed& max(Fixed& f1, Fixed& f2);
-	static Fixed& max(const Fixed& f1, const Fixed& f2);
+	static const Fixed& max(const Fixed& f1, const Fixed& f2);
 
 private :
 	static const int s_FractionalBits = 8;
