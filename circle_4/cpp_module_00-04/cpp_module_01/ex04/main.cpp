@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 20:31:14 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/28 18:11:43 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/04 21:33:14 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,17 @@
 #include <fstream>
 #include <string>
 
+void replace(std::string& line, size_t pos, size_t rsize, std::string& rstring)
+{
+    line.erase(pos, rsize);
+    line.insert(pos, rstring);
+}
+
 int main(int argc, char** argv)
 {
     if (argc != 4)
 	{
-        std::cout << "Usage: " << argv[0] << " <filename> <string1> <string2>\n";
+        std::cout << "Usage: ./replace <filename> <string1> <string2>\n";
         return 1;
     }
 
@@ -42,10 +48,10 @@ int main(int argc, char** argv)
         size_t pos = 0;
         while ((pos = line.find(s1, pos)) != std::string::npos)
 		{
-            line.replace(pos, s1.length(), s2);
-            pos += s2.length(); // Move past the replaced string
+            replace(line, pos, s1.length(), s2);
+            pos += s2.length();
         }
-        outFile << line << "\n"; // Write the modified line to the output file
+        outFile << line << "\n";
     }
 
     inFile.close();

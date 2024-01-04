@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Point.hpp                                          :+:      :+:    :+:   */
+/*   Vec2.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/29 16:48:24 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/30 23:19:30 by singeonho        ###   ########.fr       */
+/*   Created: 2023/12/30 23:10:19 by singeonho         #+#    #+#             */
+/*   Updated: 2023/12/30 23:21:05 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT_HPP
-# define POINT_HPP
+#ifndef VEC2_HPP
+# define VEC2_HPP
 
-#include "Fixed.hpp"
+# include "Point.hpp"
 
-class Point
+class Vec2
 {
 public :
-	Point(void);
-	Point(const float x, const float y);
-	Point(const Point& rhs);
-	~Point(void);
+	Vec2(void);
+	Vec2(const Vec2& rhs);
+	~Vec2(void);
+
+	Vec2& operator=(const Vec2& rhs);
 
 public :
-	Point& operator=(const Point& rhs);
-
-	Point& operator+(const Point& rhs);
-	Point& operator-(const Point& rhs);
-	Point& operator*(const Point& rhs);
-	Point& operator/(const Point& rhs);
+	static float cross(const Vec2& l, const Vec2& r);
 
 private :
-	Fixed m_X;
-	Fixed m_Y;
+	float m_X;
+	float m_Y;
 };
-
 
 #endif
