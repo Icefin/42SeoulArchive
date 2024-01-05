@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 20:11:23 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/28 17:40:58 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/06 01:54:01 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 Weapon::Weapon(std::string type)
 	: m_Type(type)
 {
-
+	//__noop;
 }
 
 Weapon::~Weapon(void)

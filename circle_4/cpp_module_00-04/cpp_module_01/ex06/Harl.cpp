@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 15:57:06 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/28 17:51:35 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/06 01:55:26 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <iostream>
 
 //https://websites.umich.edu/~eecs381/handouts/Pointers_to_memberfuncs.pdf
-void Harl::complain(std::string level)
+void Harl::complain(std::string& level)
 {
 	const std::string flag[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	void(Harl::*shout[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};

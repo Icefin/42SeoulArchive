@@ -6,19 +6,13 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 20:31:14 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/05 16:55:08 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/06 01:52:27 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <fstream>
 #include <string>
-
-void replace(std::string& line, size_t pos, size_t rsize, std::string& rstring)
-{
-    line.erase(pos, rsize);
-    line.insert(pos, rstring);
-}
 
 int main(int argc, char** argv)
 {
@@ -48,7 +42,8 @@ int main(int argc, char** argv)
         size_t pos = 0;
         while ((pos = line.find(s1, pos)) != std::string::npos)
 		{
-            replace(line, pos, s1.length(), s2);
+            line.erase(pos, s1.length());
+            line.insert(pos, s2);
             pos += s2.length();
         }
         outFile << line << "\n";
