@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:53:19 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/04 22:04:59 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/05 17:14:55 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,11 @@ Fixed::~Fixed(void)
 
 int Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called\n";
 	return m_Value;
 }
 
 void Fixed::setRawBits(const int raw)
 {
-	std::cout << "setRawBits member function called\n";
 	m_Value = raw;
 }
 
@@ -102,52 +100,50 @@ bool Fixed::operator!=(const Fixed& rhs) const
 
 Fixed Fixed::operator+(const Fixed& rhs) const
 {
-	Fixed res;
-	res.m_Value = m_Value + rhs.getRawBits();
-	return res;
+	return Fixed(this->toFloat() + rhs.toFloat());
 }
 
 Fixed Fixed::operator-(const Fixed& rhs) const
 {
-	Fixed res;
-	res.m_Value = m_Value - rhs.getRawBits();
-	return res;
+	return Fixed(this->toFloat() - rhs.toFloat());
 }
 
 Fixed Fixed::operator*(const Fixed& rhs) const
 {
-	Fixed res;
-	res.m_Value = m_Value - rhs.getRawBits();
-	return res;
+	return Fixed(this->toFloat() * rhs.toFloat());
 }
 
 Fixed Fixed::operator/(const Fixed& rhs) const
 {
 	if (rhs.getRawBits() == 0)
 		throw(std::runtime_error("Divide by zero"));
-	Fixed res;
-	res.m_Value = m_Value / rhs.getRawBits();
-	return res;
+	return Fixed(this->toFloat() / rhs.toFloat());
 }
 
 Fixed Fixed::operator++(void)
 {
-
+	m_Value++;
+	return *this;
 }
 
 Fixed Fixed::operator--(void)
 {
-	
+	m_Value--;
+	return *this;
 }
 
 Fixed Fixed::operator++(int)
 {
-
+	Fixed res(this->toFloat());
+	m_Value++;
+	return res;
 }
 
 Fixed Fixed::operator--(int)
 {
-	
+	Fixed res(this->toFloat());
+	m_Value--;
+	return res;
 }
 
 Fixed& Fixed::min(Fixed& f1, Fixed& f2)
@@ -159,21 +155,21 @@ Fixed& Fixed::min(Fixed& f1, Fixed& f2)
 
 const Fixed& Fixed::min(const Fixed& f1, const Fixed& f2)
 {
-	if (f1 < f2)
+	if (f1.toFloat() < f2.toFloat())
 		return f1;
 	return f1;
 }
 
 Fixed& Fixed::max(Fixed& f1, Fixed& f2)
 {
-	if (f1 < f2)
+	if (f1.toFloat() < f2.toFloat())
 		return f2;
 	return f1;
 }
 
 const Fixed& Fixed::max(const Fixed& f1, const Fixed& f2)
 {
-	if (f1 < f2)
+	if (f1.toFloat() < f2.toFloat())
 		return f2;
 	return f1;
 }

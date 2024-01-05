@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:48:24 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/04 23:26:23 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/05 17:24:03 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ class Point
 {
 public :
 	Point(void);
-	Point(const float x, const float y);
+	Point(const Fixed x, const Fixed y);
 	Point(const Point& rhs);
 	~Point(void);
 
-public :
+	Fixed getX(void) const;
+	Fixed getY(void) const;
+
 	Point& operator=(const Point& rhs);
 
 	Point operator+(const Point& rhs) const;
