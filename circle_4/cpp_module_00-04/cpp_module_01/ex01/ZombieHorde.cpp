@@ -5,18 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/26 18:51:02 by geshin            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/12/29 12:26:11 by geshin           ###   ########.fr       */
-=======
-/*   Updated: 2023/12/28 17:16:47 by singeonho        ###   ########.fr       */
->>>>>>> 6d6f01be5136305beb8a37676761a8a94ae34da1
+/*   Created: 2024/01/06 13:28:16 by geshin            #+#    #+#             */
+/*   Updated: 2024/01/06 13:28:19 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 #include <iostream>
-
 
 Zombie* zombieHorde(int N, std::string name)
 {
