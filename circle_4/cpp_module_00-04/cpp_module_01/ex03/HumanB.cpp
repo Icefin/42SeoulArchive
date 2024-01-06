@@ -6,7 +6,7 @@
 /*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 20:11:40 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/06 13:33:12 by geshin           ###   ########.fr       */
+/*   Updated: 2024/01/06 13:50:29 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <iostream>
 
 HumanB::HumanB(std::string name)
-	: m_Name(name)
+	: m_Name(name), m_Weapon(NULL)
 {
 	//__noop;
 }
