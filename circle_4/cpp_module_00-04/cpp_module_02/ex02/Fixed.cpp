@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:53:19 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/05 17:14:55 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/07 21:57:05 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,21 +155,21 @@ Fixed& Fixed::min(Fixed& f1, Fixed& f2)
 
 const Fixed& Fixed::min(const Fixed& f1, const Fixed& f2)
 {
-	if (f1.toFloat() < f2.toFloat())
+	if (f1 < f2)
 		return f1;
 	return f1;
 }
 
 Fixed& Fixed::max(Fixed& f1, Fixed& f2)
 {
-	if (f1.toFloat() < f2.toFloat())
+	if (f1 < f2)
 		return f2;
 	return f1;
 }
 
 const Fixed& Fixed::max(const Fixed& f1, const Fixed& f2)
 {
-	if (f1.toFloat() < f2.toFloat())
+	if (f1 < f2)
 		return f2;
 	return f1;
 }
