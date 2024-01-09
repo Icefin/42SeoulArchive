@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:52:53 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/05 17:25:56 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/09 13:48:27 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 Fixed::Fixed(void)
 	: m_Value(0)
 {
-
+	//__noop;
 }
 
 Fixed::Fixed(const int value)
@@ -116,13 +116,13 @@ Fixed Fixed::operator/(const Fixed& rhs) const
 	return Fixed(this->toFloat() / rhs.toFloat());
 }
 
-Fixed Fixed::operator++(void)
+Fixed& Fixed::operator++(void)
 {
 	m_Value++;
 	return *this;
 }
 
-Fixed Fixed::operator--(void)
+Fixed& Fixed::operator--(void)
 {
 	m_Value--;
 	return *this;
@@ -151,21 +151,21 @@ Fixed& Fixed::min(Fixed& f1, Fixed& f2)
 
 const Fixed& Fixed::min(const Fixed& f1, const Fixed& f2)
 {
-	if (f1.toFloat() < f2.toFloat())
+	if (f1 < f2)
 		return f1;
 	return f1;
 }
 
 Fixed& Fixed::max(Fixed& f1, Fixed& f2)
 {
-	if (f1.toFloat() < f2.toFloat())
+	if (f1 < f2)
 		return f2;
 	return f1;
 }
 
 const Fixed& Fixed::max(const Fixed& f1, const Fixed& f2)
 {
-	if (f1.toFloat() < f2.toFloat())
+	if (f1 < f2)
 		return f2;
 	return f1;
 }

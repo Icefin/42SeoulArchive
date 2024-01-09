@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:53:19 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/07 21:57:05 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/09 13:33:50 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,27 @@
 Fixed::Fixed(void)
 	: m_Value(0)
 {
-	std::cout << "Default constructor called\n";
+	//__noop;
 }
 
 Fixed::Fixed(const int value)
 {
-	std::cout << "Int constructor called\n";
 	m_Value = (value << s_FractionalBits);
 }
 
 Fixed::Fixed(const float value)
 {
-	std::cout << "Float constructor called\n";
 	m_Value = roundf(value * (1 << s_FractionalBits));
 }
 
 Fixed::Fixed(const Fixed& rhs)
 {
-	std::cout << "Copy constructor called\n";
 	m_Value = rhs.getRawBits();
 }
 
 Fixed::~Fixed(void)
 {
-	std::cout << "Destructor called\n";
+	//__noop;
 }
 
 int Fixed::getRawBits(void) const
@@ -64,7 +61,6 @@ float Fixed::toFloat(void) const
 
 Fixed& Fixed::operator=(const Fixed& rhs)
 {
-	std::cout << "Copy assignment operator called\n";
 	m_Value = rhs.getRawBits();
 	return *this;
 }
@@ -120,13 +116,13 @@ Fixed Fixed::operator/(const Fixed& rhs) const
 	return Fixed(this->toFloat() / rhs.toFloat());
 }
 
-Fixed Fixed::operator++(void)
+Fixed& Fixed::operator++(void)
 {
 	m_Value++;
 	return *this;
 }
 
-Fixed Fixed::operator--(void)
+Fixed& Fixed::operator--(void)
 {
 	m_Value--;
 	return *this;

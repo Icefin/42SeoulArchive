@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 10:26:03 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/07 22:01:51 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/09 13:36:48 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,29 @@ int main( void )
 		++(++f);
 		std::cout << "f: " << f << std::endl;
 		
-		Fixed a(1.0f);
-		std::cout << "a: " << a << std::endl;
-		++(++a);
-		std::cout << "da: " << a << std::endl;
+		Fixed a1;
+		(++a1);
+		std::cout << "a1: " << a1 << std::endl;
 
-		Fixed b(3.0f);
-		std::cout << "b: " << b << std::endl;
-		(b++)++;
-		std::cout << "db: " << b << std::endl;
+		Fixed a2;
+		(++(++a2));
+		std::cout << "a2: " << a2 << std::endl;
+
+		Fixed a3;
+		++(++(++a3));
+		std::cout << "a3: " << a3 << std::endl;
+
+		Fixed b1;
+		(b1++);
+		std::cout << "b1: " << b1 << std::endl;
+
+		Fixed b2;
+		(b2++)++;
+		std::cout << "b2: " << b2 << std::endl;
+
+		Fixed b3;
+		((b3++)++)++;
+		std::cout << "b3: " << b3 << std::endl;
 	}
-
 	return 0;
 }

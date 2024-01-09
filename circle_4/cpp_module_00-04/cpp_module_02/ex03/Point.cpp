@@ -6,34 +6,33 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:52:49 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/05 17:23:54 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/09 13:36:03 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "Point.hpp"
 
 Point::Point(void)
 	: m_X(0), m_Y(0)
 {
-	std::cout << "Default constructor called\n";
+	//__noop;
 }
 
 Point::Point(const Fixed x, const Fixed y)
 	: m_X(x), m_Y(y)
 {
-	std::cout << "Parameter constructor called\n";
+	//__noop;
 }
 
 Point::Point(const Point& rhs)
 	: m_X(rhs.getX()), m_Y(rhs.getY())
 {
-	std::cout << "Copy constructor called\n";
+	//__noop;
 }
 
 Point::~Point(void)
 {
-	std::cout << "Destructor called\n";
+	//__noop;
 }
 
 Fixed Point::getX(void) const
@@ -48,7 +47,6 @@ Fixed Point::getY(void) const
 
 Point& Point::operator=(const Point& rhs)
 {
-	std::cout << "Copy assignment operator called\n";
 	m_X = rhs.getX();
 	m_Y = rhs.getY();
 	return *this;

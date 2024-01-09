@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 10:26:31 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/07 22:00:32 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/09 13:22:25 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ public :
 	Fixed operator/(const Fixed& rhs) const;
 
 	//prefix
-	Fixed operator++(void);
-	Fixed operator--(void);
+	Fixed& operator++(void);
+	Fixed& operator--(void);
 	//postfix
 	Fixed operator++(int);
 	Fixed operator--(int);
