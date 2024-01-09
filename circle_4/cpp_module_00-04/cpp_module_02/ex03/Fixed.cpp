@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:52:53 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/09 13:48:27 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/09 16:43:49 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ Fixed::Fixed(const Fixed& rhs)
 
 Fixed::~Fixed(void)
 {
-
+	//__noop;
 }
 
 int Fixed::getRawBits(void) const
@@ -153,7 +153,7 @@ const Fixed& Fixed::min(const Fixed& f1, const Fixed& f2)
 {
 	if (f1 < f2)
 		return f1;
-	return f1;
+	return f2;
 }
 
 Fixed& Fixed::max(Fixed& f1, Fixed& f2)

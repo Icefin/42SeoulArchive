@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:53:19 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/09 13:33:50 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/09 16:42:20 by geshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ const Fixed& Fixed::min(const Fixed& f1, const Fixed& f2)
 {
 	if (f1 < f2)
 		return f1;
-	return f1;
+	return f2;
 }
 
 Fixed& Fixed::max(Fixed& f1, Fixed& f2)
