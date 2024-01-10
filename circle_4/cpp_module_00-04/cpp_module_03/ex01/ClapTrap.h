@@ -6,12 +6,12 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 23:32:07 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/04 23:37:39 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/10 15:24:48 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#ifndef CLAPTRAP_H
+# define CLAPTRAP_H
 
 #include <string>
 
@@ -19,14 +19,18 @@ class ClapTrap
 {
 public :
 	ClapTrap();
+	ClapTrap(const std::string& name);
 	ClapTrap(const ClapTrap& rhs);
-	virtual ~ClapTrap();
+	~ClapTrap();
 
 	ClapTrap& operator=(const ClapTrap& rhs);
 
 	virtual void attack(const std::string& target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
+
+protected :
+	virtual bool isAlive();
 
 protected :
 	std::string m_Name;

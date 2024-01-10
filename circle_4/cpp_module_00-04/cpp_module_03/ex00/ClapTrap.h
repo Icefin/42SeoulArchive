@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 23:28:20 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/04 23:32:31 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/10 15:24:32 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ class ClapTrap
 {
 public :
 	ClapTrap();
+	ClapTrap(const std::string& name);
 	ClapTrap(const ClapTrap& rhs);
 	~ClapTrap();
 
@@ -27,6 +28,9 @@ public :
 	void attack(const std::string& target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
+
+private :
+	bool isAlive();
 
 private :
 	std::string m_Name;

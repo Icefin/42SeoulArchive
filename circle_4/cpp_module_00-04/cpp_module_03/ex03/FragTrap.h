@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 23:43:30 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/04 23:43:35 by singeonho        ###   ########.fr       */
+/*   Created: 2024/01/04 23:39:25 by singeonho         #+#    #+#             */
+/*   Updated: 2024/01/10 16:05:33 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,21 @@
 
 # include "ClapTrap.h"
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
 public :
 	FragTrap();
+	FragTrap(const std::string& name);
 	FragTrap(const FragTrap& rhs);
 	virtual ~FragTrap();
 
 	FragTrap& operator=(const FragTrap& rhs);
 
-private :
+	virtual void attack(const std::string& target);
 	void highFivesGuys();
+
+protected :
+	virtual bool isAlive();
 };
 
 #endif
