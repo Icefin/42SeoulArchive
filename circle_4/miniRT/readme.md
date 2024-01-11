@@ -12,7 +12,7 @@ A raytracer is a computer graphics technique used to create highly realistic ima
 - Ambient, diffuse, and specular lighting based on Phong Lighting Model
 - Multiple lights colors and intensity
 - Hard shadowing
-- Following primitive objects : Plane, Sphere, Cylinder, Cone
+- Following primitive objects : Plane, Sphere, Cylinder, Cone, Triangle
 - Multi-threaded per-pixel calculation in bonus part (frame rate increased about 5 times)
 - Texture and normal mapping on xz plane
 - Translatable, rotatable camera with keyboard and mouse input
@@ -24,7 +24,6 @@ Possible upgrades coming in a near future:
 - Material systems for realistic texture
 - Soft shadowing
 - Anti-aliasing
-- Add more primitive objects
 - BVH or KD-tree for polygon mesh acceleration
 
 ### Controls
