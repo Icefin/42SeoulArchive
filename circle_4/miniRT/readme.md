@@ -1,6 +1,6 @@
 ### Description
 ---
-MiniRT is a C-based mini raytracer that utilizes a minimal graphics library.
+MiniRT is a CPU-based mini raytracer in C that utilizes a minimal graphics library.
 
 A raytracer is a computer graphics technique used to create highly realistic images by simulating the behavior of light in a virtual 3D environment. In ray tracing, the fundamental concept revolves around tracing the path of light rays as they interact with objects and surfaces within a scene.
 
