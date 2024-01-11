@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eventcode.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jihwjeon <jihwjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:31:09 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/29 13:14:12 by geshin           ###   ########.fr       */
+/*   Updated: 2024/01/02 12:18:22 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,10 @@ enum e_event
 enum e_keycode
 {
 	KEY_ESCAPE = 53,
-
 	KEY_W = 13,
 	KEY_A = 0,
 	KEY_S = 1,
 	KEY_D = 2,
-
 	KEY_1 = 18,
 	KEY_2 = 19
 };

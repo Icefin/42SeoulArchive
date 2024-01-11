@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ray_1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jihwjeon <jihwjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:39:32 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/29 15:48:17 by geshin           ###   ########.fr       */
+/*   Updated: 2024/01/01 22:43:33 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "ray.h"
 
-void		init_rayinfo(t_rayinfo *rayinfo, float maxtime)
+void	init_rayinfo(t_rayinfo *rayinfo, float maxtime)
 {
 	if (rayinfo == 0)
 		return ;

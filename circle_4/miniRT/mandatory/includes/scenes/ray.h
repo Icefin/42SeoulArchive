@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jihwjeon <jihwjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:37:16 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/29 15:52:12 by geshin           ###   ########.fr       */
+/*   Updated: 2024/01/02 12:16:23 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 typedef struct s_rayinfo
 {
-	float 	raytime;
-	t_vec3 	hitpos;
-	t_vec3 	hitnorm;
+	float	raytime;
+	t_vec3	hitpos;
+	t_vec3	hitnorm;
 
 	int		hitid;
 }	t_rayinfo;
@@ -35,6 +35,6 @@ typedef struct s_ray
 	float	maxdist;
 }	t_ray;
 
-t_ray	make_ray(t_vec3 origin, t_vec3 direction, float maxdist);
+t_ray		make_ray(t_vec3 origin, t_vec3 direction, float maxdist);
 
 #endif

@@ -3,25 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   rtmath_9.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jihwjeon <jihwjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 13:08:38 by geshin            #+#    #+#             */
-/*   Updated: 2023/12/22 01:09:53 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/08 17:20:08 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtmath.h"
 
-t_mat4	identity_mat4()
+t_mat4	identity_mat4(void)
 {
 	t_mat4	res;
+	int		r;
+	int		c;
 
-	for (int r = 0; r < 4; ++r) {
-		for (int c = 0; c < 4; ++c) {
+	r = 0;
+	while (r < 4)
+	{
+		c = 0;
+		while (c < 4)
+		{
 			res.elem[r][c] = 0;
 			if (r == c)
 				res.elem[r][c] = 1;
+			++c;
 		}
+		++r;
 	}
 	return (res);
 }
@@ -29,11 +37,19 @@ t_mat4	identity_mat4()
 t_mat4	transpose_mat4(t_mat4 m)
 {
 	t_mat4	res;
+	int		r;
+	int		c;
 
-	for (int r = 0; r < 4; ++r) {
-		for (int c = 0; c < 4; ++c) {
+	r = 0;
+	while (r < 4)
+	{
+		c = 0;
+		while (c < 4)
+		{
 			res.elem[r][c] = m.elem[c][r];
+			++c;
 		}
+		++r;
 	}
 	return (res);
 }
@@ -41,15 +57,28 @@ t_mat4	transpose_mat4(t_mat4 m)
 t_mat4	mul_mat4_to_mat4(t_mat4 m1, t_mat4 m2)
 {
 	t_mat4	res;
+	int		r;
+	int		c;
+	int		i;
 
 	res = identity_mat4();
-	for (int r = 0; r < 4; ++r) {
-		for (int c = 0; c < 4; ++c) {
-			for (int i = 0; i < 4; ++i)
+	r = 0;
+	while (r < 4)
+	{
+		c = 0;
+		while (c < 4)
+		{
+			i = 0;
+			while (i < 4)
+			{
 				res.elem[r][c] += m1.elem[r][i] * m2.elem[i][c];
+				++i;
+			}
 			if (r == c)
 				res.elem[r][c] -= 1;
+			++c;
 		}
+		++r;
 	}
 	return (res);
 }

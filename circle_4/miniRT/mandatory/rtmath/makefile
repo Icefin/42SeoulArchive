@@ -24,7 +24,8 @@ SRCS = rtmath_1.c \
 		rtmath_8.c \
 		rtmath_9.c \
 		rtmath_10.c \
-		rtmath_11.c
+		rtmath_11.c \
+		rtmath_12.c \
 
 
 #Objects=========================================================================

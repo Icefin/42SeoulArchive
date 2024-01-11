@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jihwjeon <jihwjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 12:50:03 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/29 13:13:18 by geshin           ###   ########.fr       */
+/*   Updated: 2024/01/10 14:38:00 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include "commontype.h"
 #include "minirt.h"
 #include "utils.h"
-
-#include <stdio.h>
 
 static t_bool	is_valid_file_extension(char *name)
 {
@@ -31,7 +30,7 @@ static t_bool	is_valid_file_extension(char *name)
 	return (TRUE);
 }
 
-static t_bool	is_valid_input(int argc, char** argv)
+static t_bool	is_valid_input(int argc, char **argv)
 {
 	if (argc != 2)
 		return (FALSE);
@@ -40,17 +39,11 @@ static t_bool	is_valid_input(int argc, char** argv)
 	return (TRUE);
 }
 
-void leaks()
+int	main(int argc, char **argv)
 {
-	system("leaks minirt");
-}
-
-int main(int argc, char** argv)
-{
-	atexit(leaks);
 	t_minirt	minirt;
 
-	if(is_valid_input(argc, argv) == FALSE)
+	if (is_valid_input(argc, argv) == FALSE)
 	{
 		printf("Invalid Input:: Input should be (  ./minirt *.rt )\n");
 		return (0);

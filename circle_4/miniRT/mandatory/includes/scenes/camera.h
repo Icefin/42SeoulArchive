@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jihwjeon <jihwjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:02:12 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/29 13:10:28 by geshin           ###   ########.fr       */
+/*   Updated: 2024/01/08 17:06:22 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@
 # define MOVE_SPEED			1
 # define MOUSE_SENSITIVE	0.002
 
-
-static const t_vec3 updir = {0.0, 1.0, 0.0};
+static const t_vec3	g_updir = {0.0, 1.0, 0.0};
 
 typedef struct s_camera
 {
@@ -42,13 +41,13 @@ typedef struct s_camera
 
 	float		aspect;
 	t_vector	raydirs;
-	
+
 	t_bool		is_movable;
 	int			k;
 }	t_camera;
 
-void	camera_constructor(t_camera *camera, t_vec3 pos, t_vec3 dir, double fov);
-void	camera_destructor(t_camera* camera);
+void	camera_constructor(t_camera *out, t_vec3 pos, t_vec3 dir, double fov);
+void	camera_destructor(t_camera *camera);
 
 void	camera_rotate(t_camera *camera, int x, int y);
 void	camera_translate(t_camera *camera, int key);

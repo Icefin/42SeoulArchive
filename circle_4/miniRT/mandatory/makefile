@@ -33,6 +33,7 @@ SRCS_SYSTEM		=	\
 					geometry_1.c \
 					geometry_2.c \
 					geometry_3.c \
+					geometry_4.c \
 					minirt_1.c \
 					minirt_2.c \
 					parser_1.c \

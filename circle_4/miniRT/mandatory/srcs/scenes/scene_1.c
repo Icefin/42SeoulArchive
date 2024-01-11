@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   scene_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:23:02 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/29 13:12:44 by geshin           ###   ########.fr       */
+/*   Updated: 2023/12/31 01:11:17 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <stdlib.h>
 #include "scene.h"
 #include "rtmath.h"
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihwjeon <jihwjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 18:05:05 by jihwjeon          #+#    #+#             */
-/*   Updated: 2023/12/22 14:05:11 by jihwjeon         ###   ########.fr       */
+/*   Updated: 2023/12/31 01:09:40 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 #include "light.h"
 #include "scene.h"
 
-extern int	str_to_vec3(t_vec3 *pos, char *str);
-extern int	str_to_rgb(t_rgb *rgb, char *str);
+int	str_to_vec3(t_vec3 *pos, char *str);
+int	str_to_rgb(t_rgb *rgb, char *str);
 
 void	ft_free_2d_char(char **words)
 {

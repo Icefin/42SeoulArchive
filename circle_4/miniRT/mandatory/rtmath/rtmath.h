@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtmath.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jihwjeon <jihwjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:05:05 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/24 10:33:48 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/10 13:55:21 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,7 @@ void	clamp_vec3(t_vec3 *out, double min, double max);
 t_vec3	normalize_vec3(t_vec3 v);
 double	dot_vec3(t_vec3 v1, t_vec3 v2);
 t_vec3	cross_vec3(t_vec3 v1, t_vec3 v2);
-t_vec3	reflect_vec3(t_vec3 incident, t_vec3 normal);		//glm::reflect()
-
+t_vec3	reflect_vec3(t_vec3 incident, t_vec3 normal);
 
 typedef struct s_vec4
 {
@@ -129,23 +128,21 @@ t_mat4	transpose_mat4(t_mat4 m);
 t_mat4	mul_mat4_to_mat4(t_mat4 m1, t_mat4 m2);
 t_vec4	mul_mat4_to_vec4(t_mat4 m, t_vec4 v);
 t_mat4	inv_mat4(t_mat4 m);
-//glm::lookAt();
 t_mat4	make_view_mat(t_vec3 pos, t_vec3 target, t_vec3 up);
-//glm::perspective();
 t_mat4	make_proj_mat(float fov, float aspect, float near, float far);
 
 typedef struct t_quat
 {
-	double w;
-	double x;
-	double y;
-	double z;
+	double	w;
+	double	x;
+	double	y;
+	double	z;
 }	t_quat;
 
 t_quat	make_quat(double w, double x, double y, double z);
 t_quat	normalize_quat(t_quat q);
 t_quat	angle_axis(double angle, t_vec3 axis);
 t_quat	cross_quat(t_quat q1, t_quat q2);
-t_vec3	rotate_vec3(t_quat q, t_vec3 v);					//glm::rotate
+t_vec3	rotate_vec3(t_quat q, t_vec3 v);
 
 #endif

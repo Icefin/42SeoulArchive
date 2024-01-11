@@ -6,7 +6,7 @@
 /*   By: jihwjeon <jihwjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 18:05:23 by jihwjeon          #+#    #+#             */
-/*   Updated: 2023/12/26 13:51:58 by jihwjeon         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:00:28 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include "vector.h"
 #include "object.h"
 
-extern int	str_to_vec3(t_vec3 *pos, char *str);
-extern int	str_to_rgb(t_rgb *rgb, char *str);
+int	str_to_vec3(t_vec3 *pos, char *str);
+int	str_to_rgb(t_rgb *rgb, char *str);
 
 int	set_sphere(t_scene *scene, char **words, int id)
 {
@@ -70,7 +70,7 @@ int	set_plane(t_scene *scene, char **words, int id)
 	return (0);
 }
 
-int	set_cylinder_2(char **words, t_object *cy, float diameter, float length)
+int	set_cylinder_2(char **words, t_object *cy)
 {
 	t_vec3	pos;
 	t_vec3	axis;
@@ -80,7 +80,7 @@ int	set_cylinder_2(char **words, t_object *cy, float diameter, float length)
 		|| str_to_vec3(&axis, words[2]) != 0
 		|| str_to_rgb(&albedo, words[5]) != 0)
 		return (1);
-	*cy = make_cylinder(pos, albedo, diameter / 2, axis, length);
+	*cy = make_cylinder(pos, albedo, axis);
 	return (0);
 }
 
@@ -95,9 +95,11 @@ int	set_cylinder(t_scene *scene, char **words, int id)
 		return (1);
 	diameter = ft_atod(words[3]);
 	length = ft_atod(words[4]);
-	if (set_cylinder_2(words, &cylinder, diameter, length) != 0)
+	if (set_cylinder_2(words, &cylinder) != 0)
 		return (1);
 	cylinder.id = id;
+	cylinder.radius = diameter / 2;
+	cylinder.length = length;
 	if ((cylinder.albedo.r < 0 || cylinder.albedo.r > 255)
 		|| (cylinder.albedo.g < 0 || cylinder.albedo.g > 255)
 		|| (cylinder.albedo.b < 0 || cylinder.albedo.b > 255)

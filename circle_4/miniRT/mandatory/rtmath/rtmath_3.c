@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtmath_3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jihwjeon <jihwjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 12:59:33 by geshin            #+#    #+#             */
-/*   Updated: 2023/12/20 14:27:12 by geshin           ###   ########.fr       */
+/*   Updated: 2024/01/08 17:07:32 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_vec3	vec3_minus_vec3(t_vec3 v1, t_vec3 v2)
 	res.x = (v1.x - v2.x);
 	res.y = (v1.y - v2.y);
 	res.z = (v1.z - v2.z);
-	return (res);	
+	return (res);
 }
 
 t_vec3	vec3_multiply_vec3(t_vec3 v1, t_vec3 v2)
@@ -59,5 +59,5 @@ t_vec3	vec3_multiply_vec3(t_vec3 v1, t_vec3 v2)
 	res.x = (v1.x * v2.x);
 	res.y = (v1.y * v2.y);
 	res.z = (v1.z * v2.z);
-	return (res);	
+	return (res);
 }
