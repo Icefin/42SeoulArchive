@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:47:47 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/12 14:06:21 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/12 14:31:29 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ t_rgb	per_pixel(t_ray ray, t_scene *scene)
 		objColor = closest.albedo;
 		normal = info.hitnorm;
 	}
-	normal = info.hitnorm;
+	//normal = info.hitnorm;
 	pixel_color = ambient_color(objColor, scene->ambient);
 
 	for (int i = 0; i < scene->vlight.size; ++i) {
