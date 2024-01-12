@@ -6,13 +6,14 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:54:44 by geshin            #+#    #+#             */
-/*   Updated: 2024/01/09 12:30:49 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/12 13:36:31 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "commontype.h"
 #include "texture.h"
 
-static t_vec3	get_vec3_from_value(unsigned int value)
+static t_vec3	get_vec3_from_value(t_uint32 value)
 {
 	t_vec3	res;
 
@@ -24,12 +25,12 @@ static t_vec3	get_vec3_from_value(unsigned int value)
 
 static t_vec3	get_texture_value(t_uv uv, const t_image* image)
 {
-	t_vec3			res;
-	char			*dst;
-	unsigned int	value;
+	t_vec3		res;
+	char		*dst;
+	t_uint32	value;
 
 	dst = image->addr + ((int)uv.v * image->line_length + (int)uv.u * (image->bits_per_pixel / 8));
-	value = *(unsigned int *)dst;
+	value = *(t_uint32 *)dst;
 	res = get_vec3_from_value(value);
 	return (res);
 }

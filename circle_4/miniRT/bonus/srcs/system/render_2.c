@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:47:47 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/11 19:39:10 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/12 14:06:21 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,14 @@ t_rgb	diffuse_color(t_rayinfo *info, t_rgb albedo, t_vec3 normal, t_light *light
 {
 	t_rgb	color;
 	t_vec3	lightDir;
-	double	diff;
+	float	diff;
 
 	lightDir = normalize_vec3(vec3_minus_vec3(light->position, info->hitpos));
-		diff = dot_vec3(normal, lightDir);
-	if (diff < 0)
-		return (make_rgb(0, 0, 0));
-	return (vec3_multiply_num(albedo, diff));
+	diff = fmax(dot_vec3(normal, lightDir), 0);
+	return (vec3_multiply_num(vec3_multiply_vec3(albedo, light->albedo), diff));
 }
 
-t_rgb	specular_color(t_ray *ray, t_rayinfo *info, t_vec3 normal, t_light *light)
+t_rgb	specular_color(t_ray *ray, t_rayinfo *info, t_rgb albedo, t_vec3 normal, t_light *light)
 {
 	t_rgb	color;
 	t_vec3	lightDir;
@@ -92,10 +90,8 @@ t_rgb	specular_color(t_ray *ray, t_rayinfo *info, t_vec3 normal, t_light *light)
 
 	lightDir = normalize_vec3(vec3_minus_vec3(light->position, info->hitpos));
 	reflect = normalize_vec3(reflect_vec3(ray->direction, normal));
-	spec =pow(dot_vec3(reflect, lightDir), 9);
-	if (spec < 0)
-		return (make_rgb(0, 0, 0));
-	return (vec3_multiply_num(light->albedo, spec));
+	spec =pow(fmax(dot_vec3(reflect, lightDir),0), 10);
+	return (vec3_multiply_num(vec3_multiply_vec3(light->albedo, albedo), spec));
 }
 
 t_rgb	per_pixel(t_ray ray, t_scene *scene)
@@ -103,7 +99,7 @@ t_rgb	per_pixel(t_ray ray, t_scene *scene)
 	t_rgb		pixel_color = make_rgb(0,0,0);
 	t_rayinfo	info;
 	t_object	closest;
-	t_rgb		albedo;
+	t_rgb		objColor;
 	t_vec3		normal;
 
 	info = trace_ray(ray, scene);
@@ -113,22 +109,23 @@ t_rgb	per_pixel(t_ray ray, t_scene *scene)
 	closest = *(t_object *)vector_get_idx(&(scene->vobject), info.hitid);
 	if (closest.type == PLANE)
 	{
-		albedo = uv_checker_plane(info.hitpos, &(scene->checker));
+		objColor = uv_checker_plane(info.hitpos, &(scene->checker));
 		normal = uv_normal_plane(info.hitpos, &(scene->normal));
 	}
 	else
 	{
-		albedo = closest.albedo;
+		objColor = closest.albedo;
 		normal = info.hitnorm;
 	}
-	pixel_color = ambient_color(albedo, scene->ambient);
+	normal = info.hitnorm;
+	pixel_color = ambient_color(objColor, scene->ambient);
 
 	for (int i = 0; i < scene->vlight.size; ++i) {
 		t_light	light = *(t_light *)vector_get_idx(&(scene->vlight), i);
 		if (is_shadowed(&info, &light, scene) == TRUE)
 			continue;
-		pixel_color = vec3_plus_vec3(pixel_color, diffuse_color(&info, albedo, normal, &light));
-		pixel_color = vec3_plus_vec3(pixel_color, specular_color(&ray, &info, normal, &light));
+		pixel_color = vec3_plus_vec3(pixel_color, diffuse_color(&info, objColor, normal, &light));
+		pixel_color = vec3_plus_vec3(pixel_color, specular_color(&ray, &info, objColor, normal, &light));
 	}
 	clamp_vec3(&pixel_color, 0, 255);
 	return (pixel_color);
