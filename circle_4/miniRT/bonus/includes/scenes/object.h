@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:01:45 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/11 16:58:10 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/11 17:03:41 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef enum e_object_type
 	PLANE,
 	CYLINDER,
 	CONE,
+	TRIANGLE
 }	t_object_type;
 
 typedef struct s_object

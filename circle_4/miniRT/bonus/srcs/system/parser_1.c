@@ -6,7 +6,7 @@
 /*   By: jihwjeon <jihwjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 18:03:35 by jihwjeon          #+#    #+#             */
-/*   Updated: 2024/01/05 15:34:08 by jihwjeon         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:05:33 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ extern int	set_sphere(t_scene *scene, char **words, int id);
 extern int	set_plane(t_scene *scene, char **words, int id);
 extern int	set_cylinder(t_scene *scene, char **words, int id);
 extern int	set_cone(t_scene *scene, char **words, int id);
+extern int	set_triangle(t_scene *scene, char **words, int id);
 
 int	str_to_vec3(t_vec3 *pos, char *str)
 {
@@ -83,6 +84,8 @@ int	set_informations(t_scene *scene, char *line)
 		status = set_cylinder(scene, words, id++);
 	else if (ft_strcmp(words[0], "cn") == 0)
 		status = set_cone(scene, words, id++);
+	else if (ft_strcmp(words[0], "tr") == 0)
+		status = set_triangle(scene, words, id++);
 	ft_free_2d_char(words);
 	return (status);
 }

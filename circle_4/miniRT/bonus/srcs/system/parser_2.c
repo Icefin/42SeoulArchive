@@ -6,7 +6,7 @@
 /*   By: jihwjeon <jihwjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 18:05:05 by jihwjeon          #+#    #+#             */
-/*   Updated: 2024/01/05 14:44:01 by jihwjeon         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:33:07 by jihwjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ int	set_camera(t_scene *scene, char **words)
 
 	if (words[1] == NULL || words[2] == NULL || words[3] == NULL
 		|| words[4] != NULL)
-		return (1);
+		return (2);
 	if (str_to_vec3(&pos, words[1]) != 0
 		||str_to_vec3(&dir, words[2]) != 0)
-		return (1);
+		return (2);
 	fov = ft_atod(words[3]);
 	camera_constructor(&scene->camera, pos, dir, fov);
 	return (0);
@@ -74,10 +74,10 @@ int	set_light(t_scene *scene, char **words)
 
 	if (words[1] == NULL || words[2] == NULL || words[3] == NULL
 		|| words[4] != NULL)
-		return (1);
+		return (3);
 	if (str_to_vec3(&pos, words[1]) != 0
 		|| str_to_rgb(&albedo, words[3]) != 0)
-		return (1);
+		return (3);
 	brightness = ft_atod(words[2]);
 	light = make_light(pos, albedo, brightness);
 	vector_push_back(&scene->vlight, (void *)&light);

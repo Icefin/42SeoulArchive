@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihwjeon <jihwjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:18:33 by jihwjeon          #+#    #+#             */
-/*   Updated: 2024/01/09 13:18:35 by jihwjeon         ###   ########.fr       */
+/*   Updated: 2024/01/11 19:39:30 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void event_hook(t_minirt *minirt)
 	mlx_hook(minirt->window, ON_KEYDOWN, 0, key_event, minirt);
 	mlx_hook(minirt->window, ON_MOUSEMOVE, 0, mouse_event, minirt);
 }
-#include <stdio.h>
+
 void	minirt_constructor(t_minirt *minirt, char *file)
 {
 	scene_constructor(&(minirt->scene), file);

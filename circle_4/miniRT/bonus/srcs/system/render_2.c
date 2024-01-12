@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:47:47 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/09 14:47:05 by geshin           ###   ########.fr       */
+/*   Updated: 2024/01/11 19:39:10 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ extern void	raycast_sphere(t_ray ray, t_object sphere, t_rayinfo *out);
 extern void	raycast_plane(t_ray ray, t_object plane, t_rayinfo *out);
 extern void	raycast_cylinder(t_ray ray, t_object cylinder, t_rayinfo *out);
 extern void	raycast_cone(t_ray ray, t_object cone, t_rayinfo *out);
+extern void raycast_triangle(t_ray ray, t_object triangle, t_rayinfo *out);
 
-static const t_rgb skybox = {48, 205, 252};
+static const t_rgb skybox = {0, 0, 0};
 
 t_rayinfo	trace_ray(t_ray	ray, t_scene *scene)
 {
@@ -36,6 +37,8 @@ t_rayinfo	trace_ray(t_ray	ray, t_scene *scene)
 			raycast_cylinder(ray, obj, &info);
 		else if (obj.type == CONE)
 			raycast_cone(ray, obj, &info);
+		else if (obj.type == TRIANGLE)
+			raycast_triangle(ray, obj, &info);
 	}
 	return (info);
 }
