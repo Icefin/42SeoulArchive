@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:03:00 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/10 16:09:46 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/13 14:54:22 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,23 @@
 
 int main()
 {
-	FragTrap ft("geshin");
+	{
+		FragTrap ft("geshin");
 
-	std::string targetName = "target";
-	ft.attack(targetName);
-	ft.highFivesGuys();
+		ft.attack("Monster");
+		ft.takeDamage(20);
+		ft.takeDamage(20);
+		ft.takeDamage(20);
+		ft.takeDamage(20);
+		ft.takeDamage(20);
+		ft.takeDamage(20);
+	}
+	
+	{
+		FragTrap ft("geshin");
+
+		for (int i = 0; i < 100; ++i)
+			ft.highFivesGuys();
+		ft.beRepaired(10);
+	}
 }

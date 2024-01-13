@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 23:28:18 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/10 16:11:31 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/13 14:49:46 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,32 @@
 
 int main()
 {
-	ClapTrap ct("geshin");
+	{
+		ClapTrap ct("geshin");
 
-	std::string targetName = "target";
+		ct.attack("Monster");
+		ct.beRepaired(10);
+		ct.takeDamage(10);
+		ct.takeDamage(10);
+		ct.takeDamage(10);
+		ct.takeDamage(10);
+		ct.takeDamage(10);
+	}
+	
+	{
+		ClapTrap ct("geshin");
 
-	ct.attack(targetName);
-	ct.beRepaired(10);
-	ct.takeDamage(10);
+		ct.attack("Monster");
+		ct.beRepaired(10);
+		ct.beRepaired(10);
+		ct.beRepaired(10);
+		ct.beRepaired(10);
+		ct.beRepaired(10);
+		ct.beRepaired(10);
+		ct.beRepaired(10);
+		ct.beRepaired(10);
+		ct.beRepaired(10);
+		ct.beRepaired(10);
+		ct.beRepaired(10);
+	}
 }
