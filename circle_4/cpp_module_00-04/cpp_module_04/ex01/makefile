@@ -1,7 +1,7 @@
 #Flags========================================================================
 CPP = c++
 
-CPPFLAGS = #-std=c++98 -Wall -Wextra -Werror #-fsanitize=address
+CPPFLAGS = -std=c++98 -Wall -Wextra -Werror #-fsanitize=address
 
 NAME = test
 
@@ -12,7 +12,10 @@ INCLUDE = ./
 
 #Sources========================================================================
 SRCS = main.cpp \
-		ClapTrap.cpp
+		Animal.cpp \
+		Cat.cpp \
+		Dog.cpp \
+		Brain.cpp
 
 
 #Objects=========================================================================

@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:24:59 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/12 16:50:40 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/13 17:39:39 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define CHARACTER_H
 
 #include "ICharacter.h"
+
+#define INVENTORY_SIZE 4
 
 class Character : public ICharacter
 {
@@ -31,9 +33,9 @@ public :
 	virtual void use(int idx, ICharacter& target);
 	
 private :
-	static const int	s_SlotMax = 4;
-	int					m_SlotIdx;;
-	AMateria			*m_Inventory;
+	std::string			m_Name;
+	int					m_MateriaNum;
+	AMateria			*m_Inventory[INVENTORY_SIZE];
 };
 
 #endif

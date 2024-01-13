@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:41:04 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/12 18:56:42 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/13 17:54:38 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,15 @@ class AMateria
 public :
 	AMateria();
 	AMateria(const std::string& type);
+	AMateria(const AMateria& rhs);
 	virtual ~AMateria();
 
 	const std::string& getType() const;
 
 	virtual AMateria* clone() const = 0;
 	virtual void use(ICharacter& target);
+
+	AMateria& operator=(const AMateria& rhs);
 
 protected :
 	std::string m_Type;

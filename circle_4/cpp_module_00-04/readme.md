@@ -12,6 +12,7 @@ This module is about simple usage of cpp.
 - What does static mean in class
 - Visibility in class : private, protected, public
 
+
 #### Cpp_Module_01
 This module is about class, reference, function pointer in cpp.
 - Constructor, destructor in cpp
@@ -22,7 +23,7 @@ This module is about class, reference, function pointer in cpp.
 
 #### Cpp_Module_02
 This module is about operator-overloading by making fixed point number.
-- What is Orhodox Canonical Class Form? What is default constructor, destructor?=
+- What is Orhodox Canonical Class Form? What is default constructor, destructor?
 - What is overloading and how to do that?
 - What's the difference between postfix/prefix increment/decrement operator.
 - Why we need to return reference than default type?
@@ -33,7 +34,13 @@ This module is about class inheritance.
 - How to inherit other class in cpp
 - What does virtual keyword mean? why we need to use them?
 - What is a virtual inheritance and why we need to use that?
+- vtptr (virtual table ptr) vs vbptr (virtual base ptr)
 
 
 #### Cpp_Module_04
 This module is about polymorphism, abstract class and interface.
+- How to use polymorphism in cpp
+- Deep copying in class assign operator or copy constructor
+- Pure virtual function and abstract class
+- What is pure abstract class and why need to use it?
+- Forward declaration for better compile time and dependency

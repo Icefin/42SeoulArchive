@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:20:38 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/10 16:43:44 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/13 16:45:15 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define DOG_H
 
 #include "Animal.h"
+#include "Brain.h"
 
 class Dog : public Animal
 {
@@ -26,6 +27,11 @@ public :
 
 	virtual std::string getType() const;
 	virtual void makeSound() const;
+
+	void printIdeaSource() const;
+
+private :
+	Brain* m_Brain;
 };
 
 #endif

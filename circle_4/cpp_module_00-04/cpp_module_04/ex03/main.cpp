@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:35:14 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/12 16:36:39 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/13 18:00:05 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,14 @@
 #include "Cure.h"
 #include "Character.h"
 
+void leaks()
+{
+	system("leaks test");
+}
+
 int main()
 {
+	atexit(leaks);
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());

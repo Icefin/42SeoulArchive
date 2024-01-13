@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.h                                              :+:      :+:    :+:   */
+/*   Dog.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 16:20:20 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/13 16:45:08 by singeonho        ###   ########.fr       */
+/*   Created: 2024/01/10 16:20:38 by singeonho         #+#    #+#             */
+/*   Updated: 2024/01/13 17:11:00 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_H
-# define CAT_H
+#ifndef DOG_H
+# define DOG_H
 
 #include "Animal.h"
-#include "Brain.h"
 
-class Cat : public Animal
+class Dog : public Animal
 {
 public :
-	Cat();
-	Cat(const Cat& rhs);
-	virtual ~Cat();
+	Dog();
+	Dog(const Dog& rhs);
+	virtual ~Dog();
 
-	Cat& operator=(const Cat& rhs);
+	Dog& operator=(const Dog& rhs);
 
 	virtual std::string getType() const;
 	virtual void makeSound() const;
-
-	void printIdeaSource() const;
-
-private :
-	Brain* m_Brain;
 };
 
 #endif

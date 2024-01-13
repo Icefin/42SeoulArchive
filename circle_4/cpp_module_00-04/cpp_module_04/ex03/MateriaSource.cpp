@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:51:10 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/12 18:52:09 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/13 17:55:24 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,26 @@ MateriaSource::MateriaSource()
 MateriaSource::MateriaSource(const MateriaSource& rhs)
 {
 	m_TemplateNum = rhs.m_TemplateNum;
-	memcpy(m_Templates, rhs.m_Templates, s_TemplateMax * sizeof(AMateria));
+	memcpy(m_Templates, rhs.m_Templates, MATERIA_SIZE * sizeof(AMateria));
 }
 
 MateriaSource::~MateriaSource()
 {
-	delete[] m_Templates;
+	for (int i = 0; i < m_TemplateNum; ++i)
+		delete m_Templates[i];
 }
 
 MateriaSource& MateriaSource::operator=(const MateriaSource& rhs)
 {
 
 	m_TemplateNum = rhs.m_TemplateNum;
-	memcpy(m_Templates, rhs.m_Templates, s_TemplateMax * sizeof(AMateria));
+	memcpy(m_Templates, rhs.m_Templates, MATERIA_SIZE * sizeof(AMateria));
 	return *this;
 }
 
 void MateriaSource::learnMateria(AMateria* elem)
 {
-	if (m_TemplateNum == s_TemplateMax)
+	if (m_TemplateNum == MATERIA_SIZE)
 	{
 		std::cout << "MateriaSource has already learned 4 AMateria\n";
 		return ;
@@ -55,7 +56,6 @@ AMateria* MateriaSource::createMateria(const std::string& type)
 		if (m_Templates[i]->getType() == type)
 			return m_Templates[i]->clone();
 	}
-
 	std::cout << "MateriaSource doesn't learn " << type << " type of AMateria\n";
 	return NULL;
 }

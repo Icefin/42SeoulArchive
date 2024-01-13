@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:43:12 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/12 16:32:33 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/13 17:51:31 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define ICHARACTER_H
 
 #include <string>
-#include "AMateria.h"
+
+class AMateria;
 
 class ICharacter
 {
