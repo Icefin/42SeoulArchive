@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:02:38 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/13 15:10:24 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/13 16:06:04 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,12 @@ int main()
 		op.takeDamage(10);
 		op.takeDamage(10);
 		op.takeDamage(10);
+	}
+
+	{
+		DiamondTrap dt("geshin");
+		dt.printStatus();
+		DiamondTrap op(dt);
+		op.printStatus();
 	}
 }

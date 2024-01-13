@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 23:32:15 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/10 16:08:57 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/13 16:03:39 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ ScavTrap::ScavTrap(const std::string& name)
 }
 
 ScavTrap::ScavTrap(const ScavTrap& rhs)
-	: ClapTrap(rhs)
+	: ClapTrap()
 {
+	*this = rhs;
 	std::cout << "ScavTrap copy constructor called\n";
 }
 

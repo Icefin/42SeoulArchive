@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:32:35 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/13 15:07:02 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/13 16:05:51 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 #include "DiamondTrap.h"
 
 DiamondTrap::DiamondTrap()
-	: ScavTrap(), FragTrap()
+	: ClapTrap("None_clap_name"), ScavTrap(), FragTrap()
 {
 	m_Name = "None";
-	ClapTrap::m_Name = "None_clap_name";
 	m_HitPoint = 100;
 	m_EnergyPoint = 50;
 	m_AttackDamage = 30;
@@ -25,22 +24,18 @@ DiamondTrap::DiamondTrap()
 }
 
 DiamondTrap::DiamondTrap(const std::string& name)
-	: ScavTrap(), FragTrap()
+	: ClapTrap(name + "_clap_name"), ScavTrap(), FragTrap()
 {
 	m_Name = name;
-	ClapTrap::m_Name = name + "_clap_name";
 	m_HitPoint = 100;
 	m_EnergyPoint = 50;
 	m_AttackDamage = 30;
 	std::cout << "DiamondTrap constructor called\n";
 }
 DiamondTrap::DiamondTrap(const DiamondTrap& rhs)
+	: ClapTrap(), ScavTrap(), FragTrap()
 {
-	m_Name = rhs.m_Name;
-	ClapTrap::m_Name = rhs.ClapTrap::m_Name;
-	m_HitPoint = rhs.m_HitPoint;
-	m_EnergyPoint = rhs.m_EnergyPoint;
-	m_AttackDamage = rhs.m_AttackDamage;
+	*this = rhs;
 	std::cout << "DiamondTrap copy constructor called\n";
 }
 
@@ -79,6 +74,15 @@ void DiamondTrap::whoAmI()
 		<< ScavTrap::m_Name
 		<< std::endl;
 	m_EnergyPoint--;
+}
+
+void DiamondTrap::printStatus()
+{
+	std::cout << "Dia Name : " << m_Name << std::endl;
+	std::cout << "Clap Name : " << ClapTrap::m_Name << std::endl;
+	std::cout << "HP : " << m_HitPoint << std::endl;
+	std::cout << "Energy : " << m_EnergyPoint << std::endl;
+	std::cout << "Damage : " << m_AttackDamage << std::endl;
 }
 
 bool DiamondTrap::isAlive()

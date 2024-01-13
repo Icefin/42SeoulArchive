@@ -1,7 +1,7 @@
 #Flags========================================================================
 CPP = c++
 
-CPPFLAGS = #-std=c++98 -Wall -Wextra -Werror #-fsanitize=address
+CPPFLAGS = -std=c++98 -Wall -Wextra -Werror #-fsanitize=address
 
 NAME = test
 

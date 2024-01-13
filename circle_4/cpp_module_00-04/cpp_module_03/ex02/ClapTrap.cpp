@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 23:32:10 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/10 15:25:25 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/13 16:03:15 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ ClapTrap::ClapTrap(const std::string& name)
 }
 
 ClapTrap::ClapTrap(const ClapTrap& rhs)
-	: m_Name(rhs.m_Name), m_HitPoint(rhs.m_HitPoint), m_EnergyPoint(rhs.m_EnergyPoint), m_AttackDamage(rhs.m_AttackDamage)
 {
+	*this = rhs;
 	std::cout << "ClapTrap copy constructor called\n";
 }
 

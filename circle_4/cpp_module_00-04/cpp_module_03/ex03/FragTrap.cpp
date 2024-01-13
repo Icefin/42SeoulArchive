@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:16:58 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/10 15:27:42 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/13 16:04:08 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ FragTrap::FragTrap(const std::string& name)
 }
 
 FragTrap::FragTrap(const FragTrap& rhs)
-	: ClapTrap(rhs)
+	: ClapTrap()
 {
+	*this = rhs;
 	std::cout << "FragTrap copy constructor called\n";
 }
 

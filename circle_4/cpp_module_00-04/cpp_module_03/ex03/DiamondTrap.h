@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 23:43:47 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/10 16:06:35 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/13 16:05:45 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ public :
 	virtual void attack(const std::string& target);
 
 	void whoAmI();
+	void printStatus();
 
 protected :
 	virtual bool isAlive();
