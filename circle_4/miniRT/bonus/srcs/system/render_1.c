@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:31:16 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/14 16:37:56 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/14 17:44:49 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	render(t_minirt *minirt)
 
 #define MT 1
 #if MT
-	//Multithreading...
 	t_child		*child = (t_child *)malloc(sizeof(t_child) * THREAD_CNT);
 
 	for (int i = 0; i < THREAD_CNT; ++i)

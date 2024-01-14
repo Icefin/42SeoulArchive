@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihwjeon <jihwjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:36:14 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/11 11:50:30 by jihwjeon         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:44:55 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	calc_raydirs(t_camera *camera)
 
 #define MT 1
 #if MT
-	//Multithreading...
 	t_child	*child = (t_child *)malloc(sizeof(t_child) * THREAD_CNT);
 
 	for (int i = 0; i < THREAD_CNT; ++i)
