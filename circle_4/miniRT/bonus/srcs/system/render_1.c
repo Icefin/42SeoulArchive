@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihwjeon <jihwjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 15:31:16 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/11 11:50:34 by jihwjeon         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:37:56 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "minirt.h"
 #include "thread.h"
 
-extern t_rgb	per_pixel(t_ray ray, t_scene *scene);
+extern t_rgb	trace_ray(t_ray ray, t_scene *scene, int depth);
 
 static t_uint32	get_color_from_rgb(t_rgb rgb)
 {
@@ -48,7 +48,7 @@ void*	routine(void *attr)
 		{
 			ray.direction = *(t_vec3 *)vector_get_idx(&(camera->raydirs), x + y * WINDOW_WIDTH);
 			ray.maxdist = camera->far;
-			t_rgb pixel_color = per_pixel(ray, &(minirt->scene));
+			t_rgb pixel_color = trace_ray(ray, &(minirt->scene), 0);
 			ft_mlx_pixel_put(child->image, x, y, get_color_from_rgb(pixel_color));
 		}
 	}

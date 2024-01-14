@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:05:05 by singeonho         #+#    #+#             */
-/*   Updated: 2023/12/24 12:15:22 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/14 16:42:30 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_vec3	normalize_vec3(t_vec3 v);
 double	dot_vec3(t_vec3 v1, t_vec3 v2);
 t_vec3	cross_vec3(t_vec3 v1, t_vec3 v2);
 t_vec3	reflect_vec3(t_vec3 incident, t_vec3 normal);		//glm::reflect()
-
+t_vec3	refract_vec3(t_vec3 i, t_vec3 n, double n1, double n2);
 
 typedef struct s_vec4
 {

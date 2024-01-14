@@ -6,6 +6,7 @@ A raytracer is a computer graphics technique used to create highly realistic ima
 
 ![Alt text](result_dragon.png)
 ![Alt text](result_simple.png)
+![Alt text](result_mirror-1.png)
 
 ### Features
 ---
@@ -18,9 +19,9 @@ A raytracer is a computer graphics technique used to create highly realistic ima
 - Translatable, rotatable camera with keyboard and mouse input
 - Support two Camera modes : Slow clear image, Faster fuzzy image
 - Simple graphics math library named "rtmath" based on glm, supporting vec2, vec3, vec4, mat3, mat4, quaternion
+- Reflection, refraction ray trace
 
 Possible upgrades coming in a near future:
-- Reflection, refraction ray trace
 - Material systems for realistic texture
 - Soft shadowing
 - Anti-aliasing
