@@ -44,7 +44,8 @@ SRCS_SYSTEM		=	\
 					parser_4.c \
 					render_1.c \
 					render_2.c \
-					texture.c
+					texture_1.c \
+					texture_2.c
 
 DIR_SRCS_UTILS	=	./srcs/utils
 SRCS_UTILS		=	\

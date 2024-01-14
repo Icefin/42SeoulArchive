@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geshin <geshin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:48:43 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/08 14:59:04 by geshin           ###   ########.fr       */
+/*   Updated: 2024/01/14 14:09:29 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ typedef struct s_texture
 	t_image			image;
 }	t_texture;
 
-t_rgb	uv_checker_plane(t_vec3 pos, const t_texture *texture);
+t_rgb	uv_texture_plane(t_vec3 pos, const t_texture *texture);
 t_vec3	uv_normal_plane(t_vec3 pos, const t_texture *texture);
-//t_vec3	uv_texture_sphere();
 
 #endif

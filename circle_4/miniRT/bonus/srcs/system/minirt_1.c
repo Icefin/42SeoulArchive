@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:18:33 by jihwjeon          #+#    #+#             */
-/*   Updated: 2024/01/11 19:39:30 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/14 14:34:50 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ void	minirt_constructor(t_minirt *minirt, char *file)
 													&(minirt->scene.checker.image.endian));
 
 	minirt->scene.normal.image.img = mlx_xpm_file_to_image(minirt->mlx,\
-															"./assets/Asphalt_1.xpm",
-															&minirt->scene.normal.width,
+															"./assets/dry_soil_cracked.xpm",\
+															&minirt->scene.normal.width,\
 															&minirt->scene.normal.height);
 	minirt->scene.normal.image.addr = mlx_get_data_addr(minirt->scene.normal.image.img,\
 													&(minirt->scene.normal.image.bits_per_pixel),\
