@@ -22,6 +22,7 @@ Dog::Dog()
 }
 
 Dog::Dog(const Dog& rhs)
+	: Animal()
 {
 	m_Type = rhs.m_Type;
 	std::cout << "Dog copy constructor called\n";

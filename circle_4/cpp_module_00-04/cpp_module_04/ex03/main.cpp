@@ -15,14 +15,8 @@
 #include "Cure.h"
 #include "Character.h"
 
-void leaks()
-{
-	system("leaks test");
-}
-
 int main()
 {
-	atexit(leaks);
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());

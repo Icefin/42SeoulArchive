@@ -16,13 +16,15 @@
 MateriaSource::MateriaSource()
 {
 	m_TemplateNum = 0;
-	std::memset(m_Templates, 0, sizeof(m_Templates));
+	for (int i = 0; i < MATERIA_SIZE; ++i)
+		m_Templates[i] = NULL;
 }
 
 MateriaSource::MateriaSource(const MateriaSource& rhs)
 {
 	m_TemplateNum = rhs.m_TemplateNum;
-	memcpy(m_Templates, rhs.m_Templates, MATERIA_SIZE * sizeof(AMateria));
+	for (int i = 0; i < m_TemplateNum; ++i)
+		m_Templates[i] = rhs.m_Templates[i]->clone();
 }
 
 MateriaSource::~MateriaSource()
@@ -33,9 +35,11 @@ MateriaSource::~MateriaSource()
 
 MateriaSource& MateriaSource::operator=(const MateriaSource& rhs)
 {
-
+	for (int i = 0; i < m_TemplateNum; ++i)
+		delete m_Templates[i];
 	m_TemplateNum = rhs.m_TemplateNum;
-	memcpy(m_Templates, rhs.m_Templates, MATERIA_SIZE * sizeof(AMateria));
+	for (int i = 0; i < m_TemplateNum; ++i)
+		m_Templates[i] = rhs.m_Templates[i]->clone();
 	return *this;
 }
 
@@ -46,7 +50,6 @@ void MateriaSource::learnMateria(AMateria* elem)
 		std::cout << "MateriaSource has already learned 4 AMateria\n";
 		return ;
 	}
-
 	m_Templates[m_TemplateNum++] = elem;
 }
 

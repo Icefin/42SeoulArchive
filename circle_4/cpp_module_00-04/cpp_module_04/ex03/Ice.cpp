@@ -14,11 +14,13 @@
 #include "Ice.h"
 
 Ice::Ice()
+	: AMateria()
 {
 	m_Type = "ice";
 }
 
 Ice::Ice(const Ice& rhs)
+	: AMateria()
 {
 	*this = rhs;
 }

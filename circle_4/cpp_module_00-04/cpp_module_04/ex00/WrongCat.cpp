@@ -14,12 +14,14 @@
 #include "WrongCat.h"
 
 WrongCat::WrongCat()
+	: WrongAnimal()
 {
 	m_Type = "WrongCat";
 	std::cout << "WrongCat default constructor called\n";
 }
 
 WrongCat::WrongCat(const WrongCat& rhs)
+	: WrongAnimal()
 {
 	m_Type = rhs.m_Type;
 	std::cout << "WrongCat copy constructor called\n";

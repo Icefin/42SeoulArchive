@@ -16,14 +16,8 @@
 #include "Dog.h"
 #include "Brain.h"
 
-void leaks()
-{
-	system("leaks test");
-}
-
 int main()
 {
-	atexit(leaks);
 	{
 		Animal* animals[10];
 

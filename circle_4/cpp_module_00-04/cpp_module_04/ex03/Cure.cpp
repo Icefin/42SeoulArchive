@@ -14,11 +14,13 @@
 #include "Cure.h"
 
 Cure::Cure()
+	: AMateria()
 {
 	m_Type = "cure";
 }
 	
 Cure::Cure(const Cure& rhs)
+	: AMateria()
 {
 	*this = rhs;
 }

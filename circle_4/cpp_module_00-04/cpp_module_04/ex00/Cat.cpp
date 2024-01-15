@@ -22,6 +22,7 @@ Cat::Cat()
 }
 
 Cat::Cat(const Cat& rhs)
+	: Animal()
 {
 	m_Type = rhs.m_Type;
 	std::cout << "Cat copy constructor called\n";
