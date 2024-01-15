@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.h                                            :+:      :+:    :+:   */
+/*   material.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 13:03:17 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/14 16:07:19 by singeonho        ###   ########.fr       */
+/*   Created: 2024/01/12 19:32:42 by singeonho         #+#    #+#             */
+/*   Updated: 2024/01/14 16:22:31 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIGHT_H
-# define LIGHT_H
+#ifndef MATERIAL_H
+# define MATERIAL_H
 
-# include "rtmath.h"
+#include "rtmath.h"
 
-typedef struct s_light
+//http://devernay.free.fr/cours/opengl/materials.html
+
+typedef enum s_surface_type
 {
-	t_vec3	position;
+	METALLIC = 0,
+	DIELECTRICS
+}	t_surface_type;
 
-	t_rgb	albedo;
-	float	brightness;
+typedef struct s_material
+{
+	t_rgb			ambient;
+	t_rgb			diffuse;
+	t_rgb			specular;
+	float			shininess;
 
-	t_rgb	ambient;
-	t_rgb	diffuse;
-	t_rgb	specular;
-}	t_light;
-
-t_light	make_light(t_vec3 pos, t_rgb albedo, float brightness);
+	t_surface_type	type;
+}	t_material;
 
 #endif

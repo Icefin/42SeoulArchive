@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihwjeon <jihwjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 13:02:12 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/09 13:30:49 by jihwjeon         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:54:33 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "rtmath.h"
 # include "vector.h"
 
-# define WINDOW_WIDTH		800
-# define WINDOW_HEIGHT		480
+# define WINDOW_WIDTH		1024
+# define WINDOW_HEIGHT		600
 # define MOVE_SPEED			1
 # define MOUSE_SENSITIVE	0.002
 

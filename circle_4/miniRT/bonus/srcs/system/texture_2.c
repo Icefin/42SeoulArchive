@@ -6,14 +6,13 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 13:47:34 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/14 14:31:49 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/14 21:56:48 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commontype.h"
 #include "texture.h"
 
-#include <stdio.h>
 static t_vec3	get_vec3_from_value(t_uint32 value)
 {
 	t_rgb	dir;
