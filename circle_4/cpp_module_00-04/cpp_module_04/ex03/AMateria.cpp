@@ -6,10 +6,11 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 17:05:00 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/13 17:29:00 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/15 23:11:54 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
 #include "AMateria.h"
 
 AMateria::AMateria()
@@ -40,7 +41,10 @@ const std::string& AMateria::getType() const
 	
 void AMateria::use(ICharacter& target)
 {
-	
+	std::cout
+		<< "* shoots an AMateria at "
+		<< target.getName()
+		<< " *\n";
 }
 
 AMateria& AMateria::operator=(const AMateria& rhs)

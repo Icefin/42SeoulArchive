@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:33:36 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/13 17:58:45 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/15 23:13:44 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ public :
 	virtual AMateria* createMateria(const std::string& type);
 
 private :
-	int					m_TemplateNum;
-	AMateria			*m_Templates[MATERIA_SIZE];
+	int			m_TemplateNum;
+	AMateria	*m_Templates[MATERIA_SIZE];
 };
 
 #endif
