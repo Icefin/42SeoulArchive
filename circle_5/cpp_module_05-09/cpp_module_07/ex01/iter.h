@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.h                                       :+:      :+:    :+:   */
+/*   iter.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 17:52:32 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/17 20:38:32 by singeonho        ###   ########.fr       */
+/*   Created: 2024/01/17 20:56:43 by singeonho         #+#    #+#             */
+/*   Updated: 2024/01/17 21:06:11 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERIALIZER_H
-# define SERIALIZER_H
+#ifndef ITER_H
+# define ITER_H
 
-#include <cstdint>
-
-struct Data
+template <typename T>
+void iter(T* array, unsigned int len, void(*fptr)(T&))
 {
-public :
-	int Position;
-	int Rotation;
-	char Name;
-	bool IsAlive;
-};
-
-class Serializer
-{
-public :
-	static uintptr_t serialize(Data* ptr);
-	static Data* deserialize(uintptr_t raw);
-
-private :
-	Serializer();
-	Serializer(const Serializer& op);
-	~Serializer();
-	Serializer& operator=(const Serializer& op);
-};
+	for (unsigned int i = 0; i < len; ++i)
+		fptr(array[i]);
+}
 
 #endif

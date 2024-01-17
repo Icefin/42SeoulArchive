@@ -13,6 +13,9 @@ This module is about how to handle errors in cpp.
 
 
 #### Cpp_Module_06
+- About nan, inf of float or double
+- What is reinterpret_cast, how to use it?
+- dynamic_cast return NULL or throw exception depends on pointer or reference
 
 
 

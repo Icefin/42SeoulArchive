@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.h                                       :+:      :+:    :+:   */
+/*   easyfind.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 17:52:32 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/17 20:38:32 by singeonho        ###   ########.fr       */
+/*   Created: 2024/01/17 21:44:06 by singeonho         #+#    #+#             */
+/*   Updated: 2024/01/17 21:48:25 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERIALIZER_H
-# define SERIALIZER_H
+#ifndef EASYFIND_H
+# define EASYFIND_H
 
-#include <cstdint>
-
-struct Data
+template<typename T>
+typename T::iterator easyfind(T& container, int target)
 {
-public :
-	int Position;
-	int Rotation;
-	char Name;
-	bool IsAlive;
-};
-
-class Serializer
-{
-public :
-	static uintptr_t serialize(Data* ptr);
-	static Data* deserialize(uintptr_t raw);
-
-private :
-	Serializer();
-	Serializer(const Serializer& op);
-	~Serializer();
-	Serializer& operator=(const Serializer& op);
-};
+	typename T::iterator iter = container.begin();
+	while (iter != container.end())
+	{
+		if (*iter == target)
+			return iter;
+		++iter;
+	}
+	return container.end();
+}
 
 #endif

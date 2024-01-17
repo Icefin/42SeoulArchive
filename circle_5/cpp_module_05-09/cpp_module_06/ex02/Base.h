@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 17:54:14 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/17 17:55:36 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/17 20:20:11 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 class Base
 {
 public :
-	virtual ~Base();
+	virtual ~Base() {};
 };
 
 #endif

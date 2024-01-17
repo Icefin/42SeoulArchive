@@ -5,28 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 17:52:24 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/17 20:40:45 by singeonho        ###   ########.fr       */
+/*   Created: 2024/01/17 20:50:32 by singeonho         #+#    #+#             */
+/*   Updated: 2024/01/17 20:55:16 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Serializer.h"
+#include "whatever.h"
 
 int main()
 {
-	Data data;
-	data.Position = 0;
-	data.Rotation = 180;
-	data.Name = 'c';
-	data.IsAlive = true;
+	int a = 2;
+	int b = 3;
 
-	Data* dptr = &data;
-	uintptr_t serial = Serializer::serialize(dptr);
-	Data* deserial = Serializer::deserialize(serial);
+	::swap(a, b);
+	std::cout << "a = " << a << ", b = " << b << std::endl;
+	std::cout << "min(a, b) = " << ::min(a, b) << std::endl;
+	std::cout << "max(a, b) = " << ::max(a, b) << std::endl;
 
-	std::cout << "Data Position: "<< deserial->Position << std::endl;
-	std::cout << "Data Rotation: "<< deserial->Rotation << std::endl;
-	std::cout << "Data Name: "<< deserial->Name << std::endl;
-	std::cout << "Data IsAlive: "<< deserial->IsAlive << std::endl;
+	std::string c = "chaine1";
+	std::string d = "chaine2";
+
+	::swap(c, d);
+	std::cout << "c = " << c << ", d = " << d << std::endl;
+	std::cout << "min(c, d) = " << ::min(c, d) << std::endl;
+	std::cout << "max(c, d) = " << ::max(c, d) << std::endl;
 }

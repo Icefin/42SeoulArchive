@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.h                                       :+:      :+:    :+:   */
+/*   whatever.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 17:52:32 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/17 20:38:32 by singeonho        ###   ########.fr       */
+/*   Created: 2024/01/17 20:50:39 by singeonho         #+#    #+#             */
+/*   Updated: 2024/01/17 20:52:30 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERIALIZER_H
-# define SERIALIZER_H
+#ifndef WHATEVER_H
+# define WHATEVER_H
 
-#include <cstdint>
-
-struct Data
+template <typename T>
+void swap(T& a, T& b)
 {
-public :
-	int Position;
-	int Rotation;
-	char Name;
-	bool IsAlive;
-};
+	T temp = a;
+	a = b;
+	b = temp;
+}
 
-class Serializer
+template <typename T>
+T min(T a, T b)
 {
-public :
-	static uintptr_t serialize(Data* ptr);
-	static Data* deserialize(uintptr_t raw);
+	return a < b ? a : b;
+}
 
-private :
-	Serializer();
-	Serializer(const Serializer& op);
-	~Serializer();
-	Serializer& operator=(const Serializer& op);
-};
+template <typename T>
+T max(T a, T b)
+{
+	return a > b ? a : b;
+}
 
 #endif
