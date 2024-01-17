@@ -1,9 +1,9 @@
 #Flags========================================================================
 CPP = c++
 
-CPPFLAGS = #-std=c++98 -Wall -Wextra -Werror #-fsanitize=address
+CPPFLAGS = -std=c++98 -Wall -Wextra -Werror #-fsanitize=address
 
-NAME = test
+NAME = RPN
 
 INCLUDE = ./
 
@@ -12,11 +12,7 @@ INCLUDE = ./
 
 #Sources========================================================================
 SRCS = main.cpp \
-		AMateria.cpp \
-		MateriaSource.cpp \
-		Cure.cpp \
-		Ice.cpp \
-		Character.cpp
+		RPN.cpp
 		
 
 
