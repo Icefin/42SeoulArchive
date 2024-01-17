@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 17:54:11 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/17 00:04:19 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/17 14:58:07 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 #include <iostream>
 #include <string>
 
-#define MAX_GRADE 1
-#define MIN_GRADE 150
-
-class Form;
+class AForm;
 
 class Bureaucrat
 {
+public :
+	static const int s_MaxGrade = 1;
+	static const int s_MinGrade = 150;
+
 public :
 	class GradeTooHighException : public std::exception
 	{
@@ -50,7 +51,9 @@ public :
 	void increaseGrade();
 	void decreaseGrade();
 
-	void signForm(Form& form) const;
+	void signForm(AForm& form) const;
+
+	void executeForm(const AForm& form);
 
 private :
 	const std::string 	m_Name;

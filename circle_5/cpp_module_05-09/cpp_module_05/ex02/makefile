@@ -12,12 +12,11 @@ INCLUDE = ./
 
 #Sources========================================================================
 SRCS = main.cpp \
-		AMateria.cpp \
-		MateriaSource.cpp \
-		Cure.cpp \
-		Ice.cpp \
-		Character.cpp
-		
+		Bureaucrat.cpp \
+		AForm.cpp \
+		PresidentialPardonForm.cpp \
+		RobotomyRequestForm.cpp \
+		ShrubberyCreationForm.cpp
 
 
 #Objects=========================================================================
