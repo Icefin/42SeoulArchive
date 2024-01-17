@@ -12,12 +12,7 @@ INCLUDE = ./
 
 #Sources========================================================================
 SRCS = main.cpp \
-		AMateria.cpp \
-		MateriaSource.cpp \
-		Cure.cpp \
-		Ice.cpp \
-		Character.cpp
-		
+		Span.cpp
 
 
 #Objects=========================================================================
