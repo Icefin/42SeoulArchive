@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:36:14 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/14 17:44:55 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/20 16:58:50 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	camera_constructor(t_camera *camera, t_vec3 pos, t_vec3 dir, double fov)
 {	
 	camera->position = pos;
 	camera->forward = dir;
-	camera->aspect = WINDOW_WIDTH / WINDOW_HEIGHT;
+	camera->aspect = (float)WINDOW_WIDTH / WINDOW_HEIGHT;
 	camera->fov = fov;
 	camera->near = 0.1;
 	camera->far = 1000.0;
