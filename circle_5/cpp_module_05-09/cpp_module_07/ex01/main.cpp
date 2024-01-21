@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 20:56:31 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/17 21:11:29 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/18 22:48:27 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void test_char(char& c)
 
 void test_string(std::string& str)
 {
-	for (int i = 0; i < str.length(); ++i)
+	for (unsigned int i = 0; i < str.length(); ++i)
 		str[i] = toupper(str[i]);
 }
 

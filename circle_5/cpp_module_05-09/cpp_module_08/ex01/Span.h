@@ -6,7 +6,7 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:08:09 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/17 22:19:57 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/18 18:40:45 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ public :
 		virtual const char* what() const throw();
 	};
 
-	class FewElementException : public std::exception
+	class TooFewElementException : public std::exception
 	{
 	public :
 		virtual const char* what() const throw();
