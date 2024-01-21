@@ -6,11 +6,12 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:25:24 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/17 22:26:21 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/18 21:38:22 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <stack>
 #include "MutantStack.h"
 
 int main()
