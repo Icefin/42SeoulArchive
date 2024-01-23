@@ -6,13 +6,14 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:08:09 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/18 18:40:45 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/23 15:43:29 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SPAN_H
 # define SPAN_H
 
+#include <vector>
 #include <exception>
 
 class Span
@@ -35,15 +36,30 @@ public :
 	Span(unsigned int N);
 	Span(const Span& op);
 	~Span();
-	Span& operator=(const Span& op);
 
-	void addNumber(int number);
-	
+	unsigned int size() const;
+
 	unsigned int shortestSpan() const;
 	unsigned int longestSpan() const;
 
-private :
+	void addNumber(int number);
+	template<typename T>
+	void addNumber(T begin, T end)
+	{
+		while (begin != end)
+		{
+			this->addNumber(*begin);
+			begin++;
+		}
+	}
 
+public :
+	Span& operator=(const Span& op);
+	int operator[](unsigned int idx);
+	const int operator[](unsigned int idx) const;
+
+private :
+	std::vector<int> 	m_Data;
 };
 
 #endif
