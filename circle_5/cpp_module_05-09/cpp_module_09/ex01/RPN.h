@@ -6,13 +6,19 @@
 /*   By: singeonho <singeonho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:40:12 by singeonho         #+#    #+#             */
-/*   Updated: 2024/01/17 22:40:20 by singeonho        ###   ########.fr       */
+/*   Updated: 2024/01/23 16:33:56 by singeonho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RPN_H
 # define RPN_H
 
+#include <stack>
+
+class RPN
+{
+
+};
 
 
 #endif
