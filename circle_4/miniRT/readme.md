@@ -4,6 +4,8 @@ MiniRT is a CPU-based mini raytracer in C that utilizes a minimal graphics libra
 
 A raytracer is a computer graphics technique used to create highly realistic images by simulating the behavior of light in a virtual 3D environment. In ray tracing, the fundamental concept revolves around tracing the path of light rays as they interact with objects and surfaces within a scene.
 
+https://github.com/Icefin/42SeoulArchive/assets/76864202/2506d1cf-63cb-47d2-bb3a-ee2459468b60
+
 ![Alt text](results/result_dragon.png)
 ![Alt text](results/result_simple.png)
 ![Alt text](results/result_mirror.png)
